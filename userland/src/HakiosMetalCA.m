@@ -1919,6 +1919,17 @@ hm_fn_name(id self, SEL sel, NSString *name)
 	if (other != nil && f != nil) {
 		HM_ONCE("the library has no %s: %s stands in for it\n", [name UTF8String], [other UTF8String]);
 	}
+	if (f == nil && name != nil) {
+		const char *cname = [name UTF8String];
+		if (strstr(cname, "vert") != NULL) {
+			f = hm_orig_fn_name(self, sel, @"fixed_vert_lph_gen");
+		} else {
+			f = hm_orig_fn_name(self, sel, @"fixed_frag_lph_cpf");
+		}
+		if (f != nil) {
+			HM_ONCE("the library has no %s: generic fallback used\n", cname);
+		}
+	}
 	return f;
 }
 
@@ -1935,6 +1946,18 @@ hm_fn_constants(id self, SEL sel, NSString *name, MTLFunctionConstantValues *val
 	if (other != nil && f != nil) {
 		if (error != NULL) *error = nil;
 		HM_ONCE("the library has no %s: %s stands in for it (with constants)\n", [name UTF8String], [other UTF8String]);
+	}
+	if (f == nil && name != nil) {
+		const char *cname = [name UTF8String];
+		if (strstr(cname, "vert") != NULL) {
+			f = hm_orig_fn_constants(self, sel, @"fixed_vert_lph_gen", values, error);
+		} else {
+			f = hm_orig_fn_constants(self, sel, @"fixed_frag_lph_cpf", values, error);
+		}
+		if (f != nil) {
+			if (error != NULL) *error = nil;
+			HM_ONCE("the library has no %s: generic fallback used (with constants)\n", cname);
+		}
 	}
 	return f;
 }
