@@ -563,11 +563,11 @@ for f in extensions.plist extensions.plist.sig; do
 	[ -f $DARWIN/rootfs/System/Library/xpc/$f ] && cp $DARWIN/rootfs/System/Library/xpc/$f root/xpc/
 done
 [ -d root/lib/HakiosAudio.driver ] && ln -s /redwood/lib/HakiosAudio.driver root/hal/HakiosAudio.driver
-# Programs and libraries of more than 4 MB (Turnip, UniXNU's Metal on Vulkan: TURNIP=1, M2V=1) live in the system
+# Programs and libraries of more than 16 MB (Turnip, UniXNU's Metal on Vulkan: TURNIP=1, M2V=1) live in the system
 # image, in /usr/local/redwood, with a link in their place here: the small image is loaded with the kernel, in the
 # 64 MB the loader takes for both (with them it grew from 6.6 to 26 MB).
 rm -rf big
-for f in $(cd root && find lib bin -type f -size +4M 2>/dev/null); do
+for f in $(cd root && find lib bin -type f -size +16M 2>/dev/null); do
 	mkdir -p big/$(dirname $f)
 	mv root/$f big/$f
 	ln -s /usr/local/redwood/$f root/$f

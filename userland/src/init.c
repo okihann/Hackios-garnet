@@ -227,6 +227,10 @@ flash_root(const char *dev)
 			chdir("/");
 			check(bind_dir("/private/preboot/redwood", "/redwood"), "this image back on /redwood");
 		}
+		if (stat("/System/Library/Extensions/HakiosMetal.bundle", &fw_st) != 0 && stat("/redwood/lib/HakiosMetal.bundle", &fw_st) == 0) {
+			synthetic_dir("/System/Library/Extensions/HakiosMetal.bundle");
+			bind_dir("/redwood/lib/HakiosMetal.bundle", "/System/Library/Extensions/HakiosMetal.bundle");
+		}
 		return;
 	}
 	check(synthetic_dir("/flash/redwood"), "a synthetic /redwood on it, for this image");
