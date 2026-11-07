@@ -242,7 +242,9 @@ bool pushedRanges(const Stage& s, const Bindings& b, std::vector<PushedRange>* o
             continue;
         }
         if (r.block >= b.buffers.size() || b.buffers[r.block].buffer == nullptr) {
-            return refuse(why, name() + ": no buffer bound at index " + n(r.block) + " (its constant buffer)");
+            PushedRange p{r.offsetVec4, r.sizeDwords / 4, 0, std::vector<uint32_t>(r.sizeDwords, 0u)};
+            out->push_back(std::move(p));
+            continue;
         }
         const Binding& x = b.buffers[r.block];
         if (x.offset % 4 != 0 || x.offset > x.buffer->length()) {
