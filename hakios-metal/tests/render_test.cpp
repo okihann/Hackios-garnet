@@ -871,7 +871,7 @@ TEST(render_encodes_the_first_triangles_registers) {
         size_t ccu = e.findEvent(PC_CCU_FLUSH_COLOR_TS);
         CHECK(ccu > dr);
         CHECK_EQ(pm4::decode(w[ccu]).count, 4u);
-        CHECK_EQ(w[ccu + 1], uint32_t(PC_CCU_FLUSH_COLOR_TS));
+        CHECK_EQ(w[ccu + 1], uint32_t(PC_CCU_FLUSH_COLOR_TS) | a6xx::CP_EVENT_WRITE7_0_WRITE_ENABLED);
         CHECK_EQ(w[ccu + 2], uint32_t(e.table->gpuAddress() + render::kTableTimestampsAt));
         CHECK_EQ(w[ccu + 4], 1u);
         size_t wait = e.find(CP_WAIT_REG_MEM, ccu);

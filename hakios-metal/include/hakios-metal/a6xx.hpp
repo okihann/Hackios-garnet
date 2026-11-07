@@ -912,6 +912,9 @@ inline constexpr uint32_t CP_EVENT_WRITE_0_EVENT__SHIFT = 0;                    
 // ever, every dispatch; with it clear the whole tail completes in 41 us. Gallium sets the bit on every 4-word event,
 // computerator never does: computerator's form is the one that works here. eventWrite0 leaves it clear.
 inline constexpr uint32_t CP_EVENT_WRITE_0_TIMESTAMP = 0x40000000;                      // adreno_pm4.xml.h:2335
+// On A7xx (Adreno 710), writing the 32-bit user payload to RAM requires WRITE_ENABLED (bit 27).
+// Without it the CP microcode does not write the value to memory, causing CP_WAIT_REG_MEM to hang.
+inline constexpr uint32_t CP_EVENT_WRITE7_0_WRITE_ENABLED = 0x08000000;                 // adreno_pm4.xml.h:4730
 inline constexpr uint32_t CP_EVENT_WRITE_0_IRQ = 0x80000000;                            // adreno_pm4.xml.h:2336
 inline constexpr uint32_t CP_EVENT_WRITE_1_ADDR_0_LO__MASK = 0xffffffff;                // adreno_pm4.xml.h:2340
 inline constexpr uint32_t CP_EVENT_WRITE_2_ADDR_0_HI__MASK = 0xffffffff;                // adreno_pm4.xml.h:2349

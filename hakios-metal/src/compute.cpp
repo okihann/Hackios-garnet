@@ -55,9 +55,11 @@ void event(pm4::Stream& st, vgt_event_type e) {
     st.packet(CP_EVENT_WRITE, &w, 1);
 }
 
-// an event that writes VALUE to ADDRESS when it has completed: how the GPU says the caches are flushed
+// an event that writes VALUE to ADDRESS when it has completed: how the GPU says the caches are flushed.
+// On A7xx (Adreno 710) this requires CP_EVENT_WRITE7_0_WRITE_ENABLED (bit 27).
 void eventTimestamp(pm4::Stream& st, vgt_event_type e, uint64_t address, uint32_t value, bool timestampBit) {
-    uint32_t w[4] = {eventWrite0(e, timestampBit), uint32_t(address), uint32_t(address >> 32), value};
+    uint32_t w[4] = {eventWrite0(e, timestampBit) | a6xx::CP_EVENT_WRITE7_0_WRITE_ENABLED,
+                     uint32_t(address), uint32_t(address >> 32), value};
     st.packet(CP_EVENT_WRITE, w, 4);
 }
 

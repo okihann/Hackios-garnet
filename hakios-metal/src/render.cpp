@@ -61,11 +61,13 @@ void event(pm4::Stream& st, vgt_event_type e) {
     st.packet(CP_EVENT_WRITE, &w, 1);
 }
 
-// the 4-word event: VALUE written to ADDRESS when it has completed. turnip's form (tu_emit_raw_event_write,
-// tu_cmd_buffer.cc:48-70) has no TIMESTAMP bit; with it the GPU writes a timestamp instead and the wait below never
-// ends (28 October, every compute dispatch). The bit is here for the fake GPU's test of that alone.
+// the 4-word event: VALUE written to ADDRESS when it has completed. On A7xx (Adreno 710) this requires
+// CP_EVENT_WRITE7_0_WRITE_ENABLED (bit 27). turnip's form (tu_emit_raw_event_write, tu_cmd_buffer.cc:48-70)
+// has no TIMESTAMP bit; with it the GPU writes a timestamp instead and the wait below never ends (28 October,
+// every compute dispatch). The bit is here for the fake GPU's test of that alone.
 void eventTimestamp(pm4::Stream& st, vgt_event_type e, uint64_t address, uint32_t value, bool timestampBit) {
-    uint32_t w[4] = {eventWrite0(e, timestampBit), uint32_t(address), uint32_t(address >> 32), value};
+    uint32_t w[4] = {eventWrite0(e, timestampBit) | a6xx::CP_EVENT_WRITE7_0_WRITE_ENABLED,
+                     uint32_t(address), uint32_t(address >> 32), value};
     st.packet(CP_EVENT_WRITE, w, 4);
 }
 
