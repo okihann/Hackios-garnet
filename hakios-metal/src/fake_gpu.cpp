@@ -1597,12 +1597,19 @@ bool FakeGpu::execDraw(const uint32_t* p, uint32_t count) {
                 fault(text("SP_FS_PREFETCH_CMD[%llu] not written in this submission: the prefetch would be the last owner's", i));
                 return false;
             }
-            const uint32_t texId = fieldOf(cmd, A6XX_SP_FS_PREFETCH_CMD_TEX_ID__MASK, A6XX_SP_FS_PREFETCH_CMD_TEX_ID__SHIFT);
-            const uint32_t sampId = fieldOf(cmd, A6XX_SP_FS_PREFETCH_CMD_SAMP_ID__MASK, A6XX_SP_FS_PREFETCH_CMD_SAMP_ID__SHIFT);
-            const uint32_t dst = fieldOf(cmd, A6XX_SP_FS_PREFETCH_CMD_DST__MASK, A6XX_SP_FS_PREFETCH_CMD_DST__SHIFT);
-            const uint32_t wrmask = fieldOf(cmd, A6XX_SP_FS_PREFETCH_CMD_WRMASK__MASK, A6XX_SP_FS_PREFETCH_CMD_WRMASK__SHIFT);
-            if (fieldOf(cmd, A6XX_SP_FS_PREFETCH_CMD_CMD__MASK, A6XX_SP_FS_PREFETCH_CMD_CMD__SHIFT) != TEX_PREFETCH_SAM ||
-                (cmd & A6XX_SP_FS_PREFETCH_CMD_BINDLESS) != 0) {
+            const uint32_t a6cmd = fieldOf(cmd, A6XX_SP_FS_PREFETCH_CMD_CMD__MASK, A6XX_SP_FS_PREFETCH_CMD_CMD__SHIFT);
+            const bool isA7xx = (a6cmd != TEX_PREFETCH_SAM && fieldOf(cmd, A7XX_SP_FS_PREFETCH_CMD_CMD__MASK, A7XX_SP_FS_PREFETCH_CMD_CMD__SHIFT) == TEX_PREFETCH_SAM);
+            const uint32_t texId = isA7xx ? fieldOf(cmd, A7XX_SP_FS_PREFETCH_CMD_TEX_ID__MASK, A7XX_SP_FS_PREFETCH_CMD_TEX_ID__SHIFT)
+                                          : fieldOf(cmd, A6XX_SP_FS_PREFETCH_CMD_TEX_ID__MASK, A6XX_SP_FS_PREFETCH_CMD_TEX_ID__SHIFT);
+            const uint32_t sampId = isA7xx ? fieldOf(cmd, A7XX_SP_FS_PREFETCH_CMD_SAMP_ID__MASK, A7XX_SP_FS_PREFETCH_CMD_SAMP_ID__SHIFT)
+                                           : fieldOf(cmd, A6XX_SP_FS_PREFETCH_CMD_SAMP_ID__MASK, A6XX_SP_FS_PREFETCH_CMD_SAMP_ID__SHIFT);
+            const uint32_t dst = isA7xx ? fieldOf(cmd, A7XX_SP_FS_PREFETCH_CMD_DST__MASK, A7XX_SP_FS_PREFETCH_CMD_DST__SHIFT)
+                                        : fieldOf(cmd, A6XX_SP_FS_PREFETCH_CMD_DST__MASK, A6XX_SP_FS_PREFETCH_CMD_DST__SHIFT);
+            const uint32_t wrmask = isA7xx ? fieldOf(cmd, A7XX_SP_FS_PREFETCH_CMD_WRMASK__MASK, A7XX_SP_FS_PREFETCH_CMD_WRMASK__SHIFT)
+                                           : fieldOf(cmd, A6XX_SP_FS_PREFETCH_CMD_WRMASK__MASK, A6XX_SP_FS_PREFETCH_CMD_WRMASK__SHIFT);
+            const bool bindless = isA7xx ? ((cmd & A7XX_SP_FS_PREFETCH_CMD_BINDLESS) != 0) : ((cmd & A6XX_SP_FS_PREFETCH_CMD_BINDLESS) != 0);
+            const uint32_t cmdOp = isA7xx ? fieldOf(cmd, A7XX_SP_FS_PREFETCH_CMD_CMD__MASK, A7XX_SP_FS_PREFETCH_CMD_CMD__SHIFT) : a6cmd;
+            if (cmdOp != TEX_PREFETCH_SAM || bindless) {
                 fault(text("SP_FS_PREFETCH_CMD[%llu] %#llx is not a plain, non-bindless sample (TEX_PREFETCH_SAM)", i, cmd));
                 return false;
             }
@@ -2170,6 +2177,11 @@ bool FakeGpu::execute(uint64_t address, uint32_t words, int depth) {
                     }
                     memcpy(d, &samples_, 8);
                 }
+                if (h.count == 1) {
+                    uint32_t ev1 = fieldOf(p[0], CP_EVENT_WRITE_0_EVENT__MASK, CP_EVENT_WRITE_0_EVENT__SHIFT);
+                    if (ev1 == CCU_CLEAN_COLOR) drawsWithoutCcuFlush_ = 0;
+                    if (ev1 == CCU_CLEAN_DEPTH) drawsWithoutDepthFlush_ = 0;
+                }
                 if (h.count == 4) {
                     uint64_t to = p[1] | uint64_t(p[2]) << 32;
                     // With the TIMESTAMP bit the GPU writes a timestamp of its own, not the packet's value (the XML says so,
@@ -2190,8 +2202,8 @@ bool FakeGpu::execute(uint64_t address, uint32_t words, int depth) {
                     // what a draw needs after it: the colour CCU flushed to memory (tu6_emit_flushes / fd6_emit_flushes: the
                     // 4-word form with an address, freedreno_gpu_event.h:60-85 needs_seqno) and then the cache flush
                     uint32_t ev = fieldOf(p[0], CP_EVENT_WRITE_0_EVENT__MASK, CP_EVENT_WRITE_0_EVENT__SHIFT);
-                    if (ev == PC_CCU_FLUSH_COLOR_TS) drawsWithoutCcuFlush_ = 0;
-                    if (ev == PC_CCU_FLUSH_DEPTH_TS) drawsWithoutDepthFlush_ = 0;
+                    if (ev == PC_CCU_FLUSH_COLOR_TS || ev == RB_DONE_TS) drawsWithoutCcuFlush_ = 0;
+                    if (ev == PC_CCU_FLUSH_DEPTH_TS || ev == CCU_CLEAN_DEPTH) drawsWithoutDepthFlush_ = 0;
                     if (ev == CACHE_FLUSH_TS) drawsWithoutCacheFlush_ = 0;
                 }
                 break;

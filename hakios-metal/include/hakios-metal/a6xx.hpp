@@ -292,6 +292,8 @@ enum vgt_event_type : uint32_t {
     PC_CCU_FLUSH_DEPTH_TS = 28,    // adreno_pm4.xml.h:94
     PC_CCU_FLUSH_COLOR_TS = 29,    // adreno_pm4.xml.h:95   the colour CCU cache to memory: what puts a draw's pixels where the CPU reads them
     BLIT = 30,                     // adreno_pm4.xml.h:96
+    CCU_CLEAN_DEPTH = 32,          // adreno_pm4.xml.h:118  A7xx non-seqno depth cache clean
+    CCU_CLEAN_COLOR = 33,          // adreno_pm4.xml.h:119  A7xx non-seqno colour cache clean
     LRZ_CLEAR = 37,                // adreno_pm4.xml.h:98
     UNK_2C = 44,                   // adreno_pm4.xml.h:106  before the binning pass's draws (emit_binning_pass)
     UNK_2D = 45,                   // adreno_pm4.xml.h:107  ...and after them
@@ -1441,6 +1443,30 @@ inline constexpr uint32_t REG_A7XX_RB_BLIT_CLEAR_MODE = 0x88e4;
 inline constexpr uint32_t REG_A7XX_PC_RASTER_CNTL_V2 = 0x9317;
 inline constexpr uint32_t REG_A7XX_SP_PS_2D_WINDOW_OFFSET = 0xb2d1;
 
+inline constexpr uint32_t REG_A7XX_VPC_PRIMITIVE_CNTL_0 = 0x9109;
+inline constexpr uint32_t REG_A7XX_VPC_POLYGON_MODE2 = 0x9307;
+inline constexpr uint32_t REG_A7XX_VPC_MULTIVIEW_MASK = 0x910b;
+inline constexpr uint32_t REG_A7XX_VPC_MULTIVIEW_CNTL = 0x910c;
+inline constexpr uint32_t REG_A7XX_SP_PS_ALIASED_COMPONENTS_CONTROL = 0xaa02;
+inline constexpr uint32_t REG_A7XX_SP_PS_ALIASED_COMPONENTS = 0xaa03;
+inline constexpr uint32_t REG_A7XX_SP_VS_VGPR_CONFIG = 0xa82d;
+inline constexpr uint32_t REG_A7XX_SP_FS_VGPR_CONFIG = 0xaa01;
+inline constexpr uint32_t REG_A7XX_HLSQ_VS_CNTL = 0xa827;
+inline constexpr uint32_t REG_A7XX_HLSQ_HS_CNTL = 0xa83f;
+inline constexpr uint32_t REG_A7XX_HLSQ_DS_CNTL = 0xa867;
+inline constexpr uint32_t REG_A7XX_HLSQ_GS_CNTL = 0xa898;
+inline constexpr uint32_t REG_A7XX_HLSQ_FS_CNTL_0 = 0xa9c6;
+inline constexpr uint32_t REG_A7XX_HLSQ_CONTROL_1_REG = 0xa9c7;
+inline constexpr uint32_t REG_A7XX_HLSQ_CONTROL_2_REG = 0xa9c8;
+inline constexpr uint32_t REG_A7XX_HLSQ_CONTROL_3_REG = 0xa9c9;
+inline constexpr uint32_t REG_A7XX_HLSQ_CONTROL_4_REG = 0xa9ca;
+inline constexpr uint32_t REG_A7XX_HLSQ_CONTROL_5_REG = 0xa9cb;
+inline constexpr uint32_t REG_A7XX_HLSQ_FS_CNTL = 0xab03;
+inline constexpr uint32_t REG_A7XX_HLSQ_INVALIDATE_CMD = 0xab1f;
+inline constexpr uint32_t REG_A7XX_HLSQ_UNKNOWN_A9AE = 0xa9ae;
+inline constexpr uint32_t REG_A7XX_HLSQ_FS_UNKNOWN_A9AA = 0xa9aa;
+inline constexpr uint32_t REG_A6XX_SP_FS_BINDLESS_PREFETCH_CMD = 0xa9a3;
+
 inline constexpr uint32_t REG_A6XX_RB_DBG_ECO_CNTL = 0x8e04;                           // a6xx.xml.h:6711
 inline constexpr uint32_t REG_A6XX_SP_DBG_ECO_CNTL = 0xae00;                           // a6xx.xml.h:9559
 inline constexpr uint32_t REG_A6XX_TPL1_UNKNOWN_B605 = 0xb605;                         // a6xx.xml.h:10161  "always 0x0 or 0x44?" (the XML); Gallium: 0x44
@@ -1745,6 +1771,7 @@ inline constexpr RegWrite kStaticState[] = {
     {REG_A6XX_VPC_UNKNOWN_9602, 0},
     {REG_A6XX_PC_UNKNOWN_9E72, 0},
     {REG_A6XX_SP_TP_MODE_CNTL, spTpModeCntl()},
+    {REG_A7XX_HLSQ_CONTROL_5_REG, hlsqControl5Reg()},
     {REG_A6XX_HLSQ_CONTROL_5_REG, hlsqControl5Reg()},
     {REG_A6XX_VFD_MODE_CNTL, A6XX_VFD_MODE_CNTL_RENDER_MODE(RENDERING_PASS)},
     {REG_A6XX_VFD_MULTIVIEW_CNTL, 0},
@@ -1769,6 +1796,8 @@ inline constexpr RegWrite kStaticStateAfterDrawState[] = {
 inline constexpr RegWrite kStaticStateTail[] = {
     {REG_A6XX_RB_ALPHA_CONTROL, 0},
     {REG_A6XX_SP_FS_CTRL_REG0, 0},
+    {REG_A7XX_VPC_MULTIVIEW_CNTL, 0},
+    {REG_A7XX_VPC_MULTIVIEW_MASK, 1},
 };
 
 // CP_SET_DRAW_STATE, 3 words per group: Gallium's batch start sends one group with DISABLE_ALL_GROUPS and no address,
@@ -3647,6 +3676,30 @@ constexpr uint32_t spFsPrefetchCmd(uint32_t src, uint32_t sampId, uint32_t texId
            field(cmd, A6XX_SP_FS_PREFETCH_CMD_CMD__SHIFT, A6XX_SP_FS_PREFETCH_CMD_CMD__MASK);
 }
 
+inline constexpr uint32_t A7XX_SP_FS_PREFETCH_CMD_SRC__MASK = 0x0000007f;
+inline constexpr uint32_t A7XX_SP_FS_PREFETCH_CMD_SRC__SHIFT = 0;
+inline constexpr uint32_t A7XX_SP_FS_PREFETCH_CMD_SAMP_ID__MASK = 0x00000380;
+inline constexpr uint32_t A7XX_SP_FS_PREFETCH_CMD_SAMP_ID__SHIFT = 7;
+inline constexpr uint32_t A7XX_SP_FS_PREFETCH_CMD_TEX_ID__MASK = 0x00001c00;
+inline constexpr uint32_t A7XX_SP_FS_PREFETCH_CMD_TEX_ID__SHIFT = 10;
+inline constexpr uint32_t A7XX_SP_FS_PREFETCH_CMD_DST__MASK = 0x0007e000;
+inline constexpr uint32_t A7XX_SP_FS_PREFETCH_CMD_DST__SHIFT = 13;
+inline constexpr uint32_t A7XX_SP_FS_PREFETCH_CMD_WRMASK__MASK = 0x00780000;
+inline constexpr uint32_t A7XX_SP_FS_PREFETCH_CMD_WRMASK__SHIFT = 19;
+inline constexpr uint32_t A7XX_SP_FS_PREFETCH_CMD_HALF = 0x00800000;
+inline constexpr uint32_t A7XX_SP_FS_PREFETCH_CMD_BINDLESS = 0x02000000;
+inline constexpr uint32_t A7XX_SP_FS_PREFETCH_CMD_CMD__MASK = 0x3c000000;
+inline constexpr uint32_t A7XX_SP_FS_PREFETCH_CMD_CMD__SHIFT = 26;
+
+constexpr uint32_t spFsPrefetchCmdA7xx(uint32_t src, uint32_t sampId, uint32_t texId, uint32_t dst, uint32_t wrmask, bool half, uint32_t cmd) {
+    return field(src, A7XX_SP_FS_PREFETCH_CMD_SRC__SHIFT, A7XX_SP_FS_PREFETCH_CMD_SRC__MASK) |
+           field(sampId, A7XX_SP_FS_PREFETCH_CMD_SAMP_ID__SHIFT, A7XX_SP_FS_PREFETCH_CMD_SAMP_ID__MASK) |
+           field(texId, A7XX_SP_FS_PREFETCH_CMD_TEX_ID__SHIFT, A7XX_SP_FS_PREFETCH_CMD_TEX_ID__MASK) |
+           field(dst, A7XX_SP_FS_PREFETCH_CMD_DST__SHIFT, A7XX_SP_FS_PREFETCH_CMD_DST__MASK) |
+           field(wrmask, A7XX_SP_FS_PREFETCH_CMD_WRMASK__SHIFT, A7XX_SP_FS_PREFETCH_CMD_WRMASK__MASK) | (half ? A7XX_SP_FS_PREFETCH_CMD_HALF : 0u) |
+           field(cmd, A7XX_SP_FS_PREFETCH_CMD_CMD__SHIFT, A7XX_SP_FS_PREFETCH_CMD_CMD__MASK);
+}
+
 inline constexpr uint32_t REG_A6XX_SP_FS_TEX_COUNT = 0xa9a7;                                // a6xx.xml.h:9090
 inline constexpr uint32_t REG_A6XX_SP_FS_PVT_MEM_HW_STACK_OFFSET = 0xa9a9;                  // a6xx.xml.h:9096
 inline constexpr uint32_t A6XX_SP_FS_PVT_MEM_HW_STACK_OFFSET_OFFSET__MASK = 0x0007ffff;     // a6xx.xml.h:9097
@@ -4331,7 +4384,9 @@ constexpr uint32_t rbRenderControl1(bool faceness, bool sampleId, bool sampleMas
 // no perspective pixel barycentric
 constexpr uint32_t spFsPrefetchCntl(uint32_t count, bool ijWriteDisable, bool endOfQuad = false) {
     return A6XX_SP_FS_PREFETCH_CNTL_COUNT(count) | (ijWriteDisable ? A6XX_SP_FS_PREFETCH_CNTL_IJ_WRITE_DISABLE : 0u) |
-           (endOfQuad ? A6XX_SP_FS_PREFETCH_CNTL_ENDOFQUAD : 0u);
+           (endOfQuad ? A6XX_SP_FS_PREFETCH_CNTL_ENDOFQUAD : 0u) |
+           A6XX_SP_FS_PREFETCH_CNTL_CONSTSLOTID(0x1ff) |
+           A6XX_SP_FS_PREFETCH_CNTL_CONSTSLOTID4COORD(0x1ff);
 }
 
 // the FS output registers (tu_shader.cc:1816-1898)

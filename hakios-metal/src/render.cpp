@@ -1149,6 +1149,7 @@ void passStart(pm4::Stream& stream, uint32_t W, uint32_t H, uint64_t table, cons
         event(stream, PC_CCU_INVALIDATE_DEPTH);
         event(stream, vgt_event_type(40));                 // UNK_40 event on A7xx
         event(stream, CACHE_INVALIDATE);
+        reg(stream, REG_A7XX_HLSQ_INVALIDATE_CMD, hlsqInvalidateCmdAll());
         reg(stream, REG_A6XX_HLSQ_INVALIDATE_CMD, hlsqInvalidateCmdAll());
         stream.waitForIdle();
         for (const RegWrite& w : kStaticState) reg(stream, w.reg, w.value);
@@ -1221,14 +1222,15 @@ void passTail(pm4::Stream& stream, uint64_t table, const Options& o, bool depth 
     {
         const uint64_t ts = table + kTableTimestampsAt;
         if (o.tailCcuFlush) {
-            eventTimestamp(stream, PC_CCU_FLUSH_COLOR_TS, ts, 1, o.tailTimestampBit);
+            event(stream, CCU_CLEAN_COLOR);
+            if (depth || o.tailDepthFlush) {
+                event(stream, CCU_CLEAN_DEPTH);
+            }
+            eventTimestamp(stream, RB_DONE_TS, ts, 1, o.tailTimestampBit);
             waitForWord(stream, ts, 1);
         }
-        // with a depth attachment its CCU too (tu6_emit_flushes' FD_CCU_CLEAN_DEPTH, the 4-word PC_CCU_FLUSH_DEPTH_TS on
-        // A6XX): every draw is a pass of its own here, so the next draw's depth test must find this one's depth in memory
         if (depth && o.tailDepthFlush) {
-            eventTimestamp(stream, PC_CCU_FLUSH_DEPTH_TS, table + kTableDepthFlushAt, kDepthFlushValue, false);
-            waitForWord(stream, table + kTableDepthFlushAt, kDepthFlushValue);
+            event(stream, CCU_CLEAN_DEPTH);
         }
         if (o.tailLrzFlush) {
             event(stream, LRZ_FLUSH);
@@ -1701,19 +1703,27 @@ bool encodeDraw(pm4::Stream& stream, const Program& program, const RenderPass& p
     // stage with HS, DS and GS off (NTEX = NSAMP = num_samp = 0; CONSTLEN in the field's units of 4 vec4, the FS's 0 is
     // ENABLED alone), SP_IBO_COUNT 0 (fd6's nibo(fs))
     if (o.programConfig) {
-        reg(stream, REG_A6XX_HLSQ_INVALIDATE_CMD,
-            A6XX_HLSQ_INVALIDATE_CMD_VS_STATE | A6XX_HLSQ_INVALIDATE_CMD_HS_STATE | A6XX_HLSQ_INVALIDATE_CMD_DS_STATE |
-                A6XX_HLSQ_INVALIDATE_CMD_GS_STATE | A6XX_HLSQ_INVALIDATE_CMD_FS_STATE | A6XX_HLSQ_INVALIDATE_CMD_GFX_IBO);
+        const uint32_t inv = A6XX_HLSQ_INVALIDATE_CMD_VS_STATE | A6XX_HLSQ_INVALIDATE_CMD_HS_STATE | A6XX_HLSQ_INVALIDATE_CMD_DS_STATE |
+                             A6XX_HLSQ_INVALIDATE_CMD_GS_STATE | A6XX_HLSQ_INVALIDATE_CMD_FS_STATE | A6XX_HLSQ_INVALIDATE_CMD_GFX_IBO;
+        reg(stream, REG_A7XX_HLSQ_INVALIDATE_CMD, inv);
+        reg(stream, REG_A6XX_HLSQ_INVALIDATE_CMD, inv);
         reg(stream, REG_A6XX_SP_VS_CONFIG, spXsConfig(vs.k.numSamp, vs.k.numSamp, vs.k.numSsbos));
+        reg(stream, REG_A7XX_HLSQ_VS_CNTL, hlsqVsCntl(vs.k.constlen));
         reg(stream, REG_A6XX_HLSQ_VS_CNTL, hlsqVsCntl(vs.k.constlen));
+        reg(stream, REG_A7XX_SP_VS_VGPR_CONFIG, 0);
         reg(stream, REG_A6XX_SP_HS_CONFIG, 0);
+        reg(stream, REG_A7XX_HLSQ_HS_CNTL, 0);
         reg(stream, REG_A6XX_HLSQ_HS_CNTL, 0);
         reg(stream, REG_A6XX_SP_DS_CONFIG, 0);
+        reg(stream, REG_A7XX_HLSQ_DS_CNTL, 0);
         reg(stream, REG_A6XX_HLSQ_DS_CNTL, 0);
         reg(stream, REG_A6XX_SP_GS_CONFIG, 0);
+        reg(stream, REG_A7XX_HLSQ_GS_CNTL, 0);
         reg(stream, REG_A6XX_HLSQ_GS_CNTL, 0);
         reg(stream, REG_A6XX_SP_FS_CONFIG, spXsConfig(fs.k.numSamp, fs.k.numSamp, fs.k.numSsbos));
+        reg(stream, REG_A7XX_HLSQ_FS_CNTL, hlsqFsCntl(fs.k.constlen));
         reg(stream, REG_A6XX_HLSQ_FS_CNTL, hlsqFsCntl(fs.k.constlen));
+        reg(stream, REG_A7XX_SP_FS_VGPR_CONFIG, 0);
         // the 3D IBO table's count (fd6's nibo(fs); here the larger of the two stages', the table being one), and the table
         // itself: CP_LOAD_STATE6 (the plain opcode) of ST6_SHADER into SB6_IBO, as both witnesses load it (tu_pipeline.cc:
         // 183, fd6_image.cc:308-335 -- bindless there, from the table here, the SP_CS_IBO way), then SP_IBO at it
@@ -1905,21 +1915,42 @@ bool encodeDraw(pm4::Stream& stream, const Program& program, const RenderPass& p
     const uint32_t ijbits = ijBits(ij, needSize, false);
     if (o.fsInputs) {
         {
-            // with the prefetch commands after it in the same pkt4 (fd6 emit_fs_inputs, fd6_program.cc:947-971; A6XX keeps the
-            // slots in the command, no SP_FS_BINDLESS_PREFETCH_CMD)
             uint32_t w[1 + kMaxSamplerPrefetch];
             w[0] = spFsPrefetchCntl(fs.numSamplerPrefetch, !validReg(ij[IJ_PERSP_PIXEL]), fs.prefetchEndOfQuad != 0);
             for (uint32_t i = 0; i < fs.numSamplerPrefetch; i++) {
                 const SamplerPrefetch& pf = fs.prefetch[i];
-                w[1 + i] = spFsPrefetchCmd(pf.src, pf.sampId, pf.texId, pf.dst, pf.wrmask, pf.half != 0, pf.cmd);
+                w[1 + i] = spFsPrefetchCmdA7xx(pf.src, pf.sampId, pf.texId, pf.dst, pf.wrmask, pf.half != 0, pf.cmd);
             }
             stream.registers(REG_A6XX_SP_FS_PREFETCH_CNTL, w, 1 + fs.numSamplerPrefetch);
+            if (fs.numSamplerPrefetch > 0) {
+                uint32_t bindless[kMaxSamplerPrefetch] = {0};
+                stream.registers(REG_A6XX_SP_FS_BINDLESS_PREFETCH_CMD, bindless, fs.numSamplerPrefetch);
+            }
         }
+        regs(stream, REG_A7XX_HLSQ_CONTROL_1_REG,
+             {hlsqControl1Reg(), hlsqControl2Reg(fs.faceRegid, fs.sampleIdRegid, fs.sampleMaskInRegid, ij[IJ_PERSP_CENTER_RHW]),
+              hlsqControl3Reg(ij[IJ_PERSP_PIXEL], ij[IJ_LINEAR_PIXEL], ij[IJ_PERSP_CENTROID], ij[IJ_LINEAR_CENTROID]),
+              hlsqControl4Reg(ij[IJ_PERSP_SAMPLE], ij[IJ_LINEAR_SAMPLE], fs.fragCoordRegid, validReg(fs.fragCoordRegid) ? fs.fragCoordRegid + 2 : kRegidNone),
+              hlsqControl5Reg()});
         regs(stream, REG_A6XX_HLSQ_CONTROL_1_REG,
              {hlsqControl1Reg(), hlsqControl2Reg(fs.faceRegid, fs.sampleIdRegid, fs.sampleMaskInRegid, ij[IJ_PERSP_CENTER_RHW]),
               hlsqControl3Reg(ij[IJ_PERSP_PIXEL], ij[IJ_LINEAR_PIXEL], ij[IJ_PERSP_CENTROID], ij[IJ_LINEAR_CENTROID]),
               hlsqControl4Reg(ij[IJ_PERSP_SAMPLE], ij[IJ_LINEAR_SAMPLE], fs.fragCoordRegid, validReg(fs.fragCoordRegid) ? fs.fragCoordRegid + 2 : kRegidNone),
               hlsqControl5Reg()});
+
+        uint32_t sysvalCount = 0;
+        for (uint32_t i = 0; i < kIjCount; i++) {
+            uint32_t r = ij[i];
+            if (validReg(r)) sysvalCount += (r == ij[IJ_PERSP_CENTER_RHW] ? 1 : 2);
+        }
+        for (uint32_t r : {fs.faceRegid, fs.sampleIdRegid, fs.sampleMaskInRegid}) {
+            if (validReg(r)) sysvalCount += 1;
+        }
+        if (validReg(fs.fragCoordRegid)) sysvalCount += 4;
+        reg(stream, REG_A7XX_HLSQ_UNKNOWN_A9AE, (sysvalCount & 0xff) | 0x300);
+        reg(stream, REG_A7XX_HLSQ_FS_UNKNOWN_A9AA, 0);
+
+        reg(stream, REG_A7XX_HLSQ_FS_CNTL_0, hlsqFsCntl0(fsThreads, fs.totalIn != 0));
         reg(stream, REG_A6XX_HLSQ_FS_CNTL_0, hlsqFsCntl0(fsThreads, fs.totalIn != 0));
         reg(stream, REG_A6XX_GRAS_CNTL, grasCntl(ijbits, fs.fragcoordCompmask));
         regs(stream, REG_A6XX_RB_RENDER_CONTROL0,
@@ -1968,7 +1999,9 @@ bool encodeDraw(pm4::Stream& stream, const Program& program, const RenderPass& p
         reg(stream, REG_A6XX_GRAS_SU_CNTL, grasSuCntl(draw.cullMode == 1, draw.cullMode == 2, draw.winding == 0));
         reg(stream, REG_A6XX_VPC_POLYGON_MODE, A6XX_VPC_POLYGON_MODE_MODE(POLYMODE6_TRIANGLES));
         reg(stream, REG_A6XX_PC_POLYGON_MODE, A6XX_PC_POLYGON_MODE_MODE(POLYMODE6_TRIANGLES));
+        reg(stream, REG_A7XX_VPC_POLYGON_MODE2, A6XX_VPC_POLYGON_MODE_MODE(POLYMODE6_TRIANGLES));
         reg(stream, REG_A6XX_PC_RASTER_CNTL, 0);
+        reg(stream, REG_A7XX_PC_RASTER_CNTL_V2, 0);
         reg(stream, REG_A6XX_VPC_UNKNOWN_9107, 0);
         regs(stream, REG_A6XX_GRAS_SU_POINT_MINMAX, {grasSuPointMinmax(1, 0xffc0), grasSuPointSize(16)});
         regs(stream, REG_A6XX_GRAS_SU_POLY_OFFSET_SCALE, {0, 0, 0});
@@ -1983,7 +2016,9 @@ bool encodeDraw(pm4::Stream& stream, const Program& program, const RenderPass& p
             ordered ? A6XX_GRAS_SC_CNTL_CCUSINGLECACHELINESIZE(2) | A6XX_GRAS_SC_CNTL_SINGLE_PRIM_MODE(FLUSH_PER_OVERLAP) : grasScCntlSysmem());
         // primitive restart on for an indexed draw (Metal restarts at the all-ones index; tu6_draw_common's primitive_restart,
         // :5851-5862, which is off for a draw without indices, where the index register would be stale)
-        reg(stream, REG_A6XX_PC_PRIMITIVE_CNTL_0, draw.indexBuffer != nullptr ? A6XX_PC_PRIMITIVE_CNTL_0_PRIMITIVE_RESTART : 0u);
+        const uint32_t primCntl0 = draw.indexBuffer != nullptr ? A6XX_PC_PRIMITIVE_CNTL_0_PRIMITIVE_RESTART : 0u;
+        reg(stream, REG_A6XX_PC_PRIMITIVE_CNTL_0, primCntl0);
+        reg(stream, REG_A7XX_VPC_PRIMITIVE_CNTL_0, primCntl0);
     }
     // 16. the viewport and the scissors (tu6_emit_viewport, tu_pipeline.cc:2432-2540; tu6_emit_scissor :2657-2688):
     // GRAS_CL_VPORT[0]'s six floats with Metal's NEGATIVE y scale (viewportWords: NDC y up, row 0 at the top -- reasoning
