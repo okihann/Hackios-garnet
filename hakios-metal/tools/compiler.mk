@@ -77,7 +77,7 @@ HAKIOS_METAL_IOS_MESA_LIBS = $(IOS_MESA_BUILD)/src/compiler/air/libair.a $(addpr
 # The cross compiler as the main Makefile names it; these are no-ops when it is
 # included from there, and let `make -f tools/compiler.mk` work alone.
 HAKIOS    ?= ../workspace
-SDK       ?= $(abspath $(firstword $(wildcard $(THEOS)/sdks/iPhoneOS16.5.sdk $(HAKIOS)/xnu-deps/theos-mac/sdks/iPhoneOS16.5.sdk $(HOME)/theos/sdks/iPhoneOS16.5.sdk)))
+SDK       ?= $(abspath $(firstword $(wildcard $(THEOS)/sdks/iPhoneOS16.5.sdk $(HAKIOS)/xnu-deps/theos-mac/sdks/iPhoneOS16.5.sdk $(HOME)/theos/sdks/iPhoneOS16.5.sdk $(HAKIOS)/xnu-deps/sdk/iPhoneOS16.5.xnu.sdk)))
 IOS_CXX   ?= $(abspath $(HAKIOS))/xnu-deps/host/bin/xnu-clang++ -arch arm64 -isysroot $(SDK) -miphoneos-version-min=16.0
 
 # --- the smoke program ----------------------------------------------------------

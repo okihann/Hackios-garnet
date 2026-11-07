@@ -294,6 +294,7 @@ enum vgt_event_type : uint32_t {
     BLIT = 30,                     // adreno_pm4.xml.h:96
     CCU_CLEAN_DEPTH = 32,          // adreno_pm4.xml.h:118  A7xx non-seqno depth cache clean
     CCU_CLEAN_COLOR = 33,          // adreno_pm4.xml.h:119  A7xx non-seqno colour cache clean
+    CCU_RESOLVE_CLEAN = 34,        // adreno_pm4.xml.h:120  A7xx non-seqno resolve cache clean
     LRZ_CLEAR = 37,                // adreno_pm4.xml.h:98
     UNK_2C = 44,                   // adreno_pm4.xml.h:106  before the binning pass's draws (emit_binning_pass)
     UNK_2D = 45,                   // adreno_pm4.xml.h:107  ...and after them

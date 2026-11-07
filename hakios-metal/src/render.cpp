@@ -916,7 +916,8 @@ void fillStream(pm4::Stream& stream, const Texture& target, const ClearWords& c,
 
 void clearStream(pm4::Stream& stream, const Texture& target, const ClearWords& c, uint64_t ts, uint32_t level = 0, uint32_t slice = 0) {
     fillStream(stream, target, c, TILE6_LINEAR, level, slice);
-    eventTimestamp(stream, PC_CCU_FLUSH_COLOR_TS, ts, kClearFlushValue, false);
+    event(stream, CCU_CLEAN_COLOR);
+    eventTimestamp(stream, RB_DONE_TS, ts, kClearFlushValue, false);
     waitForWord(stream, ts, kClearFlushValue);
     event(stream, PC_CCU_INVALIDATE_COLOR);
     stream.waitForIdle();
@@ -931,9 +932,11 @@ void depthClearStream(pm4::Stream& stream, const Texture& depth, double clearDep
     c.ifmt = R2D_FLOAT32;
     c.value[0] = fui(float(clearDepth));
     fillStream(stream, depth, c, TILE6_3, level, slice);
-    eventTimestamp(stream, PC_CCU_FLUSH_COLOR_TS, table + kTableDepthClearFlushAt, kDepthClearFlushValue, false);
+    event(stream, CCU_CLEAN_COLOR);
+    eventTimestamp(stream, RB_DONE_TS, table + kTableDepthClearFlushAt, kDepthClearFlushValue, false);
     waitForWord(stream, table + kTableDepthClearFlushAt, kDepthClearFlushValue);
-    eventTimestamp(stream, PC_CCU_FLUSH_DEPTH_TS, table + kTableDepthClearDepthFlushAt, kDepthClearDepthFlushValue, false);
+    event(stream, CCU_CLEAN_DEPTH);
+    eventTimestamp(stream, RB_DONE_TS, table + kTableDepthClearDepthFlushAt, kDepthClearDepthFlushValue, false);
     waitForWord(stream, table + kTableDepthClearDepthFlushAt, kDepthClearDepthFlushValue);
     event(stream, PC_CCU_INVALIDATE_DEPTH);
     stream.waitForIdle();
@@ -955,9 +958,11 @@ void stencilClearStream(pm4::Stream& stream, const Texture& t, uint32_t value, u
     regs(stream, REG_A6XX_RB_2D_DST_INFO, {rb2dDstInfo(FMT6_8_UINT, TILE6_3, WZYX, false), uint32_t(at), uint32_t(at >> 32), A6XX_RB_2D_DST_PITCH(uint32_t(t.stencilPitch()))});
     regs(stream, REG_A6XX_RB_2D_DST_FLAGS, {0, 0, 0});
     command1(stream, CP_BLIT, cpBlit0(BLIT_OP_SCALE));
-    eventTimestamp(stream, PC_CCU_FLUSH_COLOR_TS, table + kTableStencilClearFlushAt, kStencilClearFlushValue, false);
+    event(stream, CCU_CLEAN_COLOR);
+    eventTimestamp(stream, RB_DONE_TS, table + kTableStencilClearFlushAt, kStencilClearFlushValue, false);
     waitForWord(stream, table + kTableStencilClearFlushAt, kStencilClearFlushValue);
-    eventTimestamp(stream, PC_CCU_FLUSH_DEPTH_TS, table + kTableStencilClearDepthFlushAt, kStencilClearDepthFlushValue, false);
+    event(stream, CCU_CLEAN_DEPTH);
+    eventTimestamp(stream, RB_DONE_TS, table + kTableStencilClearDepthFlushAt, kStencilClearDepthFlushValue, false);
     waitForWord(stream, table + kTableStencilClearDepthFlushAt, kStencilClearDepthFlushValue);
     event(stream, PC_CCU_INVALIDATE_DEPTH);
     stream.waitForIdle();
@@ -1612,7 +1617,8 @@ bool encodeDraw(pm4::Stream& stream, const Program& program, const RenderPass& p
     }
     if (barrier && gmem == nullptr) {
         stream.waitForIdle();
-        eventTimestamp(stream, PC_CCU_FLUSH_COLOR_TS, table + kTableFbReadFlushAt, kFbReadFlushValue, false);
+        event(stream, CCU_CLEAN_COLOR);
+        eventTimestamp(stream, RB_DONE_TS, table + kTableFbReadFlushAt, kFbReadFlushValue, false);
         waitForWord(stream, table + kTableFbReadFlushAt, kFbReadFlushValue);
         event(stream, CACHE_INVALIDATE);
         stream.waitForIdle();
@@ -2551,7 +2557,8 @@ void encodeGmem(pm4::Stream& stream, const RenderPass& pass, const GmemPlan& pla
     }
     // the stores out of the blit cache (tu6_tile_render_end's FD_CCU_CLEAN_BLIT_CACHE: PC_CCU_RESOLVE_TS on A6XX), waited
     // for as the tail waits for its flushes; then the CCU back where every other pass here expects it
-    eventTimestamp(stream, PC_CCU_RESOLVE_TS, table + kTableBlitFlushAt, kBlitFlushValue, false);
+    event(stream, CCU_RESOLVE_CLEAN);
+    eventTimestamp(stream, RB_DONE_TS, table + kTableBlitFlushAt, kBlitFlushValue, false);
     waitForWord(stream, table + kTableBlitFlushAt, kBlitFlushValue);
     stream.waitForIdle();
     reg(stream, REG_A6XX_RB_CCU_CNTL, rbCcuCntlSysmem() | (o.ccuConcurrentResolve ? A6XX_RB_CCU_CNTL_CONCURRENT_RESOLVE : 0u));
@@ -2694,7 +2701,8 @@ bool encodeBlit(pm4::Stream& stream, const Texture& src, uint32_t srcLevel, Blit
     }
     command1(stream, CP_BLIT, cpBlit0(BLIT_OP_SCALE));
     // what a Clear's fill does after it, and then the pass's tail: the copy is in memory when the next thing reads it
-    eventTimestamp(stream, PC_CCU_FLUSH_COLOR_TS, table + kTableClearFlushAt, kClearFlushValue, false);
+    event(stream, CCU_CLEAN_COLOR);
+    eventTimestamp(stream, RB_DONE_TS, table + kTableClearFlushAt, kClearFlushValue, false);
     waitForWord(stream, table + kTableClearFlushAt, kClearFlushValue);
     event(stream, PC_CCU_INVALIDATE_COLOR);
     stream.waitForIdle();
@@ -2729,7 +2737,8 @@ void encodeBytes(pm4::Stream& stream, uint64_t from, uint64_t to, uint64_t lengt
         to += w;
         length -= w;
     }
-    eventTimestamp(stream, PC_CCU_FLUSH_COLOR_TS, table + kTableClearFlushAt, kClearFlushValue, false);
+    event(stream, CCU_CLEAN_COLOR);
+    eventTimestamp(stream, RB_DONE_TS, table + kTableClearFlushAt, kClearFlushValue, false);
     waitForWord(stream, table + kTableClearFlushAt, kClearFlushValue);
     event(stream, PC_CCU_INVALIDATE_COLOR);
     stream.waitForIdle();

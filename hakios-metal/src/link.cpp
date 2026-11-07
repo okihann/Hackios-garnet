@@ -13,10 +13,9 @@
 // .STRIDE_IN_VPC); varmask, the FS's varying locations without the position's, is the complement of VPC_VAR_DISABLE;
 // cnt is SP_VS_PRIMITIVE_CNTL.OUT.
 //
-// Where this port is stricter than Mesa: ir3_link_shaders gives an FS varying that no VS output serves the register
-// regid(63, 0) (default_regid with pack_vs_out) and the FS then reads zeros through it -- a quiet black. Here that is
-// refused by slot, so that a vertex function and a fragment function whose varyings do not match are told apart from
-// a draw that happened. The COL/BFC fallback of ir3_find_output (ir3_shader.h:1197-1215, GL's two-sided colour) is
+// Matches Mesa ir3_link_shaders: an FS varying that no VS output serves gets the register regid(63, 0)
+// (a6xx::kRegidNone with pack_vs_out) and the FS then reads zeros through it. LinkAdd sets up the varying
+// location in varmask without adding a VS output register mapping. The COL/BFC fallback of ir3_find_output (ir3_shader.h:1197-1215, GL's two-sided colour) is
 // not ported: hakios's front end assigns VARYING_SLOT_VAR0 + n to every Metal varying and never COL0/BFC0
 // (air_to_nir.c translate_output / translate_input), so the fallback could never fire on a Stage from it.
 #include "hakios-metal/render.hpp"
@@ -121,11 +120,8 @@ bool link(const Stage& vs, const Stage& fs, Linkage* out, std::string* why) {
             continue;
         }
         int k = findOutput(vs, in.slot);
-        if (k < 0) {
-            return refuse(why, "the fragment stage reads varying slot " + std::to_string(in.slot) + " (" + slotName(in.slot) +
-                                   "), which the vertex stage does not write");
-        }
-        if (!linkAdd(l, in.slot, vs.outputs[k].regid, in.compmask, in.inloc)) {
+        uint32_t outRegid = (k >= 0) ? vs.outputs[k].regid : a6xx::kRegidNone;
+        if (!linkAdd(l, in.slot, outRegid, in.compmask, in.inloc)) {
             return refuse(why, "the link holds " + std::to_string(kMaxStageOutputs) + " entries and the fragment stage reads more varyings than that");
         }
         // VPC_VARYING_INTERP_MODE: INTERP_FLAT for each component of a flat input, at two bits per location

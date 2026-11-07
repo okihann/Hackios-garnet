@@ -39,7 +39,7 @@ HOSTLIBS  += $(HAKIOS_METAL_MESA_LIBS)
 HOSTOUT   = out/host-mesa$(if $(SAN),-$(SAN))
 endif
 # the SDK as hakios lays it out: theos, or on macOS xnu-deps/theos-mac
-SDK       ?= $(abspath $(firstword $(wildcard $(THEOS)/sdks/iPhoneOS16.5.sdk $(HAKIOS)/xnu-deps/theos-mac/sdks/iPhoneOS16.5.sdk $(HOME)/theos/sdks/iPhoneOS16.5.sdk)))
+SDK       ?= $(abspath $(firstword $(wildcard $(THEOS)/sdks/iPhoneOS16.5.sdk $(HAKIOS)/xnu-deps/theos-mac/sdks/iPhoneOS16.5.sdk $(HOME)/theos/sdks/iPhoneOS16.5.sdk $(HAKIOS)/xnu-deps/sdk/iPhoneOS16.5.xnu.sdk)))
 ifeq ($(shell uname),Darwin)
 IOS_CXX   ?= xcrun clang++ -arch arm64 -isysroot $(SDK) -miphoneos-version-min=16.0
 IOS_AR    ?= ar rcs
