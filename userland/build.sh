@@ -316,7 +316,7 @@ if [ -d $DARWIN/rootfs/usr/lib ]; then
 				M2V_OBJS="../xnu-deps/build/m2v/out/frontend.o ../xnu-deps/build/m2v/out/libadreno_metal_bridge.a -framework CoreFoundation -lc++ -Wl,-dead_strip"
 				echo "build.sh: with UniXNU's Metal on Vulkan (metal_m2v=1)"
 			fi
-			$DYN -bundle -framework Foundation -framework IOKit -framework IOSurface -framework Metal -lobjc \
+			$DYN -bundle -Wl,-undefined,dynamic_lookup -framework Foundation -framework IOKit -framework IOSurface -framework Metal -lobjc \
 				-I$HM/include -o obj/HakiosMetal src/HakiosMetalCA.m $METAL_GPU $M2V_OBJS
 		else
 		$DYN -bundle -framework Foundation -framework Metal -lobjc -I$METAL_SRC -o obj/HakiosMetal $METAL_SRC/HakiosMetal.m \

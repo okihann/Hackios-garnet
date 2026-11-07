@@ -1433,21 +1433,21 @@ status_bar_fallback_is_split(void)
 	}
 	while (depth-- > 0) {
 		unsigned count = 0;
-		Method *methods = class_copyMethodList(object_getClass(chain[depth]), &count);
+		Method *methods = class_copyMethodList(object_getClass((id)chain[depth]), &count);
 
 		for (unsigned i = 0; i < count; i++) {
 			const char *name = sel_getName(method_getName(methods[i]));
 
 			if (strcmp(name, "load") != 0 && strcmp(name, "initialize") != 0 && strcmp(name, "alloc") != 0 && strcmp(name, "allocWithZone:") != 0) {
-				class_replaceMethod(object_getClass(fallback), method_getName(methods[i]), method_getImplementation(methods[i]),
+				class_replaceMethod(object_getClass((id)fallback), method_getName(methods[i]), method_getImplementation(methods[i]),
 				    method_getTypeEncoding(methods[i]));
 				moved++;
 			}
 		}
 		free(methods);
 	}
-	class_replaceMethod(object_getClass(fallback), sel_registerName("alloc"), (IMP)status_bar_fallback_alloc, "@16@0:8");
-	class_replaceMethod(object_getClass(fallback), sel_registerName("allocWithZone:"), (IMP)status_bar_fallback_alloc_zone, "@24@0:8^v16");
+	class_replaceMethod(object_getClass((id)fallback), sel_registerName("alloc"), (IMP)status_bar_fallback_alloc, "@16@0:8");
+	class_replaceMethod(object_getClass((id)fallback), sel_registerName("allocWithZone:"), (IMP)status_bar_fallback_alloc_zone, "@24@0:8^v16");
 	say("hakios: SpringBoard: the status bar's fallback provider is %s from now on (%u class methods)\n", class_getName(status_bar_split), moved);
 }
 
