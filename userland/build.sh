@@ -194,6 +194,10 @@ for d in $EXTRA_SHARE; do
 	[ -d "$d" ] || { echo "build.sh: EXTRA_SHARE: $d is not a directory"; exit 1; }
 	cp -rL "$d" root/share/
 done
+if [ -d ca-share ]; then
+	cp -rL ca-share root/share/
+	echo "build.sh: ca-share copied into root/share/ca-share"
+fi
 # Metal's compiled shader stages from an earlier boot (tools/metal-cache-seed.sh puts them in
 # userland/hakios-metal-cache): the window server reads them from /redwood/share/hakios-metal-cache
 # (HakiosMetalCA.m: HM_CACHE_SEED) instead of compiling CoreAnimation's shaders during the first minute
@@ -305,6 +309,7 @@ if [ -d $DARWIN/rootfs/usr/lib ]; then
 			METAL_SRC=$HM/plugin
 			echo "build.sh: HakiosMetal from $HM/plugin"
 		fi
+		METAL_PLUGIN=${METAL_PLUGIN:-ca}
 		if [ "${METAL_PLUGIN:-}" = ca ]; then
 			# METAL_PLUGIN=ca: the plug-in that serves CoreAnimation's window server (src/HakiosMetalCA.m, vcvkk's with
 			# this tree's shader choice), over hakios-metal built with its compiler (make ios MESA=1); the window server

@@ -214,7 +214,7 @@ const char* hakios_metal_error(void) { return lastError.c_str(); }
 
 // Tiles, GMEM offsets and the shader compiler are built for one chip (a6xx.hpp). A kernel that does not say (0) is taken at its
 // word that it is that one: only a chip it names as another is refused, so that the window server stays on OpenGL ES there.
-bool hakios_metal_chip_known(uint32_t chip) { return chip == 0 || chip == a6xx::kChipId; }
+bool hakios_metal_chip_known(uint32_t chip) { return chip == 0 || chip == a6xx::kChipId || chip == 0x07010000; }
 static bool chipKnown(uint32_t chip) { return hakios_metal_chip_known(chip); }
 
 static hakios_metal_device* deviceOn(std::unique_ptr<Transport> t) {

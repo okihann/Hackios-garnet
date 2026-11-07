@@ -1132,10 +1132,11 @@ metallib_answer(id self, id name, id extension, id found)
 		    utf8(((id (*)(id, SEL))objc_msgSend)(self, sel_registerName("bundlePath"))), utf8(name), ext,
 		    found != NULL ? utf8(path) : "nothing");
 	}
-	if (found == NULL && ca_metallib != NULL && name != NULL && strcmp(utf8(name), "default") == 0 &&
+	if (found == NULL && name != NULL && strcmp(utf8(name), "default") == 0 &&
 	    strcmp(ext, "metallib") == 0) {
+		const char *target = ca_metallib != NULL ? ca_metallib : "/redwood/share/ca-share/QuartzCore-default.metallib";
 		id text = ((id (*)(Class, SEL, const char *))objc_msgSend)(objc_getClass("NSString"),
-		    sel_registerName("stringWithUTF8String:"), ca_metallib);
+		    sel_registerName("stringWithUTF8String:"), target);
 
 		return ((id (*)(Class, SEL, id))objc_msgSend)(objc_getClass("NSURL"), sel_registerName("fileURLWithPath:"), text);
 	}
@@ -1167,8 +1168,11 @@ watch_metallib_lookups(const char *arguments)
 
 		if (length < sizeof(path)) {
 			memcpy(path, at + 12, length);
+			path[length] = '\0';
 			ca_metallib = path;
 		}
+	} else if (access("/redwood/share/ca-share/QuartzCore-default.metallib", R_OK) == 0) {
+		ca_metallib = "/redwood/share/ca-share/QuartzCore-default.metallib";
 	}
 	if (bundle == NULL) {
 		return;
@@ -1237,7 +1241,7 @@ hakios_init(void)
 				say("hakios: caenv: %s=%s for the window server\n", setting, equals + 1);
 			}
 		}
-		if (strstr(arguments, "metal_watch=1") != NULL || strstr(arguments, "ca_metallib=") != NULL) {
+		if (strstr(arguments, "metal=1") != NULL || strstr(arguments, "metal_watch=1") != NULL || strstr(arguments, "ca_metallib=") != NULL) {
 			watch_metallib_lookups(arguments);
 		}
 		opengl_es();
