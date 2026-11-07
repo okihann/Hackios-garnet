@@ -161,18 +161,33 @@ def main():
     make_table(d, head, tail, disk, ph, bh, entries, u, slot, name, new_first, new_last, part_end, wipe)
 
 
+def f2fs_sbs(blob):
+    """Every valid f2fs superblock copy in a few blocks of a device: (offset, block_count,
+    segments in the main area, first block of it, log2 of blocks per segment).
+
+    f2fs keeps two superblock copies and writes the newer one to whichever slot is not
+    current (superblock #0 at byte 0x400 of the device, #1 at 0x1400): a resize rewrites
+    only one of them, so both slots have to be read, not just the first block's."""
+    out = []
+    for off in range(0, len(blob) - 2048 + 1, BS):
+        sb = blob[off + 1024:off + 2048]
+        magic, = struct.unpack_from('<I', sb, 0)
+        log_bs, log_bps = struct.unpack_from('<I', sb, 16)[0], struct.unpack_from('<I', sb, 20)[0]
+        if magic == 0xf2f52010 and log_bs == 12:
+            block_count, = struct.unpack_from('<Q', sb, 36)
+            segs_main, = struct.unpack_from('<I', sb, 68)
+            main_blkaddr, = struct.unpack_from('<I', sb, 92)
+            out.append((off, block_count, segs_main, main_blkaddr, log_bps))
+    return out
+
+
 def carve_f2fs(d, gib, entries, u, name):
     """userdata shrunk to its f2fs: (where userdata ends, where NAME begins)"""
-    sb = open(f'{d}/userdata-meta-before.bin', 'rb').read(BS)[1024:2048]
-
-    # the f2fs of userdata: where its main area is, and how its segments are filled
-    magic, = struct.unpack_from('<I', sb, 0)
-    log_bs, log_bps = struct.unpack_from('<I', sb, 16)[0], struct.unpack_from('<I', sb, 20)[0]
-    block_count, = struct.unpack_from('<Q', sb, 36)
-    segs_main, = struct.unpack_from('<I', sb, 68)
-    main_blkaddr, = struct.unpack_from('<I', sb, 92)
-    if magic != 0xf2f52010 or log_bs != 12:
+    sbs = f2fs_sbs(open(f'{d}/userdata-meta-before.bin', 'rb').read())
+    if not sbs:
         sys.exit('userdata-carve.py: userdata does not begin with a plain f2fs of 4 KB blocks')
+    # the f2fs of userdata: where its main area is, and how its segments are filled
+    _, block_count, segs_main, main_blkaddr, log_bps = sbs[0]
     per_seg = 1 << log_bps
     part_blocks = entries[u]['last'] - entries[u]['first'] + 1
     if block_count > part_blocks:
@@ -182,15 +197,15 @@ def carve_f2fs(d, gib, entries, u, name):
     new_blocks = main_blkaddr + new_segs * per_seg  # what F2FS_IOC_RESIZE_FS is asked for
     fs_blocks = block_count - cut * per_seg         # what the f2fs is then: its slack stays
     try:
-        after = open(f'{d}/sb-after.bin', 'rb').read(BS)[1024:2048]
+        after_sbs = f2fs_sbs(open(f'{d}/sb-after.bin', 'rb').read())
     except FileNotFoundError:
-        after = None
-    if after is not None:
-        got, = struct.unpack_from('<Q', after, 36)
-        got_main, = struct.unpack_from('<I', after, 68)
-        print(f'f2fs on the phone now: {got} blocks, {got_main} segments in its main area')
-        if (got, got_main) != (fs_blocks, new_segs):
-            sys.exit(f'userdata-carve.py: expected {fs_blocks} blocks and {new_segs} segments after the shrink')
+        after_sbs = []
+    if after_sbs:
+        found = [(bc, sg) for _o, bc, sg, _m, _b in after_sbs]
+        print(f'f2fs on the phone now: {found} (blocks, main-area segments) in superblock copies')
+        if (fs_blocks, new_segs) not in found:
+            sys.exit(f'userdata-carve.py: expected {fs_blocks} blocks and {new_segs} segments in some '
+                     f'superblock copy after the shrink; the copies hold {found}')
     part_end = entries[u]['first'] + fs_blocks                                        # userdata: exactly the f2fs
     new_start = (part_end + per_seg - 1) // per_seg * per_seg                          # 2 MB from the unit's start
     valid = {}
@@ -212,6 +227,7 @@ def carve_f2fs(d, gib, entries, u, name):
     print(f'userdata: lba {entries[u]["first"]}..{entries[u]["last"]} ({part_blocks * BS / 2**30:.2f} GiB) '
           f'-> {entries[u]["first"]}..{part_end - 1} ({fs_blocks * BS / 2**30:.2f} GiB, the f2fs exactly); '
           f'{new_start - part_end} blocks between it and {name} belong to neither')
+    carve_f2fs.new_segs = new_segs
     carve_f2fs.new_blocks = new_blocks
     return part_end, new_start
 

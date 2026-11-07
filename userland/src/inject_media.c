@@ -88,11 +88,12 @@ static IMP original_shared_vendor;
 static unsigned torch_said;
 
 /*
- * FigFlashlight's functions that ask for the vendor, unslid (20F66): flashlight_IsAvailable,
+ * FigFlashlight's functions that ask for the vendor, unslid (20F66 and 20H392): flashlight_IsAvailable,
  * _NotifyForCurrentState and _setupDevice lie together, _teardownDevice apart.
  */
 static const struct { uintptr_t from, to; } flashlight_code[] = {
 	{ 0x1a1fb0830UL, 0x1a1fb0c5cUL }, { 0x1a1eee5c0UL, 0x1a1eee6e8UL },
+	{ 0x1a20007b0UL, 0x1a2000bdcUL }, { 0x1a1f3e540UL, 0x1a1f3e668UL },
 };
 
 /* +[BWFigCaptureDeviceVendor sharedCaptureDeviceVendor] */
@@ -485,24 +486,24 @@ flashlight_classes(void)
  */
 static struct replacement {
 	const char *class_name, *selector;
-	uintptr_t expected;
+	uintptr_t expected, expected_20h392;
 	IMP replacement, *original;
 	bool instance;                  /* an instance method, not a class method */
 	bool done;
 } replacements[] = {
-	{ "BWCoreImageFilterRenderer", "prewarmPortraitFilterVersion:semanticStyleFilters:", 0x1a2115c0cUL,
+	{ "BWCoreImageFilterRenderer", "prewarmPortraitFilterVersion:semanticStyleFilters:", 0x1a2115c0cUL, 0x1a2165b8cUL,
 	  (IMP)prewarm_portrait_filter, NULL, false, false },
-	{ "BWFigCaptureDeviceVendor", "sharedCaptureDeviceVendor", 0x1a1ef0d04UL,
+	{ "BWFigCaptureDeviceVendor", "sharedCaptureDeviceVendor", 0x1a1ef0d04UL, 0x1a1f40c84UL,
 	  (IMP)shared_vendor, &original_shared_vendor, false, false },
-	{ "BWAudioSourceNode", "start:", 0x1a1eefa18UL, (IMP)audio_source_start, &original_audio_source_start, true, false },
-	{ "FigVideoCaptureConnectionConfiguration", "videoStabilizationMethod", 0x1a1e99ef8UL,
+	{ "BWAudioSourceNode", "start:", 0x1a1eefa18UL, 0x1a1f3f998UL, (IMP)audio_source_start, &original_audio_source_start, true, false },
+	{ "FigVideoCaptureConnectionConfiguration", "videoStabilizationMethod", 0x1a1e99ef8UL, 0x1a1ee9e78UL,
 	  (IMP)video_stabilization_method, NULL, true, false },
-	{ "FigVideoCaptureConnectionConfiguration", "videoStabilizationType", 0x1a20d8f48UL,
+	{ "FigVideoCaptureConnectionConfiguration", "videoStabilizationType", 0x1a20d8f48UL, 0x1a2128ec8UL,
 	  (IMP)video_stabilization_type, NULL, true, false },
-	{ "FigCaptureStillImageSettings", "qualityPrioritization", 0x1a1f533dcUL,
+	{ "FigCaptureStillImageSettings", "qualityPrioritization", 0x1a1f533dcUL, 0x1a1fa335cUL,
 	  (IMP)quality_prioritization, &original_quality_prioritization, true, false },
-	{ "BWGNRNode", "renderSampleBuffer:forInput:", 0x1a1ec83b8UL, (IMP)gnr_render, NULL, true, false },
-	{ "BWNodeOutput", "emitSampleBuffer:", 0x1a1ea37e0UL, (IMP)emit_sample_buffer, &original_emit_sample_buffer, true, false },
+	{ "BWGNRNode", "renderSampleBuffer:forInput:", 0x1a1ec83b8UL, 0x1a1f18338UL, (IMP)gnr_render, NULL, true, false },
+	{ "BWNodeOutput", "emitSampleBuffer:", 0x1a1ea37e0UL, 0x1a1ef3760UL, (IMP)emit_sample_buffer, &original_emit_sample_buffer, true, false },
 };
 
 static void
@@ -521,7 +522,8 @@ image_added(__unused const struct mach_header *header, __unused intptr_t image_s
 		method = r->instance ? class_getInstanceMethod(cls, sel_registerName(r->selector)) :
 		    class_getClassMethod(cls, sel_registerName(r->selector));
 		original = method ? method_getImplementation(method) : NULL;
-		if (original == NULL || (uintptr_t)original != r->expected + slide) {
+		if (original == NULL ||
+		    ((uintptr_t)original != r->expected + slide && (uintptr_t)original != r->expected_20h392 + slide)) {
 			say("hakios: %c[%s %s]: found %#lx, expected %#lx; left alone\n", r->instance ? '-' : '+', r->class_name,
 			    r->selector,
 			    original ? (uintptr_t)original - slide : 0, r->expected);

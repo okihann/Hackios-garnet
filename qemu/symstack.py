@@ -9,6 +9,7 @@ that led to it), subtracts the shared cache slide and looks every address up in 
 shared cache with "ipsw dyld a2s". Lookups take a few seconds each, so the answers are kept
 in sysimage/a2s.json. Addresses outside the cache (the program itself) are shown as they are.
 """
+import glob
 import json
 import os
 import re
@@ -16,7 +17,10 @@ import subprocess
 import sys
 
 BASE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'sysimage')
-CACHE = os.path.join(BASE, '20F66__iPhone10,3_6/dyld_shared_cache_arm64')
+# the shared cache of whichever build sysimage/unpack.sh left (<BUILD>__iPhone10,3_6: 20F66, 20H392, ...)
+_caches = sorted(glob.glob(os.path.join(BASE, '*__iPhone10,3_6')))
+CACHE = os.path.join(_caches[-1] if _caches else os.path.join(BASE, '20F66__iPhone10,3_6'),
+                     'dyld_shared_cache_arm64')
 KNOWN = os.path.join(BASE, 'a2s.json')
 CACHE_LOW, CACHE_HIGH = 0x180000000, 0x280000000        # unslid addresses of the shared cache
 

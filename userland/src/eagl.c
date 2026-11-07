@@ -216,7 +216,9 @@ now_us(void)
 #define SLOTS           0x440           /* entries of the table: more than Darwin's has (checked below) */
 
 /* (a vibrant layer inside a group: see group_draw_begin()) */
-#define GROUP_TEXTURES  8192
+#define GROUP_TEXTURES  16384
+#define MAX_IMAGES       4096
+#define MAX_TEXTURE_MAP  65536
 enum { GROUP_NONE, GROUP_FRESH, GROUP_VIBRANT };
 struct group_texture {
 	uint8_t state;                  /* GROUP_FRESH: cleared, nothing drawn in it since; GROUP_VIBRANT: a vibrant layer's coverage */
@@ -249,8 +251,9 @@ struct eagl {
 	id object;                      /* the EAGLContext */
 	struct hakios_gl *gl;
 	unsigned long api;
-	struct image images[256];
+	struct image images[MAX_IMAGES];
 	unsigned image_count;
+	struct image *texture_map[MAX_TEXTURE_MAP];
 	GLuint framebuffer;             /* the one bound */
 	GLuint colour;                  /* ... and the texture that is its colour attachment (0: none, or no texture) */
 	GLuint reader;                  /* a framebuffer of ours, to read a texture back */
@@ -517,9 +520,12 @@ summary(struct eagl *e)
 
 /* ---- IOSurfaces ----------------------------------------------------------------------------------- */
 
-static struct image *
+static inline struct image *
 image_of(struct eagl *e, GLuint texture)
 {
+	if (__builtin_expect(texture < MAX_TEXTURE_MAP, 1)) {
+		return e->texture_map[texture];
+	}
 	for (unsigned i = 0; i < e->image_count; i++) {
 		if (e->images[i].texture == texture) {
 			return &e->images[i];
@@ -534,11 +540,14 @@ image_new(struct eagl *e, GLuint texture, IOSurfaceRef surface)
 	struct image *image = image_of(e, texture);
 
 	if (image == NULL) {
-		if (e->image_count == sizeof(e->images) / sizeof(e->images[0])) {
-			say("hakios-gl: more textures with IOSurfaces than there is room for\n");
+		if (e->image_count >= sizeof(e->images) / sizeof(e->images[0])) {
+			say("hakios-gl: more textures with IOSurfaces than there is room for (%u)\n", e->image_count);
 			return NULL;
 		}
 		image = &e->images[e->image_count++];
+		if (texture < MAX_TEXTURE_MAP) {
+			e->texture_map[texture] = image;
+		}
 	} else {
 		if (image->mirror != 0) {
 			glDeleteTextures(1, &image->mirror);
@@ -561,7 +570,16 @@ image_forget(struct eagl *e, GLuint texture)
 			glDeleteTextures(1, &image->mirror);
 		}
 		CFRelease(image->surface);
-		*image = e->images[--e->image_count];
+		if (texture < MAX_TEXTURE_MAP) {
+			e->texture_map[texture] = NULL;
+		}
+		unsigned last_idx = --e->image_count;
+		if (image != &e->images[last_idx]) {
+			*image = e->images[last_idx];
+			if (image->texture < MAX_TEXTURE_MAP) {
+				e->texture_map[image->texture] = image;
+			}
+		}
 	}
 }
 
@@ -4178,6 +4196,15 @@ my_dealloc(id self, SEL selector)
 			hakios_gl_make_current(NULL);
 			current = NULL;
 		}
+		for (unsigned i = 0; i < e->image_count; i++) {
+			if (e->images[i].mirror != 0) {
+				glDeleteTextures(1, &e->images[i].mirror);
+			}
+			CFRelease(e->images[i].surface);
+		}
+		if (e->groups != NULL) {
+			free(e->groups);
+		}
 		hakios_gl_destroy(e->gl);
 		free(e);
 	}
@@ -4314,8 +4341,12 @@ install(void)
 		share_surfaces = strstr(arguments, "glcopy=1") == NULL;
 		blit_targets = strstr(arguments, "glblit=0") == NULL;
 		sync_frames = strstr(arguments, "glsync=0") == NULL;
-		if (strstr(arguments, "glwait=0") != NULL || (strstr(arguments, "glwait=1") == NULL && display_waits())) {
+		if (strstr(arguments, "glwait=0") != NULL) {
 			wait_for_frames = 0;
+		} else if (strstr(arguments, "glwait=1") != NULL) {
+			wait_for_frames = 1;
+		} else if (display_waits()) {
+			wait_for_frames = 1;
 		}
 		say("hakios-gl: a frame is waited for %s\n", wait_for_frames ? "here, before it is handed to the display" :
 		    "by the display's driver, not here");

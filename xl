@@ -128,7 +128,16 @@ firmware() {
 	case "${XL_FIRMWARE:-}" in
 	u-boot|silicium) echo "$XL_FIRMWARE"; return ;;
 	esac
-	if [ -f Mu-Silicium/Build/redwoodPkg/RELEASE_CLANGPDB/FV/SILICIUM_UEFI.fd ] || [ -f devices/redwood/prebuilt/SILICIUM_UEFI.fd ]; then
+	# the device's own UEFI first (devices/DEVICE/prebuilt/SILICIUM_UEFI.fd), then one built in the
+	# Mu-Silicium tree for it, and only then the reference phone's (kept for the redwood default).
+	# Mu-Silicium is usually checked out NEXT TO this directory (../Mu-Silicium), not inside it.
+	local dev=${DEVICE:-redwood} mu
+	for mu in Mu-Silicium ../Mu-Silicium; do
+		if [ -f "devices/$dev/prebuilt/SILICIUM_UEFI.fd" ] || [ -f "$mu/Build/${dev}Pkg/RELEASE_CLANGPDB/FV/SILICIUM_UEFI.fd" ]; then
+			echo silicium; return
+		fi
+	done
+	if [ -f ../Mu-Silicium/Build/redwoodPkg/RELEASE_CLANGPDB/FV/SILICIUM_UEFI.fd ] || [ -f Mu-Silicium/Build/redwoodPkg/RELEASE_CLANGPDB/FV/SILICIUM_UEFI.fd ] || [ -f devices/redwood/prebuilt/SILICIUM_UEFI.fd ]; then
 		echo silicium
 	else
 		echo u-boot

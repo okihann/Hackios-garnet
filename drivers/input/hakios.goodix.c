@@ -43,8 +43,35 @@ extern vm_offset_t ml_io_map(vm_offset_t phys_addr, vm_size_t size);
 extern vm_offset_t ml_io_map_wcomb(vm_offset_t phys_addr, vm_size_t size);
 extern kern_return_t thread_terminate(thread_t thread);
 
+/*
+ * Every line goes to the loader's log directly as well (as drivers/input/hakios.buttons.c does): the kernel's own
+ * message buffer reaches the host only when a run ends cleanly, and launchd's chatter pushes the bring-up out of the
+ * live tail long before that.
+ */
+extern void loader_log_putc(char c);
+
+static int say(const char *format, ...) __printflike(1, 2);
+
+static int
+say(const char *format, ...)
+{
+	char line[400];
+	va_list list;
+
+	va_start(list, format);
+	vsnprintf(line, sizeof(line), format, list);
+	va_end(list);
+	for (const char *c = line; *c != 0; c++) {
+		loader_log_putc(*c);
+	}
+	return printf("%s", line);
+}
+#define printf say
+
 /* RPMh's sequencer (TCS 0 of the RSC): the audio DSP's and the modem's drivers write the same slots, so every request goes through this lock */
 extern lck_mtx_t hakios_rsc_lock;
+extern void hakios_spmi_lock(void);
+extern void hakios_spmi_unlock(void);
 
 static vm_offset_t tlmm, gcc, se, rsc, cmd_db;
 
@@ -81,16 +108,13 @@ sleep_ms(uint32_t ms)
 #define PULL_NONE               0
 #define PULL_UP                 3
 
-#define PIN_MISO                52
-#define PIN_MOSI                53
-#define PIN_CLK                 54
-#define PIN_CS                  55
-#define PIN_INT                 81      /* low = the chip has a report */
-#define PIN_RESET               105     /* low = in reset */
-#define PIN_AVDD                107     /* high = analog supply on */
-#define PIN_FOCALTECH_ID        68      /* FocalTech if this reads 0 ... */
-#define PIN_GOODIX_ID           96      /* ... and this reads 1 (sm8350-kernel-OKX convention) */
-#define PIN_FUNCTION_SPI        1       /* "qup15" */
+#define PIN_MISO                10      /* dt: mi_ts_miso_active gpio10, qup1_se3_l0 */
+#define PIN_MOSI                11      /* dt: mi_ts_mosi_active gpio11, qup1_se3_l1 */
+#define PIN_CLK                 12      /* dt: mi_ts_clk_active gpio12, qup1_se3_l2 */
+#define PIN_CS                  13      /* dt: mi_ts_cs_active gpio13, qup1_se3_l3 */
+#define PIN_INT                 98      /* dt: goodix,irq-gpio = <0x147 0x62 0x2008> (low = report waiting) */
+#define PIN_RESET               96      /* dt: goodix,reset-gpio = <0x147 0x60 0x00> (low = in reset) */
+#define PIN_FUNCTION_SPI        1       /* "qup1_se3" */
 
 static void
 gpio_configure(unsigned pin, unsigned function, unsigned pull, unsigned ma, bool output)
@@ -121,7 +145,7 @@ gpio_output(unsigned pin, bool high, unsigned pull, unsigned ma)
 
 #define CMD_DB_PHYS             0x80860000UL
 #define CMD_DB_SIZE             0x20000UL
-#define RSC_PHYS                0x18220000UL    /* the application processor's "DRV 2" */
+#define RSC_PHYS                0x17a20000UL    /* dt: apps_rsc rsc@17a00000 drv-2 */
 #define RSC_SIZE                0x10000UL
 #define TCS(reg)                (rsc + 0xd00 + (reg))           /* command slot set 0, an "active" one */
 #define TCS_IRQ_ENABLE          0x00
@@ -247,47 +271,198 @@ rpmh_write(const uint32_t *address, const uint32_t *data, unsigned count)
 	return done;
 }
 
-/* The chip's I/O supply: 1.8 V from LDO2 of the PM8350C ("ldoc2"). Nothing else is connected to it. */
+/* ---- the 1.8 V I/O supply (touch_vddio: PM6150L GPIO3 on SPMI) + 3.224 V AVDD ("ldoe9" on RPMh) -- */
+
+#define ARB_CORE_PHYS           0x0c400000UL    /* dt: spmi@c42d000 ("core", v7) */
+#define ARB_CORE_SIZE           0x3000UL
+#define ARB_CNFG_PHYS           0x0c42d000UL    /* "cnfg" */
+#define ARB_CNFG_SIZE           0x4000UL
+#define ARB_OBSERVER_PHYS       0x0c440000UL    /* "obsrvr": 0x8000 per system, 0x20 per channel (v7) */
+#define ARB_OBSERVER_SIZE       0x8000UL
+#define ARB_CHNLS_PHYS          0x0c500000UL    /* "chnls": 0x1000 per channel (v7) */
+#define ARB_SYSTEM              0
+#define ARB_VERSION             0x000
+#define ARB_VERSION_7           0x70000000u
+#define ARB_VERSION_8           0x80000000u
+#define ARB_FEATURES            0x004
+#define ARB_CHANNEL(n)          (0x2000 + 4 * (n))
+#define ARB_OWNER(n)            (0x000 + 4 * (n))
+#define ARB_MAX_CHANNELS        768
+
+#define SPMI_CMD                0x00
+#define SPMI_STATUS             0x08
+#define SPMI_WDATA0             0x10
+#define SPMI_RDATA0             0x18
+#define SPMI_RDATA1             0x1c
+#define SPMI_DONE               0x1
+#define SPMI_READ_CMD           (1u << 27)
+#define SPMI_WRITE_CMD          (0u << 27)
+
+static vm_offset_t spmi_core, spmi_cnfg, spmi_obs;
+
+static bool
+spmi_read_ch(uint32_t ch, uint8_t reg, uint8_t *out, uint32_t count)
+{
+	vm_offset_t base = spmi_obs + 0x20UL * ch;
+	uint64_t start = mach_absolute_time(), interval;
+	uint32_t status, d0, d1;
+
+	nanoseconds_to_absolutetime(2000ULL * NSEC_PER_USEC, &interval);
+	hakios_spmi_lock();
+	wr(base + SPMI_CMD, SPMI_READ_CMD | (uint32_t)reg << 4 | (count - 1));
+	do {
+		status = rd(base + SPMI_STATUS);
+	} while (!(status & SPMI_DONE) && mach_absolute_time() - start < interval);
+	d0 = rd(base + SPMI_RDATA0);
+	d1 = count > 4 ? rd(base + SPMI_RDATA1) : 0;
+	hakios_spmi_unlock();
+	if ((status & 0xf) != SPMI_DONE) {
+		return false;
+	}
+	for (uint32_t i = 0; i < count; i++) {
+		out[i] = (uint8_t)((i < 4 ? d0 : d1) >> (8 * (i % 4)));
+	}
+	return true;
+}
+
+static bool
+spmi_write_byte(vm_offset_t wbase, uint8_t reg, uint8_t val)
+{
+	uint64_t start = mach_absolute_time(), interval;
+	uint32_t status;
+
+	nanoseconds_to_absolutetime(2000ULL * NSEC_PER_USEC, &interval);
+	hakios_spmi_lock();
+	wr(wbase + SPMI_WDATA0, val);
+	wr(wbase + SPMI_CMD, SPMI_WRITE_CMD | (uint32_t)reg << 4);
+	do {
+		status = rd(wbase + SPMI_STATUS);
+	} while (!(status & SPMI_DONE) && mach_absolute_time() - start < interval);
+	hakios_spmi_unlock();
+	return (status & 0xf) == SPMI_DONE;
+}
+
+/*
+ * dt: touch_vddio (phandle 0x4cd, iovdd-supply of n16-touch@0):
+ *   gpio = <0x4a5 0x03 0x00> (gpio3 of pm6150l@4 pinctrl@c000 = slave 4 peripheral 0xc2),
+ *   enable-active-high, function = "normal", output-enable, bias-disable, power-source = 0, drive-strength = 2.
+ */
+static bool
+touch_vddio_on(void)
+{
+	uint32_t version, channels, ch_gpio3 = 0xffff, ch_gpio9 = 0xffff, owner_gpio3 = 0xff;
+	uint8_t id[2] = { 0 }, cfg[8] = { 0 }, rt = 0;
+	vm_offset_t wbase;
+
+	if (spmi_core == 0) {
+		spmi_core = ml_io_map(ARB_CORE_PHYS, ARB_CORE_SIZE);
+		spmi_cnfg = ml_io_map(ARB_CNFG_PHYS, ARB_CNFG_SIZE);
+		spmi_obs = ml_io_map(ARB_OBSERVER_PHYS, ARB_OBSERVER_SIZE);
+	}
+	version = rd(spmi_core + ARB_VERSION);
+	channels = rd(spmi_core + ARB_FEATURES) & 0x7ff;
+	if (version < ARB_VERSION_7 || version >= ARB_VERSION_8) {
+		printf("goodix: SPMI arbiter version %#x is not v7\n", version);
+		return false;
+	}
+	if (channels == 0 || channels > ARB_MAX_CHANNELS) {
+		channels = ARB_MAX_CHANNELS;
+	}
+	for (uint32_t n = 0; n < channels; n++) {
+		uint32_t map = rd(spmi_core + ARB_CHANNEL(n));
+		uint32_t ppid = (map >> 8) & 0xfff;
+		uint32_t owner = rd(spmi_cnfg + ARB_OWNER(n)) & 0xf;
+
+		if (ppid == 0x4c8 && (ch_gpio9 == 0xffff || owner == ARB_SYSTEM)) {
+			ch_gpio9 = n;
+		}
+		if (ppid == 0x4c2 && (ch_gpio3 == 0xffff || owner == ARB_SYSTEM)) {
+			ch_gpio3 = n;
+			owner_gpio3 = owner;
+		}
+	}
+	if (ch_gpio9 != 0xffff && spmi_read_ch(ch_gpio9, 0x40, cfg, 7) && spmi_read_ch(ch_gpio9, 0x10, &rt, 1)) {
+		printf("goodix: PM6150L gpio9 (0x4c8, ch %u, display vddio): 0x40..46 = %02x %02x %02x %02x %02x %02x %02x, rt %#x\n",
+		    ch_gpio9, cfg[0], cfg[1], cfg[2], cfg[3], cfg[4], cfg[5], cfg[6], rt);
+	}
+	if (ch_gpio3 == 0xffff) {
+		printf("goodix: PM6150L gpio3 (0x4c2, touch_vddio) not in SPMI arbiter table\n");
+		return false;
+	}
+	if (!spmi_read_ch(ch_gpio3, 0x04, id, 2) || !spmi_read_ch(ch_gpio3, 0x40, cfg, 7) ||
+	    !spmi_read_ch(ch_gpio3, 0x10, &rt, 1)) {
+		printf("goodix: PM6150L gpio3 (0x4c2, ch %u): SPMI read failed\n", ch_gpio3);
+		return false;
+	}
+	printf("goodix: PM6150L gpio3 (0x4c2, ch %u, owner %u): type %#x subtype %#x, 0x40..46 = %02x %02x %02x %02x %02x %02x %02x, rt %#x\n",
+	    ch_gpio3, owner_gpio3, id[0], id[1], cfg[0], cfg[1], cfg[2], cfg[3], cfg[4], cfg[5], cfg[6], rt);
+	if (id[0] != 0x10 || id[1] < 0x10 || id[1] > 0x13 || owner_gpio3 != ARB_SYSTEM) {
+		printf("goodix: PM6150L gpio3 unexpected type/owner; not writing\n");
+		return false;
+	}
+	wbase = ml_io_map(ARB_CHNLS_PHYS + 0x1000UL * ch_gpio3, 0x1000UL);
+	/* Configure gpio3 as output high (dt: display_panel_extvdd_default / touch_vddio) */
+	if (!spmi_write_byte(wbase, 0x41, 0x00) ||      /* DIG_VIN_CTL: VIN0 */
+	    !spmi_write_byte(wbase, 0x42, 0x05) ||      /* DIG_PULL_CTL: no pull */
+	    !spmi_write_byte(wbase, 0x45, 0x02) ||      /* DIG_OUT_DRV_CTL: push-pull, strength 2 */
+	    !spmi_write_byte(wbase, 0x44, 0x80) ||      /* DIG_OUT_SRC_CTL: high, normal */
+	    !spmi_write_byte(wbase, 0x40, 0x01) ||      /* MODE_CTL: output */
+	    !spmi_write_byte(wbase, 0x46, 0x80)) {      /* EN_CTL: enabled */
+		printf("goodix: PM6150L gpio3 (touch_vddio) SPMI write failed\n");
+		return false;
+	}
+	sleep_ms(2);
+	(void)spmi_read_ch(ch_gpio3, 0x40, cfg, 7);
+	(void)spmi_read_ch(ch_gpio3, 0x10, &rt, 1);
+	printf("goodix: touch_vddio (PM6150L gpio3) on: 0x40..46 = %02x %02x %02x %02x %02x %02x %02x, rt %#x\n",
+	    cfg[0], cfg[1], cfg[2], cfg[3], cfg[4], cfg[5], cfg[6], rt);
+	return true;
+}
+
 static bool
 io_supply_on(void)
 {
-	uint32_t base = rpmh_address("ldoc2");
+	uint32_t base = rpmh_address("ldoe9");
 	uint32_t address[3] = { base + VRM_VOLTAGE, base + VRM_ENABLE, base + VRM_MODE };
-	uint32_t data[3] = { 1800, 1, VRM_MODE_LDO_HPM };
+	uint32_t data[3] = { 3224, 1, VRM_MODE_LDO_HPM };
 
+	if (!touch_vddio_on()) {
+		printf("goodix: warning: touch_vddio could not be switched on via SPMI\n");
+	}
+	sleep_ms(5);
 	/* addresses of regulators ("VRM") have 4 in bits 19:16; anything else is not what we are looking for */
 	if (base == 0 || (base >> 16 & 0xf) != 4) {
-		printf("goodix: RPMh: no regulator \"ldoc2\" (address %#x)\n", base);
+		printf("goodix: RPMh: no regulator \"ldoe9\" (address %#x)\n", base);
 		return false;
 	}
-	printf("goodix: RPMh: ldoc2 is at %#x; slot status %#x, control %#x, irq enable %#x status %#x\n", base,
+	printf("goodix: RPMh: ldoe9 is at %#x; slot status %#x, control %#x, irq enable %#x status %#x\n", base,
 	    rd(TCS(TCS_STATUS)), rd(TCS(TCS_CONTROL)), rd(TCS(TCS_IRQ_ENABLE)), rd(TCS(TCS_IRQ_STATUS)));
 	if (!rpmh_write(address, data, 3)) {
 		return false;
 	}
-	printf("goodix: I/O supply on (1.8 V)\n");
+	printf("goodix: AVDD supply on (ldoe9, 3.224 V)\n");
 	return true;
 }
 
 /* ---- clocks (GCC) -------------------------------------------------------------------------------- */
 
 #define GCC_PHYS                0x00100000UL
-#define GCC_SIZE                0x60000UL
-#define GCC_VOTE                (gcc + 0x52008)         /* the application processor's votes */
+#define GCC_SIZE                0x70000UL
+#define GCC_VOTE                (gcc + 0x62008)         /* the application processor's votes (sm7435 ClockDxe) */
 #define VOTE_QUP1_CORE_2X       (1u << 18)
 #define VOTE_QUP1_CORE          (1u << 19)
 #define VOTE_QUP1_M_AHB         (1u << 20)
 #define VOTE_QUP1_S_AHB         (1u << 21)
-#define VOTE_QUP1_SE5           (1u << 27)             /* serial engine 13 is the 6th of the second group */
-#define GCC_QUP1_M_AHB_CBCR     (gcc + 0x18004)         /* bit 31: the clock is off */
-#define GCC_QUP1_S_AHB_CBCR     (gcc + 0x18008)
-#define GCC_QUP1_SE5_CBCR       (gcc + 0x185fc)
-#define GCC_QUP1_SE5_CMD        (gcc + 0x18600)         /* bit 0: take the new configuration */
-#define GCC_QUP1_SE5_CFG        (gcc + 0x18604)         /* [4:0] 2*divider-1, [10:8] source, [13:12] mode */
-#define GCC_QUP1_SE5_DFSR       (gcc + 0x18614)         /* bit 0: the engine chooses among preset rates itself */
-#define GCC_QUP1_SE5_PERF_CFG(l) (gcc + 0x1861c + 4 * (l))
-#define GCC_QUP1_SE5_PERF_M(l)  (gcc + 0x1865c + 4 * (l))
-#define GCC_QUP1_SE5_PERF_N(l)  (gcc + 0x1869c + 4 * (l))
+#define VOTE_QUP1_SE5           (1u << 25)              /* gcc_qupv3_wrap1_s3_clk (qupv3_se9_spi at 0xa8c000) */
+#define GCC_QUP1_M_AHB_CBCR     (gcc + 0x28004)         /* bit 31: the clock is off */
+#define GCC_QUP1_S_AHB_CBCR     (gcc + 0x28008)
+#define GCC_QUP1_SE5_CBCR       (gcc + 0x283a8)
+#define GCC_QUP1_SE5_CMD        (gcc + 0x283b0)         /* bit 0: take the new configuration */
+#define GCC_QUP1_SE5_CFG        (gcc + 0x283b4)         /* [4:0] 2*divider-1, [10:8] source, [13:12] mode */
+#define GCC_QUP1_SE5_DFSR       (gcc + 0x283c4)         /* bit 0: the engine chooses among preset rates itself */
+#define GCC_QUP1_SE5_PERF_CFG(l) (gcc + 0x283cc + 4 * (l))
+#define GCC_QUP1_SE5_PERF_M(l)  (gcc + 0x2840c + 4 * (l))
+#define GCC_QUP1_SE5_PERF_N(l)  (gcc + 0x2844c + 4 * (l))
 #define CLOCK_OFF               (1u << 31)
 #define XO_HZ                   19200000
 
@@ -360,7 +535,7 @@ clocks_on(void)
 
 /* ---- SPI through the serial engine (GENI) ---------------------------------------------------------- */
 
-#define SE_PHYS                 0x00a94000UL
+#define SE_PHYS                 0x00a8c000UL    /* dt: qupv3_se9_spi: spi@a8c000 */
 #define SE_SIZE                 0x4000UL
 #define GENI_FORCE_DEFAULT      (se + 0x020)
 #define GENI_OUTPUT_CTRL        (se + 0x024)
@@ -577,16 +752,25 @@ bitbang_init(void)
 	gpio_configure(bitbang_in, 0, PULL_NONE, 2, false);
 }
 
+static void
+bitbang_delay(void)
+{
+	(void)rd(GPIO_IO(bitbang_in));
+}
+
 static bool
 bitbang_transfer(const uint8_t *tx, uint8_t *rx, uint32_t length)
 {
 	gpio_set(PIN_CS, false);
+	bitbang_delay();
 	for (uint32_t i = 0; i < length; i++) {
 		uint8_t out = tx ? tx[i] : 0, in = 0;
 
 		for (int bit = 7; bit >= 0; bit--) {
 			gpio_set(bitbang_out, out >> bit & 1);
+			bitbang_delay();
 			gpio_set(PIN_CLK, true);
+			bitbang_delay();
 			in = (uint8_t)(in << 1 | gpio_get(bitbang_in));
 			gpio_set(PIN_CLK, false);
 		}
@@ -594,6 +778,7 @@ bitbang_transfer(const uint8_t *tx, uint8_t *rx, uint32_t length)
 			rx[i] = in;
 		}
 	}
+	bitbang_delay();
 	gpio_set(PIN_CS, true);
 	return true;
 }
@@ -613,7 +798,7 @@ static bool (*spi_transfer)(const uint8_t *tx, uint8_t *rx, uint32_t length);
 static uint8_t spi_tx[8 + GOODIX_MAX_READ], spi_rx[8 + GOODIX_MAX_READ];
 static uint32_t touch_address, command_address;
 static const char *report_rate = "240";        /* what the status line says (touch_rate=480) */
-static uint32_t max_x = 10800, max_y = 24000;   /* the device tree's; the chip may say otherwise */
+static uint32_t max_x = 1220, max_y = 2712;     /* dt: goodix,panel-max-x = <0x4c4>, goodix,panel-max-y = <0xa98> */
 
 static bool
 goodix_read(uint32_t address, uint8_t *data, uint32_t length)
@@ -801,6 +986,7 @@ static struct {
 	uint32_t x, y;
 } contact[GOODIX_MAX_TOUCHES];
 static uint32_t flip;           /* boot-arg touch_flip: 1 = mirror left-right, 2 = mirror top-bottom */
+static uint32_t touch_swap = 0; /* boot-arg touch_swap: 1 = swap X/Y axes (0 for Garnet FT3683G: raw_x is 0..1220, raw_y is 0..2712) */
 
 static void
 goodix_report(const uint8_t *touches, uint32_t count)
@@ -921,7 +1107,7 @@ goodix_poll(void)
 #define FOCALTECH_CHIP_ID_L         0x9f
 #define FOCALTECH_TOUCH_DATA        0x01		/* the touch report lives at this address */
 #define FOCALTECH_MAX_TOUCHES       10
-#define FOCALTECH_TOUCH_REPORT_LEN  (2 + 6 * FOCALTECH_MAX_TOUCHES)
+#define FOCALTECH_TOUCH_REPORT_LEN  (4 + 6 * FOCALTECH_MAX_TOUCHES)
 #define FOCALTECH_MAX_TRANSFER      (7 + FOCALTECH_TOUCH_REPORT_LEN + 2)
 
 static uint8_t focaltech_tx[FOCALTECH_MAX_TRANSFER], focaltech_rx[FOCALTECH_MAX_TRANSFER];
@@ -1061,6 +1247,14 @@ focaltech_read_boot_id(uint8_t *high, uint8_t *low)
 	return ok;
 }
 
+static bool
+focaltech_is_valid_id(uint8_t high, uint8_t low)
+{
+	return (high == 0x56 && low == 0x62) ||   /* FT3680 (redwood) */
+	       (high == 0x56 && low == 0x72) ||   /* FT3683G runtime (garnet) */
+	       (high == 0x36 && (low == 0xb3 || low == 0x83));
+}
+
 /* Vendor fts_wait_tp_to_valid: poll chip ID for up to TIMEOUT_READ_REG (1 s) at 200 ms steps. */
 static bool
 focaltech_wait_valid(uint8_t *high, uint8_t *low)
@@ -1068,8 +1262,9 @@ focaltech_wait_valid(uint8_t *high, uint8_t *low)
 	for (int attempt = 0; attempt < 5; attempt++) {
 		if (focaltech_read(FOCALTECH_CHIP_ID_H, high, 1) &&
 		    focaltech_read(FOCALTECH_CHIP_ID_L, low, 1) &&
-		    *high == 0x56 && *low == 0x62) {
-			printf("focaltech: FT3680 runtime ID valid after %d attempt(s)\n", attempt + 1);
+		    focaltech_is_valid_id(*high, *low)) {
+			printf("focaltech: FT36xx runtime ID valid (%02x %02x) after %d attempt(s)\n",
+			    *high, *low, attempt + 1);
 			return true;
 		}
 		sleep_ms(200);			/* vendor INTERVAL_READ_REG */
@@ -1080,10 +1275,10 @@ focaltech_wait_valid(uint8_t *high, uint8_t *low)
 /*
  * Reset the chip and send 0x55/0xAA to put it in boot ROM, as vendor fts_get_ic_information
  * does. Try up to 3 times with escalating settle delays (12, 20, 28 ms). Returns true if the
- * chip is sitting in its boot ROM, with { 0x56, 0x62 } read back from the boot-ID register.
+ * chip is sitting in its boot ROM, with valid boot-ID read back from the boot-ID register.
  */
 static bool
-focaltech_enter_boot_rom(void)
+focaltech_enter_boot_rom(uint8_t *out_boot_h, uint8_t *out_boot_l)
 {
 	uint8_t boot_high = 0, boot_low = 0;
 
@@ -1092,12 +1287,16 @@ focaltech_enter_boot_rom(void)
 		sleep_ms(1);
 		gpio_set(PIN_RESET, true);
 		sleep_ms(FTS_CMD_START_DELAY + cnt * 8);
-		if (focaltech_read_boot_id(&boot_high, &boot_low) &&
-		    boot_high == 0x56 && boot_low == 0x62) {
-			printf("focaltech: in boot ROM after reset %d\n", cnt);
-			return true;
+		if (focaltech_read_boot_id(&boot_high, &boot_low)) {
+			if (out_boot_h) *out_boot_h = boot_high;
+			if (out_boot_l) *out_boot_l = boot_low;
+			if (focaltech_is_valid_id(boot_high, boot_low) ||
+			    (boot_high == 0x36 && boot_low == 0xb3)) {
+				printf("focaltech: in boot ROM after reset %d (id %02x %02x)\n", cnt, boot_high, boot_low);
+				return true;
+			}
 		}
-		printf("focaltech: boot ID attempt %d: %02x %02x (not 56 62)\n", cnt, boot_high, boot_low);
+		printf("focaltech: boot ID attempt %d: %02x %02x (not 56 62 / 36 b3)\n", cnt, boot_high, boot_low);
 	}
 	return false;
 }
@@ -1148,15 +1347,31 @@ static bool
 focaltech_probe(bool verbose)
 {
 	uint8_t high = 0, low = 0;
+	uint8_t boot_h = 0, boot_l = 0;
 
-	/* Maybe firmware is already running (previous session, warm boot). */
+	/* Maybe firmware is already running (previous session, warm boot, or loaded from flash). */
 	if (focaltech_wait_valid(&high, &low)) {
 		return true;
 	}
 
-	if (!focaltech_enter_boot_rom()) {
+	if (!focaltech_enter_boot_rom(&boot_h, &boot_l)) {
 		if (verbose) {
 			printf("focaltech: chip not in boot ROM; last read runtime %02x %02x\n", high, low);
+		}
+		return false;
+	}
+
+	/* FT3683G on Garnet has firmware in on-chip flash: do not flash redwood's FT3680 blob */
+	if ((boot_h == 0x36 && boot_l == 0xb3) || (high == 0x56 && low == 0x72)) {
+		printf("focaltech: FT3683G flash application, starting app\n");
+		focaltech_start_app();
+		sleep_ms(300);
+		if (focaltech_wait_valid(&high, &low)) {
+			return true;
+		}
+		touch_reset();
+		if (focaltech_wait_valid(&high, &low)) {
+			return true;
 		}
 		return false;
 	}
@@ -1210,10 +1425,11 @@ static struct {
 } focaltech_contact[FOCALTECH_MAX_TOUCHES];
 
 static void
-focaltech_contact_update(uint32_t id, uint32_t event, uint32_t x, uint32_t y,
+focaltech_contact_update(uint32_t id, uint32_t event, uint32_t raw_x, uint32_t raw_y,
     uint32_t max_report_x, uint32_t max_report_y)
 {
 	static unsigned shown;
+	uint32_t x = raw_x, y = raw_y;
 
 	if (id >= FOCALTECH_MAX_TOUCHES || max_report_x == 0 || max_report_y == 0) {
 		return;
@@ -1227,17 +1443,25 @@ focaltech_contact_update(uint32_t id, uint32_t event, uint32_t x, uint32_t y,
 		return;
 	}
 	seen.touches++;
-	/* the chip's 15-bit values can exceed the panel: keep them inside it, so the mirroring below cannot underflow */
+
+	if (touch_swap) {
+		/* raw_x is on long axis (height), raw_y is on short axis (width) */
+		x = raw_y;
+		y = raw_x;
+	}
+
+	/* the chip's values can exceed the panel: keep them inside it */
 	if (x > max_report_x - 1) {
 		x = max_report_x - 1;
 	}
 	if (y > max_report_y - 1) {
 		y = max_report_y - 1;
 	}
-	switch (flip) {
-	case 1: x = max_report_x - 1 - x; break;
-	case 2: y = max_report_y - 1 - y; break;
-	case 3: x = max_report_x - 1 - x; y = max_report_y - 1 - y; break;
+	if (flip & 1) {
+		x = max_report_x - 1 - x;
+	}
+	if (flip & 2) {
+		y = max_report_y - 1 - y;
 	}
 	x = (uint32_t)(((uint64_t)x * 65535) / (max_report_x - 1));
 	y = (uint32_t)(((uint64_t)y * 65535) / (max_report_y - 1));
@@ -1252,25 +1476,35 @@ focaltech_contact_update(uint32_t id, uint32_t event, uint32_t x, uint32_t y,
 	}
 	focaltech_contact[id].x = x;
 	focaltech_contact[id].y = y;
-	if (shown++ < 8) {
-		printf("focaltech: finger %u %s at %u, %u\n", id,
-		    event == FOCALTECH_EVENT_DOWN ? "down" : "move", x, y);
+	if (shown++ < 16) {
+		say("focaltech: finger %u %s: raw (%u, %u) -> (%u, %u)\n", id,
+		    event == FOCALTECH_EVENT_DOWN ? "down" : "move", raw_x, raw_y, x, y);
 	}
 }
 
-/* Panel size in the FT3680 super-high-resolution reports (device tree x_max/y_max on redwood). */
-static uint32_t focaltech_max_x = 10800, focaltech_max_y = 24000;
+/* Panel dimensions on Garnet: 1220 x 2712. */
+static uint32_t focaltech_max_x = 1220, focaltech_max_y = 2712;
 
 static void
 focaltech_report(const uint8_t *report)
 {
 	uint32_t count = report[1] & 0x0f;
+	static unsigned raw_logged;
 
+	if (report[1] == 0xff || count > FOCALTECH_MAX_TOUCHES) {
+		count = 0;
+	}
+	if (count > 0 && raw_logged < 8) {
+		raw_logged++;
+		say("goodix: focaltech raw[%u]: %02x %02x %02x %02x | %02x %02x %02x %02x %02x %02x\n",
+		    count, report[0], report[1], report[2], report[3],
+		    report[4], report[5], report[6], report[7], report[8], report[9]);
+	}
 	for (uint32_t i = 0; i < FOCALTECH_MAX_TOUCHES; i++) {
 		focaltech_contact[i].seen = false;
 	}
-	for (uint32_t i = 0; i < FOCALTECH_MAX_TOUCHES; i++) {
-		const uint8_t *touch = report + 2 + 6 * i;
+	for (uint32_t i = 0; i < count; i++) {
+		const uint8_t *touch = report + 4 + 6 * i;
 		uint32_t id = (touch[2] >> 4) & 0x0f;
 		uint32_t event, x, y;
 
@@ -1278,13 +1512,14 @@ focaltech_report(const uint8_t *report)
 			break;			/* no more valid slots in this report */
 		}
 		event = (touch[0] >> 6) & 0x3;
-		x = ((uint32_t)(touch[0] & 0x0f) << 11) | ((uint32_t)touch[1] << 3) |
-		    ((uint32_t)touch[4] >> 5);
-		y = ((uint32_t)(touch[2] & 0x0f) << 11) | ((uint32_t)touch[3] << 3) |
-		    (((uint32_t)touch[4] & 0x1c) >> 2);
+		if (event != FOCALTECH_EVENT_DOWN && event != FOCALTECH_EVENT_CONTACT &&
+		    event != FOCALTECH_EVENT_UP) {
+			continue;
+		}
+		x = ((uint32_t)(touch[0] & 0x0f) << 8) | (uint32_t)touch[1];
+		y = ((uint32_t)(touch[2] & 0x0f) << 8) | (uint32_t)touch[3];
 		focaltech_contact_update(id, event, x, y, focaltech_max_x, focaltech_max_y);
 	}
-	(void)count;
 	/* Fingers not in this report are up (vendor driver uses a bitmap; we remember explicitly). */
 	for (uint32_t i = 0; i < FOCALTECH_MAX_TOUCHES; i++) {
 		if (!focaltech_contact[i].seen && focaltech_contact[i].down) {
@@ -1316,25 +1551,30 @@ focaltech_poll(void)
 enum touch_chip { TOUCH_GOODIX, TOUCH_FOCALTECH };
 static enum touch_chip touch_chip;
 
-static enum touch_chip
-touch_chip_detect(void)
-{
-	gpio_configure(PIN_FOCALTECH_ID, 0, PULL_NONE, 2, false);
-	gpio_configure(PIN_GOODIX_ID, 0, PULL_NONE, 2, false);
-	if (gpio_get(PIN_GOODIX_ID) && !gpio_get(PIN_FOCALTECH_ID)) {
-		return TOUCH_FOCALTECH;
-	}
-	return TOUCH_GOODIX;
-}
-
 static bool
 chip_probe(bool verbose)
 {
-	if (touch_chip == TOUCH_FOCALTECH) {
-		return focaltech_probe(verbose);
-	}
 	touch_reset();
-	return goodix_probe(verbose);
+	if (goodix_probe(verbose)) {
+		touch_chip = TOUCH_GOODIX;
+		return true;
+	}
+	if (focaltech_probe(verbose)) {
+		touch_chip = TOUCH_FOCALTECH;
+		return true;
+	}
+	return false;
+}
+
+static bool
+any_contact_down(void)
+{
+	for (uint32_t i = 0; i < FOCALTECH_MAX_TOUCHES; i++) {
+		if (focaltech_contact[i].down) {
+			return true;
+		}
+	}
+	return false;
 }
 
 static void
@@ -1353,25 +1593,21 @@ static void
 show_state(const char *when)
 {
 	printf("goodix: %s: votes %#x, clocks %#x %#x %#x, rate cfg %#x dfs %#x; pins cs/clk/mosi/miso cfg %#x %#x %#x %#x,"
-	    " reset %#x/%u, int %#x/%u, avdd %#x/%u, straps %u %u\n", when, rd(GCC_VOTE), rd(GCC_QUP1_M_AHB_CBCR),
+	    " reset %#x/%u, int %#x/%u\n", when, rd(GCC_VOTE), rd(GCC_QUP1_M_AHB_CBCR),
 	    rd(GCC_QUP1_S_AHB_CBCR), rd(GCC_QUP1_SE5_CBCR), rd(GCC_QUP1_SE5_CFG), rd(GCC_QUP1_SE5_DFSR), rd(GPIO_CFG(PIN_CS)),
 	    rd(GPIO_CFG(PIN_CLK)), rd(GPIO_CFG(PIN_MOSI)), rd(GPIO_CFG(PIN_MISO)), rd(GPIO_CFG(PIN_RESET)),
-	    rd(GPIO_IO(PIN_RESET)), rd(GPIO_CFG(PIN_INT)), rd(GPIO_IO(PIN_INT)), rd(GPIO_CFG(PIN_AVDD)), rd(GPIO_IO(PIN_AVDD)),
-	    gpio_get(68), gpio_get(96));
+	    rd(GPIO_IO(PIN_RESET)), rd(GPIO_CFG(PIN_INT)), rd(GPIO_IO(PIN_INT)));
 }
 
-/* Power the chip up from nothing, in the vendor driver's order. False if the I/O supply could not be switched on. */
+/* Power the chip up from nothing, in the vendor driver's order. False if the supply could not be switched on. */
 static bool
 power_on(void)
 {
 	gpio_output(PIN_RESET, false, PULL_UP, 8);
 	gpio_configure(PIN_INT, 0, PULL_UP, 8, false);
-	/* without its I/O rail the chip must not get the analog supply or be driven: stop before AVDD */
 	if (!io_supply_on()) {
 		return false;
 	}
-	sleep_ms(3);
-	gpio_output(PIN_AVDD, true, PULL_NONE, 2);
 	sleep_ms(15);
 	return true;
 }
@@ -1397,11 +1633,8 @@ bring_up(void)
 	const char *problem = "its clocks cannot be turned on";
 
 	show_state("as found");
-	touch_chip = touch_chip_detect();
-	printf("goodix: ID gpio96=%u gpio68=%u: selected %s\n", gpio_get(PIN_GOODIX_ID),
-	    gpio_get(PIN_FOCALTECH_ID), chip_name());
 	if (!power_on()) {
-		printf("goodix: the I/O supply is not on; the chip is left alone\n");
+		printf("goodix: the supply is not on; the chip is left alone\n");
 		return false;
 	}
 
@@ -1507,9 +1740,11 @@ goodix_thread(__unused void *parameter, __unused wait_result_t result)
 			}
 		} else if (++idle >= idle_looks) {
 			idle = 0;
-			chip_poll();
-			reads++;
-			reading += micros_now() - looked;
+			if (touch_chip != TOUCH_FOCALTECH || any_contact_down()) {
+				chip_poll();
+				reads++;
+				reading += micros_now() - looked;
+			}
 		}
 		before = looked;
 		if (tick % (60 * (1000000 / poll_us)) == 0) {
@@ -1532,6 +1767,7 @@ hakios_goodix_init(void)
 		return;
 	}
 	PE_parse_boot_argn("touch_flip", &flip, sizeof(flip));
+	PE_parse_boot_argn("touch_swap", &touch_swap, sizeof(touch_swap));
 	if (kernel_thread_start(goodix_thread, NULL, &thread) == KERN_SUCCESS) {
 		thread_deallocate(thread);
 	}

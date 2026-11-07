@@ -26,10 +26,10 @@ cp "$VARS_SRC" vars.fd 2>/dev/null
 L=../xnuloader/loader.efi; [ -f $L ] || L=../prebuilt/loader.efi
 mkdir -p esp/EFI/BOOT && cp -u $L esp/EFI/BOOT/BOOTAA64.EFI
 # The payload (kernel, root image, command line) reaches the loader in one of two ways. By default QEMU's loader
-# device puts it in memory at 0xF0000000, as the boot shim does behind Project Silicium's image on the phone.
+# device puts it in memory at 0xB7000000, as the boot shim does behind Project Silicium's image on the phone.
 # With QEMU_ESP=1 it is not put anywhere: it is the file \EFI\hakios\payload.bin of the ESP, and the loader reads it
 # itself from the volume it was started from -- UEFI-native boot, what a boot menu or a USB stick does (docs/uefi-boot.md).
-PAYLOAD_DEVICE=(-device loader,file=payload.bin,addr=0xF0000000,force-raw=on)
+PAYLOAD_DEVICE=(-device loader,file=payload.bin,addr=0xB7000000,force-raw=on)
 if [ -n "${QEMU_ESP:-}" ]; then
 	mkdir -p esp/EFI/hakios && cp payload.bin esp/EFI/hakios/payload.bin
 	PAYLOAD_DEVICE=()

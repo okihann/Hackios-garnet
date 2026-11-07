@@ -75,6 +75,7 @@
 #                    the kernel's apfs_lib has to read every volume back as the directory it was made of
 #                    (../tools/apfs/check-image.sh; the system image takes a few minutes more)
 set -e
+umask 022
 # a copy of a tree that shares its files' data: hard links (Linux), clones of the files (macOS's APFS, whose cp has no -l)
 linkcopy() { if [ "$(uname)" = Darwin ]; then cp -cRp "$1" "$2"; else cp -al "$1" "$2"; fi; }
 cd "$(dirname "$(readlink -f "$0")")"
@@ -84,7 +85,18 @@ CC="xnu-clang -arch arm64 -Os -static -nostdlib -ffreestanding -fno-stack-protec
 LD="-Wl,-e,_start -Wl,-pagezero_size,0x100000000"
 DYN="xnu-clang -arch arm64 -isysroot ${THEOS:-$HOME/theos}/sdks/iPhoneOS16.5.sdk -O1"
 DARWIN=../sysimage
-CACHE=$DARWIN/20F66__iPhone10,3_6
+# the dyld shared cache directory, named after the build it came from (<BUILD>__iPhone10,3_6: 20F66 for
+# iOS 16.5, 20H392 for 16.7.16). Which one is there is what sysimage/unpack.sh left; do not name a
+# build here, or a tree unpacked from another IPSW builds its image without a shared cache.
+# If more than one is there (two IPSWs unpacked into this tree), the newest build wins and is named,
+# so that it is never a guess which userland the image was built from.
+_caches=$(ls -d $DARWIN/*__iPhone10,3_6 2>/dev/null)
+CACHE=$(printf '%s\n' "$_caches" | sort | tail -1)
+if [ -n "$CACHE" ]; then
+	[ "$(printf '%s\n' "$_caches" | wc -l)" -le 1 ] || echo "build.sh: several shared caches in $DARWIN, using $(basename "$CACHE")" >&2
+else
+	CACHE=$DARWIN/20F66__iPhone10,3_6
+fi
 # sysimage/rootfs and sysimage/cryptex must be this copy's own directories of hard links, the way
 # tools/new-workspace.sh makes them. A symlink to another copy's tree makes sysroot a symlink too, because
 # cp -a does not follow one, and then every rm -rf and mv below edits the shared extraction in place. That
@@ -157,6 +169,7 @@ fi
 rm -rf root
 mkdir -p root/sbin root/bin root/etc root/share root/LaunchDaemons
 cp obj/init root/sbin/init
+ln -s init root/sbin/launchd
 cp obj/child root/bin/child
 # The data volume into the flash and back (src/var_store.c), and the job that saves it when a run
 # ends: the program and its job together, away from the Darwin job list below, which several working
@@ -327,9 +340,9 @@ if [ -d $DARWIN/rootfs/usr/lib ]; then
 	[ -f obj/camera_avtest ] && cp obj/camera_avtest root/bin/
 	[ -f obj/record_test ] && cp obj/record_test root/bin/
 	for f in $EXTRA; do cp "$f" root/bin/; done
-	# /dev and /private/var exist so that this image can also be the root on its own:
-	# devfs is mounted on /dev, and init puts a ramfs on /private/var
-	mkdir -p root/dev root/private/var
+	# /dev, /flash and /private/var exist so that this image can also be the root on its own:
+	# devfs is mounted on /dev, init mounts root_apfs= on /flash, and init puts a ramfs on /private/var
+	mkdir -p root/dev root/flash root/private/var
 	mkdir -p root/lib
 	cp obj/libhakios.dylib obj/libhakios.sb.dylib root/lib/
 	[ -f obj/libhakios.media.dylib ] && cp obj/libhakios.media.dylib root/lib/     # (as with cpu_test)

@@ -88,19 +88,20 @@ wr(vm_offset_t address, uint32_t value)
 }
 
 /* the arbiter, as drivers/input/hakios.buttons.c maps it */
-#define ARB_CORE_PHYS           0x0c440000UL
-#define ARB_CORE_SIZE           0x1100UL
-#define ARB_CNFG_PHYS           0x0c40a000UL
-#define ARB_CNFG_SIZE           0x1000UL
-#define ARB_OBSERVER_PHYS       0x0e600000UL
-#define ARB_OBSERVER_SIZE       0x10000UL
+#define ARB_CORE_PHYS           0x0c400000UL
+#define ARB_CORE_SIZE           0x3000UL
+#define ARB_CNFG_PHYS           0x0c42d000UL
+#define ARB_CNFG_SIZE           0x4000UL
+#define ARB_OBSERVER_PHYS       0x0c440000UL
+#define ARB_OBSERVER_SIZE       0x8000UL
 #define ARB_SYSTEM              0
 #define ARB_VERSION             0x000
 #define ARB_VERSION_5           0x50000000u
 #define ARB_VERSION_7           0x70000000u
+#define ARB_VERSION_8           0x80000000u
 #define ARB_FEATURES            0x004
-#define ARB_CHANNEL(n)          (0x900 + 4 * (n))               /* [19:8] slave and peripheral */
-#define ARB_MAX_CHANNELS        512
+#define ARB_CHANNEL(n)          (0x2000 + 4 * (n))              /* [19:8] slave and peripheral (v7) */
+#define ARB_MAX_CHANNELS        768
 #define OBSERVER_COMMAND        0x00
 #define OBSERVER_STATUS         0x08
 #define OBSERVER_DATA0          0x18
@@ -118,7 +119,7 @@ static vm_offset_t arb_core, arb_observer;
 static const char *
 spmi_read(uint32_t channel, uint8_t reg, uint8_t *bytes, uint32_t count)
 {
-	vm_offset_t ch = arb_observer + 0x10000UL * ARB_SYSTEM + 0x80UL * channel;
+	vm_offset_t ch = arb_observer + 0x8000UL * ARB_SYSTEM + 0x20UL * channel;
 	uint64_t start = mach_absolute_time(), now, interval;
 	uint32_t status, data[2];
 
@@ -226,8 +227,8 @@ pmic_run(__unused thread_call_param_t p0, __unused thread_call_param_t p1)
 	version = rd(arb_core + ARB_VERSION);
 	channels = rd(arb_core + ARB_FEATURES) & 0x7ff;
 	say("pmic: PMIC arbiter version %#x, %u channels\n", version, channels);
-	if (version < ARB_VERSION_5 || version >= ARB_VERSION_7) {
-		say("pmic: this driver knows version 5 of the arbiter only: nothing read\n");
+	if (version < ARB_VERSION_7 || version >= ARB_VERSION_8) {
+		say("pmic: this driver knows version 7 of the arbiter only: nothing read\n");
 		goto out;
 	}
 	if (channels == 0 || channels > ARB_MAX_CHANNELS) {

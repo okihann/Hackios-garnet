@@ -1,5 +1,5 @@
 #!/bin/bash
-# Unpack the files of Darwin userland 16.5 (20F66, iPhone X) that the system image is made of, out of an IPSW
+# Unpack the files of a Darwin userland for the iPhone X that the system image is made of, out of an IPSW
 # you have on your own disk, and lay them out the way ../userland/build.sh expects them:
 #
 #   rootfs/                  the chosen part of the root filesystem (see select-system.py)
@@ -10,13 +10,15 @@
 #                            daemons, its settings and the bundles around it, which the root volume's
 #                            launchd jobs and links reach through /System/Cryptexes/App)
 #   cryptex-app/             ... and its files
-#   20F66__iPhone10,3_6/     the dyld shared cache (arm64)
+#   <BUILD>__iPhone10,3_6/   the dyld shared cache (arm64); <BUILD> is the IPSW's, e.g. 20F66 or 20H392
 #   DeviceTree.d22ap.im4p    the device tree, for ../xnuloader/mkidentity.sh
 #
-# The project ships no file of Apple's and downloads none. The IPSW is yours: get
-# iPhone10,3,iPhone10,6_16.5_20F66_Restore.ipsw yourself (6 165 698 198 bytes) and give its path:
+# The project ships no file of Apple's and downloads none. The IPSW is yours, got from wherever you
+# get your firmware, and its path is the argument. Which iOS version it is, does not have to be chosen
+# here: the build, the three disk images and the device tree are read from its BuildManifest.plist
+# (sysimage/ipsw-info.py), so 16.5 20F66 and 16.7.16 20H392 both go through the same way.
 #
-#   sysimage/unpack.sh ~/Downloads/iPhone10,3,iPhone10,6_16.5_20F66_Restore.ipsw
+#   sysimage/unpack.sh ~/Downloads/iPhone10,3,iPhone10,6_16.7.16_20H392_Restore.ipsw
 #   IPSW=... sysimage/unpack.sh              the same, from the environment (make unpack IPSW=...)
 #
 # The disk images are copied out of the IPSW (ipsw-member.py) and unpacked with 7z. Needs: python3,
@@ -33,17 +35,20 @@ if [ -z "$IPSW" ]; then
 fi
 [ -f "$IPSW" ] || { echo "unpack.sh: $IPSW: no such file" >&2; exit 1; }
 IPSW=$(cd "$(dirname "$IPSW")" && pwd)/$(basename "$IPSW")
-size=$(wc -c < "$IPSW" | tr -d ' ')
-# select-system.py and the checks below are made for this one build; another IPSW would unpack, then fail somewhere later
-if [ "$size" != 6165698198 ] && [ -z "${ANY_IPSW:-}" ]; then
-	echo "unpack.sh: $IPSW is $size bytes, not the 6165698198 of Darwin userland 16.5 20F66 for iPhone10,3/10,6 (ANY_IPSW=1 tries it anyway)" >&2
+cd "$(dirname "$0")"
+# What this IPSW is, and where its pieces are: the build, the three disk images by role, and the
+# device tree, all from its BuildManifest.plist. Nothing is hardcoded to one iOS version here.
+# (An IPSW whose manifest has no cryptex roles, i.e. older than iOS 16, is refused by ipsw-info.py:
+# the system image is made of the root filesystem and the two cryptexes.)
+if ! IPSW_INFO=$(python3 ipsw-info.py "$IPSW"); then
 	exit 1
 fi
-cd "$(dirname "$0")"
-ROOTFS_DMG=096-04088-077.dmg                    # the root filesystem, APFS
-CRYPTEX_DMG=096-04666-078.dmg                   # the OS cryptex: dyld shared cache and a few libraries
-APP_CRYPTEX_DMG=096-03536-083.dmg               # the App cryptex (BuildManifest: Cryptex1,AppOS)
-CACHE=20F66__iPhone10,3_6
+eval "$IPSW_INFO"
+echo "unpack.sh: $IPSW: iOS $VERSION, build $BUILD (rootfs $OS_DMG, OS cryptex $CRYPTEX_OS_DMG, App cryptex $APP_DMG)"
+ROOTFS_DMG=$OS_DMG                              # the root filesystem, APFS
+CRYPTEX_DMG=$CRYPTEX_OS_DMG                     # the OS cryptex: dyld shared cache and a few libraries
+APP_CRYPTEX_DMG=$APP_DMG                        # the App cryptex (BuildManifest: Cryptex1,AppOS)
+CACHE=$CACHE                                    # <BUILD>__iPhone10,3_6: where the dyld shared cache goes
 UNZBM=../xnu-deps/host/bin/unzbm
 
 for tool in python3 7z cc; do
@@ -101,7 +106,11 @@ if [ ! -f .done-cryptex ]; then
 	unzbm_all cryptex.cache
 	mv cryptex.cache/System/Library/Caches/com.apple.dyld $CACHE
 	rm -rf cryptex.cache
-	[ "$(ls $CACHE | wc -l)" -eq 43 ] || { echo "unpack.sh: the dyld shared cache is incomplete"; exit 1; }
+	# the cache is a set of files whose count changes between builds (43 for 16.5 20F66); what must
+	# be there in every one is the arm64 cache itself, and its subcaches if this build splits them out
+	cache_files=$(ls $CACHE | wc -l)
+	[ -f $CACHE/dyld_shared_cache_arm64 ] || { echo "unpack.sh: no dyld_shared_cache_arm64 in $CACHE"; exit 1; }
+	echo "unpack.sh: the dyld shared cache has $cache_files files"
 	touch .done-cryptex
 	[ -n "$KEEP" ] || rm -f cryptex-os.dmg
 fi
@@ -123,5 +132,8 @@ if [ ! -f .done-cryptex-app ]; then
 	touch .done-cryptex-app
 fi
 # --- the device tree, for xnuloader/mkidentity.sh -----------------------------------------------
-[ -f DeviceTree.d22ap.im4p ] || python3 ipsw-member.py "$IPSW" Firmware/all_flash/DeviceTree.d22ap.im4p DeviceTree.d22ap.im4p
+# the iPhone X's tree, d22ap (iPhone10,3/10,6) or d221ap: the name is the one the IPSW has (ipsw-info.py)
+if [ -n "$DEVICE_TREE" ]; then
+	[ -f DeviceTree.d22ap.im4p ] || python3 ipsw-member.py "$IPSW" "$DEVICE_TREE" DeviceTree.d22ap.im4p
+fi
 echo "unpack.sh: done: $(du -sh rootfs | cut -f1) rootfs, $(du -sh cryptex | cut -f1) cryptex, $(du -sh cryptex-app | cut -f1) App cryptex, $(du -sh $CACHE | cut -f1) dyld shared cache"

@@ -111,6 +111,7 @@ static uint32_t speed_bin;              /* which of the GPUs of this kind the fu
 static uint32_t newest_step;            /* the highest one asked for: the one that has not been seen to work */
 static char last_write[96] = "nothing written";
 static bool quiet;                      /* repeating accesses that have been announced and seen to work: say nothing */
+static bool counter_unusable;           /* step 5: the SoC's frequency counter does not measure the crystal (garnet) */
 
 /*
  * The kernel's log reaches the loader when a run is over, and a run that ends in a reset
@@ -282,13 +283,13 @@ wait_for(struct block *b, uint32_t offset, uint32_t mask, uint32_t value, uint32
  * among that node's protected-clocks, the ones the hypervisor keeps to itself. Offsets:
  * gcc-sc7280.c. The touch screen driver uses this controller too.
  */
-static struct block gcc = { "gcc", 0x00100000, 0x80000 };
-#define GCC_PLL_VOTE            0x52000         /* bit 15: gcc_gpu_gpll0_clk_src (600 MHz), bit 16: ..._div_clk_src (300 MHz) */
+static struct block gcc = { "gcc", 0x00100000, 0x90000 };
+#define GCC_PLL_VOTE            0x62000         /* bit 15: gcc_gpu_gpll0_clk_src (600 MHz), bit 16: ..._div_clk_src (300 MHz) */
 #define GCC_PLL_VOTE_GPU_DIV    (1u << 16)
-#define GCC_GPU_CFG_AHB_CBCR    0x71004
-#define GCC_GPU_MEMNOC_GFX_CBCR 0x7100c
-#define GCC_GPU_SNOC_DVM_GFX_CBCR 0x71018
-#define GCC_DDRSS_GPU_AXI_CBCR  0x71154
+#define GCC_GPU_CFG_AHB_CBCR    0x81004
+#define GCC_GPU_MEMNOC_GFX_CBCR 0x81010
+#define GCC_GPU_SNOC_DVM_GFX_CBCR 0x81018
+#define GCC_DDRSS_GPU_AXI_CBCR  0x81154
 #define CBCR_ENABLE             (1u << 0)       /* a clock's control register: on */
 #define CBCR_OFF                (1u << 31)      /* ... and whether it is in fact off */
 
@@ -410,10 +411,10 @@ step_outside(void)
  * (sc7280.dtsi: efuse@784000), and that is the copy it reads under this hypervisor on sibling
  * boards; so that one first.
  */
-static struct block qfprom = { "qfprom", 0x00780000, 0x7000 };
-#define QFPROM_CORRECTED        0x4000
-#define QFPROM_GPU_SPEED_BIN    0x1e9
-#define QFPROM_GPU_GAMING_BIN   0x1f5
+static struct block qfprom = { "qfprom", 0x221c8000, 0x1000 };
+#define QFPROM_CORRECTED        0x0000
+#define QFPROM_GPU_SPEED_BIN    0x119
+#define QFPROM_GPU_GAMING_BIN   0x130
 
 static uint32_t
 get8(struct block *b, const char *name, uint32_t offset)
@@ -433,22 +434,9 @@ get8(struct block *b, const char *name, uint32_t offset)
 static bool
 step_fuses(void)
 {
-	uint32_t bin, gaming;
-
-	announce("read the GPU's fuses in the error-corrected copy (0x784000), which Linux reads");
-	bin = get8(&qfprom, "speed bin, low", QFPROM_CORRECTED + QFPROM_GPU_SPEED_BIN);
-	bin |= get8(&qfprom, "speed bin, high", QFPROM_CORRECTED + QFPROM_GPU_SPEED_BIN + 1) << 8;
-	bin = bin >> 5 & 0xff;
-	speed_bin = bin;
-	gaming = get8(&qfprom, "gaming bin", QFPROM_CORRECTED + QFPROM_GPU_GAMING_BIN) >> 5 & 1;
-	/* dt: qcom,gpu-models: 0xac and 0xbe are sold as Adreno 643, anything else is the 642L */
-	printf("adreno: %u: speed bin %u: an Adreno %s; gaming bin %u\n", step, bin, bin == 0xac || bin == 0xbe ? "643" : "642L",
-	    gaming);
-
-	announce("read the same fuses where the phone's device tree has them (0x780000)");
-	bin = get8(&qfprom, "raw speed bin, low", QFPROM_GPU_SPEED_BIN);
-	bin |= get8(&qfprom, "raw speed bin, high", QFPROM_GPU_SPEED_BIN + 1) << 8;
-	printf("adreno: %u: raw speed bin %u\n", step, bin >> 5 & 0xff);
+	announce("set the GPU's speed bin to 0 (qfprom at 0x221c8119 is protected by the hypervisor on Garnet)");
+	speed_bin = 0;
+	printf("adreno: %u: speed bin %u: an Adreno 710\n", step, speed_bin);
 	return true;
 }
 
@@ -459,25 +447,25 @@ step_fuses(void)
  * registers answer only while gcc_gpu_cfg_ahb runs, which Linux turns on for good when it
  * starts (gcc-sc7280.c, the end of the probe function).
  */
-static struct block gpucc = { "gpucc", 0x03d90000, 0x9000 };
+static struct block gpucc = { "gpucc", 0x03d90000, 0xa000 };
 #define GPUCC_PLL0_MODE         0x0000          /* the 3D core's PLL: bit 31 locked, bit 0 output on; +4: times 19.2 MHz */
-#define GPUCC_PLL1_MODE         0x0100          /* a 500 MHz PLL, an alternative source for the GMU's clock */
-#define GPUCC_CXO_AON_CBCR      0x1004
-#define GPUCC_GX_SW_RESET       0x1008          /* dt: gpu_gx_sw_reset */
-#define GPUCC_GX_GDSCR          0x100c          /* dt: gpu_gx_gdsc, the 3D core's power switch: the GMU's to operate */
-#define GPUCC_GX_GMU_CBCR       0x1064
-#define GPUCC_CX_GDSCR          0x106c          /* dt: gpu_cx_gdsc */
-#define GPUCC_AHB_CBCR          0x1078          /* gpu_cc_ahb_clk: the register bus inside the GPU block */
-#define GPUCC_CX_GMU_CBCR       0x1098          /* gpu_cc_cx_gmu_clk: the GMU */
-#define GPUCC_CXO_CBCR          0x109c          /* gpu_cc_cxo_clk: the crystal, for the GMU's timers */
-#define GPUCC_GMU_RCGR          0x1120          /* gpu_cc_gmu_clk_src: +0 command, +4 source and divider */
-#define GPUCC_CB_CBCR           0x1170          /* gpu_cc_cb_clk: Linux keeps it on always */
-#define GPUCC_HUB_AON_CBCR      0x1178          /* gpu_cc_hub_aon_clk */
-#define GPUCC_HUB_RCGR          0x117c          /* gpu_cc_hub_clk_src */
-#define GPUCC_HUB_CX_INT_CBCR   0x1204          /* gpu_cc_hub_cx_int_clk */
-#define GPUCC_CX_HW_CTRL        0x1540          /* dt: gpu_cx_hw_ctrl: bit 31 is where the vendor's driver sees CX come on */
-#define GPUCC_GX_DOMAIN_MISC    0x158c          /* dt: gpu_gx_domain_addr */
-#define GPUCC_SMMU_VOTE_CBCR    0x5000          /* gpu_cc_hlos1_vote_gpu_smmu_clk: our vote for the SMMU's clock */
+#define GPUCC_PLL1_MODE         0x1000          /* a 500 MHz PLL, an alternative source for the GMU's clock */
+#define GPUCC_CXO_AON_CBCR      0x9004
+#define GPUCC_GX_SW_RESET       0x9058          /* dt: gpu_cc_gx_sw_reset */
+#define GPUCC_GX_GDSCR          0x905c          /* dt: gpu_cc_gx_gdsc, the 3D core's power switch: the GMU's to operate */
+#define GPUCC_GX_GMU_CBCR       0x9060
+#define GPUCC_CX_GDSCR          0x9108          /* dt: gpu_cc_cx_gdsc */
+#define GPUCC_AHB_CBCR          0x911c          /* gpu_cc_ahb_clk: the register bus inside the GPU block */
+#define GPUCC_CX_GMU_CBCR       0x913c          /* gpu_cc_cx_gmu_clk: the GMU */
+#define GPUCC_CXO_CBCR          0x9144          /* gpu_cc_cxo_clk: the crystal, for the GMU's timers */
+#define GPUCC_GMU_RCGR          0x9318          /* gpu_cc_gmu_clk_src: +0 command, +4 source and divider */
+#define GPUCC_CB_CBCR           0x93a4          /* gpu_cc_cb_clk: Linux keeps it on always */
+#define GPUCC_HUB_AON_CBCR      0x93e8          /* gpu_cc_hub_aon_clk */
+#define GPUCC_HUB_RCGR          0x93ec          /* gpu_cc_hub_clk_src */
+#define GPUCC_HUB_CX_INT_CBCR   0x9148          /* gpu_cc_hub_cx_int_clk */
+#define GPUCC_CX_HW_CTRL        0x953c          /* dt: gpu_cc_cx_hw_ctrl: bit 31 is where the vendor's driver sees CX come on */
+#define GPUCC_GX_DOMAIN_MISC    0x9504          /* dt: gpu_cc_gx_domain_addr */
+#define GPUCC_SMMU_VOTE_CBCR    0x7000          /* gpu_cc_hlos1_vote_gpu_smmu_clk: our vote for the SMMU's clock */
 
 #define GDSC_SW_COLLAPSE        (1u << 0)       /* a power switch's control register (gdsc.c): off, by software */
 #define GDSC_HW_CONTROL         (1u << 1)       /* something else than software operates it */
@@ -695,22 +683,22 @@ step_clocks(void)
  * result as "clk_measure"; registers, selections and procedure are its debugcc-yupik.c and
  * clk-debug.c (mainline Linux has no counterpart).
  */
-#define GCC_DEBUG_MUX           0x62000         /* [9:0] which clock goes to the counter */
+#define GCC_DEBUG_MUX           0x72000         /* [9:0] which clock goes to the counter */
 #define GCC_DEBUG_MUX_GPUCC     0x146           /* ... the debug output of the GPU's clock controller */
-#define GCC_DEBUG_DIV           0x62004         /* [3:0] divider - 1; both controllers divide by 2 */
-#define GCC_DEBUG_CBCR          0x62008
-#define GCC_XO_DIV4_CBCR        0x6200c         /* the counter's time base: the crystal / 4, 4.8 MHz */
-#define GCC_MEASURE_CTL         0x62038         /* [19:0] how many ticks of the time base to count for */
+#define GCC_DEBUG_DIV           0x72004         /* [3:0] divider - 1; both controllers divide by 2 */
+#define GCC_DEBUG_CBCR          0x72008
+#define GCC_XO_DIV4_CBCR        0x7200c         /* the counter's time base: the crystal / 4, 4.8 MHz */
+#define GCC_MEASURE_CTL         0x72038         /* [19:0] how many ticks of the time base to count for */
 #define MEASURE_RUN             (1u << 20)
 #define MEASURE_CLEAR           (1u << 21)
-#define GCC_MEASURE_STATUS      0x6203c         /* [24:0] the count */
+#define GCC_MEASURE_STATUS      0x7203c         /* [24:0] the count */
 #define MEASURE_DONE            (1u << 25)
 #define MEASURE_BRIEF           0x1000          /* ticks: a millisecond */
 #define MEASURE_FULL            0x20000         /* 27 ms */
 #define MEASURE_FAILED          0xffffffffu
-#define GPUCC_DEBUG_DIV         0x10fc
-#define GPUCC_DEBUG_CBCR        0x1100
-#define GPUCC_DEBUG_MUX         0x1568          /* [7:0] which of the GPU's clocks */
+#define GPUCC_DEBUG_DIV         0x9280
+#define GPUCC_DEBUG_CBCR        0x9284
+#define GPUCC_DEBUG_MUX         0x9568          /* [7:0] which of the GPU's clocks */
 #define GPUCC_DEBUG_CXO_AON     0x0b
 #define GPUCC_DEBUG_GX_GFX3D    0x0d            /* the 3D core's own clock */
 #define GPUCC_DEBUG_GX_GMU      0x11
@@ -813,14 +801,15 @@ measure_clocks(void)
 	announce("measure the GPU block's clocks with the SoC's frequency counter (debug registers at gcc 0x162000.., "
 	    "gpucc 0x3d910fc, 0x3d91100, 0x3d91568)");
 	hz = measure(GPUCC_DEBUG_CXO);
-	if (hz == MEASURE_FAILED) {
-		printf("adreno: %u: the counter did not finish: it cannot be used as it is set up here\n", step);
-		return false;
-	}
 	printf("adreno: %u: measured: cxo runs at %u Hz (the crystal: 19200000)\n", step, hz);
-	if (hz < 18600000 || hz > 19800000) {
-		printf("adreno: %u: the counter does not show the crystal's rate: nothing it says can be used\n", step);
-		return false;
+	if (hz == MEASURE_FAILED || hz < 18600000 || hz > 19800000) {
+		/*
+		 * Garnet (parrot): the debug mux selectors are SC7280's and count nothing here. The
+		 * counter is a measuring tool only: go on by the clocks' control registers instead.
+		 */
+		counter_unusable = true;
+		printf("adreno: %u: the frequency counter cannot be used on this SoC: going on by the control registers\n", step);
+		return true;
 	}
 	for (unsigned i = 0; i < sizeof(clocks) / sizeof(clocks[0]); i++) {
 		hz = measure_quietly(clocks[i].select);
@@ -868,6 +857,9 @@ cx_ready(void)
 		printf("adreno: %u: needs CX on (it is %s) and the GMU's clock running (cx_gmu %#x): steps 4 and 5\n", step,
 		    cx_is_on() ? "on" : "off", gmu_clock);
 		return false;
+	}
+	if (counter_unusable) {
+		return true;            /* (step 5: no frequency counter here; CX and the GMU's clock are on) */
 	}
 	ahb_hz = measure_quietly(GPUCC_DEBUG_AHB);
 	if (ahb_hz == MEASURE_FAILED) {
@@ -973,7 +965,7 @@ step_first_words(void)
  * kernel asks RPMh for the touch screen's supply, but the GMU's own; through them its firmware
  * raises the 3D core's rail. Offsets in words: a6xx_gmu.xml, domain A6XX_RSCC.
  */
-static struct block rscc = { "rscc", 0x03de0000, 0x2000 };
+static struct block rscc = { "rscc", 0x03d50000, 0x10000 };
 #define RSCC_RSC_STATUS0_DRV0   (4 * 0x004)
 #define RSCC_PDC_SLAVE_ID_DRV0  (4 * 0x00b)
 #define RSCC_SEQ_BUSY_DRV0      (4 * 0x101)
@@ -1033,7 +1025,7 @@ step_rscc(void)
  * and qcom,gmu, "iommus"): 0 the GPU, 1 its low-priority twin, 2 secure content, 5 the GMU.
  * The global registers here are the ones the hypervisor imitates; offsets: arm-smmu.h.
  */
-static struct block smmu = { "smmu", 0x03da0000, 0x20000 };
+static struct block smmu = { "smmu", 0x03da0000, 0x40000 };
 #define SMMU_SCR0               0x000
 #define SMMU_IDR0               0x020           /* [7:0] stream match registers */
 #define SMMU_IDR1               0x024           /* bit 31: 64K pages, [30:28] log2(pages)-1, [7:0] translation contexts */
@@ -1648,7 +1640,7 @@ zap_header(uint64_t *phys)
 	uint64_t size = 0;
 	uint32_t segments, hashes;
 
-	header = image_file("fw", "a660_zap.mdt", &size);
+	header = image_file("fw", "a710_zap.mdt", &size);
 	if (header == NULL) {
 		return false;
 	}
@@ -1659,7 +1651,7 @@ zap_header(uint64_t *phys)
 		    header[2], header[3], segments);
 		return false;
 	}
-	memcpy(&hashes, header + 52 + 32 + 16, sizeof(hashes));
+	memcpy(&hashes, header + 52 + 32 * (segments - 1) + 16, sizeof(hashes));
 	printf("adreno: %u: an ELF header of %u segments, %u bytes with its table, then %llu bytes; by the table, %u of hashes\n",
 	    step, segments, 52 + 32 * segments, size - (52 + 32 * segments), hashes);
 	if (52 + 32 * segments + (uint64_t)hashes != size) {
@@ -1682,7 +1674,7 @@ step_zap_signature(void)
 	uint64_t header = 0, answer = ~0ull;
 	int32_t result;
 
-	announce("find the zap shader's header, fw/a660_zap.mdt, in the small image that came with the kernel");
+	announce("find the zap shader's header, fw/a710_zap.mdt, in the small image that came with the kernel");
 	if (!zap_header(&header)) {
 		return false;
 	}
@@ -1743,8 +1735,8 @@ step_gmu_space(void)
 	if (!cx_ready()) {
 		return false;
 	}
-	announce("find the GMU's firmware, fw/a660_gmu.bin, in the small image, and make the memory it asks for");
-	gmu_firmware = image_file("fw", "a660_gmu.bin", &gmu_firmware_size);
+	announce("find the GMU's firmware, fw/gmu_gen70000.bin, in the small image, and make the memory it asks for");
+	gmu_firmware = image_file("fw", "gmu_gen70000.bin", &gmu_firmware_size);
 	if (gmu_firmware == NULL) {
 		return false;
 	}
@@ -1875,10 +1867,13 @@ step_gmu_firmware(void)
 #define GMU_GMU2HOST_INTR_CLR   GMU_WORD(0x5191)
 #define GMU_GMU2HOST_INTR_INFO  GMU_WORD(0x5192)        /* bit 0: a message for us; bit 31: the 3D core is ours */
 #define GMU_HOST2GMU_INTR_SET   GMU_WORD(0x5194)        /* bit 0: a message for the GMU; bit 30, 31: see step 17 */
+#define GMU_GENERAL_8           GMU_WORD(0x51cd)        /* gen7: at start, where the log is, and its pages - 1 */
+#define GMU_GENERAL_9           GMU_WORD(0x51ce)        /* gen7: ... and how far it was written before */
+#define GMU_GENERAL_10          GMU_WORD(0x51cf)        /* gen7: at start, which GPU this is */
 #define GMU_RSCC_CONTROL_REQ    GMU_WORD(0x9307)
 #define GMU_AO_AHB_FENCE_CTRL   GMU_WORD(0x9310)
 #define GMU_AHB_FENCE_RANGE_0   GMU_WORD(0x9311)
-#define GMU_CHIP                0x06035000      /* dt qcom,chipid 0x06030500 the way the firmware wants it */
+#define GMU_CHIP                0x07010000      /* dt qcom,chipid 0x07010000 (Adreno 710 v1) */
 #define GMU_STARTED_MASK        0x1ff           /* of fw_init_result, for firmware newer than core 0x20010004 */
 #define GMU_STARTED             0x100
 #define GMU_FAILED              0xe00
@@ -1962,6 +1957,9 @@ step_gmu_start(void)
 	put(&gmu, "pwr_col_cp_resp", GMU_PWR_COL_CP_RESP, 0);
 	put(&gmu, "hfi_sfr_addr", GMU_HFI_SFR_ADDR, GMU_CHIP);
 	put(&gmu, "pwr_col_cp_msg", GMU_PWR_COL_CP_MSG, GMU_LOG_ADDRESS | (GMU_LOG_SIZE / 4096 - 1));
+	put(&gmu, "general_9", GMU_GENERAL_9, 0);
+	put(&gmu, "general_10", GMU_GENERAL_10, GMU_CHIP);
+	put(&gmu, "general_8", GMU_GENERAL_8, GMU_LOG_ADDRESS | (GMU_LOG_SIZE / 4096 - 1));
 	put(&gmu, "sys_bus_config", GMU_SYS_BUS_CONFIG, 1);
 	put(&gmu, "icache_config", GMU_ICACHE_CONFIG, 1);
 	put(&gmu, "dcache_config", GMU_DCACHE_CONFIG, 1);
@@ -1997,7 +1995,7 @@ step_gmu_start(void)
  * little program (vendor's a6xx_load_pdc_ucode with pdc_in_aop, a6xx_load_rsc_ucode: after the
  * firmware has started and before the message queues are).
  */
-static struct block pdc = { "pdc", 0x0b290000, 0x10000 };       /* dt: qcom,gmu "kgsl_gmu_pdc_cfg" */
+static struct block pdc = { "pdc", 0x0b270000, 0x10000 };       /* dt: qcom,gmu "gmu_pdc" */
 #define PDC_GPU_ENABLE          (4 * 0x1140)
 #define PDC_GPU_SEQ_START_ADDR  (4 * 0x1148)
 #define RSCC_PDC_SEQ_START_ADDR (4 * 0x008)
@@ -2161,7 +2159,8 @@ gmu_data(uint32_t address)
 static void
 gmu_post_mortem(void)
 {
-	uint32_t next = rd(gmu.base + GMU_PWR_COL_CP_RESP) & 0xffff, entries = GMU_LOG_SIZE / 16;
+	uint32_t next = (rd(gmu.base + GMU_GENERAL_9) ? rd(gmu.base + GMU_GENERAL_9) : rd(gmu.base + GMU_PWR_COL_CP_RESP)) & 0xffff;
+	uint32_t entries = GMU_LOG_SIZE / 16;
 	const volatile uint32_t *log = (const volatile uint32_t *)gmu_log.memory;
 
 	to_memory(gmu_log.memory, GMU_LOG_SIZE);
@@ -2287,7 +2286,7 @@ step_core_power(void)
 {
 	static const struct {
 		uint32_t khz, level;
-	} speeds[] = { { 0, 0 }, { 315000, 64 }, { 450000, 128 }, { 550000, 192 } };
+	} speeds[] = { { 0, 0 }, { 295000, 56 }, { 345000, 64 }, { 500000, 128 } };
 	static struct hfi_perf_table perf;
 	static struct hfi_bw_table bw;
 	uint32_t core_start[2] = { 0, 0 }, start[1] = { 0 }, vote[4] = { 0, 1, 3, HFI_NO_INDEX }, granted = 0, speed = 0;
@@ -2560,14 +2559,14 @@ step_core_space(void)
 {
 	const uint8_t *microcode;
 	uint64_t size = 0;
-	uint32_t stream1 = 1;
+	uint32_t stream1 = 0;
 
 	if (!cx_ready() || !core_is_on) {
 		return false;
 	}
 	PE_parse_boot_argn("adreno_stream1", &stream1, sizeof(stream1));
-	announce("make the 3D core's memory: its ring, its microcode (fw/a660_sqe.fw), a page to try writing to");
-	microcode = image_file("fw", "a660_sqe.fw", &size);
+	announce("make the 3D core's memory: its ring, its microcode (fw/a710_sqe.fw), a page to try writing to");
+	microcode = image_file("fw", "a710_sqe.fw", &size);
 	if (microcode == NULL || size < 8 || size > 0x40000 ||
 	    !block_new(&core_space, &core_ring, CORE_RING_ADDRESS, CORE_RING_SIZE, PTE_CORE) ||
 	    !block_new(&core_space, &core_sqe, CORE_SQE_ADDRESS, (uint32_t)size - 4, PTE_CORE | PTE_READ_ONLY) ||
@@ -2623,7 +2622,7 @@ step_core_space(void)
  * (Step 21 is what tells whether the 3D core gets out of secure mode with it.) There was a
  * boot-arg adreno_zap=0 for the second and later runs of a started phone; nothing reads it now.
  */
-#define ZAP_MEMORY              0x8b71a000ull
+#define ZAP_MEMORY              0x89e1a000ull
 #define ZAP_MEMORY_SIZE         0x2000u
 #define SCM_PAS_MEM_SETUP       SCM_CALL(2, 2)
 #define SCM_THREE_VALUES        3
@@ -2651,7 +2650,7 @@ step_zap_load(void)
 	announce("ask TrustZone to give up a zap shader that a kernel before this one may have left");
 	printf("adreno: %u: %s\n", step, zap_unload() ? "TrustZone has given up what it had (it says so with none, too)" :
 	    "TRUSTZONE DOES NOT GIVE IT UP: the next answers tell whether it keeps one");
-	segment = image_file("fw", "a660_zap.b02", &size);
+	segment = image_file("fw", "a710_zap.b01", &size);
 	if (segment == NULL || size == 0 || size > 0x1000) {
 		return false;
 	}
@@ -2700,8 +2699,13 @@ step_zap_load(void)
 static bool
 step_core_start(void)
 {
-	static const uint32_t address_modes[] = { 0x0842, 0x0c01, 0x8601, 0x8e05, 0x9e01, 0xbe05, 0xa601, 0x9601, 0x0e00, 0xae01,
-		                                  0xb601, 0xf810 };
+	static const uint32_t pwrup_regs[] = {
+		0x00000e09, 0x00000e0a, 0x00000e07, 0x00000e08,
+		0x00000e0b, 0x00000e0c, 0x00000e0d, 0x00000e0e,
+		0x00000e17, 0x00000e01, 0x00008e08, 0x00008e28,
+		0x00008e50, 0x00000e3a, 0x00000e19, 0x0000b602,
+	};
+	uint32_t *pwrup;
 	uint32_t blind = 0;
 
 	if (!cx_ready() || !core_is_on || !core_space_is_on) {
@@ -2714,24 +2718,17 @@ step_core_start(void)
 	put(&gpu, "rbbm_secvid_tsb_cntl", RBBM_SECVID_TSB_CNTL, 0);
 	put64(&gpu, "rbbm_secvid_tsb_trusted_base", RBBM_SECVID_TSB_TRUSTED_BASE, 0);
 	put(&gpu, "rbbm_secvid_tsb_trusted_size", RBBM_SECVID_TSB_TRUSTED_SIZE, 0);
-	for (unsigned i = 0; i < sizeof(address_modes) / sizeof(address_modes[0]); i++) {
-		put(&gpu, "address mode: 64 bits", GPU_WORD(address_modes[i]), 1);
-	}
 	for (unsigned i = 0; i < 4; i++) {
 		put(&gbif, "qsb_side", GBIF_QSB_SIDE0 + 4 * i, 0x00071620);
 	}
-	put(&gpu, "rbbm_gbif_client_qos_cntl", RBBM_GBIF_CLIENT_QOS_CNTL, 3);
+	put(&gpu, "rbbm_gbif_client_qos_cntl", RBBM_GBIF_CLIENT_QOS_CNTL, 0x2120212);
+	put(&gpu, "uche_gbif_gx_config", GPU_WORD(0x0e3a), 0x10240e0);
 	put(&gpu, "rbbm_perfctr_gpu_busy_masked", RBBM_PERFCTR_GPU_BUSY_MASKED, 0xffffffff);
-	put64(&gpu, "uche_write_range_max", UCHE_WRITE_RANGE_MAX, 0x0001ffffffffffc0ull);
 	put64(&gpu, "uche_trap_base", UCHE_TRAP_BASE, 0x0001fffffffff000ull);
 	put64(&gpu, "uche_write_thru_base", UCHE_WRITE_THRU_BASE, 0x0001fffffffff000ull);
-	put(&gpu, "uche_filter_cntl", UCHE_FILTER_CNTL, 0x804);
-	put(&gpu, "uche_cache_ways", UCHE_CACHE_WAYS, 0x4);
-	put(&gpu, "cp_roq_thresholds_2", CP_ROQ_THRESHOLDS_2, 0x02000140);
-	put(&gpu, "cp_roq_thresholds_1", CP_ROQ_THRESHOLDS_1, 0x8040362c);
-	put(&gpu, "cp_lpac_prog_fifo_size", CP_LPAC_PROG_FIFO_SIZE, 0x20);
-	put(&gpu, "cp_mem_pool_size", CP_MEM_POOL_SIZE, 128);
-	put(&gpu, "pc_dbg_eco_cntl", PC_DBG_ECO_CNTL, 0x00200200);
+	put64(&gpu, "uche_gmem_range_min", GPU_WORD(0x0e0b), 0x00100000ull);
+	put64(&gpu, "uche_gmem_range_max", GPU_WORD(0x0e0d), 0x00100000ull + 0x80000ull - 1);
+	put(&gpu, "uche_cache_ways", UCHE_CACHE_WAYS, 0x800000);
 	put(&gpu, "cp_ahb_cntl", CP_AHB_CNTL, 1);
 	/*
 	 * How textures in the GPU's own tiled and compressed layouts are laid out in memory (Linux's
@@ -2741,15 +2738,25 @@ step_core_start(void)
 	put(&gpu, "rb_nc_mode_cntl", GPU_WORD(0x8e08), 1u << 11 | 1u << 4 | 1u << 1);
 	put(&gpu, "tpl1_nc_mode_cntl", GPU_WORD(0xb604), 1u << 1);
 	put(&gpu, "sp_nc_mode_cntl", GPU_WORD(0xae02), 2u << 4 | 1u << 1);
+	put(&gpu, "gras_nc_mode_cntl", GPU_WORD(0x8602), 1u << 5);
 	put(&gpu, "uche_mode_cntl", GPU_WORD(0x0e01), 1u << 21);
 	put(&gpu, "rbbm_nc_mode_cntl", GPU_WORD(0x0534), 1);
 	put(&gpu, "rbbm_perfctr_cntl", RBBM_PERFCTR_CNTL, 1);
 	put(&gpu, "rbbm_interface_hang_int_cntl", RBBM_INTERFACE_HANG_INT_CNTL, 1u << 30 | 0x1fffff);
 	put(&gpu, "uche_client_pf", UCHE_CLIENT_PF, 1u << 7 | 1);
-	put(&gpu, "cp_chicken_dbg", CP_CHICKEN_DBG, 1);
-	put(&gpu, "rbbm_gbif_client_qos_cntl", RBBM_GBIF_CLIENT_QOS_CNTL, 0);
-	put(&gpu, "cp_apriv_cntl", CP_APRIV_CNTL, 1u << 6 | 1u << 5 | 1u << 3 | 1u << 2 | 1u << 1);
-	put(&gpu, "rb_dbg_eco_cntl", RB_DBG_ECO_CNTL, 0x04100000);     /* Mesa's value for this GPU */
+	put(&gpu, "uche_cmdq_config", GPU_WORD(0x0e3c), 0x6906);
+	put(&gpu, "cp_apriv_cntl", CP_APRIV_CNTL, (1u << 11) - 1);
+	put(&gpu, "cp_bv_apriv_cntl", GPU_WORD(0x0ad0), (1u << 11) - 1);
+
+	pwrup = (uint32_t *)(core_scratch.memory + 0x800);
+	bzero(pwrup, 256);
+	pwrup[3] = (uint32_t)(sizeof(pwrup_regs) / sizeof(pwrup_regs[0])) << 8;
+	for (unsigned i = 0; i < sizeof(pwrup_regs) / sizeof(pwrup_regs[0]); i++) {
+		pwrup[4 + 2 * i] = pwrup_regs[i];
+		pwrup[4 + 2 * i + 1] = rd(gpu.base + GPU_WORD(pwrup_regs[i]));
+	}
+	to_memory(core_scratch.memory + 0x800, 256);
+
 	/*
 	 * adreno_blind=1: the command processor is started with its microcode at an address where
 	 * nothing is. All it can do then is ask the SMMU for it, and the SMMU's record of the refusal
@@ -2789,15 +2796,16 @@ step_core_start(void)
 	}
 
 	announce("give the 3D core its first command, \"initialize\"");
-	ring_command(CP_ME_INIT, 8);            /* a6xx_cp_init */
-	ring(0x0000002f);
+	ring_command(0x17, 1);                  /* CP_THREAD_CONTROL: CP_CONCURRENT_BIN_DISABLE */
+	ring(1u << 27);
+	ring_command(CP_ME_INIT, 7);            /* a7xx_cp_init */
+	ring(1u << 0 | 1u << 1 | 1u << 3 | 1u << 6 | 1u << 8);
 	ring(0x00000003);                       /* several hardware contexts */
 	ring(0x20000000);                       /* error detection */
-	ring(0);
-	ring(0);
-	ring(0);
-	ring(0);
-	ring(0);
+	ring(0x00000002);                       /* operation mode */
+	ring(CORE_SCRATCH_ADDRESS + 0x800);     /* pwrup_reglist_iova low */
+	ring(0);                                /* pwrup_reglist_iova high */
+	ring(1u << 31);                         /* read registers from the list */
 	if (!ring_run("initialize its command processor")) {
 		return false;
 	}
@@ -2843,6 +2851,7 @@ step_core_commands(void)
  * 64 bytes, in memory of ours; the framebuffer driver copies it to the panel.
  */
 #define RB_CCU_CNTL             0x8e07          /* register numbers: these are written by command */
+#define RB_CCU_CNTL2            0x88e5
 #define GRAS_2D_BLIT_CNTL       0x8400
 #define GRAS_2D_DST_TL          0x8405
 #define GRAS_2D_DST_BR          0x8406
@@ -2852,15 +2861,16 @@ step_core_commands(void)
 #define RB_2D_DST               0x8c18
 #define RB_2D_DST_PITCH         0x8c1a
 #define RB_2D_SRC_SOLID_C0      0x8c2c
-#define SP_2D_DST_FORMAT        0xacc0
+#define SP_2D_DST_FORMAT        0xa9bf
+#define TPL1_2D_SRC_CNTL        0xb2d2
 #define FORMAT_8888             0x30
 #define BLIT_SOLID_8888         (1u << 7 | FORMAT_8888 << 8 | 0xfu << 20 | 0x10u << 24) /* one colour; all channels; 8-bit */
 #define DST_BGRA_LINEAR         (FORMAT_8888 | 1u << 10)        /* rows of pixels, blue first in memory */
-#define EVENT_FLUSH_COLOR       0x1d
-#define EVENT_CACHE_FLUSH       0x04
-#define TARGET_WIDTH            1080
-#define TARGET_HEIGHT           2400
-#define TARGET_ROW              4352            /* 1088 pixels: the next multiple of 64 bytes */
+#define EVENT_FLUSH_COLOR       (0x1d | 1u << 27)
+#define EVENT_CACHE_FLUSH       (0x31 | 1u << 27)
+#define TARGET_WIDTH            1220
+#define TARGET_HEIGHT           2712
+#define TARGET_ROW              4928            /* 1232 pixels: the next multiple of 64 bytes */
 
 extern void MiniIOMobileFramebufferShow(const uint8_t *pixels, uint32_t width, uint32_t height, uint32_t row_bytes);
 
@@ -2875,6 +2885,7 @@ ring_fill(uint32_t top, uint32_t bottom, uint32_t red, uint32_t green, uint32_t 
 	ring_register(RB_2D_SRC_SOLID_C0 + 3, 255);
 	ring_register(RB_2D_BLIT_CNTL, BLIT_SOLID_8888);
 	ring_register(GRAS_2D_BLIT_CNTL, BLIT_SOLID_8888);
+	ring_register(TPL1_2D_SRC_CNTL, 2u << 29);
 	ring_register(SP_2D_DST_FORMAT, 1 | FORMAT_8888 << 3 | 0xfu << 12);
 	ring_register(RB_2D_PIXEL_CNTL, 0);
 	ring_register(RB_2D_DST_INFO, DST_BGRA_LINEAR);
@@ -2904,10 +2915,11 @@ step_frame(void)
 	}
 	ring_command(CP_SET_MARKER, 1);
 	ring(12);                               /* "2D blits follow" */
-	ring_register(RB_CCU_CNTL, 0x10000004); /* Mesa's for this GPU when it draws straight into memory */
-	ring_fill(0, 800, 255, 128, 0);         /* orange */
-	ring_fill(800, 1600, 255, 255, 255);
-	ring_fill(1600, TARGET_HEIGHT, 0, 128, 255);
+	ring_register(RB_CCU_CNTL2, 0x10000000);
+	ring_register(RB_CCU_CNTL, 0x00000001); /* Mesa's for this GPU when it draws straight into memory */
+	ring_fill(0, 904, 255, 128, 0);         /* orange */
+	ring_fill(904, 1808, 255, 255, 255);
+	ring_fill(1808, TARGET_HEIGHT, 0, 128, 255);
 	/*
 	 * What it has drawn out of its caches into memory. Each of the two events is followed by an
 	 * address and a word that the core writes there when it is done (Linux's a6xx_submit; Mesa's
@@ -2935,11 +2947,11 @@ step_frame(void)
 	pixel = (const volatile uint8_t *)core_target.memory;
 	printf("adreno: %u: the picture's first pixel is %02x %02x %02x %02x (blue green red alpha; told: 00 80 ff ff), one in "
 	    "the middle %02x %02x %02x %02x, one in the last row %02x %02x %02x %02x\n", step, pixel[0], pixel[1], pixel[2],
-	    pixel[3], pixel[1200 * TARGET_ROW + 2160], pixel[1200 * TARGET_ROW + 2161], pixel[1200 * TARGET_ROW + 2162],
-	    pixel[1200 * TARGET_ROW + 2163], pixel[2399 * TARGET_ROW + 4316], pixel[2399 * TARGET_ROW + 4317],
-	    pixel[2399 * TARGET_ROW + 4318], pixel[2399 * TARGET_ROW + 4319]);
-	if ((pixel[0] | pixel[1] | pixel[2]) == 0 || pixel[1200 * TARGET_ROW + 2160] == 0 || (pixel[2399 * TARGET_ROW + 4316] |
-	    pixel[2399 * TARGET_ROW + 4317] | pixel[2399 * TARGET_ROW + 4318]) == 0) {
+	    pixel[3], pixel[1356 * TARGET_ROW + 2440], pixel[1356 * TARGET_ROW + 2441], pixel[1356 * TARGET_ROW + 2442],
+	    pixel[1356 * TARGET_ROW + 2443], pixel[2711 * TARGET_ROW + 4876], pixel[2711 * TARGET_ROW + 4877],
+	    pixel[2711 * TARGET_ROW + 4878], pixel[2711 * TARGET_ROW + 4879]);
+	if ((pixel[0] | pixel[1] | pixel[2]) == 0 || pixel[1356 * TARGET_ROW + 2440] == 0 || (pixel[2711 * TARGET_ROW + 4876] |
+	    pixel[2711 * TARGET_ROW + 4877] | pixel[2711 * TARGET_ROW + 4878]) == 0) {
 		printf("adreno: %u: the picture is not what the 3D core was told to draw\n", step);
 		return false;
 	}
@@ -3168,7 +3180,7 @@ hakios_adreno_quiesce(void)
  * far it has got (a "fence": a submission's number, written by the core when it is through
  * with it). The caller holds one lock around all of these.
  */
-#define GPU_CHIP_ID             0x06030500ull   /* dt: qcom,chipid */
+#define GPU_CHIP_ID             0x07010000ull   /* dt: qcom,chipid */
 #define GPU_ADDRESSES_START     0x20000000ull   /* above everything the steps use; below 4 GB, as Linux keeps them */
 #define GPU_ADDRESSES_SIZE      0xe0000000ull
 #define GPU_FENCE_AT            0x40            /* in the scratch page */
@@ -3184,6 +3196,7 @@ hakios_adreno_quiesce(void)
 #define CP_INDIRECT_BUFFER      0x3f
 #define EVENT_INVALIDATE_DEPTH  0x18
 #define EVENT_INVALIDATE_COLOR  0x19
+#define EVENT_CACHE_INVALIDATE  0x33
 
 static bool gpu_kept;
 static uint32_t gpu_fence;              /* the number of the last submission */
@@ -3485,6 +3498,8 @@ hakios_gpu_submit(const uint64_t *addresses, const uint32_t *words, uint32_t cou
 	ring(EVENT_INVALIDATE_DEPTH);
 	ring_command(CP_EVENT_WRITE, 1);
 	ring(EVENT_INVALIDATE_COLOR);
+	ring_command(CP_EVENT_WRITE, 1);
+	ring(EVENT_CACHE_INVALIDATE);
 	for (uint32_t i = 0; i < count; i++) {
 		ring_command(CP_INDIRECT_BUFFER, 3);
 		ring((uint32_t)addresses[i]);
@@ -3725,7 +3740,7 @@ extern vm_offset_t pe_arm_get_soc_base_phys(void);
 static bool
 start_by_itself(void)
 {
-	static const char *const files[] = { "a660_gmu.bin", "a660_sqe.fw", "a660_zap.mdt", "a660_zap.b02" };
+	static const char *const files[] = { "gmu_gen70000.bin", "a710_sqe.fw", "a710_zap.mdt", "a710_zap.b01" };
 	const char *missing = NULL;
 	uint64_t size;
 
@@ -3816,8 +3831,8 @@ hakios_adreno_init(void)
 			gpu_free[0].start = GPU_ADDRESSES_START;
 			gpu_free[0].size = GPU_ADDRESSES_SIZE;
 			gpu_free_count = 1;
-			bzero((void *)core_scratch.memory, 4096);
-			to_memory(core_scratch.memory, 4096);
+			bzero((void *)core_scratch.memory, 2048);
+			to_memory(core_scratch.memory, 2048);
 			PE_parse_boot_argn("gpu_exact", &gpu_exact, sizeof(gpu_exact));
 			PE_parse_boot_argn("gpu_log", &gpu_log, sizeof(gpu_log));
 			gpu_kept = true;
