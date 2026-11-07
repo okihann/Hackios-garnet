@@ -37,6 +37,8 @@
 #   JOBS=8               parallel jobs for the kernel build
 
 DEVICE ?= redwood
+# DEVICE reaches tools/modem-cycle.sh and xl (mkxnuimg.py -d, mkubootimg.py -d, firmware())
+export DEVICE
 JOBS ?= 8
 SECS ?= 600
 # qemu-open runs the open configuration: configs/defconfig (nothing of a phone's own, one core)

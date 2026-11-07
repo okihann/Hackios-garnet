@@ -184,12 +184,49 @@ flash_root(const char *dev)
 
 	printf("\n-- the Darwin root volume on /dev/%s as the root --\n", dev);
 	strcpy(devpath, join("/dev/", dev, ""));
+	if (stat(devpath, &fw_st) != 0 && strncmp(dev, "ufs_", 4) != 0) {
+		strcpy(devpath, join("/dev/ufs_", dev, ""));
+	}
 	ok = mount("apfs", "/flash", MNT_RDONLY, devpath) == 0;
 	if (!ok) {
 		printf("  mount %s: %s\n", devpath, strerror(errno));
 	}
 	check(ok, "mount the Darwin volume read only");
 	if (!ok) {
+		return;
+	}
+	if (stat("/flash/sbin/launchd.darwin", &fw_st) == 0) {
+		/*
+		 * system.apfs written to the flash partition: /System/Cryptexes/OS (with the dyld
+		 * shared cache), /System/Cryptexes/App, /Applications, /redwood and the /redwood
+		 * symlinks are already in the volume, and Apple's launchd is /sbin/launchd.darwin.
+		 * If our own image (root.apfs) was the initial root (base == ""), pivot it directly
+		 * onto /redwood; if flashboot.apfs was the initial root (base == "/redwood"), pivot
+		 * flashboot onto /private/preboot and bind /private/preboot/redwood back on /redwood.
+		 */
+		if (base[0] == 0) {
+			ok = sysctlbyname("kern.hakios_switch_root", NULL, NULL, "/flash redwood", 14) == 0;
+			if (!ok) {
+				printf("  switching the root: %s\n", strerror(errno));
+			}
+			check(ok, "the system volume on flash is the root, this image on /redwood");
+			if (!ok) {
+				return;
+			}
+			chdir("/");
+			base = "/redwood";
+		} else {
+			ok = sysctlbyname("kern.hakios_switch_root", NULL, NULL, "/flash private/preboot", 22) == 0;
+			if (!ok) {
+				printf("  switching the root: %s\n", strerror(errno));
+			}
+			check(ok, "the system volume on flash is the root, the RAM part on /private/preboot");
+			if (!ok) {
+				return;
+			}
+			chdir("/");
+			check(bind_dir("/private/preboot/redwood", "/redwood"), "this image back on /redwood");
+		}
 		return;
 	}
 	check(synthetic_dir("/flash/redwood"), "a synthetic /redwood on it, for this image");

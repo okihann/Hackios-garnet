@@ -239,14 +239,15 @@ static uintptr_t slide;
  * shared cache: there one library branches straight into the other.)
  */
 static IMP
-replace_method_of_kind(char kind, const char *class_name, const char *selector, uintptr_t expected, IMP replacement)
+replace_method_of_kind(char kind, const char *class_name, const char *selector, uintptr_t expected, uintptr_t expected_20h392,
+    IMP replacement)
 {
 	Class cls = objc_getClass(class_name);
 	Method method = cls == NULL ? NULL : kind == '+' ? class_getClassMethod(cls, sel_registerName(selector)) :
 	    class_getInstanceMethod(cls, sel_registerName(selector));
 	IMP original = method ? method_getImplementation(method) : NULL;
 
-	if (original == NULL || (uintptr_t)original != expected + slide) {
+	if (original == NULL || (expected != 0 && (uintptr_t)original != expected + slide && (uintptr_t)original != expected_20h392 + slide)) {
 		say("hakios: %c[%s %s]: found %#lx, expected %#lx; left alone\n", kind, class_name, selector,
 		    original ? (uintptr_t)original - slide : 0, expected);
 		return NULL;
@@ -256,9 +257,9 @@ replace_method_of_kind(char kind, const char *class_name, const char *selector, 
 }
 
 static IMP
-replace_method(const char *class_name, const char *selector, uintptr_t expected, IMP replacement)
+replace_method(const char *class_name, const char *selector, uintptr_t expected, uintptr_t expected_20h392, IMP replacement)
 {
-	return replace_method_of_kind('-', class_name, selector, expected, replacement);
+	return replace_method_of_kind('-', class_name, selector, expected, expected_20h392, replacement);
 }
 
 /*
@@ -334,6 +335,10 @@ static void   (*original_battery_view_set_shows_percentage)(id self, SEL sel, BO
 static BOOL   (*original_battery_view_should_show_bolt)(id self, SEL sel);
 static double (*original_battery_view_charge_percent)(id self, SEL sel);
 static void   (*original_battery_view_set_charge_percent)(id self, SEL sel, double p);
+static BOOL   (*original_battery_view_is_low_battery)(id self, SEL sel);
+static void   (*original_battery_view_set_low_battery)(id self, SEL sel, BOOL low);
+static BOOL   (*original_battery_view_low_battery_mode)(id self, SEL sel);
+static void   (*original_battery_view_set_low_battery_mode)(id self, SEL sel, BOOL low);
 static double (*original_ring_charging_level)(id self, SEL sel);
 
 static int
@@ -697,6 +702,38 @@ battery_view_set_charge_percent(id self, SEL sel, double p)
 	int soc = sysctl_int("kern.hakios.battery_soc");
 
 	original_battery_view_set_charge_percent(self, sel, (soc >= 0 && soc <= 100 && !battery_power_source()) ? (double)soc / 100.0 : p);
+}
+
+static BOOL
+battery_view_is_low_battery(id self, SEL sel)
+{
+	int soc = sysctl_int("kern.hakios.battery_soc");
+
+	if (soc >= 0 && soc <= 100 && !battery_power_source()) return soc <= 20;
+	return original_battery_view_is_low_battery ? original_battery_view_is_low_battery(self, sel) : NO;
+}
+
+static void
+battery_view_set_low_battery(id self, SEL sel, BOOL low)
+{
+	int soc = sysctl_int("kern.hakios.battery_soc");
+
+	if (soc >= 0 && soc <= 100 && !battery_power_source()) low = (soc <= 20);
+	if (original_battery_view_set_low_battery) original_battery_view_set_low_battery(self, sel, low);
+}
+
+static BOOL
+battery_view_low_battery_mode(id self, SEL sel)
+{
+	if (!battery_power_source()) return NO;
+	return original_battery_view_low_battery_mode ? original_battery_view_low_battery_mode(self, sel) : NO;
+}
+
+static void
+battery_view_set_low_battery_mode(id self, SEL sel, BOOL low)
+{
+	if (!battery_power_source()) low = NO;
+	if (original_battery_view_set_low_battery_mode) original_battery_view_set_low_battery_mode(self, sel, low);
 }
 
 /* The big charging ring on the lock screen (CoverSheet) reads its fill level the same way. */
@@ -2153,41 +2190,53 @@ hakios_springboard_init(void)
 	 */
 	load_tweaks();
 	slide = (uintptr_t)_dyld_get_shared_cache_range(&length) - CACHE_BASE;
-	activation = replace_method("SBLockdownManager", "_setupActivationState", 0x1c4bc8dfcUL, (IMP)setup_activation_state);
+	activation = replace_method("SBLockdownManager", "_setupActivationState", 0x1c4bc8dfcUL, 0x1c5991a78UL, (IMP)setup_activation_state);
 	original_set_setup_required_reason = (void (*)(id, SEL, long))replace_method("SBSetupManager",
-	    "_setSetupRequiredReason:", 0x1c4cdd3a4UL, (IMP)set_setup_required_reason);
+	    "_setSetupRequiredReason:", 0x1c4cdd3a4UL, 0x1c5aa608cUL, (IMP)set_setup_required_reason);
 	snapshot_format = replace_method_of_kind('+', "XBApplicationSnapshotManifestImpl", "_outputFormatForSnapshot:",
-	    0x1f1c91480UL, (IMP)snapshot_output_format);
+	    0x1f1c91480UL, 0x1f287f320UL, (IMP)snapshot_output_format);
 	plain_vibrancy();
 	ui_lite();
 	wallpaper_cache();
 	status_bar_fallback_is_split();
 	wallpaper_freeze();
 	original_lock_long_press = (void (*)(id, SEL, id))replace_method("SBLockHardwareButton", "longPress:", 0x1c4f6ab44UL,
-	    (IMP)lock_long_press);
+	    0x1c5d339b0UL, (IMP)lock_long_press);
 	poster_switcher = replace_method("SBMainDisplayPolicyAggregator", "_allowsCapabilityPosterSwitcherWithExplanation:",
-	    0x1c507e0fcUL, (IMP)poster_switcher_allowed);
+	    0x1c507e0fcUL, 0x1c5e46f8cUL, (IMP)poster_switcher_allowed);
 	original_switcher_wallpaper_overlay = (void (*)(id, SEL))replace_method("SBAppSwitcherPageView",
-	    "_createOrDestroyWallpaperOverlayView", 0x1c4af7860UL, (IMP)switcher_wallpaper_overlay);
+	    "_createOrDestroyWallpaperOverlayView", 0x1c4af7860UL, 0x1c58c0460UL, (IMP)switcher_wallpaper_overlay);
 	/*
 	 * Battery hooks on UIDevice: these are the methods every app and SpringBoard itself calls, so
 	 * hooking them here in the SpringBoard process covers both the status bar and any app that
-	 * reads [UIDevice currentDevice].batteryLevel. The addresses are for Darwin userland 16.5 (20F66).
+	 * reads [UIDevice currentDevice].batteryLevel. The addresses are for Darwin userland 16.5 (20F66) and 16.7.16 (20H392).
 	 */
-	original_battery_level = (float (*)(id, SEL))replace_method("UIDevice", "batteryLevel", 0x1897021b0UL, (IMP)battery_level);
-	original_battery_state = (long (*)(id, SEL))replace_method("UIDevice", "batteryState", 0x189209794UL, (IMP)battery_state);
+	original_battery_level = (float (*)(id, SEL))replace_method("UIDevice", "batteryLevel", 0x1897021b0UL, 0x18970b8bcUL, (IMP)battery_level);
+	original_battery_state = (long (*)(id, SEL))replace_method("UIDevice", "batteryState", 0x189209794UL, 0x189212b64UL, (IMP)battery_state);
 	original_battery_view_shows_percentage = (BOOL (*)(id, SEL))replace_method("_UIBatteryView", "showsPercentage",
-	    0x189a9370cUL, (IMP)battery_view_shows_percentage);
+	    0x189a9370cUL, 0x189a9d1c8UL, (IMP)battery_view_shows_percentage);
 	original_battery_view_set_shows_percentage = (void (*)(id, SEL, BOOL))replace_method("_UIBatteryView", "setShowsPercentage:",
-	    0x18926e150UL, (IMP)battery_view_set_shows_percentage);
+	    0x18926e150UL, 0x189277520UL, (IMP)battery_view_set_shows_percentage);
 	original_battery_view_should_show_bolt = (BOOL (*)(id, SEL))replace_method("_UIBatteryView", "_shouldShowBolt",
-	    0x189203e28UL, (IMP)battery_view_should_show_bolt);
+	    0x189203e28UL, 0x18920d1f8UL, (IMP)battery_view_should_show_bolt);
 	original_battery_view_charge_percent = (double (*)(id, SEL))replace_method("_UIBatteryView", "chargePercent",
-	    0x189a935d8UL, (IMP)battery_view_charge_percent);
+	    0x189a935d8UL, 0x189a9d094UL, (IMP)battery_view_charge_percent);
 	original_battery_view_set_charge_percent = (void (*)(id, SEL, double))replace_method("_UIBatteryView", "setChargePercent:",
-	    0x18928d310UL, (IMP)battery_view_set_charge_percent);
+	    0x18928d310UL, 0x1892966e0UL, (IMP)battery_view_set_charge_percent);
 	original_ring_charging_level = (double (*)(id, SEL))replace_method("CSBatteryChargingRingView", "batteryChargingLevel",
-	    0x1c48c2cf4UL, (IMP)ring_charging_level);
+	    0x1c48c2cf4UL, 0x1c568bd24UL, (IMP)ring_charging_level);
+	original_battery_view_is_low_battery = (BOOL (*)(id, SEL))replace_method("_UIBatteryView", "isLowBattery",
+	    0, 0, (IMP)battery_view_is_low_battery);
+	if (!original_battery_view_is_low_battery) {
+		original_battery_view_is_low_battery = (BOOL (*)(id, SEL))replace_method("_UIBatteryView", "lowBattery",
+		    0, 0, (IMP)battery_view_is_low_battery);
+	}
+	original_battery_view_set_low_battery = (void (*)(id, SEL, BOOL))replace_method("_UIBatteryView", "setLowBattery:",
+	    0, 0, (IMP)battery_view_set_low_battery);
+	original_battery_view_low_battery_mode = (BOOL (*)(id, SEL))replace_method("_UIBatteryView", "lowBatteryMode",
+	    0, 0, (IMP)battery_view_low_battery_mode);
+	original_battery_view_set_low_battery_mode = (void (*)(id, SEL, BOOL))replace_method("_UIBatteryView", "setLowBatteryMode:",
+	    0, 0, (IMP)battery_view_set_low_battery_mode);
 	battery_lvl = (IMP)original_battery_level;
 	battery_st  = (IMP)original_battery_state;
 	say("hakios: SpringBoard: activation %s, setup assistant %s, application snapshots %s, the side button's long press %s, "
@@ -2229,12 +2278,12 @@ hakios_springboard_init(void)
 		    sysctl_int("kern.hakios.cellular_dbm"), sysctl_int("kern.hakios.cellular_radio"));
 	}
 	cellular_hook();
-	say("hakios: battery UI: shows%% %s, set-shows%% %s, bolt %s, chargePercent %s, setChargePercent %s, lockscreen ring %s\n",
+	say("hakios: battery UI: shows%% %s, set-shows%% %s, bolt %s, chargePercent %s, isLowBattery %s, lockscreen ring %s\n",
 	    original_battery_view_shows_percentage ? "ok" : "NO",
 	    original_battery_view_set_shows_percentage ? "ok" : "NO",
 	    original_battery_view_should_show_bolt ? "ok" : "NO",
 	    original_battery_view_charge_percent ? "ok" : "NO",
-	    original_battery_view_set_charge_percent ? "ok" : "NO",
+	    original_battery_view_is_low_battery ? "ok" : "NO",
 	    original_ring_charging_level ? "ok" : "NO");
 	{
 		char args[1024] = "";

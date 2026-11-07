@@ -232,6 +232,9 @@ MiniIOSurfaceDrawn(MiniIOSurface * surface, uint64_t milliseconds)
 		done = !hakios_gpu_ready() || gpuWait(fence, milliseconds);
 		IOLockUnlock(gGPULock);
 	}
+	if (done && surface != NULL && surface->kpixels != NULL) {
+		hakios_gpu_to_memory(surface->kpixels, surface->info.allocSize);
+	}
 	return done;
 }
 

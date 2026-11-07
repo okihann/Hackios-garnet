@@ -11,15 +11,19 @@ ARGS=$1; SECS=${2:-300}
 # A port's SoC addresses (devices/<name>/soc.args, made by devices/<name>/pull-soc.sh): added to the
 # kernel command line so hakios.mpss.c / hakios.ipa.c map that phone's blocks. SOC_ARGS names the file;
 # default is the one device there is. The POCO's values equal the kernel defaults, so this is a no-op there.
-SOC_ARGS=${SOC_ARGS-$(ls devices/*/soc.args 2>/dev/null | head -1)}
+# The device's own soc.args (devices/$DEVICE/soc.args), not whichever sorts first: a tree with two devices
+# unpacked would otherwise hand this phone the other phone's modem addresses. $DEVICE is exported by the
+# Makefile; redwood is the default there, and here, when nothing says otherwise.
+SOC_ARGS=${SOC_ARGS-devices/${DEVICE:-redwood}/soc.args}
+[ -f "$SOC_ARGS" ] || { echo "modem-cycle: no $SOC_ARGS (device ${DEVICE:-redwood})" >&2; exit 1; }
 # only what differs from the kernel's built-in defaults: the rest changes nothing, and the command line is short
 . tools/soc-only-changes.sh
 SOC=""; [ -n "$SOC_ARGS" ] && SOC=$(soc_only_changes "$SOC_ARGS" | tr '\n' ' ')
 for i in $(seq 1 2160); do s=$(./xl state); [ "$s" != absent ] && break; sleep 10; done
 echo "$(date +%T) phone: $s"; [ "$s" = absent ] && { echo "NO PHONE"; exit 1; }
 ./xl enter 2>&1 | tail -1
-./xl ramdisk userland/system.apfs 2>&1 | tail -1
-XL_SB_DELAY=${XL_SB_DELAY:-600} XL_CMDLINE="debug=0x8 rd=md0 hv_wdt_pet=1 ${BASE_ARGS-bootcpu=7 cpus=8 cpufreq=1 ufs=2} $ARGS $SOC" XL_SECS=$SECS XL_FOLLOW=1 XL_FOLLOW_KEEP=1 ./xl run 2>&1 | tail -2
+./xl ramdisk /tmp/system.apfs 2>&1 | tail -1
+XL_SB_DELAY=${XL_SB_DELAY:-600} XL_CMDLINE="rd=md0 hv_wdt_pet=1 ${BASE_ARGS-bootcpu=7 cpus=8 cpufreq=1 ufs=2} $ARGS $SOC" XL_SECS=$SECS XL_FOLLOW=1 XL_FOLLOW_KEEP=1 ./xl run 2>&1
 echo "$(date +%T) state after run: $(./xl state)"
 L=$(ls -t logs/*-run.log.live | head -1); F=${L%.live}; echo "LOG=$F"
 cat $L $F 2>/dev/null | grep -a "mpss: \(7: \(THE\|the watch\)\|11\|rmtfs\|tftp\|servreg\|dms\|nas\|ipa: \(THE\|from node\|the modem\|a probe\)\|link: \(THE\|tftp\)\|LAST WORDS\|step 1[01]\)\|serving system\|panic(\|ipa: \|cell: \|net: en1\|wda: \|wds: \(THE\|the client\|about\)" | grep -v "about to ask\|about to tell" | sed 's/^\[ *[0-9.]*\]: //' | awk '!seen[$0]++' | cut -c1-230 | head -80

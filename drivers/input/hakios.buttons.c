@@ -94,22 +94,23 @@ wr(vm_offset_t address, uint32_t value)
 
 /* ---- the PMIC arbiter ---------------------------------------------------------------------------- */
 
-#define ARB_CORE_PHYS           0x0c440000UL    /* "core": the version, and which peripheral each channel is */
-#define ARB_CORE_SIZE           0x1100UL
-#define ARB_CNFG_PHYS           0x0c40a000UL    /* "cnfg": which system owns each channel */
-#define ARB_CNFG_SIZE           0x1000UL
-#define ARB_OBSERVER_PHYS       0x0e600000UL    /* "obsrvr": 0x10000 per system, 0x80 per channel in it */
-#define ARB_OBSERVER_SIZE       0x10000UL       /* ours is the first */
+#define ARB_CORE_PHYS           0x0c400000UL    /* "core": the version, and which peripheral each channel is (dt: spmi@c42d000) */
+#define ARB_CORE_SIZE           0x3000UL
+#define ARB_CNFG_PHYS           0x0c42d000UL    /* "cnfg": which system owns each channel */
+#define ARB_CNFG_SIZE           0x4000UL
+#define ARB_OBSERVER_PHYS       0x0c440000UL    /* "obsrvr": 0x8000 per system, 0x20 per channel in it (v7) */
+#define ARB_OBSERVER_SIZE       0x8000UL        /* ours is the first */
 #define ARB_SYSTEM              0               /* who we are to the arbiter: the device tree's "qcom,ee" */
 
 #define ARB_VERSION             0x000
-#define ARB_VERSION_5           0x50000000u     /* what follows is version 5's; 7 moved things again */
-#define ARB_VERSION_7           0x70000000u
+#define ARB_VERSION_5           0x50000000u
+#define ARB_VERSION_7           0x70000000u     /* sm7435 (garnet) has arbiter version 7 */
+#define ARB_VERSION_8           0x80000000u
 #define ARB_FEATURES            0x004           /* [10:0] the number of channels */
-#define ARB_CHANNEL(n)          (0x900 + 4 * (n))       /* core: [19:8] slave and peripheral, [24] interrupts go to the owner */
+#define ARB_CHANNEL(n)          (0x2000 + 4 * (n))      /* core (v7): [19:8] slave and peripheral, [24] interrupts go to the owner */
 #define ARB_CHANNEL_INTERRUPTS  (1u << 24)
-#define ARB_OWNER(n)            (0x700 + 4 * (n))       /* cnfg: [2:0] the system that may write through channel n */
-#define ARB_MAX_CHANNELS        512
+#define ARB_OWNER(n)            (0x000 + 4 * (n))       /* cnfg (v7): [3:0] the system that may write through channel n */
+#define ARB_MAX_CHANNELS        768
 
 #define OBSERVER_COMMAND        0x00
 #define OBSERVER_STATUS         0x08
@@ -133,7 +134,7 @@ struct peripheral {
 	bool            found;
 };
 static struct peripheral pon = { .name = "the PMK8350's power-on block", .id = 0x013 };          /* registers 0x1300 of slave 0 */
-static struct peripheral pin = { .name = "GPIO6 of the PM7325", .id = 0x18d };                   /* registers 0x8d00 of slave 1 */
+static struct peripheral pin = { .name = "GPIO1 of the PM6450", .id = 0x188 };                   /* registers 0x8800 of slave 1 (dt: gpio_keys vol_up) */
 
 /* How the reads have gone: said once a minute. */
 static struct {
@@ -147,7 +148,7 @@ static struct {
 static const char *
 spmi_read(const struct peripheral *p, uint8_t reg, uint8_t *bytes, uint32_t count)
 {
-	vm_offset_t channel = arb_observer + 0x10000UL * ARB_SYSTEM + 0x80UL * p->channel;
+	vm_offset_t channel = arb_observer + 0x8000UL * ARB_SYSTEM + 0x20UL * p->channel;
 	uint64_t start = mach_absolute_time(), now, interval, taken;
 	uint32_t status, data[2];
 	const char *problem = NULL;
@@ -395,7 +396,7 @@ pin_input(void)
 	uint8_t c[8], status = 0;
 	unsigned mode, pull;
 
-	printf("buttons: next: read the setup and the level of %s (registers 0x8d40 to 0x8d47, 0x8d10)\n", pin.name);
+	printf("buttons: next: read the setup and the level of %s (registers 0x8840 to 0x8847, 0x8810)\n", pin.name);
 	problem = spmi_read(&pin, GPIO_REG_MODE, c, 8);
 	if (problem == NULL) {
 		problem = spmi_read(&pin, REG_RT_STATUS, &status, 1);
@@ -444,8 +445,8 @@ buttons_thread(void *parameter, __unused wait_result_t result)
 	version = rd(arb_core + ARB_VERSION);
 	channels = rd(arb_core + ARB_FEATURES) & 0x7ff;
 	printf("buttons: PMIC arbiter version %#x, %u channels\n", version, channels);
-	if (version < ARB_VERSION_5 || version >= ARB_VERSION_7) {
-		printf("buttons: this driver knows version 5 of the arbiter only: no buttons\n");
+	if (version < ARB_VERSION_7 || version >= ARB_VERSION_8) {
+		printf("buttons: this driver knows version 7 of the arbiter only: no buttons\n");
 		goto out;
 	}
 	if (channels == 0 || channels > ARB_MAX_CHANNELS) {

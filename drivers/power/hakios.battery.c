@@ -17,6 +17,25 @@
 #include <sys/systm.h>
 
 extern vm_offset_t ml_io_map(vm_offset_t phys_addr, vm_size_t size);
+extern void loader_log_putc(char c);
+
+static int say(const char *format, ...) __printflike(1, 2);
+
+static int
+say(const char *format, ...)
+{
+	char line[400];
+	va_list list;
+
+	va_start(list, format);
+	vsnprintf(line, sizeof(line), format, list);
+	va_end(list);
+	for (const char *c = line; *c != 0; c++) {
+		loader_log_putc(*c);
+	}
+	return printf("%s", line);
+}
+#define printf say
 
 #define LOADER_BATTERY_MAGIC            0x2154544142574452ULL
 #define LOADER_BATTERY_VERSION          1
@@ -87,6 +106,9 @@ battery_snapshot(struct loader_battery *out)
 	return false;
 }
 
+extern void HakiosBatteryReport(const void *state, unsigned size);     /* drivers/power/hakios.battery.cpp */
+static int battery_full_uah, battery_design_uah, battery_cycles, battery_source_dsp;
+
 static void
 battery_poll(void)
 {
@@ -106,8 +128,52 @@ battery_poll(void)
 	battery_charger_present = (sample.flags & LOADER_BATTERY_CHARGER_PRESENT) != 0;
 	battery_charging = (sample.flags & LOADER_BATTERY_CHARGING) != 0;
 	battery_soc_estimated = (sample.flags & LOADER_BATTERY_SOC_ESTIMATED) != 0;
+	/*
+	 * On Garnet, the UEFI QCOM_CHARGER protocol has no fuel gauge driver for the external I2C gauge
+	 * and reports a fixed dummy 8% (or <10%) while cell voltage is valid (~3.5V..4.4V). Estimate
+	 * SOC from cell voltage and filter out transient voltage sag under CPU load.
+	 */
+	if (battery_voltage_mv > 3450 && (battery_soc_percent <= 10 || battery_soc_estimated)) {
+		static int smoothed_mv;
+		int v_mv = battery_voltage_mv;
+		int est_soc;
+
+		if (smoothed_mv == 0) {
+			smoothed_mv = v_mv;
+		} else if (v_mv > smoothed_mv) {
+			smoothed_mv = (smoothed_mv * 3 + v_mv) / 4;
+		} else {
+			/* Decay slowly when CPU load pulls terminal voltage down */
+			smoothed_mv = (smoothed_mv * 31 + v_mv) / 32;
+		}
+		if (smoothed_mv <= 3500) est_soc = 5 + (smoothed_mv - 3450) * 10 / 50;
+		else if (smoothed_mv < 3700) est_soc = 15 + (smoothed_mv - 3500) * 25 / 200;
+		else if (smoothed_mv < 3850) est_soc = 40 + (smoothed_mv - 3700) * 25 / 150;
+		else if (smoothed_mv < 4100) est_soc = 65 + (smoothed_mv - 3850) * 25 / 250;
+		else est_soc = 90 + (smoothed_mv - 4100) * 10 / 250;
+		if (est_soc < 1) est_soc = 1;
+		if (est_soc > 100) est_soc = 100;
+		battery_soc_percent = est_soc;
+		battery_soc_estimated = 1;
+	}
 	battery_charger_action = (int)sample.charger_action;
 	battery_updates++;
+	if (!battery_source_dsp) {
+		struct hakios_battery_state state = {
+			.size = sizeof(struct hakios_battery_state),
+			.percent_hundredths = battery_soc_percent * 100,
+			.voltage_uv = battery_voltage_mv > 0 ? battery_voltage_mv * 1000 : 0,
+			.current_ua = battery_current_ma * 1000,
+			.temperature_hundredths = battery_temperature_c * 100,
+			.status = battery_charging ? 1 : 2,
+			.present = battery_present,
+			.external = battery_charger_present,
+			.full_uah = 5100000,
+			.design_uah = 5100000,
+			.cycles = 0,
+		};
+		HakiosBatteryReport(&state, sizeof(state));
+	}
 }
 
 /*
@@ -115,8 +181,6 @@ battery_poll(void)
  * the values that Android shows, from where Android takes them. They are kept here for the sysctls
  * and passed on to the power source that Darwin reads (drivers/power/hakios.battery.cpp).
  */
-static int battery_full_uah, battery_design_uah, battery_cycles, battery_source_dsp;
-
 SYSCTL_INT(_kern_hakios, OID_AUTO, battery_full_uah, CTLFLAG_RD | CTLFLAG_LOCKED,
     &battery_full_uah, 0, "the battery's full charge as the fuel gauge has learnt it, in uAh (0 if unknown)");
 SYSCTL_INT(_kern_hakios, OID_AUTO, battery_design_uah, CTLFLAG_RD | CTLFLAG_LOCKED,
@@ -125,8 +189,6 @@ SYSCTL_INT(_kern_hakios, OID_AUTO, battery_cycles, CTLFLAG_RD | CTLFLAG_LOCKED,
     &battery_cycles, 0, "the battery's charge cycles (0 if unknown)");
 SYSCTL_INT(_kern_hakios, OID_AUTO, battery_from_dsp, CTLFLAG_RD | CTLFLAG_LOCKED,
     &battery_source_dsp, 0, "1 when the values come from the audio DSP's battery manager");
-
-extern void HakiosBatteryReport(const void *state, unsigned size);     /* drivers/power/hakios.battery.cpp */
 
 void
 hakios_battery_report(const struct hakios_battery_state *b)

@@ -12,6 +12,7 @@
  * Register layout: Linux drivers/cpufreq/qcom-cpufreq-hw.c ("epss" variant).
  */
 #include <kern/clock.h>
+#include <kern/locks.h>
 #include <kern/thread.h>
 #include <os/atomic_private.h>
 #include <libkern/libkern.h>
@@ -22,6 +23,7 @@
 #include <sys/systm.h>
 #include <vm/vm_kern.h>
 
+extern lck_mtx_t hakios_rsc_lock;
 extern vm_offset_t ml_io_map(vm_offset_t phys_addr, vm_size_t size);
 extern vm_offset_t ml_io_map_wcomb(vm_offset_t phys_addr, vm_size_t size);
 extern void loader_log_putc(char c);
@@ -54,9 +56,9 @@ tell(const char *format, ...)
 	}
 }
 
-#define EPSS_PHYS               0x18591000UL    /* three groups ("domains") of 0x1000: small cores, big, biggest */
+#define EPSS_PHYS               0x17d91000UL    /* two groups ("domains") of 0x1000 on SM7435 (garnet): small cores (0-3), big (4-7) */
 #define EPSS_DOMAIN_SIZE        0x1000UL
-#define EPSS_DOMAINS            3
+#define EPSS_DOMAINS            2
 #define EPSS_FREQ_TABLE         0x100           /* a word per row: [31:30] clock source, [7:0] multiple of 19.2 MHz */
 #define EPSS_TABLE_ROWS         40
 #define EPSS_PERF_STATE         0x320           /* the row that is wanted */
@@ -83,7 +85,7 @@ domain_of(uint32_t phys_id)
 {
 	uint32_t core = (phys_id >> 8) & 0xff;
 
-	return core < 4 ? 0 : core < 7 ? 1 : 2;
+	return core < 4 ? 0 : 1;
 }
 
 static void
@@ -380,7 +382,7 @@ ddr_look(void)
  * each (sc7280's qcom,tcs-config): every command with an address, and which of them go to the BCMs
  * above -- the bandwidth it asked for, and that is in force whenever the processors are awake.
  */
-#define RSC_PHYS                0x18220000UL
+#define RSC_PHYS                0x17a20000UL
 #define RSC_SIZE                0x10000UL
 #define RSC_TCS(n, reg)         (0xd00 + 0x2a0 * (n) + (reg))
 #define RSC_TCS_COUNT           9
@@ -467,12 +469,21 @@ cmd_db_address(const char *name)
 static bool
 ddr_rpmh_write(const uint32_t *address, const uint32_t *data, unsigned count)
 {
-	uint32_t irq_enable = *(volatile uint32_t *)TCS_REG(0x00);
+	bool locked = ml_get_interrupts_enabled();
+	uint32_t irq_enable;
 	bool done = false;
+
+	if (locked) {
+		lck_mtx_lock(&hakios_rsc_lock);
+	}
+	irq_enable = *(volatile uint32_t *)TCS_REG(0x00);
 
 	for (int i = 0; *(volatile uint32_t *)TCS_REG(0x18) == 0; i++) {
 		if (i > 2000) {
 			tell("ddr: RPMh: the command slots stay busy\n");
+			if (locked) {
+				lck_mtx_unlock(&hakios_rsc_lock);
+			}
 			return false;
 		}
 		delay_for_interval(100, NSEC_PER_USEC);
@@ -502,6 +513,9 @@ ddr_rpmh_write(const uint32_t *address, const uint32_t *data, unsigned count)
 	*(volatile uint32_t *)TCS_REG(0x10) = 0;
 	*(volatile uint32_t *)TCS_REG(0x08) = 1;
 	*(volatile uint32_t *)TCS_REG(0x00) = irq_enable;
+	if (locked) {
+		lck_mtx_unlock(&hakios_rsc_lock);
+	}
 	if (!done) {
 		tell("ddr: RPMh: no answer to the vote\n");
 	}
