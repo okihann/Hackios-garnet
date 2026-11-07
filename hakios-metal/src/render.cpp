@@ -759,9 +759,6 @@ bool uboDescriptors(const Stage& s, const Bindings& b, uint64_t program, std::ve
             continue;
         }
         if (u >= b.buffers.size() || b.buffers[u].buffer == nullptr) {
-            if (u + 1 == s.k.numUbos) {
-                return refuse(why, name() + ": no buffer bound at index " + n(u) + " (a constant buffer it indexes)");
-            }
             out->push_back(0);
             out->push_back(0);
             continue;
@@ -804,14 +801,8 @@ bool gfxIbos(const Stage& vs, const Bindings& vsb, const Stage& fs, const Bindin
         for (uint32_t tableSlot = base; tableSlot < s->k.numSsbos; tableSlot++) {
             const uint32_t slot = tableSlot - base;
             if (slot >= b->buffers.size() || b->buffers[slot].buffer == nullptr) {
-                // ir3 counts SSBOs by the highest one the function declares, not by the ones it reaches
-                // (shader_info.num_ssbos), so an unbound slot may be one no instruction reads, as mask_color_fragment's
-                // 1 is. The one that cannot be told from a read is the highest, refused as before; one below it gets
-                // turnip's null descriptor (all zeros, tu_descriptor_set.cc's nullDescriptor), which a load reads as 0
-                // and a store leaves alone, never another binding's memory.
-                if (tableSlot + 1 == s->k.numSsbos) {
-                    return refuse(why, std::string(stageName(*s)) + ": no buffer bound at index " + n(slot) + " (a device buffer it addresses)");
-                }
+                // An unbound slot gets turnip's null descriptor (all zeros, tu_descriptor_set.cc's nullDescriptor),
+                // which a load reads as 0 and a store leaves alone, never another binding's memory.
                 out->count = std::max(out->count, tableSlot + 1);
                 continue;
             }
