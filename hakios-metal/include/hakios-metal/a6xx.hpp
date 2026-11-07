@@ -24,10 +24,10 @@
 namespace hakios::metal::a6xx {
 
 // --- this chip -----------------------------------------------------------------------------------------------------
-// From Mesa's src/freedreno/common/freedreno_devices.py: the entry for chip_id ...06030500 ("Adreno 7c+ Gen 3", every
-// speedbin of the A635) is a6xx_base + a6xx_gen4 with num_ccu = 2.
+// For Xiaomi Redmi Note 13 Pro 5G / POCO X6 5G (garnet, Snapdragon 7s Gen 2 / SM7435): Adreno 710 (chip ID 0x07010000).
+// Mesa registers this as FD710 (CHIP.A7XX, [a7xx_base, a7xx_gen1], __info18 in freedreno_devices.h).
 
-inline constexpr uint32_t kChipId = 0x06030500;             // not-in-headers: freedreno_devices.py GPUId(chip_id=0x..06030500)
+inline constexpr uint32_t kChipId = 0x07010000;             // not-in-headers: freedreno_devices.py GPUId(chip_id=0x07010000, name="FD710")
 inline constexpr bool kHasLpac = true;                       // not-in-headers: freedreno_devices.py a6xx_gen4.has_lpac
 inline constexpr bool kSupportsDoubleThreadsize = true;      // not-in-headers: freedreno_devices.py a6xx_base.supports_double_threadsize
 // CP_LOAD_STATE6_0_NUM_UNIT for a shader (ST6_SHADER) is capped at this many instruction groups: Mesa's comment says
@@ -1391,39 +1391,56 @@ struct RegWrite {
     uint32_t value;
 };
 
-// Mesa's per-chip "magic" values, as its generated freedreno_devices.h has them for this chip (__info14, the entry every
-// A635 chip id maps to). Mesa does not know what most of them mean either; they are what the blob writes.
-inline constexpr uint32_t kMagicPcPowerCntl = 1;                  // not-in-headers: freedreno_devices.h __info14 .magic.PC_POWER_CNTL
-inline constexpr uint32_t kMagicTpl1DbgEcoCntl = 0x05008000;      // not-in-headers: freedreno_devices.h __info14 .magic.TPL1_DBG_ECO_CNTL (83918848)
-inline constexpr uint32_t kMagicGrasDbgEcoCntl = 0;               // not-in-headers: freedreno_devices.h __info14 .magic.GRAS_DBG_ECO_CNTL
-inline constexpr uint32_t kMagicSpChickenBits = 0x00001400;       // not-in-headers: freedreno_devices.h __info14 .magic.SP_CHICKEN_BITS (5120)
-inline constexpr uint32_t kMagicUcheClientPf = 0x00000084;        // not-in-headers: freedreno_devices.h __info14 .magic.UCHE_CLIENT_PF (132)
-inline constexpr uint32_t kMagicPcModeCntl = 0x1f;                // not-in-headers: freedreno_devices.h __info14 .magic.PC_MODE_CNTL (31)
-inline constexpr uint32_t kMagicSpDbgEcoCntl = 0x00000006;        // not-in-headers: freedreno_devices.h __info14 .magic.SP_DBG_ECO_CNTL
-inline constexpr uint32_t kMagicRbDbgEcoCntl = 0x04100000;        // not-in-headers: freedreno_devices.h __info14 .magic.RB_DBG_ECO_CNTL (68157440)
-inline constexpr uint32_t kMagicHlsqDbgEcoCntl = 0;               // not-in-headers: freedreno_devices.h __info14 .magic.HLSQ_DBG_ECO_CNTL
-inline constexpr uint32_t kMagicRbUnknown8E01 = 0;                // not-in-headers: freedreno_devices.h __info14 .magic.RB_UNKNOWN_8E01
-inline constexpr uint32_t kMagicVpcDbgEcoCntl = 0x02000000;       // not-in-headers: freedreno_devices.h __info14 .magic.VPC_DBG_ECO_CNTL (33554432)
-inline constexpr uint32_t kMagicUcheUnknown0E12 = 1;              // not-in-headers: freedreno_devices.h __info14 .magic.UCHE_UNKNOWN_0E12
+// Mesa's per-chip "magic" values, as its generated freedreno_devices.h has them for Adreno 710 (__info18).
+inline constexpr uint32_t kMagicPcPowerCntl = 1;                  // not-in-headers: freedreno_devices.h __info18
+inline constexpr uint32_t kMagicTpl1DbgEcoCntl = 0x01000000;      // freedreno_devices.h __info18 .magic.TPL1_DBG_ECO_CNTL (16777216)
+inline constexpr uint32_t kMagicGrasDbgEcoCntl = 0x00000800;      // freedreno_devices.h __info18 .magic.GRAS_DBG_ECO_CNTL (2048)
+inline constexpr uint32_t kMagicSpChickenBits = 0x00001440;       // freedreno_devices.h __info18 .magic.SP_CHICKEN_BITS (5184)
+inline constexpr uint32_t kMagicUcheClientPf = 0x00000084;        // freedreno_devices.h __info18 .magic.UCHE_CLIENT_PF (132)
+inline constexpr uint32_t kMagicPcModeCntl = 0x0000003f;          // freedreno_devices.h __info18 .magic.PC_MODE_CNTL (63)
+inline constexpr uint32_t kMagicSpDbgEcoCntl = 0x10000000;        // freedreno_devices.h __info18 .magic.SP_DBG_ECO_CNTL (268435456)
+inline constexpr uint32_t kMagicRbDbgEcoCntl = 0x00000000;        // freedreno_devices.h __info18 .magic.RB_DBG_ECO_CNTL (0)
+inline constexpr uint32_t kMagicHlsqDbgEcoCntl = 0;               // freedreno_devices.h __info18 .magic.HLSQ_DBG_ECO_CNTL
+inline constexpr uint32_t kMagicRbUnknown8E01 = 0;                // freedreno_devices.h __info18 .magic.RB_UNKNOWN_8E01
+inline constexpr uint32_t kMagicVpcDbgEcoCntl = 0x02000000;       // freedreno_devices.h __info18 .magic.VPC_DBG_ECO_CNTL (33554432)
+inline constexpr uint32_t kMagicUcheUnknown0E12 = 0x03200000;      // freedreno_devices.h __info18 .magic.UCHE_UNKNOWN_0E12 (52428800)
+inline constexpr uint32_t kMagicRbUnknown8E06 = 0x02080000;        // freedreno_devices.h __info18 .magic.RB_UNKNOWN_8E06 (34078720)
 // and the chip facts fd6_emit_static_regs and fd6_emit_ccu_cntl branch on
-inline constexpr bool kHasGmemFastClear = true;                   // not-in-headers: freedreno_devices.h __info14 .has_gmem_fast_clear
-inline constexpr bool kConcurrentResolve = false;                 // not-in-headers: freedreno_devices.h __info14 has no .concurrent_resolve (false)
-inline constexpr bool kHasEarlyPreamble = false;                  // not-in-headers: freedreno_devices.h __info14 has no .has_early_preamble (a6xx_gen4 leaves it off)
-inline constexpr uint32_t kNumCcu = 2;                            // not-in-headers: freedreno_devices.h __info14 .num_ccu
-inline constexpr uint32_t kSysmemPerCcuDepthCacheSize = 0x10000;  // not-in-headers: freedreno_devices.h __info14 .sysmem_per_ccu_depth_cache_size (65536)
-inline constexpr uint32_t kSysmemPerCcuColorCacheSize = 0x10000;  // not-in-headers: freedreno_devices.h __info14 .sysmem_per_ccu_color_cache_size (65536)
-// tiled rendering: the on-chip memory and the tile grid (a6xx_gen4 / adreno_7c3 in freedreno_devices.py)
-inline constexpr uint32_t kGmemBytes = 512 * 1024;                // not-in-headers: freedreno_devices.py adreno_7c3 gmem_size (Linux a6xx_gpu adreno_7c3 SZ_512K)
-inline constexpr uint32_t kGmemCcuColorCacheFraction = 4;          // not-in-headers: freedreno_devices.py a6xx_gen4 gmem_ccu_color_cache_fraction QUARTER
-inline constexpr uint32_t kTileAlignW = 32, kTileAlignH = 16;      // not-in-headers: freedreno_devices.py a6xx_gen4 tile_align_w/h
-inline constexpr uint32_t kGmemAlignW = 16, kGmemAlignH = 4;       // not-in-headers: freedreno_devices.py a6xx_gen4 gmem_align_w/h (the event blit's granule)
-inline constexpr uint32_t kTileMaxW = 1024, kTileMaxH = 1008;      // not-in-headers: freedreno_devices.py a6xx_gen4 tile_max_w/h
+inline constexpr bool kHasGmemFastClear = true;                   // freedreno_devices.h __info18 .has_gmem_fast_clear
+inline constexpr bool kConcurrentResolve = false;                 // freedreno_devices.h __info18 has no .concurrent_resolve (false)
+inline constexpr bool kHasEarlyPreamble = true;                   // freedreno_devices.h __info18 .has_early_preamble = True
+inline constexpr uint32_t kNumCcu = 2;                            // freedreno_devices.h __info18 .num_ccu
+inline constexpr uint32_t kSysmemPerCcuDepthCacheSize = 0x10000;  // freedreno_devices.h __info18 .sysmem_per_ccu_depth_cache_size (65536)
+inline constexpr uint32_t kSysmemPerCcuColorCacheSize = 0x10000;  // freedreno_devices.h __info18 .sysmem_per_ccu_color_cache_size (65536)
+// tiled rendering: the on-chip memory and the tile grid (A7xx FD710 in freedreno_devices.py)
+inline constexpr uint32_t kGmemBytes = 512 * 1024;
+inline constexpr uint32_t kGmemCcuColorCacheFraction = 4;
+inline constexpr uint32_t kTileAlignW = 64, kTileAlignH = 32;     // freedreno_devices.h __info18 tile_align_w=64, tile_align_h=32
+inline constexpr uint32_t kGmemAlignW = 16, kGmemAlignH = 4;
+inline constexpr uint32_t kTileMaxW = 1728, kTileMaxH = 1728;     // freedreno_devices.h __info18 tile_max_w/h
 // the border color table both TP base registers point at: Gallium's is FD6_MAX_BORDER_COLORS (256) entries of
 // sizeof(struct fd6_bcolor_entry) (128 bytes: 32 fp32/fp16/int words); zeros are a valid table (black, transparent)
 inline constexpr uint32_t kBorderColorBytes = 256 * 128;          // not-in-headers: fd6_texture.h FD6_MAX_BORDER_COLORS * FD6_BORDER_COLOR_SIZE
 inline constexpr uint32_t kBorderColorAlign = 128;                // not-in-headers: a6xx.xml SP_TP_BORDER_COLOR_BASE_ADDR align="128"
 
+// CP_THREAD_CONTROL packet (0x17) on A7xx
+inline constexpr uint32_t CP_THREAD_CONTROL = 0x17;
+inline constexpr uint32_t CP_SET_THREAD_BR = 1;
+inline constexpr uint32_t CP_THREAD_CONTROL_CONCURRENT_BIN_DISABLE = 0x08000000;
+
 // the registers, in the order of their first write
+inline constexpr uint32_t REG_A6XX_UCHE_CACHE_WAYS = 0x0e17;
+inline constexpr uint32_t REG_A6XX_TPL1_DBG_ECO_CNTL1 = 0xb602;
+inline constexpr uint32_t REG_A6XX_PC_DBG_ECO_CNTL = 0x9800;
+inline constexpr uint32_t REG_A7XX_RB_CCU_CNTL2 = 0x88e5;
+inline constexpr uint32_t REG_A7XX_RB_UNKNOWN_8812 = 0x8812;
+inline constexpr uint32_t REG_A7XX_RB_UNKNOWN_8E06 = 0x8e06;
+inline constexpr uint32_t REG_A7XX_RB_UNKNOWN_8E09 = 0x8e09;
+inline constexpr uint32_t REG_A7XX_GRAS_UNKNOWN_8007 = 0x8007;
+inline constexpr uint32_t REG_A7XX_RB_BLIT_CLEAR_MODE = 0x88e4;
+inline constexpr uint32_t REG_A7XX_PC_RASTER_CNTL_V2 = 0x9317;
+inline constexpr uint32_t REG_A7XX_SP_PS_2D_WINDOW_OFFSET = 0xb2d1;
+
 inline constexpr uint32_t REG_A6XX_RB_DBG_ECO_CNTL = 0x8e04;                           // a6xx.xml.h:6711
 inline constexpr uint32_t REG_A6XX_SP_DBG_ECO_CNTL = 0xae00;                           // a6xx.xml.h:9559
 inline constexpr uint32_t REG_A6XX_TPL1_UNKNOWN_B605 = 0xb605;                         // a6xx.xml.h:10161  "always 0x0 or 0x44?" (the XML); Gallium: 0x44
@@ -1635,14 +1652,14 @@ constexpr uint32_t spPerfctrEnableAll() {
            A6XX_SP_PERFCTR_ENABLE_FS | A6XX_SP_PERFCTR_ENABLE_CS;
 }
 // HLSQ_INVALIDATE_CMD as the batch start writes it: every kind of pending load dropped, both shared-const kinds, all
-// five bindless bases of each pipeline (the A6XX masks are 5 bits wide)
+// bindless bases of each pipeline (0xff on A7xx)
 constexpr uint32_t hlsqInvalidateCmdAll() {
     return A6XX_HLSQ_INVALIDATE_CMD_VS_STATE | A6XX_HLSQ_INVALIDATE_CMD_HS_STATE | A6XX_HLSQ_INVALIDATE_CMD_DS_STATE |
            A6XX_HLSQ_INVALIDATE_CMD_GS_STATE | A6XX_HLSQ_INVALIDATE_CMD_FS_STATE | A6XX_HLSQ_INVALIDATE_CMD_CS_STATE |
            A6XX_HLSQ_INVALIDATE_CMD_CS_IBO | A6XX_HLSQ_INVALIDATE_CMD_GFX_IBO | A6XX_HLSQ_INVALIDATE_CMD_CS_SHARED_CONST |
            A6XX_HLSQ_INVALIDATE_CMD_GFX_SHARED_CONST |
-           field(0x1f, A6XX_HLSQ_INVALIDATE_CMD_CS_BINDLESS__SHIFT, A6XX_HLSQ_INVALIDATE_CMD_CS_BINDLESS__MASK) |
-           field(0x1f, A6XX_HLSQ_INVALIDATE_CMD_GFX_BINDLESS__SHIFT, A6XX_HLSQ_INVALIDATE_CMD_GFX_BINDLESS__MASK);
+           field(0xff, A6XX_HLSQ_INVALIDATE_CMD_CS_BINDLESS__SHIFT, A6XX_HLSQ_INVALIDATE_CMD_CS_BINDLESS__MASK) |
+           field(0xff, A6XX_HLSQ_INVALIDATE_CMD_GFX_BINDLESS__SHIFT, A6XX_HLSQ_INVALIDATE_CMD_GFX_BINDLESS__MASK);
 }
 // RB_CCU_CNTL for rendering to memory on this chip: depth cache at 0, color cache after it, both full size
 // (the color offset is the depth cache's size: num_ccu * sysmem_per_ccu_depth_cache_size; the offsets' bit 21 goes
@@ -1655,23 +1672,52 @@ constexpr uint32_t rbCcuCntlSysmem(uint32_t colorOffset = kNumCcu * kSysmemPerCc
            A6XX_RB_CCU_CNTL_COLOR_OFFSET(colorOffset & 0x1fffff);
 }
 
-// fd6_emit_static_regs, A6XX, this chip: up to CP_SET_DRAW_STATE
+// fd6_emit_static_regs and tu6_init_static_regs for Adreno 710: up to CP_SET_DRAW_STATE
 inline constexpr RegWrite kStaticState[] = {
+    // raw magic registers for Adreno 710 (__info18)
+    {REG_A6XX_UCHE_CACHE_WAYS, 0x00840004},
+    {REG_A6XX_TPL1_DBG_ECO_CNTL1, 0x00040724},
+    {0xae08, 0x00002400},  // REG_A7XX_SP_UNKNOWN_AE08
+    {0xae09, 0x00000000},  // REG_A7XX_SP_UNKNOWN_AE09
+    {0xae0a, 0x00000000},  // REG_A7XX_SP_UNKNOWN_AE0A
+    {0x0e10, 0x00000000},  // REG_A7XX_UCHE_UNKNOWN_0E10
+    {0x0e11, 0x00000040},  // REG_A7XX_UCHE_UNKNOWN_0E11
+    {0xae6c, 0x00008000},  // REG_A7XX_SP_UNKNOWN_AE6C
+    {REG_A6XX_PC_DBG_ECO_CNTL, 0x20080000},
+    {0x9e24, 0x21fc7f00},  // REG_A7XX_PC_UNKNOWN_9E24
+    {0xa600, 0x00000000},  // REG_A7XX_VFD_UNKNOWN_A600
+    {0xae06, 0x00000000},  // REG_A7XX_SP_UNKNOWN_AE06
+    {0xae6a, 0x00000000},  // REG_A7XX_SP_UNKNOWN_AE6A
+    {0xae6b, 0x00000080},  // REG_A7XX_SP_UNKNOWN_AE6B
+    {0xae73, 0x00000000},  // REG_A7XX_SP_UNKNOWN_AE73
+    {0xab02, 0x00000000},  // REG_A7XX_SP_UNKNOWN_AB02
+    {0xab01, 0x00000000},  // REG_A7XX_SP_UNKNOWN_AB01
+    {0xab22, 0x00000000},  // REG_A7XX_SP_UNKNOWN_AB22
+    {0xb310, 0x00000000},  // REG_A7XX_SP_UNKNOWN_B310
+    {0x8120, 0x09510840},  // REG_A7XX_GRAS_UNKNOWN_8120
+    {0x8121, 0x00000a62},  // REG_A7XX_GRAS_UNKNOWN_8121
+    {0x0ce2, 0x00000000},  // REG_A7XX_SP_UNKNOWN_0CE2
+    {0x0ce3, 0x00000000},
+    {0x0ce4, 0x00000000},
+    {0x0ce5, 0x00000000},
+    {0x0ce6, 0x00000000},
+    {0x0ce7, 0x00000000},
+    {0x80a7, 0x00000000},  // REG_A7XX_GRAS_UNKNOWN_80A7
+    {0x8e79, 0x00000000},  // REG_A7XX_RB_UNKNOWN_8E79
+    {0x8899, 0x00000000},  // REG_A7XX_RB_UNKNOWN_8899
+    {0x88f5, 0x00000000},  // REG_A7XX_RB_UNKNOWN_88F5
+
+    // static registers matching A7xx in Mesa:
     {REG_A6XX_RB_DBG_ECO_CNTL, kMagicRbDbgEcoCntl},
     {REG_A6XX_SP_FLOAT_CNTL, A6XX_SP_FLOAT_CNTL_F16_NO_INF},   // computerator's dispatch prelude then writes 0 here
     {REG_A6XX_SP_DBG_ECO_CNTL, kMagicSpDbgEcoCntl},
     {REG_A6XX_SP_PERFCTR_ENABLE, spPerfctrEnableAll()},
-    {REG_A6XX_TPL1_UNKNOWN_B605, 0x44},
     {REG_A6XX_TPL1_DBG_ECO_CNTL, kMagicTpl1DbgEcoCntl},
-    {REG_A6XX_HLSQ_UNKNOWN_BE00, 0x80},
-    {REG_A6XX_HLSQ_UNKNOWN_BE01, 0},
     {REG_A6XX_VPC_DBG_ECO_CNTL, kMagicVpcDbgEcoCntl},
     {REG_A6XX_GRAS_DBG_ECO_CNTL, kMagicGrasDbgEcoCntl},
-    {REG_A6XX_HLSQ_DBG_ECO_CNTL, kMagicHlsqDbgEcoCntl},
     {REG_A6XX_SP_CHICKEN_BITS, kMagicSpChickenBits},
     {REG_A6XX_SP_IBO_COUNT, 0},
     {REG_A6XX_SP_UNKNOWN_B182, 0},
-    {REG_A6XX_HLSQ_SHARED_CONSTS, 0},
     {REG_A6XX_UCHE_UNKNOWN_0E12, kMagicUcheUnknown0E12},
     {REG_A6XX_UCHE_CLIENT_PF, kMagicUcheClientPf},
     {REG_A6XX_RB_UNKNOWN_8E01, kMagicRbUnknown8E01},
@@ -1685,31 +1731,29 @@ inline constexpr RegWrite kStaticState[] = {
     {REG_A6XX_GRAS_SAMPLE_CNTL, 0},
     {REG_A6XX_GRAS_UNKNOWN_8110, 0x2},
     {REG_A6XX_RB_UNKNOWN_8818, 0},
-    {REG_A6XX_RB_UNKNOWN_8819, 0},
-    {REG_A6XX_RB_UNKNOWN_881A, 0},
-    {REG_A6XX_RB_UNKNOWN_881B, 0},
-    {REG_A6XX_RB_UNKNOWN_881C, 0},
-    {REG_A6XX_RB_UNKNOWN_881D, 0},
-    {REG_A6XX_RB_UNKNOWN_881E, 0},
     {REG_A6XX_RB_UNKNOWN_88F0, 0},
     {REG_A6XX_VPC_POINT_COORD_INVERT, 0},
     {REG_A6XX_VPC_UNKNOWN_9300, 0},
     {REG_A6XX_VPC_SO_DISABLE, A6XX_VPC_SO_DISABLE_DISABLE},
     {REG_A6XX_PC_RASTER_CNTL, 0},
+    {REG_A7XX_PC_RASTER_CNTL_V2, 0},
     {REG_A6XX_PC_MULTIVIEW_CNTL, 0},
     {REG_A6XX_SP_UNKNOWN_B183, 0},
-    {REG_A6XX_GRAS_SU_CONSERVATIVE_RAS_CNTL, 0},
     {REG_A6XX_GRAS_VS_LAYER_CNTL, 0},
     {REG_A6XX_GRAS_SC_CNTL, grasScCntl()},
     {REG_A6XX_GRAS_UNKNOWN_80AF, 0},
-    {REG_A6XX_VPC_UNKNOWN_9210, 0},
-    {REG_A6XX_VPC_UNKNOWN_9211, 0},
     {REG_A6XX_VPC_UNKNOWN_9602, 0},
     {REG_A6XX_PC_UNKNOWN_9E72, 0},
     {REG_A6XX_SP_TP_MODE_CNTL, spTpModeCntl()},
     {REG_A6XX_HLSQ_CONTROL_5_REG, hlsqControl5Reg()},
     {REG_A6XX_VFD_MODE_CNTL, A6XX_VFD_MODE_CNTL_RENDER_MODE(RENDERING_PASS)},
     {REG_A6XX_VFD_MULTIVIEW_CNTL, 0},
+    // TPL1 bicubic weights table (from tu_cmd_buffer.cc:1467 and fd6_emit.cc:1046)
+    {0xb010, 0x00000000},
+    {0xb011, 0x3fe05ff4},
+    {0xb012, 0x3fa0ebee},
+    {0xb013, 0x3f5193ed},
+    {0xb014, 0x3f0243f0},
 };
 // after CP_SET_DRAW_STATE (GRAS_LRZ_CNTL and RB_LRZ_CNTL are written twice, as Gallium does)
 inline constexpr RegWrite kStaticStateAfterDrawState[] = {
@@ -1723,8 +1767,8 @@ inline constexpr RegWrite kStaticStateAfterDrawState[] = {
 };
 // after the 32 VFD_FETCH sizes and the two border color addresses; RB_ALPHA_CONTROL is turnip's (tu_cmd_buffer.cc:1457)
 inline constexpr RegWrite kStaticStateTail[] = {
-    {REG_A6XX_PC_DGEN_SU_CONSERVATIVE_RAS_CNTL, 0},
     {REG_A6XX_RB_ALPHA_CONTROL, 0},
+    {REG_A6XX_SP_FS_CTRL_REG0, 0},
 };
 
 // CP_SET_DRAW_STATE, 3 words per group: Gallium's batch start sends one group with DISABLE_ALL_GROUPS and no address,

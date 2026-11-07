@@ -1873,8 +1873,10 @@ bool FakeGpu::execDraw(const uint32_t* p, uint32_t count) {
     // RB_CCU_CNTL: written in this submission, right after a WFI, with the sysmem shape (colour cache after the depth cache at 0)
     {
         uint32_t ccu = reg(REG_A6XX_RB_CCU_CNTL);
-        bool sysmem = fieldOf(ccu, A6XX_RB_CCU_CNTL_COLOR_OFFSET__MASK, A6XX_RB_CCU_CNTL_COLOR_OFFSET__SHIFT) != 0 &&
-                      fieldOf(ccu, A6XX_RB_CCU_CNTL_DEPTH_OFFSET__MASK, A6XX_RB_CCU_CNTL_DEPTH_OFFSET__SHIFT) == 0;
+        uint32_t ccu2 = reg(REG_A7XX_RB_CCU_CNTL2);
+        bool sysmem = (fieldOf(ccu, A6XX_RB_CCU_CNTL_COLOR_OFFSET__MASK, A6XX_RB_CCU_CNTL_COLOR_OFFSET__SHIFT) != 0 &&
+                      fieldOf(ccu, A6XX_RB_CCU_CNTL_DEPTH_OFFSET__MASK, A6XX_RB_CCU_CNTL_DEPTH_OFFSET__SHIFT) == 0) ||
+                      ((ccu & 1) != 0 && ccu2 != 0);
         if (inTile_) {
             // the colour cache above every target's bin, and the bins of the targets the stage writes apart
             const uint32_t at = fieldOf(ccu, A6XX_RB_CCU_CNTL_COLOR_OFFSET__MASK, A6XX_RB_CCU_CNTL_COLOR_OFFSET__SHIFT) << A6XX_RB_CCU_CNTL_COLOR_OFFSET__SCALE |
@@ -1935,7 +1937,7 @@ bool FakeGpu::execute(uint64_t address, uint32_t words, int depth) {
             for (uint32_t j = 0; j < h.count; j++) {
                 regs_[h.reg + j] = p[j];   // kept as written; a dispatch or a draw is checked against them
                 written_.insert(h.reg + j);
-                if (h.reg + j == REG_A6XX_RB_CCU_CNTL) {
+                if (h.reg + j == REG_A6XX_RB_CCU_CNTL || h.reg + j == REG_A7XX_RB_CCU_CNTL2) {
                     // "isn't pipelined" (tu_cmd_buffer.cc:373-377): both witnesses write it right after a CP_WAIT_FOR_IDLE
                     ccuCntlWritten_ = true;
                     ccuCntlAfterWfi_ = lastWasWfi_;

@@ -1144,8 +1144,10 @@ void passStart(pm4::Stream& stream, uint32_t W, uint32_t H, uint64_t table, cons
     // both are --bisect items the lead must run.
     if (o.batchStart) {
         command1(stream, CP_SET_MODE, 0);
+        command1(stream, CP_THREAD_CONTROL, 0x08000001u);  // CP_SET_THREAD_BR | CONCURRENT_BIN_DISABLE for A7xx
         event(stream, PC_CCU_INVALIDATE_COLOR);
         event(stream, PC_CCU_INVALIDATE_DEPTH);
+        event(stream, vgt_event_type(40));                 // UNK_40 event on A7xx
         event(stream, CACHE_INVALIDATE);
         reg(stream, REG_A6XX_HLSQ_INVALIDATE_CMD, hlsqInvalidateCmdAll());
         stream.waitForIdle();
@@ -1160,12 +1162,13 @@ void passStart(pm4::Stream& stream, uint32_t W, uint32_t H, uint64_t table, cons
         reg64(stream, REG_A6XX_SP_PS_TP_BORDER_COLOR_BASE_ADDR, table + kTableBorderColorAt);
         for (const RegWrite& w : kStaticStateTail) reg(stream, w.reg, w.value);
     }
-    // 2. RB_CCU_CNTL for sysmem after a WFI ("isn't pipelined", tu_cmd_buffer.cc:373-377; fd6_emit.cc:828 "early a6xx
-    // needed this"): 0x10000000 in both witnesses (rbCcuCntlSysmem); bit 2, CONCURRENT_RESOLVE, is what hakios's kernel
-    // wrote at boot (hakios.adreno.c:2904) and Mesa never sets for this chip -- the switch is the bisect's
+    // 2. RB_CCU_CNTL & RB_CCU_CNTL2 for sysmem after a WFI ("isn't pipelined", tu_cmd_buffer.cc:373-377):
+    // On A7xx, RB_CCU_CNTL2 holds the color and depth cache offsets (0x10000000), while RB_CCU_CNTL
+    // holds the static flags (0x00000001, GMEM_FAST_CLEAR_DISABLE), matching kernel hakios.adreno.c:2918-2919
     if (o.ccuCntl) {
         stream.waitForIdle();
-        reg(stream, REG_A6XX_RB_CCU_CNTL, rbCcuCntlSysmem() | (o.ccuConcurrentResolve ? A6XX_RB_CCU_CNTL_CONCURRENT_RESOLVE : 0u));
+        reg(stream, REG_A7XX_RB_CCU_CNTL2, 0x10000000);
+        reg(stream, REG_A6XX_RB_CCU_CNTL, 0x00000001 | (o.ccuConcurrentResolve ? A6XX_RB_CCU_CNTL_CONCURRENT_RESOLVE : 0u));
     }
     // fd6's LRZ_FLUSH at the start of a sysmem pass (fd6_gmem.cc:2001); turnip has none here. Under lrzOff with the LRZ
     // registers below, since it is the LRZ it flushes
@@ -1174,12 +1177,10 @@ void passStart(pm4::Stream& stream, uint32_t W, uint32_t H, uint64_t table, cons
     }
     // 3. pass begin (tu6_sysmem_render_begin, tu_cmd_buffer.cc:2093-2142; fd6_emit_sysmem_prep, fd6_gmem.cc:2020-2056):
     // the window scissor is the whole target (BR inclusive: tu6_emit_window_scissor :736-747), GRAS_2D_RESOLVE_CNTL_1/2
-    // beside it (:745-746), the four A6XX window offsets 0 (set_window_offset, fd6_gmem.cc:1223-1235; turnip's
-    // A7XX_SP_PS_2D_WINDOW_OFFSET is not copied), GRAS/RB_BIN_CONTROL with BUFFERS_IN_SYSMEM and no bins (0x00c00000 as
-    // fd6 and r3d; 0x03c00000 with turnip's LRZ feedback mask under binControlLrzFeedback), RB_BIN_CONTROL2 0, the
-    // RM6_DIRECT_RENDER marker, CP_SKIP_IB2_ENABLE_GLOBAL 0, CP_SET_VISIBILITY_OVERRIDE 1 (what makes a draw without a
-    // visibility stream legal), CP_SET_MODE 0. VPC_SO_DISABLE stays at the static table's 1 (turnip's; fd6 writes 0
-    // here, fd6_gmem.cc:2053): not switchable in render::Options, named for the lead.
+    // beside it (:745-746), the window offsets 0, GRAS/RB_BIN_CONTROL with BUFFERS_IN_SYSMEM and no bins,
+    // A7xx sysmem render registers (tu_cmd_buffer.cc:2117: RB_UNKNOWN_8812 = 0x3ff for buffers in sysmem,
+    // RB_UNKNOWN_8E06, GRAS_UNKNOWN_8007, GRAS_UNKNOWN_8110, RB_UNKNOWN_8E09, RB_BLIT_CLEAR_MODE = CLEAR_MODE_SYSMEM),
+    // the RM6_DIRECT_RENDER marker, CP_SKIP_IB2_ENABLE_GLOBAL 0, CP_SET_VISIBILITY_OVERRIDE 1, CP_SET_MODE 0.
     if (o.passBegin) {
         regs(stream, REG_A6XX_GRAS_SC_WINDOW_SCISSOR_TL, {regXY(0, 0), regXY(W - 1, H - 1)});
         regs(stream, REG_A6XX_GRAS_2D_RESOLVE_CNTL_1, {regXY(0, 0), regXY(W - 1, H - 1)});
@@ -1187,9 +1188,17 @@ void passStart(pm4::Stream& stream, uint32_t W, uint32_t H, uint64_t table, cons
         reg(stream, REG_A6XX_RB_WINDOW_OFFSET2, regXY(0, 0));
         reg(stream, REG_A6XX_SP_WINDOW_OFFSET, regXY(0, 0));
         reg(stream, REG_A6XX_SP_TP_WINDOW_OFFSET, regXY(0, 0));
+        reg(stream, REG_A7XX_SP_PS_2D_WINDOW_OFFSET, regXY(0, 0));
         reg(stream, REG_A6XX_GRAS_BIN_CONTROL, binControlSysmem(o.binControlLrzFeedback));
         reg(stream, REG_A6XX_RB_BIN_CONTROL, binControlSysmem(o.binControlLrzFeedback));
         reg(stream, REG_A6XX_RB_BIN_CONTROL2, 0);
+
+        reg(stream, REG_A7XX_RB_UNKNOWN_8812, 0x3ff); // all buffers in sysmem
+        reg(stream, REG_A7XX_RB_UNKNOWN_8E06, kMagicRbUnknown8E06);
+        reg(stream, REG_A7XX_GRAS_UNKNOWN_8007, 0x0);
+        reg(stream, REG_A6XX_GRAS_UNKNOWN_8110, 0x2);
+        reg(stream, REG_A7XX_RB_UNKNOWN_8E09, 0x4);
+        reg(stream, REG_A7XX_RB_BLIT_CLEAR_MODE, 0x0); // CLEAR_MODE_SYSMEM
     }
     if (o.marker) {
         command1(stream, CP_SET_MARKER, setMarker0(RM6_DIRECT_RENDER));
