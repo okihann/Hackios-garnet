@@ -1562,10 +1562,13 @@ bool encodeDraw(pm4::Stream& stream, const Program& program, const RenderPass& p
         const Attachment a = attachmentOf(pass, i);
         const Texture* named = a.texture != nullptr ? a.texture : firstAttachment(pass) != pass.depth ? firstAttachment(pass) : nullptr;
         if (named == nullptr) {
+            if (pass.depth == nullptr) continue;
             const FormatInfo& rgba = *formatInfo(PixelFormat::kRGBA8Unorm);
             const Texture& d = *pass.depth;
+            const uint64_t addr = d.gpuAddress();
+            if (addr == 0) continue;
             mrts[i] = MrtWords{rbMrtBufInfo(rgba.fmt6, TILE6_LINEAR, rgba.swap), rbMrtPitch(uint32_t(d.bytesPerRow())), rbMrtArrayPitch(uint32_t(d.buffer()->length())),
-                               uint32_t(d.gpuAddress()), uint32_t(d.gpuAddress() >> 32), 0, spFsMrtReg(rgba.fmt6, false, false), false};
+                               uint32_t(addr), uint32_t(addr >> 32), 0, spFsMrtReg(rgba.fmt6, false, false), false};
             continue;
         }
         mrts[i] = a.texture != nullptr ? mrtWords(*named, a.level, a.slice)
@@ -2384,9 +2387,11 @@ void encodeGmem(pm4::Stream& stream, const RenderPass& pass, const GmemPlan& pla
     // puts it (plan.base, which the draws were given)
     auto blit = [&](uint32_t i, a6xx_blit_event_type type) {
         const Attachment a = attachmentOf(pass, i);
+        if (a.texture == nullptr) return;
         const Texture& t = *a.texture;
         const FormatInfo& f = t.info();
         const uint64_t base = t.levelAddress(a.level) + (a.slice != 0 ? uint64_t(a.slice) * t.sliceBytes() : 0);
+        if (base == 0) return;
         regs(stream, REG_A6XX_RB_BLIT_DST_INFO,
              {rbBlitDstInfo(colorFmt(f), TILE6_LINEAR, f.swap), uint32_t(base), uint32_t(base >> 32), uint32_t(t.level(a.level).pitch) >> 6});
         regs(stream, REG_A6XX_RB_BLIT_FLAG_DST, {0, 0, 0});
