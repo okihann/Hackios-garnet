@@ -1176,11 +1176,7 @@ void passStart(pm4::Stream& stream, uint32_t W, uint32_t H, uint64_t table, cons
         reg(stream, REG_A7XX_RB_CCU_CNTL2, 0x10000000);
         reg(stream, REG_A6XX_RB_CCU_CNTL, 0x00000001 | (o.ccuConcurrentResolve ? A6XX_RB_CCU_CNTL_CONCURRENT_RESOLVE : 0u));
     }
-    // fd6's LRZ_FLUSH at the start of a sysmem pass (fd6_gmem.cc:2001); turnip has none here. Under lrzOff with the LRZ
-    // registers below, since it is the LRZ it flushes
-    if (o.lrzOff) {
-        event(stream, LRZ_FLUSH);
-    }
+    // turnip omits LRZ_FLUSH here (tu_lrz.cc:478). With LRZ off and zeroed base, flushing would cause an SMMU translation fault at address 0.
     // 3. pass begin (tu6_sysmem_render_begin, tu_cmd_buffer.cc:2093-2142; fd6_emit_sysmem_prep, fd6_gmem.cc:2020-2056):
     // the window scissor is the whole target (BR inclusive: tu6_emit_window_scissor :736-747), GRAS_2D_RESOLVE_CNTL_1/2
     // beside it (:745-746), the window offsets 0, GRAS/RB_BIN_CONTROL with BUFFERS_IN_SYSMEM and no bins,
@@ -1228,16 +1224,13 @@ void passTail(pm4::Stream& stream, uint64_t table, const Options& o, bool depth 
         const uint64_t ts = table + kTableTimestampsAt;
         if (o.tailCcuFlush) {
             event(stream, CCU_CLEAN_COLOR);
-            if (depth || o.tailDepthFlush) {
+            if (depth && o.tailDepthFlush) {
                 event(stream, CCU_CLEAN_DEPTH);
             }
             eventTimestamp(stream, RB_DONE_TS, ts, 1, o.tailTimestampBit);
             waitForWord(stream, ts, 1);
         }
-        if (depth && o.tailDepthFlush) {
-            event(stream, CCU_CLEAN_DEPTH);
-        }
-        if (o.tailLrzFlush) {
+        if (depth && o.tailLrzFlush) {
             event(stream, LRZ_FLUSH);
         }
         if (o.tailRbDone) {
@@ -1632,22 +1625,26 @@ bool encodeDraw(pm4::Stream& stream, const Program& program, const RenderPass& p
     if (o.zsNone && pass.depth == nullptr) {
         regs(stream, REG_A6XX_RB_DEPTH_BUFFER_INFO, {A6XX_RB_DEPTH_BUFFER_INFO_DEPTH_FORMAT(DEPTH6_NONE), 0, 0, 0, 0, 0});
         reg(stream, REG_A6XX_GRAS_SU_DEPTH_BUFFER_INFO, A6XX_GRAS_SU_DEPTH_BUFFER_INFO_DEPTH_FORMAT(DEPTH6_NONE));
+        reg(stream, REG_A7XX_GRAS_LRZ_DEPTH_BUFFER_INFO, 0);
         reg(stream, REG_A6XX_RB_STENCIL_INFO, 0);
     }
     if (pass.depth != nullptr) {
         const Texture& d = *pass.depth;
         // (a depth array's layer: that many tiled planes on, sliceBytes apart)
         const uint64_t depthAt = d.levelAddress(pass.depthLevel) + uint64_t(pass.depthSlice) * d.sliceBytes();
+        const uint32_t rbDepthInfo = A6XX_RB_DEPTH_BUFFER_INFO_DEPTH_FORMAT(DEPTH6_32) | A7XX_RB_DEPTH_BUFFER_INFO_TILEMODE(TILE6_3);
         regs(stream, REG_A6XX_RB_DEPTH_BUFFER_INFO,
-             {A6XX_RB_DEPTH_BUFFER_INFO_DEPTH_FORMAT(DEPTH6_32), A6XX_RB_DEPTH_BUFFER_PITCH(uint32_t(d.level(pass.depthLevel).pitch)),
+             {rbDepthInfo, A6XX_RB_DEPTH_BUFFER_PITCH(uint32_t(d.level(pass.depthLevel).pitch)),
               A6XX_RB_DEPTH_BUFFER_ARRAY_PITCH(uint32_t(d.depthPlaneBytes())), uint32_t(depthAt), uint32_t(depthAt >> 32), 0});
         reg(stream, REG_A6XX_GRAS_SU_DEPTH_BUFFER_INFO, A6XX_GRAS_SU_DEPTH_BUFFER_INFO_DEPTH_FORMAT(DEPTH6_32));
+        reg(stream, REG_A7XX_GRAS_LRZ_DEPTH_BUFFER_INFO, A7XX_GRAS_LRZ_DEPTH_BUFFER_INFO_DEPTH_FORMAT(DEPTH6_32));
         regs(stream, REG_A6XX_RB_DEPTH_FLAG_BUFFER_BASE, {0, 0, 0});
         if (pass.stencil != nullptr) {
             // the S8 plane as a separate stencil buffer (tu6_emit_zs's D32_SFLOAT_S8_UINT branch): SEPARATE_STENCIL, its
-            // pitch and layer, its base, BASE_GMEM 0; A6XX's RB_STENCIL_INFO has no tile field -- stencil is TILE6_3, as laid out
+            // pitch and layer, its base, BASE_GMEM 0; on A7XX stencil requires TILE6_3
             const uint64_t sb = d.gpuAddress() + d.stencilOffset();
-            regs(stream, REG_A6XX_RB_STENCIL_INFO, {A6XX_RB_STENCIL_INFO_SEPARATE_STENCIL, uint32_t(d.stencilPitch() >> 6), uint32_t(d.stencilPlaneBytes() >> 6),
+            const uint32_t rbStencilInfo = A6XX_RB_STENCIL_INFO_SEPARATE_STENCIL | A7XX_RB_STENCIL_INFO_TILEMODE(TILE6_3);
+            regs(stream, REG_A6XX_RB_STENCIL_INFO, {rbStencilInfo, uint32_t(d.stencilPitch() >> 6), uint32_t(d.stencilPlaneBytes() >> 6),
                                                     uint32_t(sb), uint32_t(sb >> 32), 0});
         } else {
             reg(stream, REG_A6XX_RB_STENCIL_INFO, 0);
@@ -1703,19 +1700,21 @@ bool encodeDraw(pm4::Stream& stream, const Program& program, const RenderPass& p
         reg(stream, REG_A6XX_GRAS_LRZ_CNTL, 0);
         reg(stream, REG_A6XX_RB_LRZ_CNTL, 0);
         regs(stream, REG_A6XX_GRAS_LRZ_BUFFER_BASE, {0, 0, 0, 0, 0});
+        reg(stream, REG_A7XX_GRAS_LRZ_DEPTH_BUFFER_INFO, 0);
     }
     // 9. program config (tu6_emit_program_config, tu_pipeline.cc:1272-1300; fd6 setup_config_stateobj, fd6_program.cc:
     // 400-458): HLSQ_INVALIDATE_CMD for the five graphics stages and the 3D IBOs, then SP_xS_CONFIG / HLSQ_xS_CNTL per
     // stage with HS, DS and GS off (NTEX = NSAMP = num_samp = 0; CONSTLEN in the field's units of 4 vec4, the FS's 0 is
     // ENABLED alone), SP_IBO_COUNT 0 (fd6's nibo(fs))
+    // A7XX gen 1 quirk: fs_must_have_non_zero_constlen_quirk requires FS constlen >= 4, and VS constlen >= 8
     if (o.programConfig) {
         const uint32_t inv = A6XX_HLSQ_INVALIDATE_CMD_VS_STATE | A6XX_HLSQ_INVALIDATE_CMD_HS_STATE | A6XX_HLSQ_INVALIDATE_CMD_DS_STATE |
                              A6XX_HLSQ_INVALIDATE_CMD_GS_STATE | A6XX_HLSQ_INVALIDATE_CMD_FS_STATE | A6XX_HLSQ_INVALIDATE_CMD_GFX_IBO;
         reg(stream, REG_A7XX_HLSQ_INVALIDATE_CMD, inv);
         reg(stream, REG_A6XX_HLSQ_INVALIDATE_CMD, inv);
         reg(stream, REG_A6XX_SP_VS_CONFIG, spXsConfig(vs.k.numSamp, vs.k.numSamp, vs.k.numSsbos));
-        reg(stream, REG_A7XX_HLSQ_VS_CNTL, hlsqVsCntl(vs.k.constlen));
-        reg(stream, REG_A6XX_HLSQ_VS_CNTL, hlsqVsCntl(vs.k.constlen));
+        reg(stream, REG_A7XX_HLSQ_VS_CNTL, hlsqVsCntl(std::max<uint32_t>(vs.k.constlen, 8)));
+        reg(stream, REG_A6XX_HLSQ_VS_CNTL, hlsqVsCntl(std::max<uint32_t>(vs.k.constlen, 8)));
         reg(stream, REG_A7XX_SP_VS_VGPR_CONFIG, 0);
         reg(stream, REG_A6XX_SP_HS_CONFIG, 0);
         reg(stream, REG_A7XX_HLSQ_HS_CNTL, 0);
@@ -1727,8 +1726,8 @@ bool encodeDraw(pm4::Stream& stream, const Program& program, const RenderPass& p
         reg(stream, REG_A7XX_HLSQ_GS_CNTL, 0);
         reg(stream, REG_A6XX_HLSQ_GS_CNTL, 0);
         reg(stream, REG_A6XX_SP_FS_CONFIG, spXsConfig(fs.k.numSamp, fs.k.numSamp, fs.k.numSsbos));
-        reg(stream, REG_A7XX_HLSQ_FS_CNTL, hlsqFsCntl(fs.k.constlen));
-        reg(stream, REG_A6XX_HLSQ_FS_CNTL, hlsqFsCntl(fs.k.constlen));
+        reg(stream, REG_A7XX_HLSQ_FS_CNTL, hlsqFsCntl(std::max<uint32_t>(fs.k.constlen, 4)));
+        reg(stream, REG_A6XX_HLSQ_FS_CNTL, hlsqFsCntl(std::max<uint32_t>(fs.k.constlen, 4)));
         reg(stream, REG_A7XX_SP_FS_VGPR_CONFIG, 0);
         // the 3D IBO table's count (fd6's nibo(fs); here the larger of the two stages', the table being one), and the table
         // itself: CP_LOAD_STATE6 (the plain opcode) of ST6_SHADER into SB6_IBO, as both witnesses load it (tu_pipeline.cc:

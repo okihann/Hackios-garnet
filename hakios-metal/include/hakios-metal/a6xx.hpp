@@ -1436,6 +1436,12 @@ inline constexpr uint32_t REG_A6XX_UCHE_CACHE_WAYS = 0x0e17;
 inline constexpr uint32_t REG_A6XX_TPL1_DBG_ECO_CNTL1 = 0xb602;
 inline constexpr uint32_t REG_A6XX_PC_DBG_ECO_CNTL = 0x9800;
 inline constexpr uint32_t REG_A7XX_RB_CCU_CNTL2 = 0x88e5;
+inline constexpr uint32_t REG_A7XX_GRAS_LRZ_DEPTH_BUFFER_INFO = 0x8113;
+inline constexpr uint32_t A7XX_GRAS_LRZ_DEPTH_BUFFER_INFO_DEPTH_FORMAT__MASK = 0x00000007;
+inline constexpr uint32_t A7XX_GRAS_LRZ_DEPTH_BUFFER_INFO_DEPTH_FORMAT__SHIFT = 0;
+constexpr uint32_t A7XX_GRAS_LRZ_DEPTH_BUFFER_INFO_DEPTH_FORMAT(a6xx_depth_format v) {
+    return field(v, A7XX_GRAS_LRZ_DEPTH_BUFFER_INFO_DEPTH_FORMAT__SHIFT, A7XX_GRAS_LRZ_DEPTH_BUFFER_INFO_DEPTH_FORMAT__MASK);
+}
 inline constexpr uint32_t REG_A7XX_RB_UNKNOWN_8812 = 0x8812;
 inline constexpr uint32_t REG_A7XX_RB_UNKNOWN_8E06 = 0x8e06;
 inline constexpr uint32_t REG_A7XX_RB_UNKNOWN_8E09 = 0x8e09;
@@ -2603,6 +2609,11 @@ constexpr uint32_t A6XX_RB_DEPTH_BUFFER_INFO_DEPTH_FORMAT(a6xx_depth_format v) {
 constexpr uint32_t A6XX_RB_DEPTH_BUFFER_INFO_UNK3(uint32_t v) {
     return field(v, A6XX_RB_DEPTH_BUFFER_INFO_UNK3__SHIFT, A6XX_RB_DEPTH_BUFFER_INFO_UNK3__MASK);
 }
+inline constexpr uint32_t A7XX_RB_DEPTH_BUFFER_INFO_TILEMODE__MASK = 0x00000060;
+inline constexpr uint32_t A7XX_RB_DEPTH_BUFFER_INFO_TILEMODE__SHIFT = 5;
+constexpr uint32_t A7XX_RB_DEPTH_BUFFER_INFO_TILEMODE(a6xx_tile_mode v) {
+    return field(v, A7XX_RB_DEPTH_BUFFER_INFO_TILEMODE__SHIFT, A7XX_RB_DEPTH_BUFFER_INFO_TILEMODE__MASK);
+}
 inline constexpr uint32_t REG_A6XX_RB_DEPTH_BUFFER_PITCH = 0x8873;                          // a6xx.xml.h:5972
 inline constexpr uint32_t A6XX_RB_DEPTH_BUFFER_PITCH__MASK = 0x00003fff;                    // a6xx.xml.h:5973
 inline constexpr uint32_t A6XX_RB_DEPTH_BUFFER_PITCH__SHIFT = 0;                            // a6xx.xml.h:5974
@@ -2675,6 +2686,11 @@ constexpr uint32_t A6XX_RB_STENCIL_CONTROL_ZFAIL_BF(adreno_stencil_op v) {
 inline constexpr uint32_t REG_A6XX_RB_STENCIL_INFO = 0x8881;                                // a6xx.xml.h:6074
 inline constexpr uint32_t A6XX_RB_STENCIL_INFO_SEPARATE_STENCIL = 0x00000001;               // a6xx.xml.h:6075
 inline constexpr uint32_t A6XX_RB_STENCIL_INFO_UNK1 = 0x00000002;                           // a6xx.xml.h:6076
+inline constexpr uint32_t A7XX_RB_STENCIL_INFO_TILEMODE__MASK = 0x0000000c;
+inline constexpr uint32_t A7XX_RB_STENCIL_INFO_TILEMODE__SHIFT = 2;
+constexpr uint32_t A7XX_RB_STENCIL_INFO_TILEMODE(a6xx_tile_mode v) {
+    return field(v, A7XX_RB_STENCIL_INFO_TILEMODE__SHIFT, A7XX_RB_STENCIL_INFO_TILEMODE__MASK);
+}
 
 inline constexpr uint32_t REG_A6XX_RB_STENCILREF = 0x8887;                                  // a6xx.xml.h:6116
 inline constexpr uint32_t A6XX_RB_STENCILREF_REF__MASK = 0x000000ff;                        // a6xx.xml.h:6117
