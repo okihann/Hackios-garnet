@@ -1,0 +1,980 @@
+== XNULOADER run (usb) ==
+payload entry 'kernel' size f24878
+payload entry 'ramdisk' size b66000
+payload entry 'cmdline' size bd
+payload entry 'kernel.ver' size 2f
+kernel va fffffff007004000..fffffff0082ec878 entry fffffff0074694a8
+largest free block 8c0000000 size c0000000
+phys window 8c0000000 size c0000000, claim status 0
+kernel loaded at pa 8c7004000..8c82f0000
+ramdisk at pa 8c82f0000 size b70000
+ufs: unit 0: media 544433781, 61908992 blocks of 4096 (241832 MB), writable, align 8
+ufs: unit 0: GPT header crc right (cb86c9c4), table of 64 entries crc right (2b2352eb)
+ufs: unit 1: media 544433781, 4096 blocks of 4096 (16 MB), writable, align 8
+ufs: unit 1: GPT header crc right (31c0084c), table of 32 entries crc right (90c1c4a5)
+ufs: unit 2: media 544433781, 4096 blocks of 4096 (16 MB), writable, align 8
+ufs: unit 2: GPT header crc right (78036ed2), table of 32 entries crc right (afdb4e32)
+ufs: unit 3: media 544433781, 8192 blocks of 4096 (32 MB), writable, align 8
+ufs: unit 3: GPT header crc right (f2de4e3f), table of 32 entries crc right (190eed78)
+ufs: unit 4: media 544433781, 528384 blocks of 4096 (2064 MB), writable, align 8
+ufs: unit 4: GPT header crc right (f2123d60), table of 96 entries crc right (2984c472)
+ufs: unit 5: media 544433781, 16384 blocks of 4096 (64 MB), writable, align 8
+ufs: unit 5: GPT header crc right (1a7df885), table of 32 entries crc right (9a905b93)
+ufs: part switch: lba 6..7, 8 KB
+ufs: part ssd: lba 8..15, 32 KB
+ufs: part dbg: lba 16..23, 32 KB
+ufs: part bk01: lba 24..31, 32 KB
+ufs: part bk02: lba 32..63, 128 KB
+ufs: part bk03: lba 64..127, 256 KB
+ufs: part bk04: lba 128..255, 512 KB
+ufs: part keystore: lba 256..383, 512 KB
+ufs: part frp: lba 384..511, 512 KB
+ufs: part countrycode: lba 512..1023, 2048 KB
+ufs: part misc: lba 1024..2047, 4096 KB
+ufs: part bk05: lba 2048..4095, 8192 KB
+ufs: part logfs: lba 4096..6143, 8192 KB
+ufs: part ffu: lba 6144..8191, 8192 KB
+ufs: part oops: lba 8192..12287, 16384 KB
+ufs: part devinfo: lba 12288..16383, 16384 KB
+ufs: part metadata: lba 16384..32767, 65536 KB
+ufs: part bk06: lba 32768..36863, 16384 KB
+ufs: part bk07: lba 36864..45055, 32768 KB
+ufs: part mtdblk: lba 45056..53247, 32768 KB
+ufs: part crash_history: lba 53248..68095, 59392 KB
+ufs: part minidump: lba 68096..92671, 98304 KB
+ufs: part rawdump: lba 92672..169471, 307200 KB
+ufs: part vbmeta_system_a: lba 169472..169503, 128 KB
+ufs: part vbmeta_system_b: lba 169504..169535, 128 KB
+ufs: part bk010: lba 169536..176639, 28416 KB
+ufs: part mem: lba 176640..177663, 4096 KB
+ufs: part opconfig: lba 177664..182783, 20480 KB
+ufs: part opcust: lba 182784..285183, 409600 KB
+ufs: part mbnconfig: lba 285184..293375, 32768 KB
+ufs: part rescue: lba 293376..326143, 131072 KB
+ufs: part cust: lba 326144..850431, 2097152 KB
+ufs: part super: lba 850432..3209727, 9437184 KB
+ufs: super geometry +0: 67446c613400000012ff55f0aba7b506f25cb5da5dca09344234e8df1d9c93ae
+ufs: super geometry +20: 82a499d98019467e000001000300000000100000
+ufs: super header0 +0: 30504c410a0002000001000060e62eb01791c6220f4dadf80f2f0e4c123c3869
+ufs: super header0 +20: ebd07515acc836d386a01f40d0030000cb4f480033b8e2e07930ec9082e80374
+ufs: super header0 +40: b1386153de7104a19f8d3bf651d03169000000000c0000003400000070020000
+ufs: super header0 +60: 0600000018000000000300000300000030000000900300000100000040000000
+ufs: super header0 +80: 0100000000000000000000000000000000000000000000000000000000000000
+ufs: super header0 +a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super header0 +c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super header0 +e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super tables0 +0: 6f646d5f61000000000000000000000000000000000000000000000000000000
+ufs: super tables0 +20: 00000000000000000000000001000000010000006f646d5f6200000000000000
+ufs: super tables0 +40: 0000000000000000000000000000000000000000000000000000000001000000
+ufs: super tables0 +60: 000000000200000070726f647563745f61000000000000000000000000000000
+ufs: super tables0 +80: 0000000000000000000000000000000001000000010000000100000070726f64
+ufs: super tables0 +a0: 7563745f62000000000000000000000000000000000000000000000000000000
+ufs: super tables0 +c0: 0000000002000000000000000200000073797374656d5f610000000000000000
+ufs: super tables0 +e0: 0000000000000000000000000000000000000000000000000200000001000000
+ufs: super tables0 +100: 0100000073797374656d5f620000000000000000000000000000000000000000
+ufs: super tables0 +120: 00000000000000000000000003000000000000000200000073797374656d5f65
+ufs: super tables0 +140: 78745f6100000000000000000000000000000000000000000000000000000000
+ufs: super tables0 +160: 03000000010000000100000073797374656d5f6578745f620000000000000000
+ufs: super tables0 +180: 0000000000000000000000000000000000000000040000000000000002000000
+ufs: super tables0 +1a0: 76656e646f725f61000000000000000000000000000000000000000000000000
+ufs: super tables0 +1c0: 000000000000000004000000010000000100000076656e646f725f6200000000
+ufs: super tables0 +1e0: 0000000000000000000000000000000000000000000000000000000005000000
+ufs: super tables0 +200: 000000000200000076656e646f725f646c6b6d5f610000000000000000000000
+ufs: super tables0 +220: 0000000000000000000000000000000005000000010000000100000076656e64
+ufs: super tables0 +240: 6f725f646c6b6d5f620000000000000000000000000000000000000000000000
+ufs: super tables0 +260: 0000000006000000000000000200000048210000000000000000000000080000
+ufs: super tables0 +280: 000000000000000038b451000000000000000000003000000000000000000000
+ufs: super tables0 +2a0: 40733a00000000000000000000e8510000000000000000009050270000000000
+ufs: super tables0 +2c0: 0000000000608c00000000000000000050024800000000000000000000b8b300
+ufs: super tables0 +2e0: 0000000000000000203e0300000000000000000000c0fb000000000000000000
+ufs: super tables0 +300: 64656661756c7400000000000000000000000000000000000000000000000000
+ufs: super tables0 +320: 000000000000000000000000000000007174695f64796e616d69635f70617274
+ufs: super tables0 +340: 6974696f6e735f61000000000000000000000000000000000000002002000000
+ufs: super tables0 +360: 7174695f64796e616d69635f706172746974696f6e735f620000000000000000
+ufs: super tables0 +380: 0000000000000000000000200200000000080000000000000000100000000000
+ufs: super tables0 +3a0: 0000002002000000737570657200000000000000000000000000000000000000
+ufs: super tables0 +3c0: 00000000000000000000000000000000
+ufs: super header1 +0: 30504c410a0002000001000060e62eb01791c6220f4dadf80f2f0e4c123c3869
+ufs: super header1 +20: ebd07515acc836d386a01f40d0030000cb4f480033b8e2e07930ec9082e80374
+ufs: super header1 +40: b1386153de7104a19f8d3bf651d03169000000000c0000003400000070020000
+ufs: super header1 +60: 0600000018000000000300000300000030000000900300000100000040000000
+ufs: super header1 +80: 0100000000000000000000000000000000000000000000000000000000000000
+ufs: super header1 +a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super header1 +c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super header1 +e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super tables1 +0: 6f646d5f61000000000000000000000000000000000000000000000000000000
+ufs: super tables1 +20: 00000000000000000000000001000000010000006f646d5f6200000000000000
+ufs: super tables1 +40: 0000000000000000000000000000000000000000000000000000000001000000
+ufs: super tables1 +60: 000000000200000070726f647563745f61000000000000000000000000000000
+ufs: super tables1 +80: 0000000000000000000000000000000001000000010000000100000070726f64
+ufs: super tables1 +a0: 7563745f62000000000000000000000000000000000000000000000000000000
+ufs: super tables1 +c0: 0000000002000000000000000200000073797374656d5f610000000000000000
+ufs: super tables1 +e0: 0000000000000000000000000000000000000000000000000200000001000000
+ufs: super tables1 +100: 0100000073797374656d5f620000000000000000000000000000000000000000
+ufs: super tables1 +120: 00000000000000000000000003000000000000000200000073797374656d5f65
+ufs: super tables1 +140: 78745f6100000000000000000000000000000000000000000000000000000000
+ufs: super tables1 +160: 03000000010000000100000073797374656d5f6578745f620000000000000000
+ufs: super tables1 +180: 0000000000000000000000000000000000000000040000000000000002000000
+ufs: super tables1 +1a0: 76656e646f725f61000000000000000000000000000000000000000000000000
+ufs: super tables1 +1c0: 000000000000000004000000010000000100000076656e646f725f6200000000
+ufs: super tables1 +1e0: 0000000000000000000000000000000000000000000000000000000005000000
+ufs: super tables1 +200: 000000000200000076656e646f725f646c6b6d5f610000000000000000000000
+ufs: super tables1 +220: 0000000000000000000000000000000005000000010000000100000076656e64
+ufs: super tables1 +240: 6f725f646c6b6d5f620000000000000000000000000000000000000000000000
+ufs: super tables1 +260: 0000000006000000000000000200000048210000000000000000000000080000
+ufs: super tables1 +280: 000000000000000038b451000000000000000000003000000000000000000000
+ufs: super tables1 +2a0: 40733a00000000000000000000e8510000000000000000009050270000000000
+ufs: super tables1 +2c0: 0000000000608c00000000000000000050024800000000000000000000b8b300
+ufs: super tables1 +2e0: 0000000000000000203e0300000000000000000000c0fb000000000000000000
+ufs: super tables1 +300: 64656661756c7400000000000000000000000000000000000000000000000000
+ufs: super tables1 +320: 000000000000000000000000000000007174695f64796e616d69635f70617274
+ufs: super tables1 +340: 6974696f6e735f61000000000000000000000000000000000000002002000000
+ufs: super tables1 +360: 7174695f64796e616d69635f706172746974696f6e735f620000000000000000
+ufs: super tables1 +380: 0000000000000000000000200200000000080000000000000000100000000000
+ufs: super tables1 +3a0: 0000002002000000737570657200000000000000000000000000000000000000
+ufs: super tables1 +3c0: 00000000000000000000000000000000
+ufs: part userdata: lba 3209728..45131766, 167688156 KB
+ufs: userdata sb +0: 1020f5f201000e000c000000000000000c000000090000000100000001000000
+ufs: userdata sb +20: 00000000f7ad7f02000000007b3e0100d53f0100020000000a0000006e000000
+ufs: userdata sb +40: e00000007b3e0100000200000002000000060000001a000000f6000000b60200
+ufs: userdata sb +60: 030000000100000002000000318a075ae03b4ce7b4ad9f3d02ba292b00000000
+ufs: userdata sb +80: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +100: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +120: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +140: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +160: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +180: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +1a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +1c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +1e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +200: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +220: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +240: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +260: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +280: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +2a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +2c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +2e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +300: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +320: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +340: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +360: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +380: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +3a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +3c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +3e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb2 +0: 1020f5f201000e000c000000000000000c000000090000000100000001000000
+ufs: userdata sb2 +20: 00000000f7ad7f02000000007b3e0100d53f0100020000000a0000006e000000
+ufs: part darwin: lba 45131776..61908986, 67108844 KB
+ufs: part xbl_a: lba 6..2053, 8192 KB
+ufs: xbl_a: begins 7f 45 4c 46 1 1 1 0 0 0 0 0 0 0 0 0
+ufs: xbl_a: fnv aac0cd787086ef0a over 3706880 bytes, 18 ms
+ufs: part xbl_config_a: lba 2054..2181, 512 KB
+ufs: part multiimgqti_a: lba 2182..2189, 32 KB
+ufs: part multiimgoem_a: lba 2190..2197, 32 KB
+ufs: part apdp: lba 2198..2261, 256 KB
+ufs: part xbl_b: lba 6..2053, 8192 KB
+ufs: xbl_b: begins 7f 45 4c 46 1 1 1 0 0 0 0 0 0 0 0 0
+ufs: xbl_b: fnv aac0cd787086ef0a over 3706880 bytes, 18 ms
+ufs: part xbl_config_b: lba 2054..2181, 512 KB
+ufs: part multiimgqti_b: lba 2182..2189, 32 KB
+ufs: part multiimgoem_b: lba 2190..2197, 32 KB
+ufs: part apdp2: lba 2198..2261, 256 KB
+ufs: part ALIGN_TO_128K_1: lba 6..31, 104 KB
+ufs: part cdt: lba 32..63, 128 KB
+ufs: part bk31: lba 64..319, 1024 KB
+ufs: part ddr: lba 320..831, 2048 KB
+ufs: part bk32: lba 832..1343, 2048 KB
+ufs: part uefi_a: lba 6..1285, 5120 KB
+ufs: part aop_a: lba 1286..1413, 512 KB
+ufs: aop_a: begins 7f 45 4c 46 1 1 1 3 0 0 0 0 0 0 0 0
+ufs: aop_a: fnv 967b65bbe133607 over 208896 bytes, 1 ms
+ufs: part aop_config_a: lba 1414..1541, 512 KB
+ufs: part bk41_a: lba 1542..2053, 2048 KB
+ufs: part tz_a: lba 2054..3077, 4096 KB
+ufs: tz_a: begins 7f 45 4c 46 2 1 1 3 0 0 0 0 0 0 0 0
+ufs: tz_a: fnv f04999b7e7f3d973 over 3710976 bytes, 18 ms
+ufs: part hyp_a: lba 3078..5125, 8192 KB
+ufs: hyp_a: begins 7f 45 4c 46 2 1 1 0 0 0 0 0 0 0 0 0
+ufs: hyp_a: fnv bb4f759b34f0b3dd over 3653632 bytes, 18 ms
+ufs: part modem_a: lba 5126..102405, 389120 KB
+ufs: modem_a: begins eb 3c 90 4d 53 44 4f 53 35 2e 30 0 10 4 1 0
+ufs: modem_a: fnv 78a999db72d41ac over 214265856 bytes, 1194 ms
+ufs: part bluetooth_a: lba 102406..103685, 5120 KB
+ufs: bluetooth_a: begins eb 3c 90 4d 53 44 4f 53 35 2e 30 0 10 4 1 0
+ufs: bluetooth_a: fnv 6a7975c4fb6fc1d over 503808 bytes, 2 ms
+ufs: part mdtpsecapp_a: lba 103686..104965, 5120 KB
+ufs: part mdtp_a: lba 104966..113157, 32768 KB
+ufs: part abl_a: lba 113158..115205, 8192 KB
+ufs: abl_a: begins 7f 45 4c 46 1 1 1 0 0 0 0 0 0 0 0 0
+ufs: abl_a: fnv 964d10ab80c3c72e over 208896 bytes, 1 ms
+ufs: part dsp_a: lba 115206..131589, 65536 KB
+ufs: dsp_a: begins 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ufs: dsp_a: fnv cf41f153d26f4d38 over 67108864 bytes, 327 ms
+ufs: part keymaster_a: lba 131590..131845, 1024 KB
+ufs: part boot_a: lba 131846..180997, 196608 KB
+ufs: part devcfg_a: lba 180998..181061, 256 KB
+ufs: part qupfw_a: lba 181062..181093, 128 KB
+ufs: part vbmeta_a: lba 181094..181125, 128 KB
+ufs: part dtbo_a: lba 181126..187269, 24576 KB
+ufs: part uefisecapp_a: lba 187270..187781, 2048 KB
+ufs: part imagefv_a: lba 187782..200069, 49152 KB
+ufs: part shrm_a: lba 200070..200101, 128 KB
+ufs: part cpucp_a: lba 200102..200357, 1024 KB
+ufs: part featenabler_a: lba 200358..200389, 128 KB
+ufs: part vendor_boot_a: lba 200390..224965, 98304 KB
+ufs: part qmcs: lba 224966..232645, 30720 KB
+ufs: part qweslicstore_a: lba 232646..232709, 256 KB
+ufs: part recovery_a: lba 232710..258309, 102400 KB
+ufs: part xbl_ramdump_a: lba 258310..258821, 2048 KB
+ufs: part uefi_b: lba 258822..260101, 5120 KB
+ufs: part aop_b: lba 260102..260229, 512 KB
+ufs: aop_b: begins 7f 45 4c 46 1 1 1 3 0 0 0 0 0 0 0 0
+ufs: aop_b: fnv 967b65bbe133607 over 208896 bytes, 1 ms
+ufs: part aop_config_b: lba 260230..260357, 512 KB
+ufs: part bk41_b: lba 260358..260869, 2048 KB
+ufs: part tz_b: lba 260870..261893, 4096 KB
+ufs: tz_b: begins 7f 45 4c 46 2 1 1 3 0 0 0 0 0 0 0 0
+ufs: tz_b: fnv f04999b7e7f3d973 over 3710976 bytes, 18 ms
+ufs: part hyp_b: lba 261894..263941, 8192 KB
+ufs: hyp_b: begins 7f 45 4c 46 2 1 1 0 0 0 0 0 0 0 0 0
+ufs: hyp_b: fnv bb4f759b34f0b3dd over 3653632 bytes, 18 ms
+ufs: part modem_b: lba 263942..361221, 389120 KB
+ufs: modem_b: begins eb 3c 90 4d 53 44 4f 53 35 2e 30 0 10 4 1 0
+ufs: modem_b: fnv 78a999db72d41ac over 214265856 bytes, 1136 ms
+ufs: part bluetooth_b: lba 361222..362501, 5120 KB
+ufs: bluetooth_b: begins eb 3c 90 4d 53 44 4f 53 35 2e 30 0 10 4 1 0
+ufs: bluetooth_b: fnv 6a7975c4fb6fc1d over 503808 bytes, 2 ms
+ufs: part mdtpsecapp_b: lba 362502..363525, 4096 KB
+ufs: part mdtp_b: lba 363526..371717, 32768 KB
+ufs: part abl_b: lba 371718..373765, 8192 KB
+ufs: abl_b: begins 7f 45 4c 46 1 1 1 0 0 0 0 0 0 0 0 0
+ufs: abl_b: fnv 964d10ab80c3c72e over 208896 bytes, 1 ms
+ufs: part dsp_b: lba 373766..390149, 65536 KB
+ufs: dsp_b: begins 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ufs: dsp_b: fnv cf41f153d26f4d38 over 67108864 bytes, 326 ms
+ufs: part keymaster_b: lba 390150..390405, 1024 KB
+ufs: part boot_b: lba 390406..439557, 196608 KB
+ufs: part devcfg_b: lba 439558..439621, 256 KB
+ufs: part qupfw_b: lba 439622..439653, 128 KB
+ufs: part vbmeta_b: lba 439654..439685, 128 KB
+ufs: part dtbo_b: lba 439686..445829, 24576 KB
+ufs: part uefisecapp_b: lba 445830..446341, 2048 KB
+ufs: part imagefv_b: lba 446342..458629, 49152 KB
+ufs: part shrm_b: lba 458630..458661, 128 KB
+ufs: part cpucp_b: lba 458662..458917, 1024 KB
+ufs: part featenabler_b: lba 458918..458949, 128 KB
+ufs: part vendor_boot_b: lba 458950..483525, 98304 KB
+ufs: part qweslicstore_b: lba 483526..483589, 256 KB
+ufs: part recovery_b: lba 483590..509189, 102400 KB
+ufs: part xbl_ramdump_b: lba 509190..509701, 2048 KB
+ufs: part dip: lba 509702..509957, 1024 KB
+ufs: part bk42: lba 509958..510085, 512 KB
+ufs: part limits: lba 510086..510093, 32 KB
+ufs: part limits-cdsp: lba 510094..510101, 32 KB
+ufs: part toolsfv: lba 510102..510357, 1024 KB
+ufs: part gsort: lba 510358..514453, 16384 KB
+ufs: part bk43: lba 514454..522645, 32768 KB
+ufs: part storsec: lba 522646..522677, 128 KB
+ufs: part uefivarstore: lba 522678..522805, 512 KB
+ufs: part secdata: lba 522806..522813, 32 KB
+ufs: part mdcompress: lba 522814..527933, 20480 KB
+ufs: part connsec: lba 527934..527965, 128 KB
+ufs: part tzsc: lba 527966..527997, 128 KB
+ufs: part rtice: lba 527998..528125, 512 KB
+ufs: part xbl_sc_test_mode: lba 528126..528141, 64 KB
+ufs: part xbl_sc_logs: lba 528142..528173, 128 KB
+ufs: part ALIGN_TO_128K_2: lba 6..31, 104 KB
+ufs: part bk51: lba 32..255, 896 KB
+ufs: part modemst1: lba 256..2303, 8192 KB
+ufs: part modemst2: lba 2304..4351, 8192 KB
+ufs: part fsg: lba 4352..6399, 8192 KB
+ufs: part fsc: lba 6400..6655, 1024 KB
+ufs: part persist: lba 6656..14847, 32768 KB
+ufs: 6 raw units, 128 partitions
+ufs: firmware table 0: 5ad34ba-6f02-4214-952e-4da0398e2bb9 at fefacf90
+ufs: firmware table 1: 7739f24c-93d7-11d4-9a3a-090273fc14d at fedce018
+ufs: firmware table 2: 4c19049f-4137-4dd3-9c10-8b97a83ffdfa at feface60
+ufs: firmware table 3: 49152e77-1ada-4764-b7a2-7afefed95e8b at fefb16c8
+ufs: firmware table 4: b898d8dc-80a-40f7-99e3-31627b806a5a at f57753609bc78545
+ufs: firmware table 5: 1d301fe9-be79-4353-91c2-d23bc959aec at fc2d2a98
+ufs: firmware table 6: ee4e5898-3914-4259-9d6e-dc7bd7943cf at fc2d2918
+ufs: firmware table 7: eb9d2d31-2d88-11d3-9a16-090273fc14d at fef60000
+ufs: firmware table 8: f2fd1544-9794-4a2c-992e-e5bbcf20e394 at fef5e000
+ufs: firmware table 9: dcfa911d-26eb-469f-a220-38b7dc461220 at fbc7f018
+ufs: unit 0: path 1.4[c145088609be55438bc130d64ff8e63a]
+ufs: unit 1: path 1.4[77d4908da339384aab9e586ff69ed051]
+ufs: unit 2: path 1.4[6858f8edec87774f9cda5f10df2fe601]
+ufs: unit 3: path 1.4[2490e61aeb8af84dbc980032dbdf5024]
+ufs: unit 4: path 1.4[85193fd307f1854abe3868dc7ad32cea]
+ufs: unit 5: path 1.4[5fd0a14b8e083f48a97eb19b9ccf59b0]
+ufs: block service: 128 partitions and 6 units, page fa4d0000, buffer fa5e8000 of 4096 KB
+return slot patched at 8c746a7f0, checkpoint 0
+ba: virtBase=fffffff007004000 physBase=8c7004000 slide=18c0000000 (kern_lo=8c7004000 vm_lo=fffffff007004000)
+cmdline: 310 of 607 characters
+cores for the kernel, in the order it takes them: 700 600 500 400 300 200 100
+device tree 8c8e60000 len 4404, boot_args 8c8e70000, top 8c8e80000
+cmdline: debug=0x8 rd=md0 hv_wdt_pet=1 ufs_shared_pa=0x00000000fa4d0000 hakios_kver=2.3.4-hakios-darwin22.5-sm7435-gd852e4bd-dirty loader_return_after=90 epoch=1794241587 sb_delay=8 -v cpus=8 bootcpu=7 ufs=2 wifi=1 wifi_loud=1 wifi_diag=1 wifi_en=1 wifi_rails=1 wifi_mmio=1 root_apfs=ufs_darwin wifi_nocal=1 wifi_keep=1
+the kernel will run on core 700 (this is core 0)
+jumping to 8c74694a8
+core 700: the firmware answers 0 to the request to start it
+kernel returned: log at 8c7bc89c0, 53371 bytes
+
+== KERNEL LOG ==
+cpu 4 (phys id 0x300) is a slower core: the scheduler uses it after cpu 3 (phys id 0x400)
+cpu 5 (phys id 0x200) is a slower core: the scheduler uses it after cpu 2 (phys id 0x500)
+cpu 6 (phys id 0x100) is a slower core: the scheduler uses it after cpu 1 (phys id 0x600)
+wifi: 0: the driver asks for the radio's address: none given (wifi_mac), using default 02:00:00:47:61:72
+lx: the radio is the link behind en0
+wifi: the radio is being brought up beside the system's start (wifi=1)
+
+=== init: process 1, started as /sbin/launchd ===
+
+-- the Darwin root volume on /dev/ufs_darwin as the root --
+[ ok ] mount the Darwin volume read only
+wifi: 0: apps smmu scr0 (0x15000000) = 0x250406
+wifi: 0: apps smmu idr0 (0x15000020) = 0x4c017e7e
+wifi: 0: apps smmu idr1 (0x15000024) = 0x6000004d
+wifi: 0: match register 0 is in use: stream 0x60 mask 0, s2cr 0
+wifi: 0: match register 1 is in use: stream 0x540 mask 0, s2cr 0x1
+wifi: 0: match register 2 is in use: stream 0x20 mask 0, s2cr 0x2
+wifi: 0: match register 3 is in use: stream 0x800 mask 0x402, s2cr 0x3
+wifi: 0: match register 4 is in use: stream 0x80 mask 0, s2cr 0x4
+wifi: 0: match register 5 is in use: stream 0x484 mask 0x11, s2cr 0x5
+[ ok ] the system volume on flash is the root, this image on /redwood
+wifi: 0: free: match register 6 (smr 0, s2cr 0x20000) and context 6, whose registers are at 0x15086000; the SMMU's pages are of 0x1000 bytes, 128 before the contexts'
+wifi: 0: apps smmu cbar (0x15001018) = 0
+wifi: 0: apps smmu cba2r (0x15001818) = 0
+wifi: 0: apps smmu, the radio's context sctlr (0x15086000) = 0x19c4a300
+wifi: 0: apps smmu, the radio's context ttbr0, low (0x15086020) = 0
+wifi: 0: apps smmu, the radio's context fsr (0x15086058) = 0
+Darwin 22.5.0 iPhone10,3
+Darwin Kernel Version 22.5.0: Sen 09 Nov 2026 23:25:22 WIB; okihann:xnu-8796.121.2[xnu-8796.121.2-dirty]/BUILD/obj/DEVELOPMENT_ARM64_BCM2837
+memory 2959 MB, page size 16384, 7 cpu
+
+[ ok ] sysctl: kernel identifies itself
+wifi: 0: the radio is to see 45056 KB of ours (0x8ca9d8000) at 0xa0000000
+wifi: 0: THE SMMU IS ABOUT TO BE WRITTEN: context 6 gets page tables of ours (root 0x8cdeac000) and is switched on, and match register 6 sends stream 0x4c0 mask 0x1 through it; before: smr 0, s2cr 0x20000, the context's sctlr 0x19c4a300
+wifi: 0: about to write apps smmu, the radio's context sctlr at 0x15086000: 0
+wifi: 0: about to write apps smmu cba2r at 0x15001818: 0x1
+wifi: 0: about to write apps smmu cbar at 0x15001018: 0x1f300
+wifi: 0: about to write apps smmu, the radio's context tcr2 at 0x15086010: 0x38011
+wifi: 0: about to write apps smmu, the radio's context tcr at 0x15086030: 0x803519
+wifi: 0: about to write apps smmu, the radio's context ttbr0, low at 0x15086020: 0xcdeac000
+wifi: 0: about to write apps smmu, the radio's context ttbr0, high at 0x15086024: 0x60008
+wifi: 0: about to write apps smmu, the radio's context ttbr1, low at 0x15086028: 0
+wifi: 0: about to write apps smmu, the radio's context ttbr1, high at 0x1508602c: 0
+wifi: 0: about to write apps smmu, the radio's context mair0 at 0x15086038: 0xf404ff44
+wifi: 0: about to write apps smmu, the radio's context mair1 at 0x1508603c: 0
+wifi: 0: about to write apps smmu, the radio's context fsr at 0x15086058: 0xc00001fe
+wifi: 0: about to write apps smmu, the radio's context tlbiasid at 0x15086610: 0x6
+wifi: 0: about to write apps smmu, the radio's context tlbsync at 0x150867f0: 0x1
+wifi: 0: about to write apps smmu, the radio's context sctlr at 0x15086000: 0x1127
+wifi: 0: about to write apps smmu s2cr at 0x15000c18: 0x6
+wifi: 0: about to write apps smmu smr at 0x15000818: 0x800104c0
+wifi: 0: apps smmu smr (0x15000818) = 0x800104c0
+wifi: 0: apps smmu s2cr (0x15000c18) = 0x6
+wifi: 0: apps smmu cbar (0x15001018) = 0x1f300
+wifi: 0: apps smmu, the radio's context sctlr (0x15086000) = 0x127
+wifi: 0: apps smmu, the radio's context ttbr0, low (0x15086020) = 0xcdeac000
+wifi: 0: apps smmu, the radio's context ttbr0, high (0x15086024) = 0x60008
+wifi: 0: apps smmu, the radio's context tcr (0x15086030) = 0x803519
+wifi: 0: apps smmu, the radio's context tcr2 (0x15086010) = 0x38071
+wifi: 0: apps smmu cba2r (0x15001818) = 0x1
+wifi: 0: apps smmu sgfsr (0x15000048) = 0
+wifi: 0: THE RADIO'S STREAM GOES THROUGH CONTEXT 6 of the SMMU, with our page tables
+wifi: 0: the SMMU has refused the radio nothing (context 6: fsr 0x400; sgfsr 0)
+lx: 44 MB for the radio to read and write; it knows them from 0xa0000000 on
+wifi: step 1: map the shared memory area (0x80900000, 2 MB: memory, not registers) and read how the boot loader laid it out
+wifi: 1: the boot loader's version word is 0xc0000; the table of partitions begins 24 54 4f 43, version 1, 16 entries
+wifi: 1: partition 0: processors 0xffff and 0xffff, at 0x80aff000, 0x1000 bytes, flags 0x1, alignment 0
+wifi: 1: partition 1: processors 0 and 0x2, at 0x80acf000, 0x30000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 2: processors 0 and 0x5, at 0x80aaf000, 0x20000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 3: processors 0 and 0xe, at 0x80aad000, 0x2000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 4: processors 0 and 0x1, at 0x80a31000, 0x7c000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 5: processors 0x1 and 0x2, at 0x80a11000, 0x20000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 6: processors 0x1 and 0xe, at 0x80a0f000, 0x2000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 7: processors 0x7 and 0x1, at 0x80a0d000, 0x2000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 8: processors 0x7 and 0x2, at 0x80a0b000, 0x2000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 9: processors 0x7 and 0x5, at 0x80a09000, 0x2000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 10: processors 0x7 and 0xd, at 0x80a05000, 0x4000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 11: processors 0 and 0xd, at 0x809c5000, 0x40000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 12: processors 0x1 and 0xd, at 0x809a5000, 0x20000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 13: processors 0xd and 0x2, at 0x80985000, 0x20000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 14: processors 0xfffe and 0xfffe, at 0x80901000, 0x84000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 15: processors 0xffff and 0xffff, at 0x80900000, 0x1000 bytes, flags 0x3, alignment 0
+wifi: 1: the partition for us and the Wi-Fi DSP (0 and 13): at 0x809c5000, 0x40000 bytes, of which 0x3bfa0 free; 2 items
+wifi: 1:   items (bytes): 478 (32) 479 (16384)
+wifi: 1: the partition for everybody (the global one): at 0x80901000, 0x84000 bytes, of which 0x7c308 free; 18 items
+wifi: 1:   items (bytes): 469 (4096) 473 (12288) 604 (2120) 603 (492) 402 (2328) 404 (8192) 137 (288) 602 (592) 403 (16) 474 (12) 614 (720) 632 (4)
+wifi: 1:   items (bytes): 612 (320) 631 (32) 628 (4) 135 (88) 498 (18) 81 (36)
+wifi: 1: item 616, SMP2P from us to the DSP: not there
+wifi: 1: item 626, the DSP's last words: not there
+wifi: 1: item 617, SMP2P from the DSP to us: not there (the DSP has not run since the phone was started)
+wifi: step 2: read the description at the start of the always-on processor's message memory (0xc300000)
+wifi: 2: mailbox magic (0xc300000) = 0x4d41494c
+wifi: 2: mailbox version (0xc300004) = 0x1
+wifi: 2: mailbox features (0xc300008) = 0
+wifi: 2: mailbox their link (0xc30000c) = 0xffff
+wifi: 2: mailbox their link, seen by us (0xc300010) = 0xffff
+wifi: 2: mailbox their channel (0xc300014) = 0xffff
+wifi: 2: mailbox their channel, seen by us (0xc300018) = 0xffff
+wifi: 2: mailbox their mailbox's size (0xc30001c) = 0x68
+wifi: 2: mailbox their mailbox (0xc300020) = 0xc0
+wifi: 2: mailbox our link (0xc300024) = 0xffff
+wifi: 2: mailbox our link, seen by them (0xc300028) = 0xffff
+wifi: 2: mailbox our channel (0xc30002c) = 0xffff0000
+wifi: 2: mailbox our channel, seen by them (0xc300030) = 0xffff0000
+wifi: 2: mailbox our mailbox's size (0xc300034) = 0x2d8
+wifi: 2: mailbox our mailbox (0xc300038) = 0x128
+wifi: 2: mailbox the length of the message in our mailbox (0xc300128) = 0
+wifi: step 2: read who has rung our doorbell (IPCC, 0xed18000: the first access to that block)
+wifi: 2: ipcc received (0xed18010) = 0xffffffff
+wifi: step 3: look up the supplies involved in the boot loader's list of RPMh resources (memory at 0x80860000)
+wifi: 3: RPMh has "cx.lvl" at 0x30000 (the DSP's logic; dt: vdd_cx of qcom,wpss@8a00000, asked 384 while it boots); levels: 0 16 64 128 192 224 256 288 320 336 384 400 416 432
+wifi: 3: RPMh has "mx.lvl" at 0x30010 (its memories; dt: vdd_mx, the same); levels: 0 16 56 64 128 192 224 256 288 320 336 384 400 416 432
+wifi: 3: RPMh has "xo.lvl" at 0x30090 (the crystal oscillator; dt: its clock "xo"); levels: 0 32 80 128
+wifi: 3: RPMh has "smpb7" at 0x40000 (PM7325 S7: the radio's vdd-cx-mx)
+wifi: 3: RPMh has "smpb1" at 0x40400 (PM7325 S1: the radio's vdd-1.8-xo)
+wifi: 3: RPMh has "smpb8" at 0x40100 (PM7325 S8: the radio's vdd-1.3-rfa)
+wifi: step 3: read the application processor's RPMh sequencer (0x17a20000: the first access to that block): its version, and the commands its slots hold
+wifi: 3: rsc id (0x17a20000) = 0x20700
+wifi: 3: rsc configuration (0x17a2000c) = 0x800c8104
+wifi: 3: the operating system's part has 8 TCSs of 16 commands
+wifi: 3: TCS 0 (at once): commands enabled 0x7f, control 0x1010000, status 0x1
+wifi: 3:   command 0: 0x50000 (MC0 + 0) = 0x6068dfb0, flags 0x10108
+wifi: 3:   command 1: 0x50008 (SH1 + 0) = 0x20000001, flags 0x10008
+wifi: 3:   command 2: 0x50004 (SH0 + 0) = 0x60501824, flags 0x10108
+wifi: 3:   command 3: 0x50014 (SN2 + 0) = 0x213c44f0, flags 0x10008
+wifi: 3:   command 4: 0x5000c (SN0 + 0) = 0x613c44f0, flags 0x10108
+wifi: 3:   command 5: 0x50030 (CN0 + 0) = 0x60000001, flags 0x10108
+wifi: 3:   command 6: 0x5004c (ACV + 0) = 0x60000008, flags 0x10108
+wifi: 3:   command 7 (not enabled): 0x50018 (SN3 + 0) = 0, flags 0x10008
+wifi: 3:   command 8 (not enabled): 0x50014 (SN2 + 0) = 0x20004001, flags 0x10008
+wifi: 3:   command 9 (not enabled): 0x50010 (SN1 + 0) = 0, flags 0x10008
+wifi: 3:   command 10 (not enabled): 0x5000c (SN0 + 0) = 0x60004001, flags 0x10008
+wifi: 3:   command 11 (not enabled): 0x5002c (MM1 + 0) = 0x20000001, flags 0x10008
+wifi: 3:   command 12 (not enabled): 0x50028 (MM0 + 0) = 0x621c509f, flags 0x10008
+wifi: 3:   command 13 (not enabled): 0x50030 (CN0 + 0) = 0x60000001, flags 0x10008
+wifi: 3:   command 14 (not enabled): 0x50034 (CE0 + 0) = 0x40000000, flags 0x10008
+wifi: 3:   command 15 (not enabled): 0x50040 (QUP1 + 0) = 0x40000000, flags 0x10008
+wifi: 3: TCS 1 (at once): commands enabled 0, control 0x10000, status 0x1
+wifi: 3: TCS 2 (asleep): commands enabled 0, control 0x10000, status 0x1
+wifi: 3: TCS 3 (asleep): commands enabled 0, control 0, status 0x1
+wifi: 3: TCS 4 (asleep): commands enabled 0, control 0, status 0x1
+wifi: 3: TCS 5 (awake): commands enabled 0, control 0, status 0x1
+wifi: 3: TCS 6 (awake): commands enabled 0, control 0, status 0x1
+wifi: 3: TCS 7 (awake): commands enabled 0, control 0, status 0x1
+wifi: step 3: wifi_rails=1: vote the DSP's rails and the WLAN block's PMIC rails through RPMh (batch of 5 on TCS 5)
+wifi: 3: vote "cx.lvl" (at 0x30000) = 0x1800a0a
+
+psci: cpu 1 ends the system: the return to the boot loader is the boot processor's to make
+
+--- kernel message buffer ---
+[   32.227910]:  vm_cache_geometry_colors: 8
+[   32.227915]: do_cacheid() - 65536 bytes Unknown cache (I:32768 D:32768 (separate)), 16-way assoc, 64 bytes/line
+[   32.228162]: kprintf initialized
+[   32.228226]: initialize_screen: b=B8000000, w=000004C4, h=00000A98, r=00001310, d=00000000
+[   32.228243]: pe_arm_init_interrupts: args: 0xfffffff007b76720
+[   32.228247]: pe_arm_map_interrupt_controller: soc_phys:  0x400000
+[   32.228250]: pe_arm_map_interrupt_controller: failed to find the interrupt-controller.
+[   32.228253]: pe_arm_init_debug: failed to find cpu-debug-interface
+[   32.228316]: gic: v3, distributor 0xfffffff0f8920000, cpu 0's redistributor 0xfffffff0f8a10000, virtual timer on PPI 27
+[   32.228333]: Darwin Kernel Version 22.5.0: Sen 09 Nov 2026 23:25:22 WIB; okihann:xnu-8796.121.2[xnu-8796.121.2-dirty]/BUILD/obj/DEVELOPMENT_ARM64_BCM2837
+[   32.232402]: pmap_startup() init/release time: 3368 microsec
+[   32.232409]: pmap_startup() delayed init/release of 0 pages
+[   32.232413]: vm_page_bootstrap: 186698 free pages, 2741 wired pages, (up to 0 of which are delayed free)
+[   32.236388]: VM boostrap: 102 maps, 204 entries and 512 holes available
+[   32.236411]: Maximum number of VM swap files: 5
+[   32.236496]: gIOKitPageableFixed2    : 0xfffffff0fa000000 - 0xfffffff100000000 (96M)
+[   32.236500]: bufferhdr               : 0xfffffff100000000 - 0xfffffff100220000 (2176K)
+[   32.236503]: io_submap               : 0xfffffff100220000 - 0xfffffff100a20000 (8M)
+[   32.236506]: gIOKitPageableFixed1    : 0xfffffff100a20000 - 0xfffffff106a20000 (96M)
+[   32.236509]: gIOKitPageableFixed3    : 0xfffffff106a20000 - 0xfffffff10ca20000 (96M)
+[   32.236511]: gIOKitPageableFixed0    : 0xfffffff10ca20000 - 0xfffffff112a20000 (96M)
+[   32.236514]: zones                   : 0xfffffff112a20000 - 0xfffffff712a20000 (24G)
+[   32.236516]: compressor              : 0xfffffff712a20000 - 0xfffffff7f3a3c000 (3600M)
+[   32.236519]: zone_meta               : 0xfffffff7f3a3c000 - 0xfffffff7f5af4000 (32M)
+[   32.236521]: bsd_pageable            : 0xfffffff7f5af4000 - 0xfffffff7f643c000 (9M)
+[   32.236524]: kmem_sprayqtn_range     : 0xfffffff7f643c000 - 0xfffffff851ce0000 (1464M)
+[   32.236527]: ipc_kernel_map          : 0xfffffff851ce0000 - 0xfffffff853ce0000 (32M)
+[   32.236530]: kmem_ptr_range          : 0xfffffff853ce0000 - 0xfffffff954880000 (4107M)
+[   32.236532]: kmem_ptr_range_meta     : 0xfffffff954880000 - 0xfffffff954944000 (784K)
+[   32.236535]: ipc_kernel_copy_map     : 0xfffffff954944000 - 0xfffffff955144000 (8M)
+[   32.236537]: mb                      : 0xfffffff955144000 - 0xfffffff959144000 (64M)
+[   32.236539]: kmem_data_range         : 0xfffffff959144000 - 0xfffffffbffdfc000 (10G)
+[   32.236576]: kmem_large_ranges[1]    : 0 - 0 (0B)
+[   32.236578]: kmem_large_ranges[2]    : 0 - 0 (0B)
+[   32.236580]: kmem_large_ranges[3]    : 0 - 0 (0B)
+[   32.236582]: kmem_large_ranges[4]    : 0xfffffff801b50800 - 0xfffffff851ce0000 (1281M)
+[   32.236585]: kmem_large_ranges[5]    : 0xfffffff9adedb000 - 0xfffffffbffdfc000 (9G)
+[   32.236594]: "vm_compressor_mode" is 2
+[   32.236643]: zone_init: pgzalloc  0xfffffff112a20000:0xfffffff114104000 (22M) [732 slots]
+[   32.236654]: zone_init: map VM    0xfffffff114104000:0xfffffff1fa3f8000 (3682M)
+[   32.236660]: zone_init: map RO    0xfffffff1fa3f8000:0xfffffff246fa0000 (1227M)
+[   32.236665]: zone_init: map GEN0  0xfffffff246fa0000:0xfffffff32d298000 (3682M)
+[   32.236670]: zone_init: map GEN1  0xfffffff32d298000:0xfffffff413590000 (3682M)
+[   32.236675]: zone_init: map GEN2  0xfffffff413590000:0xfffffff4f9888000 (3682M)
+[   32.236680]: zone_init: map GEN3  0xfffffff4f9888000:0xfffffff5dfb80000 (3682M)
+[   32.236685]: zone_init: map DATA  0xfffffff5dfb80000:0xfffffff712a20000 (4910M)
+[   32.236689]: zone_init: metadata  0xfffffff7f3a4c000:0xfffffff7f524c000 (24M)
+[   32.236691]: zone_init: metabits  0xfffffff7f524c000:0xfffffff7f5ae4000 (8M)
+[   32.236693]: zone_init: extra     0:0 (0B)
+[   32.236854]: VM bootstrap done: 90 maps, 163 entries and 501 holes left
+[   32.238986]: IOKit IOMD setownership ENABLED
+[   32.238994]: ATM subsystem is initialized
+[   32.239902]: Log queues configured: slot count: 56, per-slot size: 32768, total size: 1835008
+[   32.239915]: OSLog stream configured: stream: 8192 bytes, cache: 2112 bytes
+[   32.239917]: OSLog stream verification: 0
+[   32.239940]: Long logs support configured: size: 16384
+[   32.240059]: Firehose configured: 16 chunks, 8 io pages
+[   32.240070]: Telemetry: Sampling all tasks once per 1 second
+[   32.240080]: Scheduler: Default of clutch
+[   32.240084]: Setting scheduler priority decay band limit 18
+[   32.240089]: standard timeslicing quantum is 10000 us
+[   32.240091]: standard background quantum is 2500 us
+[   32.240300]: BANK subsystem is initialized
+[   32.240332]: mig_table_max_displ = 54 mach_kobj_count = 371
+[   32.242476]: panic_trace: PE_arm_debug_enable_trace enter
+[   32.242484]: panic_trace: PE_arm_debug_enable_trace exit
+[   32.242492]: kdp_core zlib memory 0x8000
+[   32.242625]: Registered coredump handler for kernel
+[   32.242630]: Serial requested, consistent debug disabled or debug boot arg not present, configuring debugging over serial
+[   32.242632]: Initializing serial KDP
+[   32.248452]: iBoot version: iBoot-8422.100.650
+[   32.248478]: iBoot Stage 2 version: 
+[   32.250475]: IONVRAM.cpp:initImageFormat:1364 - NVRAM size is 8192 bytes
+[   32.250565]: IONVRAM.cpp:getNVRAMProperties:1176 - _bankSize=0x2000, _bankCount=0x1, _currentBank=0
+[   32.250693]: IONVRAMCHRPHandler.cpp:unserializeImage:479 - NVRAM : commonPartitionOffset - 0x30, commonPartitionSize - 0x1fd0, systemPartitionOffset - 0xffffffff, systemPartitionSize - 0
+[   32.251108]: minicrypto: registered (md5, sha1, sha2, hmac, aes-ecb/cbc/ctr, hmac-drbg prng); no xts/gcm, no RSA
+[   32.251114]: ulock_initialize>thread_max=1536, ull_hash_buckets=512
+[   32.252159]: hakios-kernel: 14 drivers built in (.config): virtio_sound adreno virtio_input goodix buttons qmi virtio_net battery cpufreq thermal pmic ufs virtio_blk wifi
+[   32.252230]: calling mpo_policy_init for vnguard
+[   32.252280]: Security policy loaded: Guarded vnode policy (vnguard)
+[   32.252310]: calling mpo_policy_init for AMFI
+[   32.252371]: Security policy loaded: Apple Mobile File Integrity (stand-in) (AMFI)
+[   32.252404]: calling mpo_policy_init for Sandbox
+[   32.252461]: Security policy loaded: Seatbelt sandbox policy (stand-in) (Sandbox)
+[   32.252588]: No POST boot-arg set.
+[   32.253049]: PMRD: PMTraceWorker 0xcf834fec1641ca15
+[   32.253190]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 10001)
+[   32.253640]: GenericARMPE: platform "D22AP"
+[   32.253689]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[   32.253691]: [0]ml_processor_register>cpu_id 0xfffffff5dfa556c0 cluster_id 0 cpu_number 0 is type 0
+[   32.253708]: GenericARMCPU: cpu 0 (phys id 0x700) registered
+[   32.253774]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[   32.253776]: [0]ml_processor_register>cpu_id 0xfffffff5dfa55900 cluster_id 0 cpu_number 1 is type 0
+[   32.253795]: GenericARMCPU: cpu 1 (phys id 0x600) registered
+[   32.253859]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[   32.253861]: [0]ml_processor_register>cpu_id 0xfffffff5dfa57d00 cluster_id 0 cpu_number 2 is type 0
+[   32.253878]: GenericARMCPU: cpu 2 (phys id 0x500) registered
+[   32.253940]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[   32.253942]: [0]ml_processor_register>cpu_id 0xfffffff5dfa57c40 cluster_id 0 cpu_number 3 is type 0
+[   32.253960]: GenericARMCPU: cpu 3 (phys id 0x400) registered
+[   32.254021]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[   32.254023]: [0]ml_processor_register>cpu_id 0xfffffff5dfa56e00 cluster_id 0 cpu_number 4 is type 0
+[   32.254101]: cpu 4 (phys id 0x300) is a slower core: the scheduler uses it after cpu 3 (phys id 0x400)
+[   32.254118]: GenericARMCPU: cpu 4 (phys id 0x300) registered
+[   32.254178]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[   32.254180]: [0]ml_processor_register>cpu_id 0xfffffff5dfa55a80 cluster_id 0 cpu_number 5 is type 0
+[   32.254261]: cpu 5 (phys id 0x200) is a slower core: the scheduler uses it after cpu 2 (phys id 0x500)
+[   32.254277]: GenericARMCPU: cpu 5 (phys id 0x200) registered
+[   32.254335]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[   32.254337]: [0]ml_processor_register>cpu_id 0xfffffff5dfa57100 cluster_id 0 cpu_number 6 is type 0
+[   32.254423]: cpu 6 (phys id 0x100) is a slower core: the scheduler uses it after cpu 1 (phys id 0x600)
+[   32.254439]: GenericARMCPU: cpu 6 (phys id 0x100) registered
+[   32.254647]: Copyright (c) 1982, 1986, 1989, 1991, 1993
+	The Regents of the University of California. All rights reserved.
+
+[   32.254650]: bsd_init: calling kauth_init
+[   32.254781]: bsd_init: calling process_name
+[   32.254784]: bsd_init: calling get_bsdthread_info
+[   32.254821]: MAC Framework successfully initialized
+[   32.254947]: bsd_init: calling kauth_cred_create
+[   32.254950]: bsd_init: calling chgproccnt
+[   32.254951]: bsd_init: calling kmem_suballoc
+[   32.254961]: bsd_init: calling bsd_bufferinit
+[   32.255921]: using 3749 buffer headers and 3749 cluster IO buffer headers
+[   32.255950]: bsd_init: calling IOKitInitializeTime
+[   32.255985]: clock_initialize_calendar system does not have monotonic clock
+[   32.255989]: bsd_init: calling vfsinit
+[   32.256151]: ktriage_register_subsystem_strings: set subsystem 8 strings
+[   32.256181]: bsd_init: calling proc_uuid_policy_init()
+[   32.256408]: mcache: 7 CPU(s), 64 bytes CPU cache line size
+[   32.256410]: bsd_init: calling mbinit
+[   32.256598]: mbinit: done [64 MB total pool size, (42/21) split]
+[   32.256604]: bsd_init: calling knote_init
+[   32.256606]: bsd_init: calling eventhandler_init
+[   32.256608]: bsd_init: calling aio_init
+[   32.256649]: bsd_init: calling pshm_cache_init
+[   32.256651]: bsd_init: calling psem_cache_init
+[   32.256659]: bsd_init: calling nwk_wq_init
+[   32.256669]: bsd_init: calling dlil_init
+[   32.256675]: SK: netagent is enabled by default for this platform
+[   32.256866]: DLIL: running SUM16 self-tests ... PASSED
+[   32.257181]: dlil_init: Waiting for all the create dlil kernel threads to get scheduled at least once.
+[   32.257296]: PMRD: power event 7 args 0xcf834feb2ff38885 0x0
+[   32.257304]: PMRD: power event 7 args 0xcf834feb2ff37485 0x0
+[   32.257569]: PMRD: PowerChangeOverride (OFF_STATE->ON_STATE, f, 0x2) tag 0x20064
+[   32.257587]: PMRD: sysPowerDownHandler message kIOMessageSystemCapabilityChange
+[   32.257589]: PMRD: sysPowerDownHandler cap f -> f (flags 1)
+[   32.257704]: dlil_init: All the created dlil kernel threads have been scheduled at least once. Proceeding.
+[   32.257707]: bsd_init: calling socketinit
+[   32.257717]: bsd_init: calling domaininit
+[   32.257972]: bsd_init: calling skywalk_init
+[   32.258004]: SK[0]: skmem_region_init              seg_size 16384, md_seg_size 16384, drv_buf_seg_size 65536 [eff 65536], usr_buf_seg_size 16384
+[   32.258854]: Skywalk: running self-tests
+[   32.258856]: Skywalk: sk_copy64_8 ... PASSED
+[   32.258858]: Skywalk: sk_copy32_8 ... PASSED
+[   32.258859]: Skywalk: sk_copy64_16 ... PASSED
+[   32.258860]: Skywalk: sk_copy32_16 ... PASSED
+[   32.258862]: Skywalk: sk_copy64_20 ... PASSED
+[   32.258863]: Skywalk: sk_copy64_24 ... PASSED
+[   32.258864]: Skywalk: sk_copy64_32 ... PASSED
+[   32.258865]: Skywalk: sk_copy32_32 ... PASSED
+[   32.258867]: Skywalk: sk_copy64_40 ... PASSED
+[   32.258868]: Skywalk: sk_copy64_64x ... PASSED
+[   32.258869]: Skywalk: sk_copy64_32x ... PASSED
+[   32.258870]: Skywalk: sk_copy64_8x ... PASSED
+[   32.258872]: Skywalk: sk_copy64_4x ... PASSED
+[   32.258873]: Skywalk: sk_zero_16 ... PASSED
+[   32.258874]: Skywalk: sk_zero_32 ... PASSED
+[   32.258875]: Skywalk: sk_zero_48 ... PASSED
+[   32.258877]: Skywalk: sk_zero_128 ... PASSED
+[   32.258899]: Skywalk: memcmp mask ... PASSED
+[   32.259505]: bsd_init: calling memorystatus_freeze_init
+[   32.259507]: bsd_init: calling memorystatus_init
+[   32.259570]: bsd_init: calling sysctl_mib_init
+[   32.259573]: bsd_init: calling bsd_autoconf
+[   32.259574]: bsd_autoconf: calling kminit
+[   32.261211]: bsd_init: calling loopattach
+[   32.261598]: ifnet_attach: All kernel threads created for interface lo0 have been scheduled at least once. Proceeding.
+[   32.261608]: bsd_init: calling ether_family_init
+[   32.261682]: bsd_init: calling net_init_run
+[   32.261867]: skip attaching fsw to lo0 using legacy TX modelReinit'd ND information for interface lo0
+[   32.262218]: bsd_init: calling inittodr
+[   32.262220]: bsd_init: calling setconf
+[   32.262324]: PMRD: sysPowerDownHandler message kIOMessageSystemCapabilityChange
+[   32.262327]: PMRD: sysPowerDownHandler cap f -> f (flags 2)
+[   32.262332]: PMRD: tellChangeUp OFF_STATE->ON_STATE
+[   32.262339]: PMRD: PowerChangeDone: OFF_STATE->ON_STATE
+[   32.262340]: PMRD: Force re-evaluating aggressiveness
+[   32.262343]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 30002)
+[   32.262353]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x10001
+[   32.262356]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[   32.262358]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x302) tag 0x40064
+[   32.262363]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[   32.262365]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x302) tag 0x50064
+[   32.262368]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[   32.262373]: PMRD: adjustPowerState ON_STATE, asap 0, idleSleepEnabled 0
+[   32.262375]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 60008)
+[   32.262380]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x30002
+[   32.262382]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[   32.262386]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x60008
+[   32.262387]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[   32.262484]: cpu_start() cpu: 0
+[   32.262508]: cpu_start() cpu: 1
+[   32.263766]: gic: v3, distributor 0xfffffff0f8920000, cpu 1's redistributor 0xfffffff0f89f0000, virtual timer on PPI 27
+[   32.263772]: panic_trace: PE_arm_debug_enable_trace enter
+[   32.263773]: panic_trace: PE_arm_debug_enable_trace exit
+[   32.263774]: arm_cpu_init(): cpu 1 online
+[   32.264287]: cpu_start() cpu: 2
+[   32.265304]: gic: v3, distributor 0xfffffff0f8920000, cpu 2's redistributor 0xfffffff0f89d0000, virtual timer on PPI 27
+[   32.265308]: panic_trace: PE_arm_debug_enable_trace enter
+[   32.265310]: panic_trace: PE_arm_debug_enable_trace exit
+[   32.265311]: arm_cpu_init(): cpu 2 online
+[   32.265948]: cpu_start() cpu: 3
+[   32.266912]: gic: v3, distributor 0xfffffff0f8920000, cpu 3's redistributor 0xfffffff0f89b0000, virtual timer on PPI 27
+[   32.266916]: panic_trace: PE_arm_debug_enable_trace enter
+[   32.266918]: panic_trace: PE_arm_debug_enable_trace exit
+[   32.266919]: arm_cpu_init(): cpu 3 online
+[   32.267580]: GenericARMPE: 4 of 7 processors are running
+[   32.267898]: MiniIOMobileFramebuffer: display 1125x2436 on a panel of 1220x2712 (4880 bytes per row)
+[   32.268026]: MiniIOMobileFramebuffer: IOMFBDisplayRefresh: 60 Hz (the panel: 60), an interval of 71582788 (2^-32 s), 319999 ticks
+[   32.364315]: !BSD
+[   32.364422]: Added memory device md0/rmd0 (01000000/0D000000) at FFFFFFF0082F0000 for 0000000000B70000
+[   32.364427]: BSD root: md0, major 1, minor 0
+[   32.364456]: bsd_init: vfs_mountroot
+[   32.364856]: apfs: device 1,0: requests to it cost next to nothing (a disk in memory)
+[   32.364926]: apfs: 4 threads on a request of many pieces (3 helpers)
+[   32.365070]: apfs: volume 0 "redwood" of container 0 (at 0 MB): 105 files, 21 directories, 2576 blocks of 4096 used
+[   32.365097]: bsd_init: calling VFS_ROOT
+[   32.365105]: bsd_init: calling devfs_kernel_mount
+[   32.365502]: hakios-kernel: version 2.3.4-hakios-darwin22.5-sm7435-gd852e4bd-dirty
+[   32.366877]: ufs: 128 partitions of the phone's storage as /dev/ufs_NAME and /dev/rufs_NAME, read only, through the loader's page at fa4d0000 and its 4096 KB buffer
+[   32.367451]: wifi: 0: the driver asks for the radio's address: none given (wifi_mac), using default 02:00:00:47:61:72
+[   32.367644]: ifnet_attach: All kernel threads created for interface en0 have been scheduled at least once. Proceeding.
+[   32.367716]: net: en0 attached on the phone's radio (ath11k) (a radio), link down
+[   32.367875]: lx: the radio is the link behind en0
+[   32.367970]: wifi: the radio is being brought up beside the system's start (wifi=1)
+[   32.367996]: bsd_init: calling siginit
+[   32.367997]: bsd_init: calling bsd_utaskbootstrap
+[   32.368161]: bsd_init: calling mountroot_post_hook
+[   32.368168]: bsd_init: done
+[   32.368175]: vm_free_delayed_pages: initialized 0 free pages
+[   32.368300]: No POST boot-arg set.
+[   32.368313]: bsd_init: bsd_do_post - doneVM Swap Subsystem is ON
+[   32.368553]: Failed to open swap file 2
+[   32.368564]: vm_swap_create_file failed @ 32 secs
+[   32.368569]: vm_swap_create_file failed @ 32 secs
+[   32.369066]: load_init_program: attempting to load /usr/appleinternal/sbin/launchd.development
+[   32.369670]: load_init_program: attempting to load /sbin/launchd
+[   32.378779]: apfs: device 2,34: requests to it are worth putting together
+[   32.379741]: apfs: volume 0 "System" of container 0 (at 0 MB): 45073 files, 16555 directories, 603066 blocks of 4096 used
+[   32.380548]: vfs_switch_root : shuffling mount points : /flash <-> / <-> redwood
+[   32.380734]: wifi: 0: apps smmu scr0 (0x15000000) = 0x250406
+[   32.380746]: wifi: 0: apps smmu idr0 (0x15000020) = 0x4c017e7e
+[   32.380754]: wifi: 0: apps smmu idr1 (0x15000024) = 0x6000004d
+[   32.380768]: wifi: 0: match register 0 is in use: stream 0x60 mask 0, s2cr 0
+[   32.380781]: wifi: 0: match register 1 is in use: stream 0x540 mask 0, s2cr 0x1
+[   32.380794]: wifi: 0: match register 2 is in use: stream 0x20 mask 0, s2cr 0x2
+[   32.380808]: wifi: 0: match register 3 is in use: stream 0x800 mask 0x402, s2cr 0x3
+[   32.380821]: wifi: 0: match register 4 is in use: stream 0x80 mask 0, s2cr 0x4
+[   32.380834]: wifi: 0: match register 5 is in use: stream 0x484 mask 0x11, s2cr 0x5
+[   32.381159]: will preserve mountpoint across pivot: /dev
+[   32.381231]: skipping preserved mountpoint because not found or error: 2: System/Volumes/Preboot
+[   32.381301]: skipping preserved mountpoint because not found or error: 2: System/Volumes/Recovery
+[   32.381362]: skipping preserved mountpoint because not found or error: 2: System/Volumes/VM
+[   32.381424]: skipping preserved mountpoint because not found or error: 2: System/Volumes/Update
+[   32.381491]: skipping preserved mountpoint because not found or error: 2: System/Volumes/iSCPreboot
+[   32.381562]: skipping preserved mountpoint because not found or error: 2: System/Volumes/Hardware
+[   32.381629]: skipping preserved mountpoint because not found or error: 2: System/Volumes/xarts
+[   32.381690]: skipping preserved mountpoint because not found or error: 2: FactoryLogs
+[   32.381753]: skipping preserved mountpoint because not found or error: 2: System/Volumes/Diags
+[   32.381825]: vfs_switch_root : done shuffling mount points with error: 0
+[   32.381874]: hakios: /flash is the root now, the one before it on /redwood: 0
+[   32.382079]: wifi: 0: free: match register 6 (smr 0, s2cr 0x20000) and context 6, whose registers are at 0x15086000; the SMMU's pages are of 0x1000 bytes, 128 before the contexts'
+[   32.382126]: wifi: 0: apps smmu cbar (0x15001018) = 0
+[   32.382177]: wifi: 0: apps smmu cba2r (0x15001818) = 0
+[   32.382244]: wifi: 0: apps smmu, the radio's context sctlr (0x15086000) = 0x19c4a300
+[   32.382310]: wifi: 0: apps smmu, the radio's context ttbr0, low (0x15086020) = 0
+[   32.382369]: wifi: 0: apps smmu, the radio's context fsr (0x15086058) = 0
+[   32.390140]: wifi: 0: the radio is to see 45056 KB of ours (0x8ca9d8000) at 0xa0000000
+[   32.390149]: wifi: 0: THE SMMU IS ABOUT TO BE WRITTEN: context 6 gets page tables of ours (root 0x8cdeac000) and is switched on, and match register 6 sends stream 0x4c0 mask 0x1 through it; before: smr 0, s2cr 0x20000, the context's sctlr 0x19c4a300
+[   32.390155]: wifi: 0: about to write apps smmu, the radio's context sctlr at 0x15086000: 0
+[   32.390160]: wifi: 0: about to write apps smmu cba2r at 0x15001818: 0x1
+[   32.390170]: wifi: 0: about to write apps smmu cbar at 0x15001018: 0x1f300
+[   32.390217]: wifi: 0: about to write apps smmu, the radio's context tcr2 at 0x15086010: 0x38011
+[   32.390221]: wifi: 0: about to write apps smmu, the radio's context tcr at 0x15086030: 0x803519
+[   32.390226]: wifi: 0: about to write apps smmu, the radio's context ttbr0, low at 0x15086020: 0xcdeac000
+[   32.390231]: wifi: 0: about to write apps smmu, the radio's context ttbr0, high at 0x15086024: 0x60008
+[   32.390235]: wifi: 0: about to write apps smmu, the radio's context ttbr1, low at 0x15086028: 0
+[   32.390240]: wifi: 0: about to write apps smmu, the radio's context ttbr1, high at 0x1508602c: 0
+[   32.390244]: wifi: 0: about to write apps smmu, the radio's context mair0 at 0x15086038: 0xf404ff44
+[   32.390248]: wifi: 0: about to write apps smmu, the radio's context mair1 at 0x1508603c: 0
+[   32.390253]: wifi: 0: about to write apps smmu, the radio's context fsr at 0x15086058: 0xc00001fe
+[   32.390258]: wifi: 0: about to write apps smmu, the radio's context tlbiasid at 0x15086610: 0x6
+[   32.390262]: wifi: 0: about to write apps smmu, the radio's context tlbsync at 0x150867f0: 0x1
+[   32.391413]: wifi: 0: about to write apps smmu, the radio's context sctlr at 0x15086000: 0x1127
+[   32.391417]: wifi: 0: about to write apps smmu s2cr at 0x15000c18: 0x6
+[   32.391427]: wifi: 0: about to write apps smmu smr at 0x15000818: 0x800104c0
+[   32.391444]: wifi: 0: apps smmu smr (0x15000818) = 0x800104c0
+[   32.391451]: wifi: 0: apps smmu s2cr (0x15000c18) = 0x6
+[   32.391460]: wifi: 0: apps smmu cbar (0x15001018) = 0x1f300
+[   32.391463]: wifi: 0: apps smmu, the radio's context sctlr (0x15086000) = 0x127
+[   32.391468]: wifi: 0: apps smmu, the radio's context ttbr0, low (0x15086020) = 0xcdeac000
+[   32.391472]: wifi: 0: apps smmu, the radio's context ttbr0, high (0x15086024) = 0x60008
+[   32.391476]: wifi: 0: apps smmu, the radio's context tcr (0x15086030) = 0x803519
+[   32.391480]: wifi: 0: apps smmu, the radio's context tcr2 (0x15086010) = 0x38071
+[   32.391487]: wifi: 0: apps smmu cba2r (0x15001818) = 0x1
+[   32.391494]: wifi: 0: apps smmu sgfsr (0x15000048) = 0
+[   32.391498]: wifi: 0: THE RADIO'S STREAM GOES THROUGH CONTEXT 6 of the SMMU, with our page tables
+[   32.391506]: wifi: 0: the SMMU has refused the radio nothing (context 6: fsr 0x400; sgfsr 0)
+[   32.391514]: lx: 44 MB for the radio to read and write; it knows them from 0xa0000000 on
+[   32.391522]: wifi: step 1: map the shared memory area (0x80900000, 2 MB: memory, not registers) and read how the boot loader laid it out
+[   32.391554]: wifi: 1: the boot loader's version word is 0xc0000; the table of partitions begins 24 54 4f 43, version 1, 16 entries
+[   32.391561]: wifi: 1: partition 0: processors 0xffff and 0xffff, at 0x80aff000, 0x1000 bytes, flags 0x1, alignment 0
+[   32.391567]: wifi: 1: partition 1: processors 0 and 0x2, at 0x80acf000, 0x30000 bytes, flags 0x3, alignment 32
+[   32.391573]: wifi: 1: partition 2: processors 0 and 0x5, at 0x80aaf000, 0x20000 bytes, flags 0x3, alignment 32
+[   32.391578]: wifi: 1: partition 3: processors 0 and 0xe, at 0x80aad000, 0x2000 bytes, flags 0x3, alignment 32
+[   32.391583]: wifi: 1: partition 4: processors 0 and 0x1, at 0x80a31000, 0x7c000 bytes, flags 0x3, alignment 32
+[   32.391589]: wifi: 1: partition 5: processors 0x1 and 0x2, at 0x80a11000, 0x20000 bytes, flags 0x3, alignment 32
+[   32.391594]: wifi: 1: partition 6: processors 0x1 and 0xe, at 0x80a0f000, 0x2000 bytes, flags 0x3, alignment 32
+[   32.391600]: wifi: 1: partition 7: processors 0x7 and 0x1, at 0x80a0d000, 0x2000 bytes, flags 0x3, alignment 32
+[   32.391605]: wifi: 1: partition 8: processors 0x7 and 0x2, at 0x80a0b000, 0x2000 bytes, flags 0x3, alignment 32
+[   32.391610]: wifi: 1: partition 9: processors 0x7 and 0x5, at 0x80a09000, 0x2000 bytes, flags 0x3, alignment 32
+[   32.391616]: wifi: 1: partition 10: processors 0x7 and 0xd, at 0x80a05000, 0x4000 bytes, flags 0x3, alignment 32
+[   32.391621]: wifi: 1: partition 11: processors 0 and 0xd, at 0x809c5000, 0x40000 bytes, flags 0x3, alignment 32
+[   32.391627]: wifi: 1: partition 12: processors 0x1 and 0xd, at 0x809a5000, 0x20000 bytes, flags 0x3, alignment 32
+[   32.391633]: wifi: 1: partition 13: processors 0xd and 0x2, at 0x80985000, 0x20000 bytes, flags 0x3, alignment 32
+[   32.391638]: wifi: 1: partition 14: processors 0xfffe and 0xfffe, at 0x80901000, 0x84000 bytes, flags 0x3, alignment 32
+[   32.391645]: wifi: 1: partition 15: processors 0xffff and 0xffff, at 0x80900000, 0x1000 bytes, flags 0x3, alignment 0
+[   32.391664]: wifi: 1: the partition for us and the Wi-Fi DSP (0 and 13): at 0x809c5000, 0x40000 bytes, of which 0x3bfa0 free; 2 items
+[   32.391668]: wifi: 1:   items (bytes): 478 (32) 479 (16384)
+[   32.391693]: wifi: 1: the partition for everybody (the global one): at 0x80901000, 0x84000 bytes, of which 0x7c308 free; 18 items
+[   32.391701]: wifi: 1:   items (bytes): 469 (4096) 473 (12288) 604 (2120) 603 (492) 402 (2328) 404 (8192) 137 (288) 602 (592) 403 (16) 474 (12) 614 (720) 632 (4)
+[   32.391706]: wifi: 1:   items (bytes): 612 (320) 631 (32) 628 (4) 135 (88) 498 (18) 81 (36)
+[   32.391738]: wifi: 1: item 616, SMP2P from us to the DSP: not there
+[   32.391774]: wifi: 1: item 626, the DSP's last words: not there
+[   32.391809]: wifi: 1: item 617, SMP2P from the DSP to us: not there (the DSP has not run since the phone was started)
+[   32.391814]: wifi: step 2: read the description at the start of the always-on processor's message memory (0xc300000)
+[   32.391821]: wifi: 2: mailbox magic (0xc300000) = 0x4d41494c
+[   32.391825]: wifi: 2: mailbox version (0xc300004) = 0x1
+[   32.391828]: wifi: 2: mailbox features (0xc300008) = 0
+[   32.391832]: wifi: 2: mailbox their link (0xc30000c) = 0xffff
+[   32.391837]: wifi: 2: mailbox their link, seen by us (0xc300010) = 0xffff
+[   32.391841]: wifi: 2: mailbox their channel (0xc300014) = 0xffff
+[   32.391845]: wifi: 2: mailbox their channel, seen by us (0xc300018) = 0xffff
+[   32.391849]: wifi: 2: mailbox their mailbox's size (0xc30001c) = 0x68
+[   32.391853]: wifi: 2: mailbox their mailbox (0xc300020) = 0xc0
+[   32.391857]: wifi: 2: mailbox our link (0xc300024) = 0xffff
+[   32.391862]: wifi: 2: mailbox our link, seen by them (0xc300028) = 0xffff
+[   32.391866]: wifi: 2: mailbox our channel (0xc30002c) = 0xffff0000
+[   32.391870]: wifi: 2: mailbox our channel, seen by them (0xc300030) = 0xffff0000
+[   32.391875]: wifi: 2: mailbox our mailbox's size (0xc300034) = 0x2d8
+[   32.391879]: wifi: 2: mailbox our mailbox (0xc300038) = 0x128
+[   32.391883]: wifi: 2: mailbox the length of the message in our mailbox (0xc300128) = 0
+[   32.391888]: wifi: step 2: read who has rung our doorbell (IPCC, 0xed18000: the first access to that block)
+[   32.391895]: wifi: 2: ipcc received (0xed18010) = 0xffffffff
+[   32.391902]: wifi: step 3: look up the supplies involved in the boot loader's list of RPMh resources (memory at 0x80860000)
+[   32.391920]: wifi: 3: RPMh has "cx.lvl" at 0x30000 (the DSP's logic; dt: vdd_cx of qcom,wpss@8a00000, asked 384 while it boots); levels: 0 16 64 128 192 224 256 288 320 336 384 400 416 432
+[   32.391933]: wifi: 3: RPMh has "mx.lvl" at 0x30010 (its memories; dt: vdd_mx, the same); levels: 0 16 56 64 128 192 224 256 288 320 336 384 400 416 432
+[   32.391942]: wifi: 3: RPMh has "xo.lvl" at 0x30090 (the crystal oscillator; dt: its clock "xo"); levels: 0 32 80 128
+[   32.391955]: wifi: 3: RPMh has "smpb7" at 0x40000 (PM7325 S7: the radio's vdd-cx-mx)
+[   32.391966]: wifi: 3: RPMh has "smpb1" at 0x40400 (PM7325 S1: the radio's vdd-1.8-xo)
+[   32.391977]: wifi: 3: RPMh has "smpb8" at 0x40100 (PM7325 S8: the radio's vdd-1.3-rfa)
+[   32.391983]: wifi: step 3: read the application processor's RPMh sequencer (0x17a20000: the first access to that block): its version, and the commands its slots hold
+[   32.391989]: wifi: 3: rsc id (0x17a20000) = 0x20700
+[   32.391992]: wifi: 3: rsc configuration (0x17a2000c) = 0x800c8104
+[   32.391996]: wifi: 3: the operating system's part has 8 TCSs of 16 commands
+[   32.392001]: wifi: 3: TCS 0 (at once): commands enabled 0x7f, control 0x1010000, status 0x1
+[   32.392010]: wifi: 3:   command 0: 0x50000 (MC0 + 0) = 0x6068dfb0, flags 0x10108
+[   32.392020]: wifi: 3:   command 1: 0x50008 (SH1 + 0) = 0x20000001, flags 0x10008
+[   32.392027]: wifi: 3:   command 2: 0x50004 (SH0 + 0) = 0x60501824, flags 0x10108
+[   32.392037]: wifi: 3:   command 3: 0x50014 (SN2 + 0) = 0x213c44f0, flags 0x10008
+[   32.392045]: wifi: 3:   command 4: 0x5000c (SN0 + 0) = 0x613c44f0, flags 0x10108
+[   32.392055]: wifi: 3:   command 5: 0x50030 (CN0 + 0) = 0x60000001, flags 0x10108
+[   32.392064]: wifi: 3:   command 6: 0x5004c (ACV + 0) = 0x60000008, flags 0x10108
+[   32.392072]: wifi: 3:   command 7 (not enabled): 0x50018 (SN3 + 0) = 0, flags 0x10008
+[   32.392081]: wifi: 3:   command 8 (not enabled): 0x50014 (SN2 + 0) = 0x20004001, flags 0x10008
+[   32.392089]: wifi: 3:   command 9 (not enabled): 0x50010 (SN1 + 0) = 0, flags 0x10008
+[   32.392097]: wifi: 3:   command 10 (not enabled): 0x5000c (SN0 + 0) = 0x60004001, flags 0x10008
+[   32.392106]: wifi: 3:   command 11 (not enabled): 0x5002c (MM1 + 0) = 0x20000001, flags 0x10008
+[   32.392114]: wifi: 3:   command 12 (not enabled): 0x50028 (MM0 + 0) = 0x621c509f, flags 0x10008
+[   32.392121]: wifi: 3:   command 13 (not enabled): 0x50030 (CN0 + 0) = 0x60000001, flags 0x10008
+[   32.392129]: wifi: 3:   command 14 (not enabled): 0x50034 (CE0 + 0) = 0x40000000, flags 0x10008
+[   32.392137]: wifi: 3:   command 15 (not enabled): 0x50040 (QUP1 + 0) = 0x40000000, flags 0x10008
+[   32.392142]: wifi: 3: TCS 1 (at once): commands enabled 0, control 0x10000, status 0x1
+[   32.392217]: wifi: 3: TCS 2 (asleep): commands enabled 0, control 0x10000, status 0x1
+[   32.392290]: wifi: 3: TCS 3 (asleep): commands enabled 0, control 0, status 0x1
+[   32.392359]: wifi: 3: TCS 4 (asleep): commands enabled 0, control 0, status 0x1
+[   32.392430]: wifi: 3: TCS 5 (awake): commands enabled 0, control 0, status 0x1
+[   32.392501]: wifi: 3: TCS 6 (awake): commands enabled 0, control 0, status 0x1
+[   32.392573]: wifi: 3: TCS 7 (awake): commands enabled 0, control 0, status 0x1
+[   32.392644]: wifi: step 3: wifi_rails=1: vote the DSP's rails and the WLAN block's PMIC rails through RPMh (batch of 5 on TCS 5)
+[   32.392649]: wifi: 3: vote "cx.lvl" (at 0x30000) = 0x1800a0a
+[   32.392663]: cpu_signal failed in DebuggerXCallEnter
+[   32.392664]: cpu_signal failed in DebuggerXCallEnter
+[   32.392665]: cpu_signal failed in DebuggerXCallEnter
+
+--- panic buffer ---
+panic(cpu 1 caller 0xfffffff007b0c230): Kernel data abort. at pc 0xfffffff0074f42e0, lr 0xfffffff0074f83fc (saved state: 0xfffffff7f6503960)
+	  x0:  0x0000000000255a50 x1:  0x0000000000010108  x2:  0x000000000001401b  x3:  0xfffffffbffcf0c0d
+	  x4:  0x0000000000000000 x5:  0x0000000100000000  x6:  0x0000000000000000  x7:  0x0000000000000000
+	  x8:  0x00000000002559ec x9:  0xba76248f692c00c1  x10: 0x000000000001401b  x11: 0x0000000000000000
+	  x12: 0x0000000000000000 x13: 0x0000000000000000  x14: 0x0200000110000c10  x15: 0x0000000100000000
+	  x16: 0x0000000000000002 x17: 0x0000000000000003  x18: 0x0000000000000000  x19: 0x0000000000000000
+	  x20: 0xfffffff0071d2d88 x21: 0xffffffffffffff9c  x22: 0xfffffff100234090  x23: 0x0000000001800a0a
+	  x24: 0x0000000000000000 x25: 0x0000000000255a50  x26: 0x0000000000000000  x27: 0x0000000000255a58
+	  x28: 0x0000000000255a54 fp:  0xfffffff7f6503e80  lr:  0xfffffff0074f83fc  sp:  0xfffffff7f6503cb0
+	  pc:  0xfffffff0074f42e0 cpsr: 0x60400204         esr: 0x96000045          far: 0x0000000000255a50
+
+Debugger message: panic
+Device: D22
+Hardware Model: iPhone10,3
+ECID: 0000052445730001
+Boot args: debug=0x8 rd=md0 hv_wdt_pet=1 ufs_shared_pa=0x00000000fa4d0000 hakios_kver=2.3.4-hakios-darwin22.5-sm7435-gd852e4bd-dirty loader_return_after=90 epoch=1794241587 sb_delay=8 -v cpus=8 bootcpu=7 ufs=2 wifi=1 wifi_loud=1 wifi_diag=1 wifi_en=1 wifi_rails=1 wifi_mmio=1 root_apfs=ufs_darwin wifi_nocal=1 wifi_keep=1
+Memory ID: 0x0
+OS release type: Not set yet
+OS version: Not set yet
+Kernel version: Darwin Kernel Version 22.5.0: Sen 09 Nov 2026 23:25:22 WIB; okihann:xnu-8796.121.2[xnu-8796.121.2-dirty]/BUILD/obj/DEVELOPMENT_ARM64_BCM2837
+Kernel UUID: D039ACB6-5337-3890-B533-407AF9658E40
+Boot session UUID: 8976C31C-B58C-40D7-A6D6-9974CA47A4DF
+iBoot version: iBoot-8422.100.650
+iBoot Stage 2 version: 
+secure boot?: NO
+roots installed: 0
+Paniclog version: 14
+Kernel text base:  0xfffffff007004000
+mach_absolute_time: 0x2532e8a2
+Epoch Time:        sec       usec
+  Boot    : 0x6af1f433 0x00000000
+  Sleep   : 0x00000000 0x00000000
+  Wake    : 0x00000000 0x00000000
+  Calendar: 0x6af1f433 0x0003cc4b
+
+Zone info:
+  Zone map: 0xfffffff112a20000 - 0xfffffff712a20000
+  . PGZ   : 0xfffffff112a20000 - 0xfffffff114104000
+  . VM    : 0xfffffff114104000 - 0xfffffff1fa3f8000
+  . RO    : 0xfffffff1fa3f8000 - 0xfffffff246fa0000
+  . GEN0  : 0xfffffff246fa0000 - 0xfffffff32d298000
+  . GEN1  : 0xfffffff32d298000 - 0xfffffff413590000
+  . GEN2  : 0xfffffff413590000 - 0xfffffff4f9888000
+  . GEN3  : 0xfffffff4f9888000 - 0xfffffff5dfb80000
+  . DATA  : 0xfffffff5dfb80000 - 0xfffffff712a20000
+  Metadata: 0xfffffff7f3a4c000 - 0xfffffff7f524c000
+  Bitmaps : 0xfffffff7f524c000 - 0xfffffff7f5ae4000
+  Extra   : 0 - 0
+
+TPIDRx_ELy = {1: 0xfffffff4135d64e8  0: 0x0000000000000001  0ro: 0x0000000000000000 }
+CORE 0: PC=0xfffffff0072f60d4, LR=0xfffffff0074312fc, FP=0xfffffff7f64c76c0
+CORE 1 is the one that panicked. Check the full backtrace for details.
+CORE 2: PC=0xfffffff00746dcb8, LR=0xfffffff00746dcb4, FP=0xfffffff7f662fe80
+CORE 3: PC=0xfffffff00746dcb8, LR=0xfffffff00746dcb4, FP=0xfffffff7f6593e80
+CORE 4: PC=0x0000000000000000, LR=0x0000000000000000, FP=0x0000000000000000
+CORE 5: PC=0x0000000000000000, LR=0x0000000000000000, FP=0x0000000000000000
+CORE 6: PC=0x0000000000000000, LR=0x0000000000000000, FP=0x0000000000000000
+Compressor Info: 0% of compressed pages limit (OK) and 0% of segments limit (OK) with 0 swapfiles and OK swap space
+Panicked task 0xfffffff5dfb266d0: 0 pages, 56 threads: pid 0: kernel_task
+Panicked thread: 0xfffffff4135d64e8, backtrace: 0xfffffff7f6502ff0, tid: 184
+		  lr: 0xfffffff0072db914  fp: 0xfffffff7f6503080
+		  lr: 0xfffffff007477a10  fp: 0xfffffff7f65030a0
+		  lr: 0xfffffff007467dfc  fp: 0xfffffff7f6503120
+		  lr: 0xfffffff007466e44  fp: 0xfffffff7f6503240
+		  lr: 0xfffffff0074665a4  fp: 0xfffffff7f6503250
+		  lr: 0xfffffff0072daf50  fp: 0xfffffff7f6503600
+		  lr: 0xfffffff0072dc0ac  fp: 0xfffffff7f6503680
+		  lr: 0xfffffff007b018d4  fp: 0xfffffff7f65036a0
+		  lr: 0xfffffff007b0c230  fp: 0xfffffff7f6503820
+		  lr: 0xfffffff00746794c  fp: 0xfffffff7f6503940
+		  lr: 0xfffffff0074665a4  fp: 0xfffffff7f6503950
+		  lr: 0xfffffff0074f83fc  fp: 0xfffffff7f6503e80
+		  lr: 0xfffffff0074f2e48  fp: 0xfffffff7f6503f20
+		  lr: 0xfffffff00746c5c0  fp: 0x0000000000000000
+
+PMOC€0ˆkcd_c_type0ˆkcd_c_totalout?0ˆkcd_c_totalin`MX¢Y€Hbf``0â â’ÄäìâŒü’øÌ¼ø´œÄôbˆ8Œdgyícƒhÿÿb@ÜÄ €¢¿ 3,ˆDü$.ÿÿbr€¸ˆA ¸²¸$57hLI*6ûAö!ÿÿäd`
+ô "±ÿÿRB“gG’1ÿÿ@“gp@UÿÿâÊO
+5C…]‹Ê3ó¼S‹òRsÂR‹Š3óóŒŒôLõ¬‚Só,üòËŒŒÌŒŒ­ŒL­ŒŒÂ=¬ò³33óò¬*òJu-Ì-ÍôõŒ¢Q¹º)™E%•±úN¡>.úùIYú.®a®>ş¾®~!ñA¾f&ñNÎ¾FÆæ 'ÿÿ4[„ E{60k¨ØQ£ıA2;!¥U*ñ±§—Ğ»…Ÿ:ÊÍ¹|G¿Ÿ¯Ûísù·aùoäB9Œ»zÑ¦,o²€Ğ{åGtLÊbÜÊ¯Ó£ aÄI¯¦,ï»ÈÎ—Œş{=3¿ÔâQe5UÉ¢¥ÓfƒÄN9Ş‚[ö[ŒxæÀÖt£,ê§(EQ55øVÏø–d;t6øH­1[DYŠ²„—îuô=†šM Ä¤qHÌk"‡zöé²,ÚDv1Q¡iGéSÿÌ[M‡sÚ˜­,®Ï‹ãÿÿ2b îb(&80Bÿÿ2R@ÜÄ ğO(AÂ‚ÿÿ2R@ÜÄ àYšs+Â’ÿÿb fbpâ„Ğ0ÿÿrò€œ Æ€Ù¨dŒ†™ÿÿj‚ñÿÿbšçk†ŠßÛsjÿŸcLÌ@>HĞ{«dîaòqzÿÿ‚¹¦†h>2ÿÿÒr€¤ÖˆØ?yÁrÍ¶`s‹	[ª~¦ö9€¤@ÿÿbêo2:€024( ó»‚Ld`0şò1Y™Í„ÌAcgƒ3l|Ibq6š*ÿÿRºG(Ô…2ÿÿÒB“G–±ÿÿ‚…O*T‚¨ÿÿbò€ 0u{Àáä±ÉLCdq“Œál(’]×9UAÀ ˜µÑÑ`u²Öboü›Ïƒ8@p:Ù@a¾À’!=5¿´$¾891"H)	4O¨¾MOv(DÀ#à#²ÿÿrR¡4ÿÿ‚…_”~ÿÿB?˜:¨r†˜,C¢ÂïÕ"9ˆÕº‰[ÄÒt}ª¢[@pµ .ü2SrR”t’ÆÄ~'æ@‚­áJøÿÿÿÿ‚…_:T=üÿÿB?˜:|H¸ÁhB®~É„ªÂK™~èé/!¬°×¸ğ+NÎVN¹‰™y%©y‰yÉ©ñ%E©‰)¨¶áæá
+?u¨–E0”ÿÿÒ°pÿÿò€8ˆA=üÿÿB¿°*†%¹ğƒÑPaœTšÌ9·* !\á§{×
+kşÅå_V¨ù±P”ÿÿÒPÿÿ‚ù7ÊG÷/ÿÿB÷/L]Ç¹à|væƒ>Qùí‚ Ô(5}$¿¡û7€!¬Â÷vÿrr¢–W)‰©¹ùyz)©i©EÀfnJjbN°‚/6ËPmÄÎÃ~ ÊkÔPõÿÿraáÿÿ‚…,>ÑÃÿÿB?˜ºOI?˜+˜`(~±±`™­êÄå7høA2™.¸õf~.®ğÃ¥K(!ÄŒ@,ÂÉÀ0Eµ¼ÿÿŠƒ,œÿÿ‚…o6D#?ÿÿB_˜ºOh¾°ôùWŸœğM­HN- 6i‚}Líğÿÿ†#,œÿÿ‚…oT=ıÿÿB_˜:¥_Xø²~#)ÿCÓo°óZR”˜œ
+õaŠÚáÿÿZ™¥ÿÿ‚…o.”¾ÿÿB_˜ºõMàrUç¬1Qåë_F¨Pjâ|U½|ˆcˆ«¸êA\ú…l<°Ç”ìDÊZ¨DR¸ÂW
+ªßKÕ ÿÿraáÿÿ‚…ÌZôğÿÿB?˜:óD…ÌvG(ƒ	JõÂVs0!”>%.}zú§•e&§†¤åfæ%–¤†P¥=Ãu§	”¥€´³1¨|İcì‡5êrö7„©‚ÔÛ	ÑsÀòºiÿÿêX8ÿÿ‚…D£üÿÿB˜º)‡ ıÕ“jA“yv{FA¬RUœ¸ô‹ÔŸIO,Jvmâ“ósrR“KĞ,ÄÁÅ•~Aá×@Ø ÿÿ2aáÿÿ‚…_1T=ıÿÿB?˜º€•´©¿ììÁ.É•'.ü íƒäü¢TİÄ¼ÄœÊ’ÌäbİÔ²Ô¼˜S¡>ÃNá
+?ìª4€@ÌÄ ô‹Ş>ÿÿŠƒÌrÿÿ²€¸ˆA=|ÿÿBß°*†³ÁíéŸæUNØBõÁ¨`lå¼|¸{{øâ
+f¨Á`@iÿÿÒ%Pÿÿ‚ù·ÊG÷/ÿÿB÷/L]ƒğ&°?·œ'®>á…Z¥ŠNaÏ°ö&ë6ìşåÆ¡ĞŒ H}¢ªO22Ó3”!D’¸ÂoT5+ªAÿÿraáÿÿ‚…_T=üÿÿB?˜º»+HK/šBP T’Ğk½>†Õ'²‚6Xûwèáçéà[”Ÿ_â’Ÿ›˜™5œ
+Wø}š¡‚jÿÿr+ 4ÿÿ‚…_/”~ÿÿB?˜º
+ëİàô×QlKT~«…š£^Ox©b£‡_<C<XIéR;¢ÂXdæÇ¥eæe–dV¥ÆC’$ØÂ®ğcƒjãB5ÿÿraáÿÿ‚…_T=üÿÿB?˜:”÷àpÙÒHTøÙ¢:ƒáÔRìáK[Ÿc?\şe†šÿ‡Õ"ÿÿraîÿÿ‚ù·*î_ÿÿB÷/LÇÕ+`î	"Ê¿PóaÔ/şıû4ÿ2AŞ‹æ_ÿÿŠÃÜÿÿ‚ùwTİ¿ÿÿB÷/LÔ¿)¡ÄùWj>Œ’Z†?~]æ_F¨ÁÛÑüÿÿŠO€Òÿÿ‚ùw"”î_ÿÿB÷/L]Èp¼ö°µ¿í°€Ú³p~ÿö2Øc-p¥g%¨¹·˜¡(ÿÿÒ0wÿÿ‚ùwTİ¿ÿÿB÷/L]Ã­-`†xÖå_m¨ù0êÿúÖÙ’ä_Xp6¢ùÿÿZs7ÿÿ‚ùw2Tİ¿ÿÿB÷/L©şU†yJ¿'àßÜù¤ù—jn53ªEÿÿraîÿÿò€x
+ƒºÿÿB÷ï°*†€ù¤•ÏíP}0ªk:öö¬|¾z‚4ÿ²Cg†Ù¡ÿÿr§@iÿÿ‚ùw*”î_ÿÿB÷/L]ÌÉàtLl}¤5FÙ®ÄŸe/’æ_Xüî‚%l¨EÿÿÒ0wÿÿ‚ùwTİ¿ÿÿB÷/Lİ‚…üK®øW7–<ÿ.Có/ÿÿ‚ùænÿÿ‚ùw:ÿÿÿB÷/LG+$=Û\‰'ª¼Ú5FµqáoïŞí#Í¿œPƒË@Bÿÿ²aîÿÿIñ ôøÿÿB÷ï°*†mÿÆ¼!Î¿\°Õqï+½}
+Ë¿¥©¤ù—j®”¥ÿÿÒ3 4ÿÿ‚ùw&”î_ÿÿB÷/LİHıKlz¶…š£ˆ_Ö2ÒüË5ø-/Ìÿÿraîÿÿ‚ùwTİ¿ÿÿB÷/L]¥¿Ğß—şÍç86•wAÍ‡Qo÷`_Xÿco.vÿrr208ibö?rSsó‹*‹KKJ‹ã!ÂD“¸Ú/@kÀ`2ªQÿÿraáÿÿ‚…ßl¨8zøÿÿB?˜º•$†Ÿ-ª3´päXø©N'/üŒĞì!ÄÅ~ÌPıháÿÿŠÃÂÿÿò€xƒzøÿÿB¿9`U7I?c¨>K ü¶.'/üĞíÙ‡‹Æ~LP½háÿÿŠÏÒÿÿ‚…ß<(=üÿÿB?˜º!WÁùvÎ†l¢ò¯7Ô|ËƒZ1B%`åóßõÄ…Ÿ³›§O|pˆcHp|k€PÌ"i\áÇÕßÏ„jÿÿraáÿÿ‚…ß|¨8zøÿÿB?˜:˜©1Y†D…_O‰D„º]) 
+b­•‚„cDN^åÀŞßâäD-ÿ2SrR”áúHeà
+¿ˆY­±ya@ÿÿÒ°pÿÿ‚…ßB¨8zøÿÿB?˜:¨r¢©ÎF%°Z&ˆ7Høí™‡=ürïÛaí¿a?#¢İ®Wø½¹	6K;ÔğSÂ,@,ÂÉÀ°å8ı”¤CÒÑhz:p"ÿÿªX¸ÿÿ‚…÷bˆ0Fy	ÿÿBo˜:¨r¢©Ò£Ê`µ°ğŞã	o^©7* ‰dII¯ÆH:Icâ
+ï!á­Faxÿÿ:nÿÿò€x9T=}ÿÿBo˜º9ŞºD•Pcô &(½p$œqµ}÷—¾K2R
+óRsÔ‹Š“ó¬ròó³SSK`Vã¥q…7Ì¬hº€| fbPúŞcì‡5êôıBïğ…„Ï•Ò…`yXzÿÿêX8ÿÿ²€xƒzøÿÿBÿ`U¦\Z¯íS(— ¥
+Uó—ürláÏÁ„  ;—¸ğO+JÌM-V(ÉW€ÇX?±®ğg„ÀŠfïÄì@Œ/üCªôÁá>¥ş!i¨ñÔÿÿÒ+ 4ÿÿ‚ÅÇJ(=>ÿÿB˜ºP1ÒâCj>,>ÚÄÇŞµdÇ‡•B¢BFjNAjÔN|¡ø`AÓ¬ä1¡ü‹hñÿÿêX8ÿÿ‚…ÿ*ˆ0F~ÿÿB˜:RÃ_j>”~M üY·Ïğÿÿúÿÿ‚…ÿz¨8zúÿÿB˜:±Màü¶å¼1˜†jÇIù£Éì™Ï¡
+‚ÕŒ 0r`íí©Çˆÿ’Œ¢ÔÄ…äÄœ…ìÔ"`Å@ZëWúg¹Ø!œÿÿ²`áÿÿò€xƒzøÿÿB¿`U7ªŞnPåšP,ı¶@?N¨<,üîÃ~¸ü3—f!”VÒ@ÌÄ"@KpÕ°ü>g}#Ø_&› tËß00VÿÿšÀ$ÿÿ‚…ßF(=üÿÿB?˜:RÃdÀüùˆ@ø©^'-ü!ÆƒÛÁP&˜R’@ÌÄÔ?ÿÿš°pÿÿ‚…ß&ˆ0FúÿÿB?˜:RÃOj>,ü¼NâO[Ÿ[cí¯àJô
+?ÿÿúÿÿ‚…ßf¨8zúÿÿB?˜º†0Òò¯2ZøİëæT	ÁÊ?N¨<,ÿ^å°Á~œ@…@µ@å™i™ºÅ©y)`é¡ø`C3RÈ7b81éY…/%ÿÿÿêX8ÿÿ²€xƒzøÿÿBÿ-`U¥ÎŞÛÃ®ÅƒÍ‡
+ã¤ÒÑd¦öáİ¹ØÓ/zø§ädæÄgæ”–Ä§æ YBWø³Bõr ™ÿÿò·@iÿÿ‚…ßv(=üÿÿB?˜:Rûss J1Ø¹	¨‚¬Ä•~K—b?\şU†º?JÃ( Ãˆ	¥7XÿKä±Jzÿÿê˜¿ÿÿ²€xƒzxÿÿB¯`U¤Æµ ë0Åà¬
+	¯JÍ†·w|÷‘^yáJ¡4Ô8 #ˆ9XH¬×‡ÇšúŠÄ0ßà„ö©tó—¤Bè?Íş`¾‡„†ÕÛ@ãÀÿÿÒ; 4ÿÿ‚…çN(=<ÿÿBO˜º„Ê`{ ÚRhéïŠşô·w-öğDÏ¿àò³$39»˜ °*À•å ªƒĞt)ù@ÌÄ øÁÕ
+¨Ö‡Ïî0mq}=„†òañÿÿš°pÿÿ‚ÅÇnˆ0FúÿÿB˜º\{ ñÑe¡¡úqQAŒ¨‚¤CØËÓh†h°Š¿ï!ñRˆY€Ğã#Ì7¾ 1=5TV”ô‰Àâ5ÒÊ‡èÀOâŠA¨6Y4íÿÿòaáÿÿò€xƒzzÿÿB¿=`U'ØÃFC…qRÑd¬`?yy°J×Ä¥gPø¥—¥¢Ù@WøqAµ+¢ÿÿò÷@iÿÿ‚…ß^(=üÿÿB?˜ºGoÃïA‰-Qéo
+Ô|Uu{øÁÒ_/qí)`øå'e¥&—Äû•©EñÄ'=°Sp…;Ô¡|0CiÿÿÒ°pÿÿ‚…ß>¨8zøÿÿB?˜º3'wÃg¦Qáwj>ŒúuøM=†=ıáò/7Ô`ÿÿr`îÿÿ‚ùw?Tİ¿ÿÿB÷/L]7¤¼òé'®¼ºŠì {ïYüşU½İ¿œœò»j0½$çç‚³\~šÄp	…Ÿš!ÿÿòaáÿÿ‚…ß¨8zøÿÿB?˜:GKHzÒPí8©4ÇsøÃoï[+¢ú/Àğ+.O,–÷hÉÅ~lPı|hæÿÿò@iÿÿ‚…ßA(=üÿÿB?˜º7‚»Áá—á	G¨vœÔ'T)ãÛøÃo*Ñé~i™9©ñÉÀ"«$ÕB<\á·ªqšÿÿòaáÿÿ‚…ß!¨8zøÿÿB?˜ºĞğ›áO\øù1B,P€Úsãşğ»Ë	? ú@ÌÄ €%ÿÂÃ/=¢†Wø	BéD3ÿÿòaáÿÿ‚ñaÊÿÿ‚…'Ô»Ìœ0ÿÿÒR
+@’7b±ìÜwV~u÷ä»³”t/Ç€ÄAÿÿbêo2:€@jA€‘¡ D£ã/³@bP•06+H!âAø™y™%`ÿÿRäd`ªé€ªc†Ò0
+ÿÿÒB“çA³ÿÿrƒÊ·À4 Ñÿÿ‚…ß¨8zzÿÿBO0uhÆ0H£@ù¯!Œ]él`³„ÿ1	Ò‘ÛÄ­
+a3¨!++ƒë[HyØÀÄp$´D2 §I°(ƒo„1JC…€ Ù.Æ	d§ChM
+„>’¡-ø ô‰0ÍU§Ô×Ä@,ÔÿGÈ\ÁhV?bÖ4°xn+˜>3ÂY
+æ_aĞK&…€ù&©-`Ú&BOÈ‚ĞæCô‰ä»åaıL õ`ÿÿÒG 4ÿÿ‚ñ¡|ÿÿbÒ@ÜÄ P\’ì«eä—ÄädÄgV¥BÄá$L#Tÿÿ’úQÈî†òAÒüP6ÃCAÿÿ’‚ªï€	M†±°ÒÿÿcŠqƒÂ} .LZNbz1DJ²³¼vDhˆ»íX‘ñ
+** Stackshot Succeeded ** Bytes Traced 6703 (Uncompressed 19808) **
+
+== END OF LOG ==

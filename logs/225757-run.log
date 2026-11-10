@@ -1,0 +1,929 @@
+== XNULOADER run (usb) ==
+payload entry 'kernel' size e1e7c0
+payload entry 'ramdisk' size 400000
+payload entry 'cmdline' size 4b
+payload entry 'kernel.ver' size 30
+kernel va fffffff007004000..fffffff0081b27c0 entry fffffff0074194a8
+kernel loaded at pa 8d0004000..8d11c0000
+ramdisk at pa 8d11c0000 size 400000
+resident image at pa 8d9000000 size 93e60000: it is the root (md0), the payload ramdisk is md1
+ufs: unit 0: media 544433781, 61908992 blocks of 4096 (241832 MB), writable, align 8
+ufs: unit 0: GPT header crc right (1ac78a6e), table of 64 entries crc right (bb2a15cd)
+ufs: unit 1: media 544433781, 4096 blocks of 4096 (16 MB), writable, align 8
+ufs: unit 1: GPT header crc right (31c0084c), table of 32 entries crc right (90c1c4a5)
+ufs: unit 2: media 544433781, 4096 blocks of 4096 (16 MB), writable, align 8
+ufs: unit 2: GPT header crc right (78036ed2), table of 32 entries crc right (afdb4e32)
+ufs: unit 3: media 544433781, 8192 blocks of 4096 (32 MB), writable, align 8
+ufs: unit 3: GPT header crc right (f2de4e3f), table of 32 entries crc right (190eed78)
+ufs: unit 4: media 544433781, 528384 blocks of 4096 (2064 MB), writable, align 8
+ufs: unit 4: GPT header crc right (f2123d60), table of 96 entries crc right (2984c472)
+ufs: unit 5: media 544433781, 16384 blocks of 4096 (64 MB), writable, align 8
+ufs: unit 5: GPT header crc right (1a7df885), table of 32 entries crc right (9a905b93)
+ufs: part switch: lba 6..7, 8 KB
+ufs: part ssd: lba 8..15, 32 KB
+ufs: part dbg: lba 16..23, 32 KB
+ufs: part bk01: lba 24..31, 32 KB
+ufs: part bk02: lba 32..63, 128 KB
+ufs: part bk03: lba 64..127, 256 KB
+ufs: part bk04: lba 128..255, 512 KB
+ufs: part keystore: lba 256..383, 512 KB
+ufs: part frp: lba 384..511, 512 KB
+ufs: part countrycode: lba 512..1023, 2048 KB
+ufs: part misc: lba 1024..2047, 4096 KB
+ufs: part bk05: lba 2048..4095, 8192 KB
+ufs: part logfs: lba 4096..6143, 8192 KB
+ufs: part ffu: lba 6144..8191, 8192 KB
+ufs: part oops: lba 8192..12287, 16384 KB
+ufs: part devinfo: lba 12288..16383, 16384 KB
+ufs: part metadata: lba 16384..32767, 65536 KB
+ufs: part bk06: lba 32768..36863, 16384 KB
+ufs: part bk07: lba 36864..45055, 32768 KB
+ufs: part mtdblk: lba 45056..53247, 32768 KB
+ufs: part crash_history: lba 53248..68095, 59392 KB
+ufs: part minidump: lba 68096..92671, 98304 KB
+ufs: part rawdump: lba 92672..169471, 307200 KB
+ufs: part vbmeta_system_a: lba 169472..169503, 128 KB
+ufs: part vbmeta_system_b: lba 169504..169535, 128 KB
+ufs: part bk010: lba 169536..176639, 28416 KB
+ufs: part mem: lba 176640..177663, 4096 KB
+ufs: part opconfig: lba 177664..182783, 20480 KB
+ufs: part opcust: lba 182784..285183, 409600 KB
+ufs: part mbnconfig: lba 285184..293375, 32768 KB
+ufs: part rescue: lba 293376..326143, 131072 KB
+ufs: part cust: lba 326144..850431, 2097152 KB
+ufs: part super: lba 850432..3209727, 9437184 KB
+ufs: super geometry +0: 67446c613400000012ff55f0aba7b506f25cb5da5dca09344234e8df1d9c93ae
+ufs: super geometry +20: 82a499d98019467e000001000300000000100000
+ufs: super header0 +0: 30504c410a0002000001000060e62eb01791c6220f4dadf80f2f0e4c123c3869
+ufs: super header0 +20: ebd07515acc836d386a01f40d0030000cb4f480033b8e2e07930ec9082e80374
+ufs: super header0 +40: b1386153de7104a19f8d3bf651d03169000000000c0000003400000070020000
+ufs: super header0 +60: 0600000018000000000300000300000030000000900300000100000040000000
+ufs: super header0 +80: 0100000000000000000000000000000000000000000000000000000000000000
+ufs: super header0 +a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super header0 +c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super header0 +e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super tables0 +0: 6f646d5f61000000000000000000000000000000000000000000000000000000
+ufs: super tables0 +20: 00000000000000000000000001000000010000006f646d5f6200000000000000
+ufs: super tables0 +40: 0000000000000000000000000000000000000000000000000000000001000000
+ufs: super tables0 +60: 000000000200000070726f647563745f61000000000000000000000000000000
+ufs: super tables0 +80: 0000000000000000000000000000000001000000010000000100000070726f64
+ufs: super tables0 +a0: 7563745f62000000000000000000000000000000000000000000000000000000
+ufs: super tables0 +c0: 0000000002000000000000000200000073797374656d5f610000000000000000
+ufs: super tables0 +e0: 0000000000000000000000000000000000000000000000000200000001000000
+ufs: super tables0 +100: 0100000073797374656d5f620000000000000000000000000000000000000000
+ufs: super tables0 +120: 00000000000000000000000003000000000000000200000073797374656d5f65
+ufs: super tables0 +140: 78745f6100000000000000000000000000000000000000000000000000000000
+ufs: super tables0 +160: 03000000010000000100000073797374656d5f6578745f620000000000000000
+ufs: super tables0 +180: 0000000000000000000000000000000000000000040000000000000002000000
+ufs: super tables0 +1a0: 76656e646f725f61000000000000000000000000000000000000000000000000
+ufs: super tables0 +1c0: 000000000000000004000000010000000100000076656e646f725f6200000000
+ufs: super tables0 +1e0: 0000000000000000000000000000000000000000000000000000000005000000
+ufs: super tables0 +200: 000000000200000076656e646f725f646c6b6d5f610000000000000000000000
+ufs: super tables0 +220: 0000000000000000000000000000000005000000010000000100000076656e64
+ufs: super tables0 +240: 6f725f646c6b6d5f620000000000000000000000000000000000000000000000
+ufs: super tables0 +260: 0000000006000000000000000200000048210000000000000000000000080000
+ufs: super tables0 +280: 000000000000000038b451000000000000000000003000000000000000000000
+ufs: super tables0 +2a0: 40733a00000000000000000000e8510000000000000000009050270000000000
+ufs: super tables0 +2c0: 0000000000608c00000000000000000050024800000000000000000000b8b300
+ufs: super tables0 +2e0: 0000000000000000203e0300000000000000000000c0fb000000000000000000
+ufs: super tables0 +300: 64656661756c7400000000000000000000000000000000000000000000000000
+ufs: super tables0 +320: 000000000000000000000000000000007174695f64796e616d69635f70617274
+ufs: super tables0 +340: 6974696f6e735f61000000000000000000000000000000000000002002000000
+ufs: super tables0 +360: 7174695f64796e616d69635f706172746974696f6e735f620000000000000000
+ufs: super tables0 +380: 0000000000000000000000200200000000080000000000000000100000000000
+ufs: super tables0 +3a0: 0000002002000000737570657200000000000000000000000000000000000000
+ufs: super tables0 +3c0: 00000000000000000000000000000000
+ufs: super header1 +0: 30504c410a0002000001000060e62eb01791c6220f4dadf80f2f0e4c123c3869
+ufs: super header1 +20: ebd07515acc836d386a01f40d0030000cb4f480033b8e2e07930ec9082e80374
+ufs: super header1 +40: b1386153de7104a19f8d3bf651d03169000000000c0000003400000070020000
+ufs: super header1 +60: 0600000018000000000300000300000030000000900300000100000040000000
+ufs: super header1 +80: 0100000000000000000000000000000000000000000000000000000000000000
+ufs: super header1 +a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super header1 +c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super header1 +e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super tables1 +0: 6f646d5f61000000000000000000000000000000000000000000000000000000
+ufs: super tables1 +20: 00000000000000000000000001000000010000006f646d5f6200000000000000
+ufs: super tables1 +40: 0000000000000000000000000000000000000000000000000000000001000000
+ufs: super tables1 +60: 000000000200000070726f647563745f61000000000000000000000000000000
+ufs: super tables1 +80: 0000000000000000000000000000000001000000010000000100000070726f64
+ufs: super tables1 +a0: 7563745f62000000000000000000000000000000000000000000000000000000
+ufs: super tables1 +c0: 0000000002000000000000000200000073797374656d5f610000000000000000
+ufs: super tables1 +e0: 0000000000000000000000000000000000000000000000000200000001000000
+ufs: super tables1 +100: 0100000073797374656d5f620000000000000000000000000000000000000000
+ufs: super tables1 +120: 00000000000000000000000003000000000000000200000073797374656d5f65
+ufs: super tables1 +140: 78745f6100000000000000000000000000000000000000000000000000000000
+ufs: super tables1 +160: 03000000010000000100000073797374656d5f6578745f620000000000000000
+ufs: super tables1 +180: 0000000000000000000000000000000000000000040000000000000002000000
+ufs: super tables1 +1a0: 76656e646f725f61000000000000000000000000000000000000000000000000
+ufs: super tables1 +1c0: 000000000000000004000000010000000100000076656e646f725f6200000000
+ufs: super tables1 +1e0: 0000000000000000000000000000000000000000000000000000000005000000
+ufs: super tables1 +200: 000000000200000076656e646f725f646c6b6d5f610000000000000000000000
+ufs: super tables1 +220: 0000000000000000000000000000000005000000010000000100000076656e64
+ufs: super tables1 +240: 6f725f646c6b6d5f620000000000000000000000000000000000000000000000
+ufs: super tables1 +260: 0000000006000000000000000200000048210000000000000000000000080000
+ufs: super tables1 +280: 000000000000000038b451000000000000000000003000000000000000000000
+ufs: super tables1 +2a0: 40733a00000000000000000000e8510000000000000000009050270000000000
+ufs: super tables1 +2c0: 0000000000608c00000000000000000050024800000000000000000000b8b300
+ufs: super tables1 +2e0: 0000000000000000203e0300000000000000000000c0fb000000000000000000
+ufs: super tables1 +300: 64656661756c7400000000000000000000000000000000000000000000000000
+ufs: super tables1 +320: 000000000000000000000000000000007174695f64796e616d69635f70617274
+ufs: super tables1 +340: 6974696f6e735f61000000000000000000000000000000000000002002000000
+ufs: super tables1 +360: 7174695f64796e616d69635f706172746974696f6e735f620000000000000000
+ufs: super tables1 +380: 0000000000000000000000200200000000080000000000000000100000000000
+ufs: super tables1 +3a0: 0000002002000000737570657200000000000000000000000000000000000000
+ufs: super tables1 +3c0: 00000000000000000000000000000000
+ufs: part userdata: lba 3209728..61908986, 234797036 KB
+ufs: userdata sb +0: 1020f5f201000e000c000000000000000c000000090000000100000001000000
+ufs: userdata sb +20: 00000000f7ad7f03000000007bbe0100d5bf0100020000000a0000006e000000
+ufs: userdata sb +40: e00000007bbe0100000200000002000000060000001a000000f6000000b60200
+ufs: userdata sb +60: 030000000100000002000000318a075ae03b4ce7b4ad9f3d02ba292b00000000
+ufs: userdata sb +80: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +100: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +120: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +140: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +160: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +180: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +1a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +1c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +1e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +200: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +220: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +240: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +260: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +280: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +2a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +2c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +2e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +300: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +320: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +340: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +360: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +380: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +3a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +3c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +3e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb2 +0: 1020f5f201000e000c000000000000000c000000090000000100000001000000
+ufs: userdata sb2 +20: 00000000f7ad7f03000000007bbe0100d5bf0100020000000a0000006e000000
+ufs: part xbl_a: lba 6..2053, 8192 KB
+ufs: xbl_a: begins 7f 45 4c 46 1 1 1 0 0 0 0 0 0 0 0 0
+ufs: xbl_a: fnv aac0cd787086ef0a over 3706880 bytes, 18 ms
+ufs: part xbl_config_a: lba 2054..2181, 512 KB
+ufs: part multiimgqti_a: lba 2182..2189, 32 KB
+ufs: part multiimgoem_a: lba 2190..2197, 32 KB
+ufs: part apdp: lba 2198..2261, 256 KB
+ufs: part xbl_b: lba 6..2053, 8192 KB
+ufs: xbl_b: begins 7f 45 4c 46 1 1 1 0 0 0 0 0 0 0 0 0
+ufs: xbl_b: fnv aac0cd787086ef0a over 3706880 bytes, 18 ms
+ufs: part xbl_config_b: lba 2054..2181, 512 KB
+ufs: part multiimgqti_b: lba 2182..2189, 32 KB
+ufs: part multiimgoem_b: lba 2190..2197, 32 KB
+ufs: part apdp2: lba 2198..2261, 256 KB
+ufs: part ALIGN_TO_128K_1: lba 6..31, 104 KB
+ufs: part cdt: lba 32..63, 128 KB
+ufs: part bk31: lba 64..319, 1024 KB
+ufs: part ddr: lba 320..831, 2048 KB
+ufs: part bk32: lba 832..1343, 2048 KB
+ufs: part uefi_a: lba 6..1285, 5120 KB
+ufs: part aop_a: lba 1286..1413, 512 KB
+ufs: aop_a: begins 7f 45 4c 46 1 1 1 3 0 0 0 0 0 0 0 0
+ufs: aop_a: fnv 967b65bbe133607 over 208896 bytes, 1 ms
+ufs: part aop_config_a: lba 1414..1541, 512 KB
+ufs: part bk41_a: lba 1542..2053, 2048 KB
+ufs: part tz_a: lba 2054..3077, 4096 KB
+ufs: tz_a: begins 7f 45 4c 46 2 1 1 3 0 0 0 0 0 0 0 0
+ufs: tz_a: fnv f04999b7e7f3d973 over 3710976 bytes, 18 ms
+ufs: part hyp_a: lba 3078..5125, 8192 KB
+ufs: hyp_a: begins 7f 45 4c 46 2 1 1 0 0 0 0 0 0 0 0 0
+ufs: hyp_a: fnv bb4f759b34f0b3dd over 3653632 bytes, 18 ms
+ufs: part modem_a: lba 5126..102405, 389120 KB
+ufs: modem_a: begins eb 3c 90 4d 53 44 4f 53 35 2e 30 0 10 4 1 0
+ufs: modem_a: fnv 78a999db72d41ac over 214265856 bytes, 1195 ms
+ufs: part bluetooth_a: lba 102406..103685, 5120 KB
+ufs: bluetooth_a: begins eb 3c 90 4d 53 44 4f 53 35 2e 30 0 10 4 1 0
+ufs: bluetooth_a: fnv 6a7975c4fb6fc1d over 503808 bytes, 2 ms
+ufs: part mdtpsecapp_a: lba 103686..104965, 5120 KB
+ufs: part mdtp_a: lba 104966..113157, 32768 KB
+ufs: part abl_a: lba 113158..115205, 8192 KB
+ufs: abl_a: begins 7f 45 4c 46 1 1 1 0 0 0 0 0 0 0 0 0
+ufs: abl_a: fnv 964d10ab80c3c72e over 208896 bytes, 1 ms
+ufs: part dsp_a: lba 115206..131589, 65536 KB
+ufs: dsp_a: begins 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ufs: dsp_a: fnv cf41f153d26f4d38 over 67108864 bytes, 326 ms
+ufs: part keymaster_a: lba 131590..131845, 1024 KB
+ufs: part boot_a: lba 131846..180997, 196608 KB
+ufs: part devcfg_a: lba 180998..181061, 256 KB
+ufs: part qupfw_a: lba 181062..181093, 128 KB
+ufs: part vbmeta_a: lba 181094..181125, 128 KB
+ufs: part dtbo_a: lba 181126..187269, 24576 KB
+ufs: part uefisecapp_a: lba 187270..187781, 2048 KB
+ufs: part imagefv_a: lba 187782..200069, 49152 KB
+ufs: part shrm_a: lba 200070..200101, 128 KB
+ufs: part cpucp_a: lba 200102..200357, 1024 KB
+ufs: part featenabler_a: lba 200358..200389, 128 KB
+ufs: part vendor_boot_a: lba 200390..224965, 98304 KB
+ufs: part qmcs: lba 224966..232645, 30720 KB
+ufs: part qweslicstore_a: lba 232646..232709, 256 KB
+ufs: part recovery_a: lba 232710..258309, 102400 KB
+ufs: part xbl_ramdump_a: lba 258310..258821, 2048 KB
+ufs: part uefi_b: lba 258822..260101, 5120 KB
+ufs: part aop_b: lba 260102..260229, 512 KB
+ufs: aop_b: begins 7f 45 4c 46 1 1 1 3 0 0 0 0 0 0 0 0
+ufs: aop_b: fnv 967b65bbe133607 over 208896 bytes, 1 ms
+ufs: part aop_config_b: lba 260230..260357, 512 KB
+ufs: part bk41_b: lba 260358..260869, 2048 KB
+ufs: part tz_b: lba 260870..261893, 4096 KB
+ufs: tz_b: begins 7f 45 4c 46 2 1 1 3 0 0 0 0 0 0 0 0
+ufs: tz_b: fnv f04999b7e7f3d973 over 3710976 bytes, 18 ms
+ufs: part hyp_b: lba 261894..263941, 8192 KB
+ufs: hyp_b: begins 7f 45 4c 46 2 1 1 0 0 0 0 0 0 0 0 0
+ufs: hyp_b: fnv bb4f759b34f0b3dd over 3653632 bytes, 18 ms
+ufs: part modem_b: lba 263942..361221, 389120 KB
+ufs: modem_b: begins eb 3c 90 4d 53 44 4f 53 35 2e 30 0 10 4 1 0
+ufs: modem_b: fnv 78a999db72d41ac over 214265856 bytes, 1135 ms
+ufs: part bluetooth_b: lba 361222..362501, 5120 KB
+ufs: bluetooth_b: begins eb 3c 90 4d 53 44 4f 53 35 2e 30 0 10 4 1 0
+ufs: bluetooth_b: fnv 6a7975c4fb6fc1d over 503808 bytes, 2 ms
+ufs: part mdtpsecapp_b: lba 362502..363525, 4096 KB
+ufs: part mdtp_b: lba 363526..371717, 32768 KB
+ufs: part abl_b: lba 371718..373765, 8192 KB
+ufs: abl_b: begins 7f 45 4c 46 1 1 1 0 0 0 0 0 0 0 0 0
+ufs: abl_b: fnv 964d10ab80c3c72e over 208896 bytes, 1 ms
+ufs: part dsp_b: lba 373766..390149, 65536 KB
+ufs: dsp_b: begins 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ufs: dsp_b: fnv cf41f153d26f4d38 over 67108864 bytes, 326 ms
+ufs: part keymaster_b: lba 390150..390405, 1024 KB
+ufs: part boot_b: lba 390406..439557, 196608 KB
+ufs: part devcfg_b: lba 439558..439621, 256 KB
+ufs: part qupfw_b: lba 439622..439653, 128 KB
+ufs: part vbmeta_b: lba 439654..439685, 128 KB
+ufs: part dtbo_b: lba 439686..445829, 24576 KB
+ufs: part uefisecapp_b: lba 445830..446341, 2048 KB
+ufs: part imagefv_b: lba 446342..458629, 49152 KB
+ufs: part shrm_b: lba 458630..458661, 128 KB
+ufs: part cpucp_b: lba 458662..458917, 1024 KB
+ufs: part featenabler_b: lba 458918..458949, 128 KB
+ufs: part vendor_boot_b: lba 458950..483525, 98304 KB
+ufs: part qweslicstore_b: lba 483526..483589, 256 KB
+ufs: part recovery_b: lba 483590..509189, 102400 KB
+ufs: part xbl_ramdump_b: lba 509190..509701, 2048 KB
+ufs: part dip: lba 509702..509957, 1024 KB
+ufs: part bk42: lba 509958..510085, 512 KB
+ufs: part limits: lba 510086..510093, 32 KB
+ufs: part limits-cdsp: lba 510094..510101, 32 KB
+ufs: part toolsfv: lba 510102..510357, 1024 KB
+ufs: part gsort: lba 510358..514453, 16384 KB
+ufs: part bk43: lba 514454..522645, 32768 KB
+ufs: part storsec: lba 522646..522677, 128 KB
+ufs: part uefivarstore: lba 522678..522805, 512 KB
+ufs: part secdata: lba 522806..522813, 32 KB
+ufs: part mdcompress: lba 522814..527933, 20480 KB
+ufs: part connsec: lba 527934..527965, 128 KB
+ufs: part tzsc: lba 527966..527997, 128 KB
+ufs: part rtice: lba 527998..528125, 512 KB
+ufs: part xbl_sc_test_mode: lba 528126..528141, 64 KB
+ufs: part xbl_sc_logs: lba 528142..528173, 128 KB
+ufs: part ALIGN_TO_128K_2: lba 6..31, 104 KB
+ufs: part bk51: lba 32..255, 896 KB
+ufs: part modemst1: lba 256..2303, 8192 KB
+ufs: part modemst2: lba 2304..4351, 8192 KB
+ufs: part fsg: lba 4352..6399, 8192 KB
+ufs: part fsc: lba 6400..6655, 1024 KB
+ufs: part persist: lba 6656..14847, 32768 KB
+ufs: 6 raw units, 127 partitions
+ufs: firmware table 0: 5ad34ba-6f02-4214-952e-4da0398e2bb9 at fefacf90
+ufs: firmware table 1: 7739f24c-93d7-11d4-9a3a-090273fc14d at fedce018
+ufs: firmware table 2: 4c19049f-4137-4dd3-9c10-8b97a83ffdfa at feface60
+ufs: firmware table 3: 49152e77-1ada-4764-b7a2-7afefed95e8b at fefb16c8
+ufs: firmware table 4: b898d8dc-80a-40f7-99e3-31627b806a5a at 534f41192e315d54
+ufs: firmware table 5: 1d301fe9-be79-4353-91c2-d23bc959aec at fc313818
+ufs: firmware table 6: ee4e5898-3914-4259-9d6e-dc7bd7943cf at fc313898
+ufs: firmware table 7: eb9d2d31-2d88-11d3-9a16-090273fc14d at fef60000
+ufs: firmware table 8: f2fd1544-9794-4a2c-992e-e5bbcf20e394 at fef5e000
+ufs: firmware table 9: dcfa911d-26eb-469f-a220-38b7dc461220 at fbd7e018
+ufs: unit 0: path 1.4[c145088609be55438bc130d64ff8e63a]
+ufs: unit 1: path 1.4[77d4908da339384aab9e586ff69ed051]
+ufs: unit 2: path 1.4[6858f8edec87774f9cda5f10df2fe601]
+ufs: unit 3: path 1.4[2490e61aeb8af84dbc980032dbdf5024]
+ufs: unit 4: path 1.4[85193fd307f1854abe3868dc7ad32cea]
+ufs: unit 5: path 1.4[5fd0a14b8e083f48a97eb19b9ccf59b0]
+ufs: block service: 127 partitions and 6 units, page fa511000, buffer fa629000 of 4096 KB
+return slot patched at 8d041a7f0, checkpoint 0
+ba: virtBase=fffffff007004000 physBase=8d0004000 slide=18c9000000 (kern_lo=8d0004000 vm_lo=fffffff007004000)
+cmdline: 200 of 607 characters
+cores for the kernel, in the order it takes them: 700 600 500 400 300 200 100
+device tree 96ce60000 len 3910, boot_args 96ce70000, top 96ce80000
+cmdline: debug=0x8 -v rd=md0 hv_wdt_pet=1 ufs_shared_pa=0x00000000fa511000 hakios_kver=2.1.13-hakios-darwin22.5-sm7435-g96ffbc53-dirty loader_return_after=180 epoch=1793894277 sb_delay=8 cpus=8 bootcpu=7 ufs=2
+the kernel will run on core 700 (this is core 0)
+jumping to 8d04194a8
+core 700: the firmware answers 0 to the request to start it
+kernel returned: log at 8d0ae09c0, 39246 bytes
+
+== KERNEL LOG ==
+cpu 4 (phys id 0x300) is a slower core: the scheduler uses it after cpu 3 (phys id 0x400)
+cpu 5 (phys id 0x200) is a slower core: the scheduler uses it after cpu 2 (phys id 0x500)
+cpu 6 (phys id 0x100) is a slower core: the scheduler uses it after cpu 1 (phys id 0x600)
+
+=== init: process 1, started as /redwood/sbin/init ===
+Darwin 22.5.0 arm64
+Darwin Kernel Version 22.5.0: Sen 02 Nov 2026 20:12:05 WIB; okihann:xnu-8796.121.2[xnu-8796.121.2-dirty]/BUILD/obj/DEVELOPMENT_ARM64_BCM2837
+memory 2928 MB, page size 16384, 7 cpu
+
+[ ok ] sysctl: kernel identifies itself
+
+-- writable filesystem --
+[ ok ] mount a memory filesystem on /private/var
+  111 directories, 8 files
+[ ok ] create the directories of the data volume
+
+-- read-only filesystem --
+  drwxr-xr-x  2        0 /redwood/empty
+  drwxr-xr-x  2        0 /redwood/bin
+  drwxr-xr-x  2        0 /redwood/hal
+  drwxr-xr-x  2        0 /redwood/sbin
+  drwxr-xr-x  2        0 /redwood/etc
+  drwxr-xr-x  2        0 /redwood/LaunchDaemons
+  drwxr-xr-x  2        0 /redwood/var
+  drwxr-xr-x  2        0 /redwood/private
+  drwxr-xr-x  2        0 /redwood/lib
+  drwxr-xr-x  2        0 /redwood/dev
+  drwxr-xr-x  2        0 /redwood/xpc
+  drwxr-xr-x  2        0 /redwood/share
+  -rwxr-xr-x  1    66416 /redwood/bin/torch_test
+  -rwxr-xr-x  1    67576 /redwood/bin/apfs_mmap_test
+  -rwxr-xr-x  1    66808 /redwood/bin/camera_avtest
+  -rwxr-xr-x  1    69216 /redwood/bin/sound_test
+  -rwxr-xr-x  1    69704 /redwood/bin/battery_test
+  -rwxr-xr-x  1    68256 /redwood/bin/cg_test
+  -rwxr-xr-x  1    66728 /redwood/bin/cputop
+  -rwxr-xr-x  1    71744 /redwood/bin/net_test
+  -rwxr-xr-x  1    66728 /redwood/bin/rwtouch
+  -rwxr-xr-x  1    66128 /redwood/bin/hello_dyn
+  -rwxr-xr-x  1    68296 /redwood/bin/font_test
+  -rwxr-xr-x  1    67240 /redwood/bin/fps_info
+  -rwxr-xr-x  1    67952 /redwood/bin/keychain_test
+  -rwxr-xr-x  1    66576 /redwood/bin/cpu_test
+  -rwxr-xr-x  1    69672 /redwood/bin/surf_test
+  -rwxr-xr-x  1    66864 /redwood/bin/shm_test
+  -rwxr-xr-x  1    68264 /redwood/bin/cow_test
+  -rwxr-xr-x  1    67936 /redwood/bin/wifipw_test
+  -rwxr-xr-x  1    52792 /redwood/bin/var_store
+  -rwxr-xr-x  1    71328 /redwood/bin/metal_test
+  -rwxr-xr-x  1    66400 /redwood/bin/mg_test
+  -rwxr-xr-x  1    83688 /redwood/bin/svc_test
+  -rwxr-xr-x  1    67504 /redwood/bin/vol_ls
+  -rwxr-xr-x  1    67312 /redwood/bin/snap_test
+  -rwxr-xr-x  1    34496 /redwood/bin/child
+  -rwxr-xr-x  1    85768 /redwood/bin/camera_test
+  -rwxr-xr-x  1    67704 /redwood/bin/record_test
+  lrwxrwxrwx  1       31 /redwood/hal/HakiosAudio.driver -> /redwood/lib/HakiosAudio.driver
+  -rwxr-xr-x  1    52384 /redwood/sbin/init
+  -rw-r--r--  1     6018 /redwood/etc/var.skel
+  -rw-r--r--  1      262 /redwood/etc/inject.conf
+  -rw-r--r--  1       88 /redwood/etc/rc
+  -rw-r--r--  1       47 /redwood/etc/motd
+  -rw-r--r--  1      349 /redwood/etc/rc.jobs
+  -rw-r--r--  1      457 /redwood/LaunchDaemons/com.apple.notifyd.plist
+  -rw-r--r--  1      377 /redwood/LaunchDaemons/com.apple.syslogd.plist
+  -rw-r--r--  1      692 /redwood/LaunchDaemons/com.apple.containermanagerd.system.plist
+  -rw-r--r--  1      285 /redwood/LaunchDaemons/com.apple.mobilegestalt.xpc.plist
+  -rw-r--r--  1      861 /redwood/LaunchDaemons/com.apple.logd.plist
+  -rw-r--r--  1     1086 /redwood/LaunchDaemons/com.apple.backboardd.plist
+  -rw-r--r--  1      377 /redwood/LaunchDaemons/com.apple.cfprefsd.xpc.daemon.plist
+  -rw-r--r--  1      657 /redwood/LaunchDaemons/com.hakios.wifi.plist
+  -rw-r--r--  1      530 /redwood/LaunchDaemons/com.apple.cfprefsd.xpc.daemon.system.plist
+  -rw-r--r--  1      270 /redwood/LaunchDaemons/com.apple.pluginkit.pkd.plist
+  -rw-r--r--  1      908 /redwood/LaunchDaemons/com.hakios.varstore.plist
+  -rw-r--r--  1      400 /redwood/LaunchDaemons/com.apple.fseventsd.plist
+  -rw-r--r--  1      475 /redwood/LaunchDaemons/com.apple.diagnosticd.plist
+  -rw-r--r--  1     2337 /redwood/LaunchDaemons/com.apple.SpringBoard.plist
+  -rw-r--r--  1      779 /redwood/LaunchDaemons/com.hakios.demo.plist
+  -rw-r--r--  1      539 /redwood/LaunchDaemons/com.apple.wifid.plist
+  -rw-r--r--  1      488 /redwood/LaunchDaemons/com.apple.powerd.plist
+  -rw-r--r--  1      926 /redwood/LaunchDaemons/com.apple.containermanagerd.plist
+  -rw-r--r--  1      424 /redwood/LaunchDaemons/com.apple.iconservices.iconservicesagent.plist
+  -rw-r--r--  1      504 /redwood/LaunchDaemons/com.apple.analyticsd.plist
+  -rw-r--r--  1      616 /redwood/LaunchDaemons/com.apple.distnoted.xpc.daemon.plist
+  -rw-r--r--  1      792 /redwood/LaunchDaemons/com.apple.lsd.plist
+  -rw-r--r--  1      415 /redwood/LaunchDaemons/com.apple.logd_helper.plist
+  -rw-r--r--  1      636 /redwood/LaunchDaemons/com.apple.mobile.usermanagerd.plist
+  -rw-r--r--  1      412 /redwood/LaunchDaemons/com.apple.runningboardd.plist
+  drwxr-xr-x  2        0 /redwood/var/mobile
+  drwxr-xr-x  2        0 /redwood/var/mobile/Library
+  drwxr-xr-x  2        0 /redwood/var/mobile/Library/Preferences
+  drwxr-xr-x  2        0 /redwood/private/var
+  -rwxr-xr-x  1    74112 /redwood/lib/libhakios.dylib
+  drwxr-xr-x  2        0 /redwood/lib/HakiosMetal.bundle
+  drwxr-xr-x  2        0 /redwood/lib/HakiosAudio.driver
+  -rwxr-xr-x  1    67976 /redwood/lib/libhakios.tweaks.dylib
+  -rwxr-xr-x  1    91496 /redwood/lib/libhakios.sb.dylib
+  -rwxr-xr-x  1   128536 /redwood/lib/libhakios.media.dylib
+  -rwxr-xr-x  1    68248 /redwood/lib/libhakios.app.dylib
+  -rw-r--r--  1      814 /redwood/lib/HakiosMetal.bundle/Info.plist
+  -rwxr-xr-x  1    90512 /redwood/lib/HakiosMetal.bundle/HakiosMetal
+  -rwxr-xr-x  1    68496 /redwood/lib/HakiosAudio.driver/HakiosAudio
+  -rw-r--r--  1     1044 /redwood/lib/HakiosAudio.driver/Info.plist
+  -rw-r--r--  1     1852 /redwood/xpc/extensions.plist.sig
+  -rw-r--r--  1   104731 /redwood/xpc/extensions.plist
+  -rw-r--r--  1   300000 /redwood/share/pattern.bin
+[ ok ] walk our image (readdir, lstat, readlink)
+[ ok ] the system image has the dynamic linker
+  etc/motd: Darwin on hakios: image built 2026-11-02 20:15
+[ ok ] read a small file
+[ ok ] follow a symlink to a directory
+[ ok ] missing file gives ENOENT
+[ ok ] creating a file gives EROFS
+[ ok ] read a 300 KB file and verify every byte
+[ ok ] seek into the middle and read
+[ ok ] mmap the file and verify every byte (page-in)
+
+-- writing files --
+[ ok ] create a file, write 100 KB, read it back
+[ ok ] overwrite in the middle
+[ ok ] append
+[ ok ] truncate, then extend: the new part reads as zeros
+[ ok ] rename
+[ ok ] hard link, remove the first name
+[ ok ] a removed file stays usable while it is open
+[ ok ] symbolic link
+[ ok ] directories: nest, refuse to remove a full one, rename, remove
+[ ok ] shared mapping: what is stored through memory is seen by read()
+[ ok ] and what write() stores is seen through the mapping
+[ ok ] bind a local socket to a name
+[ ok ] 300 files in one directory: create, list, remove
+  lrwxr-xr-x  1       15 /tmp/t/symlink -> some/where else
+  -rw-------  1    65536 /tmp/t/mapped
+  srwxr-xr-x  1        0 /tmp/t/socket
+
+-- memory --
+[ ok ] 64 MB of anonymous memory: touch every page, read it back
+[ ok ] unmap it
+
+-- processes --
+[ ok ] fork
+  child: pid 2, parent 1, 3 arguments: [/redwood/bin/child] [one] [two]
+  child: environment: [GREETING=hello from init]
+[ ok ] exec a second program from the image, collect its exit status
+[ ok ] pipe from a child process
+
+-- dynamic linking --
+Hello from a dynamically linked program! pid 4, 3 argument(s)
+uname: Darwin 22.5.0 arm64
+heap: malloc works (0x101405380), stack near 0x16ed6b638, main at 0x10109bd4c, printf at 0x1b39540b0
+argv[0] = /redwood/bin/hello_dyn
+argv[1] = from
+argv[2] = init
+  /redwood/bin/hello_dyn exited with status 7
+[ ok ] run a program through dyld and the shared cache
+
+-- devices --
+  crw--w--w-  1        0 /dev/console
+  crw-rw-rw-  1        0 /dev/tty
+  crw-rw-rw-  1        0 /dev/null
+  crw-rw-rw-  1        0 /dev/zero
+  crw-------  1        0 /dev/klog
+  crw-------  1        0 /dev/oslog
+  crw-------  1        0 /dev/oslog_stream
+  dr-xr-xr-x  1        0 /dev/fd
+  lr-xr-xr-x  1        0 /dev/stdin -> fd/0
+  lr-xr-xr-x  1        0 /dev/stdout -> fd/1
+  lr-xr-xr-x  1        0 /dev/stderr -> fd/2
+  crw-------  1        0 /dev/pf
+  crw-------  1        0 /dev/pfm
+  crw-rw-rw-  1        0 /dev/ttyp0
+  crw-rw-rw-  1        0 /dev/ptyp0
+  crw-rw-rw-  1        0 /dev/ttyp1
+  crw-rw-rw-  1        0 /dev/ptyp1
+  crw-rw-rw-  1        0 /dev/ttyp2
+  crw-rw-rw-  1        0 /dev/ptyp2
+  crw-rw-rw-  1        0 /dev/ttyp3
+  crw-rw-rw-  1        0 /dev/ptyp3
+  crw-rw-rw-  1        0 /dev/ttyp4
+  crw-rw-rw-  1        0 /dev/ptyp4
+  crw-rw-rw-  1        0 /dev/ttyp5
+  crw-rw-rw-  1        0 /dev/ptyp5
+  crw-rw-rw-  1        0 /dev/ttyp6
+  crw-rw-rw-  1        0 /dev/ptyp6
+  crw-rw-rw-  1        0 /dev/ttyp7
+  crw-rw-rw-  1        0 /dev/ptyp7
+  crw-rw-rw-  1        0 /dev/ttyp8
+  crw-rw-rw-  1        0 /dev/ptyp8
+  crw-rw-rw-  1        0 /dev/ttyp9
+  crw-rw-rw-  1        0 /dev/ptyp9
+  crw-rw-rw-  1        0 /dev/ttypa
+  crw-rw-rw-  1        0 /dev/ptypa
+  crw-rw-rw-  1        0 /dev/ttypb
+  crw-rw-rw-  1        0 /dev/ptypb
+  crw-rw-rw-  1        0 /dev/ttypc
+  crw-rw-rw-  1        0 /dev/ptypc
+  crw-rw-rw-  1        0 /dev/ttypd
+  crw-rw-rw-  1        0 /dev/ptypd
+  crw-rw-rw-  1        0 /dev/ttype
+  crw-rw-rw-  1        0 /dev/ptype
+  crw-rw-rw-  1        0 /dev/ttypf
+  crw-rw-rw-  1        0 /dev/ptypf
+  crw-rw-rw-  1        0 /dev/ptmx
+  crw-------  1        0 /dev/bpf0
+  crw-------  1        0 /dev/bpf1
+  crw-------  1        0 /dev/bpf2
+  crw-------  1        0 /dev/bpf3
+  crw-r--r--  1        0 /dev/fsevents
+  crw-rw-rw-  1        0 /dev/random
+  crw-rw-rw-  1        0 /dev/urandom
+  crw-rw-rw-  1        0 /dev/dtrace
+  crw-rw-rw-  1        0 /dev/dtracehelper
+  crw-rw-rw-  1        0 /dev/lockstat
+  crw-rw-rw-  1        0 /dev/sdt
+  crw-rw-rw-  1        0 /dev/systrace
+  crw-rw-rw-  1        0 /dev/machtrace
+  crw-rw-rw-  1        0 /dev/fbt
+  crw-rw-rw-  1        0 /dev/profile
+  brw-------  1        0 /dev/md0
+  crw-------  1        0 /dev/rmd0
+  brw-------  1        0 /dev/md1
+  crw-------  1        0 /dev/rmd1
+  crw-rw-rw-  1        0 /dev/hakios-touch
+  crw-rw-rw-  1        0 /dev/hakios-audio
+[ ok ] devfs is mounted on /dev
+[ ok ] /dev/zero
+[ ok ] /dev/null
+  /dev/random: d3 ed 6d e4 41 da 0a 70 e3 fb 74 e4 b0 8a 83 bc
+[ ok ] /dev/random
+
+-- time --
+  slept 200 ms, the clock advanced 205 ms
+[ ok ] sleep and wall clock agree
+
+=== 36 checks, 0 failed ===
+init: library insertion: /redwood/lib/libhakios.dylib backboardd containermanagerd containermanagerd_system;/redwood/lib/libhakios.sb.dylib SpringBoard;/redwood/lib/libhakios.media.dylib mediaserverd;/redwood/lib/libhakios.app.dylib Sileo;/redwood/lib/libhakios.tweaks.dylib Preferences
+init: up to 32768 vnodes
+
+=== /redwood/etc/rc ===
+
+$ exec /sbin/launchd.darwin
+Darwin Ignition Sequence Version 1.0.0: Tue Jul  2 20:41:23 PDT 2024; root:libignition-51~1974/libignition_core/RELEASE_ARM64
+libignition: 1: arguments           :
+libignition: 1:   ignition level    : 0x5
+libignition: 1:   force dylib root  : 0x0
+libignition: 1:   halt after stage  : n/a
+libignition: 1: ignition blob not available
+
+psci: cpu 3 ends the system: the return to the boot loader is the boot processor's to make
+
+--- kernel message buffer ---
+[  117.1002632]:  vm_cache_geometry_colors: 8
+[  117.1002637]: do_cacheid() - 65536 bytes Unknown cache (I:32768 D:32768 (separate)), 16-way assoc, 64 bytes/line
+[  117.1002877]: kprintf initialized
+[  117.1002949]: initialize_screen: b=B8000000, w=000004C4, h=00000A98, r=00001310, d=00000000
+[  117.1002966]: pe_arm_init_interrupts: args: 0xfffffff007a8e720
+[  117.1002969]: pe_arm_map_interrupt_controller: soc_phys:  0x400000
+[  117.1002972]: pe_arm_map_interrupt_controller: failed to find the interrupt-controller.
+[  117.1002975]: pe_arm_init_debug: failed to find cpu-debug-interface
+[  117.1003040]: gic: v3, distributor 0xfffffff18d120000, cpu 0's redistributor 0xfffffff18d210000, virtual timer on PPI 27
+[  117.1003058]: Darwin Kernel Version 22.5.0: Sen 02 Nov 2026 20:12:05 WIB; okihann:xnu-8796.121.2[xnu-8796.121.2-dirty]/BUILD/obj/DEVELOPMENT_ARM64_BCM2837
+[  117.1003667]: pmap_startup() init/release time: 478 microsec
+[  117.1003674]: pmap_startup() delayed init/release of 0 pages
+[  117.1003678]: vm_page_bootstrap: 26471 free pages, 160921 wired pages, (up to 0 of which are delayed free)
+[  117.1007664]: VM boostrap: 102 maps, 204 entries and 512 holes available
+[  117.1007685]: Maximum number of VM swap files: 5
+[  117.1007769]: gIOKitPageableFixed0    : 0xfffffff18e000000 - 0xfffffff194000000 (96M)
+[  117.1007773]: mb                      : 0xfffffff194000000 - 0xfffffff198000000 (64M)
+[  117.1007776]: compressor              : 0xfffffff198000000 - 0xfffffff27703c000 (3568M)
+[  117.1007779]: zones                   : 0xfffffff27703c000 - 0xfffffff87703c000 (24G)
+[  117.1007781]: gIOKitPageableFixed2    : 0xfffffff87703c000 - 0xfffffff87d03c000 (96M)
+[  117.1007784]: zone_meta               : 0xfffffff87d03c000 - 0xfffffff87e998000 (25M)
+[  117.1007786]: gIOKitPageableFixed3    : 0xfffffff87e998000 - 0xfffffff884998000 (96M)
+[  117.1007789]: io_submap               : 0xfffffff884998000 - 0xfffffff885198000 (8M)
+[  117.1007792]: kmem_ptr_range          : 0xfffffff885198000 - 0xfffffff961798000 (3526M)
+[  117.1007794]: kmem_data_range         : 0xfffffff961798000 - 0xfffffffbe9b14000 (10G)
+[  117.1007797]: ipc_kernel_copy_map     : 0xfffffffbe9b14000 - 0xfffffffbea314000 (8M)
+[  117.1007800]: bsd_pageable            : 0xfffffffbea314000 - 0xfffffffbeac5c000 (9M)
+[  117.1007802]: kmem_sprayqtn_range     : 0xfffffffbeac5c000 - 0xfffffffbf7d04000 (208M)
+[  117.1007805]: ipc_kernel_map          : 0xfffffffbf7d04000 - 0xfffffffbf9d04000 (32M)
+[  117.1007807]: kmem_ptr_range_meta     : 0xfffffffbf9d04000 - 0xfffffffbf9dac000 (672K)
+[  117.1007810]: gIOKitPageableFixed1    : 0xfffffffbf9dac000 - 0xfffffffbffdac000 (96M)
+[  117.1007812]: bufferhdr               : 0xfffffffbffdac000 - 0xfffffffbffdfc000 (320K)
+[  117.1007847]: kmem_large_ranges[1]    : 0 - 0 (0B)
+[  117.1007850]: kmem_large_ranges[2]    : 0 - 0 (0B)
+[  117.1007851]: kmem_large_ranges[3]    : 0 - 0 (0B)
+[  117.1007854]: kmem_large_ranges[4]    : 0xfffffffbec671000 - 0xfffffffbf7d04000 (182M)
+[  117.1007856]: kmem_large_ranges[5]    : 0xfffffff9b2807800 - 0xfffffffbe9b14000 (8G)
+[  117.1007864]: "vm_compressor_mode" is 2
+[  117.1007906]: zone_init: pgzalloc  0xfffffff27703c000:0xfffffff277380000 (3344K) [104 slots]
+[  117.1007913]: zone_init: map VM    0xfffffff277380000:0xfffffff35d968000 (3685M)
+[  117.1007919]: zone_init: map RO    0xfffffff35d968000:0xfffffff3aa608000 (1228M)
+[  117.1007924]: zone_init: map GEN0  0xfffffff3aa608000:0xfffffff490bf0000 (3685M)
+[  117.1007929]: zone_init: map GEN1  0xfffffff490bf0000:0xfffffff5771d8000 (3685M)
+[  117.1007934]: zone_init: map GEN2  0xfffffff5771d8000:0xfffffff65d7c0000 (3685M)
+[  117.1007938]: zone_init: map GEN3  0xfffffff65d7c0000:0xfffffff743dac000 (3685M)
+[  117.1007943]: zone_init: map DATA  0xfffffff743dac000:0xfffffff87703c000 (4914M)
+[  117.1007947]: zone_init: metadata  0xfffffff87d04c000:0xfffffff87e84c000 (24M)
+[  117.1007950]: zone_init: metabits  0xfffffff87e84c000:0xfffffff87e988000 (1264K)
+[  117.1007952]: zone_init: extra     0:0 (0B)
+[  117.1008158]: VM bootstrap done: 90 maps, 163 entries and 501 holes left
+[  117.1010093]: IOKit IOMD setownership ENABLED
+[  117.1010099]: ATM subsystem is initialized
+[  118.000079]: Firehose configured: 16 chunks, 8 io pages
+[  118.000091]: Long logs support configured: size: 16384
+[  118.000094]: OSLog stream configured: stream: 8192 bytes, cache: 2112 bytes
+[  118.000096]: OSLog stream verification: 0
+[  118.000534]: Log queues configured: slot count: 56, per-slot size: 32768, total size: 1835008
+[  118.000562]: Telemetry: Sampling all tasks once per 1 second
+[  118.000574]: Scheduler: Default of clutch
+[  118.000578]: Setting scheduler priority decay band limit 18
+[  118.000583]: standard timeslicing quantum is 10000 us
+[  118.000585]: standard background quantum is 2500 us
+[  118.000842]: BANK subsystem is initialized
+[  118.000885]: mig_table_max_displ = 54 mach_kobj_count = 371
+[  118.002866]: panic_trace: PE_arm_debug_enable_trace enter
+[  118.002871]: panic_trace: PE_arm_debug_enable_trace exit
+[  118.002879]: kdp_core zlib memory 0x8000
+[  118.002991]: Registered coredump handler for kernel
+[  118.002995]: Serial requested, consistent debug disabled or debug boot arg not present, configuring debugging over serial
+[  118.002996]: Initializing serial KDP
+[  118.003590]: iBoot version: iBoot-8422.100.650
+[  118.003593]: iBoot Stage 2 version: 
+[  118.005577]: IONVRAM.cpp:initImageFormat:1364 - NVRAM size is 8192 bytes
+[  118.005614]: IONVRAM.cpp:getNVRAMProperties:1176 - _bankSize=0x2000, _bankCount=0x1, _currentBank=0
+[  118.005665]: IONVRAMCHRPHandler.cpp:unserializeImage:479 - NVRAM : commonPartitionOffset - 0x30, commonPartitionSize - 0x1fd0, systemPartitionOffset - 0xffffffff, systemPartitionSize - 0
+[  118.005828]: minicrypto: registered (md5, sha1, sha2, hmac, aes-ecb/cbc/ctr, hmac-drbg prng); no xts/gcm, no RSA
+[  118.005831]: ulock_initialize>thread_max=1536, ull_hash_buckets=512
+[  118.006580]: hakios-kernel: 4 drivers built in (.config): virtio_sound virtio_input virtio_net virtio_blk
+[  118.006610]: calling mpo_policy_init for vnguard
+[  118.006615]: Security policy loaded: Guarded vnode policy (vnguard)
+[  118.006618]: calling mpo_policy_init for AMFI
+[  118.006620]: Security policy loaded: Apple Mobile File Integrity (stand-in) (AMFI)
+[  118.006622]: calling mpo_policy_init for Sandbox
+[  118.006624]: Security policy loaded: Seatbelt sandbox policy (stand-in) (Sandbox)
+[  118.006686]: No POST boot-arg set.
+[  118.007158]: PMRD: PMTraceWorker 0xc3684d66a432f1ab
+[  118.007346]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 10001)
+[  118.007758]: GenericARMPE: platform "device-tree"
+[  118.007776]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[  118.007779]: [0]ml_processor_register>cpu_id 0xfffffff65d8d16c0 cluster_id 0 cpu_number 0 is type 0
+[  118.007795]: GenericARMCPU: cpu 0 (phys id 0x700) registered
+[  118.007815]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[  118.007817]: [0]ml_processor_register>cpu_id 0xfffffff65d8d3100 cluster_id 0 cpu_number 1 is type 0
+[  118.007835]: GenericARMCPU: cpu 1 (phys id 0x600) registered
+[  118.007854]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[  118.007856]: [0]ml_processor_register>cpu_id 0xfffffff65d8d2440 cluster_id 0 cpu_number 2 is type 0
+[  118.007872]: GenericARMCPU: cpu 2 (phys id 0x500) registered
+[  118.007891]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[  118.007893]: [0]ml_processor_register>cpu_id 0xfffffff65d8d3880 cluster_id 0 cpu_number 3 is type 0
+[  118.007909]: GenericARMCPU: cpu 3 (phys id 0x400) registered
+[  118.007927]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[  118.007929]: [0]ml_processor_register>cpu_id 0xfffffff65d8d3040 cluster_id 0 cpu_number 4 is type 0
+[  118.007934]: cpu 4 (phys id 0x300) is a slower core: the scheduler uses it after cpu 3 (phys id 0x400)
+[  118.007952]: GenericARMCPU: cpu 4 (phys id 0x300) registered
+[  118.007970]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[  118.007972]: [0]ml_processor_register>cpu_id 0xfffffff65d8d1300 cluster_id 0 cpu_number 5 is type 0
+[  118.007976]: cpu 5 (phys id 0x200) is a slower core: the scheduler uses it after cpu 2 (phys id 0x500)
+[  118.007992]: GenericARMCPU: cpu 5 (phys id 0x200) registered
+[  118.008011]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[  118.008012]: [0]ml_processor_register>cpu_id 0xfffffff65d8d1480 cluster_id 0 cpu_number 6 is type 0
+[  118.008016]: cpu 6 (phys id 0x100) is a slower core: the scheduler uses it after cpu 1 (phys id 0x600)
+[  118.008032]: GenericARMCPU: cpu 6 (phys id 0x100) registered
+[  118.008097]: Copyright (c) 1982, 1986, 1989, 1991, 1993
+	The Regents of the University of California. All rights reserved.
+
+[  118.008099]: bsd_init: calling kauth_init
+[  118.008229]: bsd_init: calling process_name
+[  118.008231]: bsd_init: calling get_bsdthread_info
+[  118.008233]: MAC Framework successfully initialized
+[  118.008362]: bsd_init: calling kauth_cred_create
+[  118.008364]: bsd_init: calling chgproccnt
+[  118.008366]: bsd_init: calling kmem_suballoc
+[  118.008374]: bsd_init: calling bsd_bufferinit
+[  118.008463]: using 534 buffer headers and 534 cluster IO buffer headers
+[  118.008477]: bsd_init: calling IOKitInitializeTime
+[  118.008506]: clock_initialize_calendar system does not have monotonic clock
+[  118.008509]: bsd_init: calling vfsinit
+[  118.008698]: ktriage_register_subsystem_strings: set subsystem 8 strings
+[  118.008721]: bsd_init: calling proc_uuid_policy_init()
+[  118.008881]: mcache: 7 CPU(s), 64 bytes CPU cache line size
+[  118.008882]: bsd_init: calling mbinit
+[  118.009023]: mbinit: done [64 MB total pool size, (42/21) split]
+[  118.009028]: bsd_init: calling knote_init
+[  118.009030]: bsd_init: calling eventhandler_init
+[  118.009031]: bsd_init: calling aio_init
+[  118.009071]: bsd_init: calling pshm_cache_init
+[  118.009073]: bsd_init: calling psem_cache_init
+[  118.009079]: bsd_init: calling nwk_wq_init
+[  118.009090]: bsd_init: calling dlil_init
+[  118.009094]: SK: netagent is enabled by default for this platform
+[  118.009246]: DLIL: running SUM16 self-tests ... PASSED
+[  118.009432]: dlil_init: Waiting for all the create dlil kernel threads to get scheduled at least once.
+[  118.009531]: PMRD: power event 7 args 0xc3684d678a91f9bb 0x0
+[  118.009539]: PMRD: power event 7 args 0xc3684d678a9209fb 0x0
+[  118.009778]: PMRD: PowerChangeOverride (OFF_STATE->ON_STATE, f, 0x2) tag 0x20064
+[  118.009793]: PMRD: sysPowerDownHandler message kIOMessageSystemCapabilityChange
+[  118.009796]: PMRD: sysPowerDownHandler cap f -> f (flags 1)
+[  118.009839]: dlil_init: All the created dlil kernel threads have been scheduled at least once. Proceeding.
+[  118.009842]: bsd_init: calling socketinit
+[  118.009850]: bsd_init: calling domaininit
+[  118.010055]: bsd_init: calling skywalk_init
+[  118.010080]: SK[0]: skmem_region_init              seg_size 16384, md_seg_size 16384, drv_buf_seg_size 65536 [eff 65536], usr_buf_seg_size 16384
+[  118.011016]: Skywalk: running self-tests
+[  118.011018]: Skywalk: sk_copy64_8 ... PASSED
+[  118.011020]: Skywalk: sk_copy32_8 ... PASSED
+[  118.011021]: Skywalk: sk_copy64_16 ... PASSED
+[  118.011022]: Skywalk: sk_copy32_16 ... PASSED
+[  118.011024]: Skywalk: sk_copy64_20 ... PASSED
+[  118.011025]: Skywalk: sk_copy64_24 ... PASSED
+[  118.011026]: Skywalk: sk_copy64_32 ... PASSED
+[  118.011027]: Skywalk: sk_copy32_32 ... PASSED
+[  118.011029]: Skywalk: sk_copy64_40 ... PASSED
+[  118.011030]: Skywalk: sk_copy64_64x ... PASSED
+[  118.011031]: Skywalk: sk_copy64_32x ... PASSED
+[  118.011032]: Skywalk: sk_copy64_8x ... PASSED
+[  118.011034]: Skywalk: sk_copy64_4x ... PASSED
+[  118.011035]: Skywalk: sk_zero_16 ... PASSED
+[  118.011036]: Skywalk: sk_zero_32 ... PASSED
+[  118.011037]: Skywalk: sk_zero_48 ... PASSED
+[  118.011038]: Skywalk: sk_zero_128 ... PASSED
+[  118.011061]: Skywalk: memcmp mask ... PASSED
+[  118.011674]: bsd_init: calling memorystatus_freeze_init
+[  118.011676]: bsd_init: calling memorystatus_init
+[  118.011739]: bsd_init: calling sysctl_mib_init
+[  118.011742]: bsd_init: calling bsd_autoconf
+[  118.011743]: bsd_autoconf: calling kminit
+[  118.013370]: bsd_init: calling loopattach
+[  118.013640]: ifnet_attach: All kernel threads created for interface lo0 have been scheduled at least once. Proceeding.
+[  118.013649]: bsd_init: calling ether_family_init
+[  118.013722]: bsd_init: calling net_init_run
+[  118.013845]: skip attaching fsw to lo0 using legacy TX modelReinit'd ND information for interface lo0
+[  118.014228]: bsd_init: calling inittodr
+[  118.014230]: bsd_init: calling setconf
+[  118.014332]: PMRD: sysPowerDownHandler message kIOMessageSystemCapabilityChange
+[  118.014335]: PMRD: sysPowerDownHandler cap f -> f (flags 2)
+[  118.014339]: PMRD: tellChangeUp OFF_STATE->ON_STATE
+[  118.014347]: PMRD: PowerChangeDone: OFF_STATE->ON_STATE
+[  118.014348]: PMRD: Force re-evaluating aggressiveness
+[  118.014351]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 30002)
+[  118.014362]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x10001
+[  118.014365]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[  118.014367]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x302) tag 0x40064
+[  118.014372]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[  118.014373]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x302) tag 0x50064
+[  118.014377]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[  118.014382]: PMRD: adjustPowerState ON_STATE, asap 0, idleSleepEnabled 0
+[  118.014384]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 60008)
+[  118.014390]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x30002
+[  118.014391]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[  118.014394]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x60008
+[  118.014396]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[  118.014494]: cpu_start() cpu: 0
+[  118.014517]: cpu_start() cpu: 1
+[  118.015722]: gic: v3, distributor 0xfffffff18d120000, cpu 1's redistributor 0xfffffff18d1f0000, virtual timer on PPI 27
+[  118.015728]: panic_trace: PE_arm_debug_enable_trace enter
+[  118.015729]: panic_trace: PE_arm_debug_enable_trace exit
+[  118.015730]: arm_cpu_init(): cpu 1 online
+[  118.016246]: cpu_start() cpu: 2
+[  118.017221]: gic: v3, distributor 0xfffffff18d120000, cpu 2's redistributor 0xfffffff18d1d0000, virtual timer on PPI 27
+[  118.017226]: panic_trace: PE_arm_debug_enable_trace enter
+[  118.017227]: panic_trace: PE_arm_debug_enable_trace exit
+[  118.017228]: arm_cpu_init(): cpu 2 online
+[  118.017870]: cpu_start() cpu: 3
+[  118.018808]: gic: v3, distributor 0xfffffff18d120000, cpu 3's redistributor 0xfffffff18d1b0000, virtual timer on PPI 27
+[  118.018812]: panic_trace: PE_arm_debug_enable_trace enter
+[  118.018813]: panic_trace: PE_arm_debug_enable_trace exit
+[  118.018814]: arm_cpu_init(): cpu 3 online
+[  118.019473]: GenericARMPE: 4 of 7 processors are running
+[  118.019725]: MiniIOMobileFramebuffer: display 1125x2436 on a panel of 1220x2712 (4880 bytes per row)
+[  118.019773]: MiniIOMobileFramebuffer: IOMFBDisplayRefresh: 60 Hz (the panel: 60), an interval of 71582788 (2^-32 s), 319999 ticks
+[  118.116322]: !BSD
+[  118.116352]: Added memory device md0/rmd0 (01000000/0D000000) at FFFFFFF010000000 for 0000000093E60000
+[  118.116365]: Added memory device md1/rmd1 (01000001/0D000001) at FFFFFFF0081C0000 for 0000000000400000
+[  118.116367]: BSD root: md0, major 1, minor 0
+[  118.116371]: bsd_init: vfs_mountroot
+[  118.116882]: apfs: device 1,0: requests to it cost next to nothing (a disk in memory)
+[  118.116910]: apfs: 4 threads on a request of many pieces (3 helpers)
+[  118.117009]: apfs: volume 0 "System" of container 0 (at 0 MB): 45073 files, 16555 directories, 603066 blocks of 4096 used
+[  118.117032]: bsd_init: calling VFS_ROOT
+[  118.117040]: bsd_init: calling devfs_kernel_mount
+[  118.117281]: hakios-kernel: version 2.1.13-hakios-darwin22.5-sm7435-g96ffbc53-dirty
+[  118.117299]: bsd_init: calling siginit
+[  118.117301]: bsd_init: calling bsd_utaskbootstrap
+[  118.117417]: bsd_init: calling mountroot_post_hook
+[  118.117419]: bsd_init: done
+[  118.117423]: vm_free_delayed_pages: initialized 0 free pages
+[  118.117439]: No POST boot-arg set.
+[  118.117444]: bsd_init: bsd_do_post - doneload_init_program: attempting to load /usr/appleinternal/sbin/launchd.development
+[  118.117527]: VM Swap Subsystem is ON
+[  118.117565]: Failed to open swap file 2
+[  118.117569]: vm_swap_create_file failed @ 118 secs
+[  118.117571]: vm_swap_create_file failed @ 118 secs
+[  118.117719]: load_init_program: attempting to load /sbin/launchd
+[  118.120434]: apfs: device 1,1: requests to it cost next to nothing (a disk in memory)
+[  118.120498]: apfs: volume 0 "redwood" of container 0 (at 0 MB): 78 files, 18 directories, 110 blocks of 4096 used
+[  118.152326]: apfs: pagein asks for 32768 bytes at a time (page size 16384)
+[  118.157476]: shared_region: 0xc3684d6957671d83 [4(hello_dyn)] check_np(0x16ed6bc00) vm_shared_region_start_address() failed
+[  118.158197]: minisandbox: request 2 (first seen from hello_dyn[4]): allowed
+[  118.158767]: shared_region: 0xc3684d6957671d83 [4(hello_dyn)] check_np(0x16ed6b190) vm_shared_region_start_address() failed
+[  118.289189]: minisandbox: request 4 (first seen from hello_dyn[4]): answered
+[  118.291693]: vnode_create_internal: alias vnode 0xfffffff490d65990 is in state of change (start)
+[  118.291704]: vnode_create_internal: alias vnode 0xfffffff490d65990 is in state of change (end)
+[  118.507772]: pid 1 exited -- exit reason namespace 35 subcode 0x6, description failed to query hardware target: 22
+[  118.507836]: coredump (launchd.darwin, pid 1): writing core to /private/var/cores/launchd.darwin.core
+[  118.507848]: coredump (launchd.darwin, pid 1): failed to open core dump file /private/var/cores/launchd.darwin.core: error 2
+[  118.507852]: coredump (launchd.darwin, pid 1): core dump failed: error 2
+
+[  118.507855]: Failed to generate core file for pid: 1: error 2, took 0.000 seconds
+[  118.507867]: cpu_signal failed in DebuggerXCallEnter
+[  118.507868]: cpu_signal failed in DebuggerXCallEnter
+[  118.507869]: cpu_signal failed in DebuggerXCallEnter
+
+--- panic buffer ---
+panic(cpu 3 caller 0xfffffff00777ffc4):  initproc failed to start -- exit reason namespace 35 subcode 0x6 description: failed to query hardware target: 22
+Debugger message: panic
+Device: Not set yet
+Hardware Model: Not set yet
+ECID: 0000052445730001
+Boot args: debug=0x8 -v rd=md0 hv_wdt_pet=1 ufs_shared_pa=0x00000000fa511000 hakios_kver=2.1.13-hakios-darwin22.5-sm7435-g96ffbc53-dirty loader_return_after=180 epoch=1793894277 sb_delay=8 cpus=8 bootcpu=7 ufs=2
+Memory ID: 0x0
+OS release type: Not set yet
+OS version: Not set yet
+Kernel version: Darwin Kernel Version 22.5.0: Sen 02 Nov 2026 20:12:05 WIB; okihann:xnu-8796.121.2[xnu-8796.121.2-dirty]/BUILD/obj/DEVELOPMENT_ARM64_BCM2837
+Kernel UUID: FBBE2F04-8A1C-3DB0-9735-15D16E09E99A
+Boot session UUID: 1CF01C34-C9D1-4514-9871-0215CCBE4A4F
+iBoot version: iBoot-8422.100.650
+iBoot Stage 2 version: 
+secure boot?: NO
+roots installed: 0
+Paniclog version: 14
+Kernel text base:  0xfffffff007004000
+mach_absolute_time: 0x879d8f3e
+Epoch Time:        sec       usec
+  Boot    : 0x6aeca785 0x00000000
+  Sleep   : 0x00000000 0x00000000
+  Wake    : 0x00000000 0x00000000
+  Calendar: 0x6aeca785 0x00078a29
+
+Zone info:
+  Zone map: 0xfffffff27703c000 - 0xfffffff87703c000
+  . PGZ   : 0xfffffff27703c000 - 0xfffffff277380000
+  . VM    : 0xfffffff277380000 - 0xfffffff35d968000
+  . RO    : 0xfffffff35d968000 - 0xfffffff3aa608000
+  . GEN0  : 0xfffffff3aa608000 - 0xfffffff490bf0000
+  . GEN1  : 0xfffffff490bf0000 - 0xfffffff5771d8000
+  . GEN2  : 0xfffffff5771d8000 - 0xfffffff65d7c0000
+  . GEN3  : 0xfffffff65d7c0000 - 0xfffffff743dac000
+  . DATA  : 0xfffffff743dac000 - 0xfffffff87703c000
+  Metadata: 0xfffffff87d04c000 - 0xfffffff87e84c000
+  Bitmaps : 0xfffffff87e84c000 - 0xfffffff87e988000
+  Extra   : 0 - 0
+
+TPIDRx_ELy = {1: 0xfffffff743ce9ee0  0: 0x0000000000000003  0ro: 0x0000000207a40ea0 }
+CORE 0: PC=0xfffffff00741dcb8, LR=0xfffffff00741dcb4, FP=0xfffffffbeacdbe80
+CORE 1: PC=0xfffffff00741dcb8, LR=0xfffffff00741dcb4, FP=0xfffffffbeae5be80
+CORE 2: PC=0xfffffff00741dcb8, LR=0xfffffff00741dcb4, FP=0xfffffffbead23e80
+CORE 3 is the one that panicked. Check the full backtrace for details.
+CORE 4: PC=0x0000000000000000, LR=0x0000000000000000, FP=0x0000000000000000
+CORE 5: PC=0x0000000000000000, LR=0x0000000000000000, FP=0x0000000000000000
+CORE 6: PC=0x0000000000000000, LR=0x0000000000000000, FP=0x0000000000000000
+Compressor Info: 0% of compressed pages limit (OK) and 0% of segments limit (OK) with 0 swapfiles and OK swap space
+Panicked task 0xfffffff490a01900: 6 pages, 1 threads: pid 1: launchd.darwin
+Panicked thread: 0xfffffff743ce9ee0, backtrace: 0xfffffffbeace75b0, tid: 195
+		  lr: 0xfffffff00728b914  fp: 0xfffffffbeace7640
+		  lr: 0xfffffff007427a10  fp: 0xfffffffbeace7660
+		  lr: 0xfffffff007417dfc  fp: 0xfffffffbeace76e0
+		  lr: 0xfffffff007416e44  fp: 0xfffffffbeace7800
+		  lr: 0xfffffff0074165a4  fp: 0xfffffffbeace7810
+		  lr: 0xfffffff00728af50  fp: 0xfffffffbeace7bc0
+		  lr: 0xfffffff00728c0ac  fp: 0xfffffffbeace7c40
+		  lr: 0xfffffff007a2d224  fp: 0xfffffffbeace7c60
+		  lr: 0xfffffff00777ffc4  fp: 0xfffffffbeace7d90
+		  lr: 0xfffffff00777f59c  fp: 0xfffffffbeace7e20
+		  lr: 0xfffffff00779a394  fp: 0xfffffffbeace7e70
+		  lr: 0xfffffff00779a6e0  fp: 0xfffffffbeace7eb0
+		  lr: 0xfffffff00727f68c  fp: 0xfffffffbeace7f10
+		  lr: 0xfffffff0074169c0  fp: 0xfffffffbeace7f20
+
+PMOC€0ˆkcd_c_type0ˆkcd_c_totalout.0ˆkcd_c_totalin EX¢Y€Hbf``0â â’ÄäìâŒü’øÌ¼ø´œÄôbˆ8Œdgyícƒhÿÿb@ÜÄ €¢¿ 3,ˆDü$.ÿÿbr€¸ˆA ¸²¸$57hLI*6ûAö!ÿÿäd`
+ô "±ÿÿRB“gG’1ÿÿ@“gp@UÿÿâÊO
+5C…]‹Ê3ó¼S‹òRsÂR‹Š3óóŒŒôLõ¬‚SóŒüòËŒŒÌ€„•¡‘•©B¸§“µB~vfFb^UE^©®…¹¥™¡‘¡Q4*W7%³¨¤2Vß)ÔÓÇE??)KßÅ5ÌÕÇ?À×Õ/$Ş1È×Ì$ŞÉÙ×ÈÂØä$ÿÿ,Ûƒ0E;AgğA„G™%JˆĞDyĞv‚®×‘
+şñÑ•e{Í~ßŸÓO£J#/_¼æ«.aÚÄSGá0r
+É&éQ'óay‘-¥™a’óİ1oèyUĞ‚Öäˆˆşwß»’°²¦nÉØßŒQC[Ö°X©Ñ1ù‡&æ´+&NY_w}S1A	‹|ó—B^ÊÚ˜‘³İWgËÿÿ1€¸ˆA ˜xÀ,ÿÿ2R@ÜÄ 0mÚ\XP€ùÿÿ2’@ÜÄ pz«Ng<„$ÿÿb fbpâ„Ğ0ÿÿrò€œ ‡ª º:KĞÉÇvEşmló>ù€ÁáÂR°PÌªÿÿ)ÿÿbâd`pò›îí9µÿ$CPôsY!46¨…ÿÿ‚¹&ÏÌ	cAhÿÿÒR
+@RkÄì€yğ÷>}–.ÛÓME/æq¾œ’ÿÿbêo2:€024( óƒş@x­Ëßd!‹#³AvâÙà_’XœK	XÿÿRºGÈêó˜¡4ŒÿÿÒB“‡‰Ãhÿÿ‚…O*T€¨ÿÿbò€ 0u;Ö‚ÃÉc“%˜†Èâ&™£ºlAŠN;H5¨¼˜µÑÑ`C.k§†gúfq€(à*t²€Â|Ù4=5¿´$¾891"H)	4O¨¾MOŒ6D`ã~vd)ÿÿr`áÿÿò€8*~ÿÿB?˜:¨r¢)æú°Z&ˆÄÙí V,7˜nÃÉßBÄ…_fJNª‚²\©\á—İË6JÆQ%ü€¢ ÌÄ"À°ßrÇœ~JÒuÀôŒ,}à(DÿÿªX¸ÿÿ‚…w:D˜=¼ÿÿBo˜:|ˆ¹0ª'ÎŒ*•üwV;H’Zé5!¬0›‰¸ğ.NÎÖ,¹‰™y%©y‰yÉ©ñ%E©‰)`Cˆ p…·.T¯´ª!ÿÿraáÿÿò€8ˆA=üÿÿB¿°*†%¹ğƒÑPaœ”-šŒŞğÎÃ~¸üË5ÿ,?ªEÿÿr3 4ÿÿ‚ù7ÊG÷/ÿÿB÷/L]‡ß)pz<óALCµã¤r¢Jmä™ƒÕ¿`…ÎÒØıËÉ‰Z¾¥$¦ææçé¥¤¦¥Û$º)©‰99ùÉ‰%ÀfªØy¸Â/…¢ş™:ª>ÿÿraáÿÿ‚…_T=üÿÿB?˜º©¤…ÌL0”FÏo±±`™Õ.$…$“é‚[ßh6àçâ
+?\º4€@ÌÄ"œSt ùÈÿÿÒ°pÿÿ‚…o6T=|ÿÿB_˜º)´	_XúüìCNø¦V$§›4Á>¦vøÿÿ‚…/,œÿÿ‚…oğÿÿB_˜:¥_Xø6Ç’¾IÀÎgIQbr*Ô7„)j‡/ÿÿZ™¥ÿÿ‚…o.”~ÿÿB_˜º†çKÀåªÎY=¢Ê×8´‚A‘K§d%zùÇvI·2qá)â“¥j<¤¬…z„H
+WøÊCõïæG5ÿÿraáÿÿ‚…_T=üÿÿB?˜º†¥÷‰
+7˜í†P,5±ÕÇ@Ò&Ä…Ÿ§pjQYfrjHjQnf^bIjUÚ30w¾e‡:J)i fbPùºÇØ	kÔ!åìnR¥OÈ™¦aíIÿÿêX8ÿÿ‚…D£=ÿÿB˜ºMÚ”¿öö`—X‡şĞöAr~Qªnb^bNeIfr±njYj^I1ÔKx)\é—& „31(üÑë7ÿÿŠƒ,œÿÿ‚…/Ì1èéÿÿB_˜º)‡ ıJ17Œ&e‹½|g«<J\ø"õ/Ó‹’€]ÍøäüœœÔä4qpq…/T=š>ÿÿòaáÿÿò€¸ˆA=üÿÿB¿°*†äCFKÒ|3?`NT9aÕ£ôC±•ğòá´jzx&Ğ|ú 
+pù—	*?¦JÿÿÒ%Pÿÿ‚ù·ÊG÷/ÿÿB÷/L]ÃeH}²å<qõÉ¨PÊÇÑ¬ÄD¯O`íMé/iXıË	Ì@}@úDTŸ(dd¦g((B$ˆ$q…ßZ¨şRTƒÿÿraáÿÿ‚…_T=üÿÿB?˜ºâÏ¤¥—çP ÔÁ>¬á«O’ÿ~ş¾Eùù%.ù¹‰™y¨vÃÃ~¡š•dPMÿÿr+ 4ÿÿ‚…_/”~ÿÿB?˜ºŠİkÀù¬£Ø‚¨ü–5Fqğòb¿x†x°’æ»)D¥?`y•™_”ZP”™_”Y’Y•I’0‹Ğ¸ÂªÏÆ€òÿÿÒ°pÿÿ‚…_T=üÿÿB?˜ºŠK÷Àá¦p´’¨ğ3‡š£D°‡,ı)Wa?\şe‚|Šf„ÿÿraîÿÿ‚ù·*î_ÿÿB÷/LCè1°?¤zå_U¨ù0ÊŠ€“÷æ_F¨ÁÓX`6@hÿÿraîÿÿ‚ùwTİ¿ÿÿB÷/LÔ¿iÄùWj>Œ
+'àßì&òü;f„ÿÿr'@iÿÿ‚ùw"”î_ÿÿB÷/Lİƒ&Hû|†x=QñëKpP{f*áOÏ›»Hó¯ÔÜGhöÿÿŠÃÜÿÿ‚ùwTİ¿ÿÿB÷/L]Cá2°?¢J‰ò¯*Ô|µ€/gc¯?på_F¨Á›ÑüÿÿŠÃÜÿÿ‚ùw2Tİ¿ÿÿB÷/L©ş•š£nğ¯²yş]‹æ_ÿÿZs7ÿÿ‚ùw
+Tİ¿ÿÿB÷/Lİ^Hz&¶|Ö†š£X•ñ§gáu¤ùæÍjÿÿÒS 4ÿÿ‚ùw*”î_ÿÿB÷/LİúÅàtL¬å æÃ(eşmKšaéYÍ¿ÿÿZs7ÿÿ‚ùwTİ¿ÿÿB÷/LİHş%Ö¿R0Bi[şıÜCĞüÿÿÚs7ÿÿ‚ùw:Tİ¿ÿÿB÷/LİÏ÷Àñëñ4œ¨òj1Ô|õ¾{7Û‰4ÿr@Ş!³Bÿÿraîÿÿò€xƒºÿÿB÷ï°*ƒ¯ÿfü%Î¿Š°ÕïeŒß¿ÖSIó/?ÔÜÊÿÿÒ3 4ÿÿ‚ùw&”î_ÿÿB÷/L]ÆlÒÊ++¨ù0J³¿7{‘æ_f¨Á¼0 4ÿÿraîÿÿ‚ùwTİ¿ÿÿB÷/L]şšK])¾‡×U•wAÍ‡QqFØıëœ^Šİ¿œœ@C€€ıÜÔÜü¢Êâ’Ä’ÒâxCˆ0Ñ$®úh´±¡ÿÿraáÿÿ‚…ßl¨8zøÿÿB?˜ºù$†Ÿ5ª3f¿ßAä…Ÿš=„¸¸Âª±-üÿÿŠÃÂÿÿò€xƒzøÿÿB¿9`UçI?¨>u–@øI—~Æ0ˆ¤q…TZøÿÿŠÏÒÿÿ‚…ß<(=üÿÿB?˜ºWóíŠƒÉDå_¨ù0êljşe„J2‚Y«[ˆ?g7OŸøàÇàø ×ÿ ˜DÒ¸Âª¿€	Õ ÿÿraáÿÿ‚…ß|¨8zøÿÿB?˜:TS	óê-ÛÀŠ˜8 jùßÎi±ä[!áØ†“İ‹±÷·8“PUƒ@fJNª‚²!„C‰+üêØÁ¦ír…2 f+ifb [¶Üq§Ÿ’t0=#B8
+ÿÿªX¸ÿÿ²€x!ƒzxÿÿBo˜:ˆjâÉ2†F°bXx«¤Î‡w)+?˜nA3êôSRÂÛM7ñ\\á­xŠlˆ¬)eáÿÿ:nÿÿ‚…÷b¨8zxÿÿBo˜:¨r†h|Âø¸è7*!RªÕi.8œÿÕboé-¤„·1.k	Šã
+oÿLHx;ê †7ÿÿšÿÿò€x9T=üÿÿB?˜:msƒÂ`ûª ¥UÁ¥M™ÚAÌÿPÀ	ç`ˆBX}„¸ğK+JÌM-V(ÉW(ÉHU(HÌKÍë'–À~0wBBašéÄì@*ö;Ë…5êrá7„©Ò‹kLœ	¦Ê 4¬ÜjÿÿÒË¡4ÿÿÒ@¼ˆA=>ÿÿB`UÅN¤Å‡TÌŸó	ÄÇç3dÇ‡•B¢BFjNAjÔN|®ø`†jbEÓ¬ä1(ˆ‰´xÿÿê`’ÿÿ‚…ÿJ(=üÿÿB˜:RÃ_j>,ü¿ë«şŒ°ğ€Ò0JÈ0brÃÿÿêX8ÿÿ‚…ÿ:ˆ0FúÿÿB˜:†kKÀùlËy=H~ƒêÇEíE“Ø+¥ß‚•G`ÿ#ÖŞsM\ø—d¥&¦($'æä(d§‹#ÒZ/¸Ò?'Ô½âhîÿÿòaáÿÿ‚…ßz¨8zúÿÿB?˜:—÷ˆ
+7˜õºï!,`Ë§9í ,ü`î……Ÿğ;ìá‡Ë¿ÓxÀÆ2$óBh©d81“ßW¨ûËá0„ÀçæÃÊaÿÿš°pÿÿ²€xƒzøÿÿB¿`U¤†Ÿ#X',üZfã¿ß“H¿ÓĞp+æƒ:J)i æbj„ÿÿšÀ$ÿÿ‚…ßF(=üÿÿB?˜:RÃïjø%{AÚc¸ÒßåÕ¤…Ÿ4Ü„ø¡R
+@Úˆ9€˜áÿÿš°pÿÿ‚…ßfˆ0FúÿÿB?˜º]k!ù·Ë
+BCõã¢’ 
+PúmŒN;ˆ‰~ÑÑ`Ê» ı] ï³1prBÂ£Ìc`ó/HLOÍ/-‰O­(€‰9ñ™ùRª/…«<`…êâ@Óÿÿòaáÿÿò€xƒzúÿÿB¿-`U'X‚ÃFC…qR­h2[b±‡Ÿ<ƒ<Xeö!Hø8@`¿¢ÔââÒ¢T˜’h\áÇ5…Í4ÿÿò·@iÿÿ‚…ßV(=üÿÿB?˜º®gÀá÷ Ä‚¨ôg5F}À~°ô·ùÑá—Ÿ”•š\¬‡MÎxâ“Ø)¸ÂêP˜ƒ¡4ÿÿÒ°pÿÿ‚…ß6¨8zøÿÿB?˜º3kÀáÆ3Ó˜¨ğó„š£ú°§?Xøı¾„=üù—f”ÿÿÒ0wÿÿ‚ùw;Tİ¿ÿÿB÷/L]@7¤¼òé'®¼
+„š£Ö'â÷¯ómìşÅ’ß’ós@Y.¿f8	4®ğcš~ÿÿŠÃÂÿÿò€xƒzøÿÿB¿`U<&ô¥¡Â8)S4™'Â¯û1ÑáW\X,ïÑ, ’‹+ü˜ úYÑÌÿÿòw@iÿÿ‚…ßN(=üÿÿB?˜º7!ù-ÃPí8)uT)ë4üéïòk’Â/-3'5>Xd•¤¢ÚCˆ‡+üÌ¡­Ğÿÿòaáÿÿ‚…ß.¨8zøÿÿB?˜ºĞğ›áO\øYCÍW€Ò«“ğ‡ßj–ôğLßŒÃ@õ€˜ˆAKş¥?pø¥'CÔBâ
+?f¨!lh†ÿÿòaáÿÿ‚ñaÊÿÿ‚…'#T€™&¡ÿÿrò€Ì—¦ÊeÿÿâÊ90‡ª fÿt– “í:6ŠüÛØæ}òƒÃ…¥`½0ªÿÿÒÒ
+@’3b‡v0;Fô6ûæ=¶Ÿ·éÛyvÏ´îIÿÿbåd`h2:€Àfi¨0X™h]ş&Ä?ÀÁ>À¦A¼Y ÍA 3sKó’3RôR‹Ê3órè,ÿÿRZ,ì€J0CiÿÿÒB“çA8¬ÿÿrƒÊ·@5020(A™`
+ÿÿ’@|ÌÃ,oÿÿBOï0uPåpj?ĞlàÛˆ¨›˜á®áû{@ú'¿<!4PXˆÁíCVkQHzgh`j8w`X$ĞÓg/X˜¹B[O€Ğ0RÈbíbœOúÌO1ÙÚ`:ÇÂ·	‚Ğ3l¡ôn#°üıúÍZĞ¡F€bù"@óÖk€ë¡5 ´Ê¥E`ş‘ÿå`zÎW=eq%˜ÿ`„îù¦æÈtÓ@ãÀÿÿÒ°pÿÿ‚ñA~ÿÿb@ÜÄ P\’˜œ]œ‘__“_œY•
+‡“0Pÿÿ’ºYÈî†+@b<DbC™ÿÿ’‚ªï€ò÷1a*Bÿÿc²€¸ˆAá>P—(-'1½"%ÙY^;"Ş&ÅíX‘ñ
+** Stackshot Succeeded ** Bytes Traced 6174 (Uncompressed 17696) **
+
+== END OF LOG ==

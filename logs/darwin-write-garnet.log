@@ -1,0 +1,21 @@
+2026-11-06 13:35:09 REFUSED check: the phone said 1: adb: no devices/emulators found
+
+2026-11-06 19:01:12 REFUSED check: node is None, want '/dev/block/sda34'; start is '25677824', want '202997760'; size is '469594072', want '41943000'; name is 'userdata', want 'darwin'; bytes is '', want '21474816000'; entry 34 (userdata, LBA 3209728..61908986) overlaps darwin; 0 entries named darwin
+2026-11-06 20:15:49 REFUSED plan userland/system.apfs 0: node is None, want '/dev/block/sda35'; bytes is '', want '68719456256'
+2026-11-06 20:34:06 REFUSED check: the phone said -6: WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+F0000 00:00:1793972046.244494      19 adb_utils.cpp:316] Cannot mkdir '/home/okihann/.android': Read-only file system [30]
+*** Check failure stack trace: ***
+
+2026-11-06 20:34:20 REFUSED check: the phone said 1: :19.457    20    20 I adb     : main.cpp:66 Installed as /usr/bin/adb
+11-06 20:34:19.457    20    20 I adb     : main.cpp:66 Running on Linux 7.3.1-1-cachyos (x86_64)
+11-06 20:34:19.457    20    20 I adb     : main.cpp:66 
+11-06 20:34:19.961    20    20 F adb     : main.cpp:167 could not install *smartsocket* listener: Address already in use
+
+* failed to start daemon
+adb: cannot connect to daemon
+
+2026-11-06 20:36:15 check: /dev/block/sda35 = 35, unit 0, LBA 45131776..61908986, 16777211 blocks of 4096, type 7C3457EF-0000-11AA-AA11-00306543ECAC, unique 981690B0-E68C-44A7-B597-314A4BE41956
+2026-11-06 20:36:38 plan: userland/system.apfs (605791 blocks, sha256 31dcdad1db6d90ab8f3cf2a6cf55c205b6ef73c2d8fc6766dff9bcfb795f9da4) at darwin blocks 0..605790 (bytes 0..2481319935); /dev/block/sda35 = 35, unit 0, LBA 45131776..61908986, 16777211 blocks of 4096, type 7C3457EF-0000-11AA-AA11-00306543ECAC, unique 981690B0-E68C-44A7-B597-314A4BE41956; would run: dd if=/data/local/tmp/darwin-write.img of=/dev/block/by-name/darwin bs=4096 seek=0 count=605791 conv=notrunc,fsync
+2026-11-06 20:43:19 write: userland/system.apfs (605791 blocks, sha256 31dcdad1db6d90ab8f3cf2a6cf55c205b6ef73c2d8fc6766dff9bcfb795f9da4) at darwin blocks 0..605790 (bytes 0..2481319935); /dev/block/sda35 = 35, unit 0, LBA 45131776..61908986, 16777211 blocks of 4096, type 7C3457EF-0000-11AA-AA11-00306543ECAC, unique 981690B0-E68C-44A7-B597-314A4BE41956; would run: dd if=/data/local/tmp/darwin-write.img of=/dev/block/by-name/darwin bs=4096 seek=0 count=605791 conv=notrunc,fsync
+2026-11-06 20:44:51 dd: 605791+0 records in 605791+0 records out 2481319936 bytes (2.3 G) copied, 7.703 s, 307 M/s
+2026-11-06 20:45:04 read back blocks 0..605790: sha256 31dcdad1db6d90ab8f3cf2a6cf55c205b6ef73c2d8fc6766dff9bcfb795f9da4 -- the same

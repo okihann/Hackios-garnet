@@ -1,0 +1,1438 @@
+== XNULOADER run (usb) ==
+payload entry 'kernel' size e1e7c0
+payload entry 'ramdisk' size 400000
+payload entry 'cmdline' size 4b
+payload entry 'kernel.ver' size 30
+kernel va fffffff007004000..fffffff0081b27c0 entry fffffff0074194a8
+kernel loaded at pa 8d0004000..8d11c0000
+ramdisk at pa 8d11c0000 size 400000
+resident image at pa 8d9000000 size 93e60000: it is the root (md0), the payload ramdisk is md1
+ufs: unit 0: media 544433781, 61908992 blocks of 4096 (241832 MB), writable, align 8
+ufs: unit 0: GPT header crc right (1ac78a6e), table of 64 entries crc right (bb2a15cd)
+ufs: unit 1: media 544433781, 4096 blocks of 4096 (16 MB), writable, align 8
+ufs: unit 1: GPT header crc right (31c0084c), table of 32 entries crc right (90c1c4a5)
+ufs: unit 2: media 544433781, 4096 blocks of 4096 (16 MB), writable, align 8
+ufs: unit 2: GPT header crc right (78036ed2), table of 32 entries crc right (afdb4e32)
+ufs: unit 3: media 544433781, 8192 blocks of 4096 (32 MB), writable, align 8
+ufs: unit 3: GPT header crc right (f2de4e3f), table of 32 entries crc right (190eed78)
+ufs: unit 4: media 544433781, 528384 blocks of 4096 (2064 MB), writable, align 8
+ufs: unit 4: GPT header crc right (f2123d60), table of 96 entries crc right (2984c472)
+ufs: unit 5: media 544433781, 16384 blocks of 4096 (64 MB), writable, align 8
+ufs: unit 5: GPT header crc right (1a7df885), table of 32 entries crc right (9a905b93)
+ufs: part switch: lba 6..7, 8 KB
+ufs: part ssd: lba 8..15, 32 KB
+ufs: part dbg: lba 16..23, 32 KB
+ufs: part bk01: lba 24..31, 32 KB
+ufs: part bk02: lba 32..63, 128 KB
+ufs: part bk03: lba 64..127, 256 KB
+ufs: part bk04: lba 128..255, 512 KB
+ufs: part keystore: lba 256..383, 512 KB
+ufs: part frp: lba 384..511, 512 KB
+ufs: part countrycode: lba 512..1023, 2048 KB
+ufs: part misc: lba 1024..2047, 4096 KB
+ufs: part bk05: lba 2048..4095, 8192 KB
+ufs: part logfs: lba 4096..6143, 8192 KB
+ufs: part ffu: lba 6144..8191, 8192 KB
+ufs: part oops: lba 8192..12287, 16384 KB
+ufs: part devinfo: lba 12288..16383, 16384 KB
+ufs: part metadata: lba 16384..32767, 65536 KB
+ufs: part bk06: lba 32768..36863, 16384 KB
+ufs: part bk07: lba 36864..45055, 32768 KB
+ufs: part mtdblk: lba 45056..53247, 32768 KB
+ufs: part crash_history: lba 53248..68095, 59392 KB
+ufs: part minidump: lba 68096..92671, 98304 KB
+ufs: part rawdump: lba 92672..169471, 307200 KB
+ufs: part vbmeta_system_a: lba 169472..169503, 128 KB
+ufs: part vbmeta_system_b: lba 169504..169535, 128 KB
+ufs: part bk010: lba 169536..176639, 28416 KB
+ufs: part mem: lba 176640..177663, 4096 KB
+ufs: part opconfig: lba 177664..182783, 20480 KB
+ufs: part opcust: lba 182784..285183, 409600 KB
+ufs: part mbnconfig: lba 285184..293375, 32768 KB
+ufs: part rescue: lba 293376..326143, 131072 KB
+ufs: part cust: lba 326144..850431, 2097152 KB
+ufs: part super: lba 850432..3209727, 9437184 KB
+ufs: super geometry +0: 67446c613400000012ff55f0aba7b506f25cb5da5dca09344234e8df1d9c93ae
+ufs: super geometry +20: 82a499d98019467e000001000300000000100000
+ufs: super header0 +0: 30504c410a0002000001000060e62eb01791c6220f4dadf80f2f0e4c123c3869
+ufs: super header0 +20: ebd07515acc836d386a01f40d0030000cb4f480033b8e2e07930ec9082e80374
+ufs: super header0 +40: b1386153de7104a19f8d3bf651d03169000000000c0000003400000070020000
+ufs: super header0 +60: 0600000018000000000300000300000030000000900300000100000040000000
+ufs: super header0 +80: 0100000000000000000000000000000000000000000000000000000000000000
+ufs: super header0 +a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super header0 +c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super header0 +e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super tables0 +0: 6f646d5f61000000000000000000000000000000000000000000000000000000
+ufs: super tables0 +20: 00000000000000000000000001000000010000006f646d5f6200000000000000
+ufs: super tables0 +40: 0000000000000000000000000000000000000000000000000000000001000000
+ufs: super tables0 +60: 000000000200000070726f647563745f61000000000000000000000000000000
+ufs: super tables0 +80: 0000000000000000000000000000000001000000010000000100000070726f64
+ufs: super tables0 +a0: 7563745f62000000000000000000000000000000000000000000000000000000
+ufs: super tables0 +c0: 0000000002000000000000000200000073797374656d5f610000000000000000
+ufs: super tables0 +e0: 0000000000000000000000000000000000000000000000000200000001000000
+ufs: super tables0 +100: 0100000073797374656d5f620000000000000000000000000000000000000000
+ufs: super tables0 +120: 00000000000000000000000003000000000000000200000073797374656d5f65
+ufs: super tables0 +140: 78745f6100000000000000000000000000000000000000000000000000000000
+ufs: super tables0 +160: 03000000010000000100000073797374656d5f6578745f620000000000000000
+ufs: super tables0 +180: 0000000000000000000000000000000000000000040000000000000002000000
+ufs: super tables0 +1a0: 76656e646f725f61000000000000000000000000000000000000000000000000
+ufs: super tables0 +1c0: 000000000000000004000000010000000100000076656e646f725f6200000000
+ufs: super tables0 +1e0: 0000000000000000000000000000000000000000000000000000000005000000
+ufs: super tables0 +200: 000000000200000076656e646f725f646c6b6d5f610000000000000000000000
+ufs: super tables0 +220: 0000000000000000000000000000000005000000010000000100000076656e64
+ufs: super tables0 +240: 6f725f646c6b6d5f620000000000000000000000000000000000000000000000
+ufs: super tables0 +260: 0000000006000000000000000200000048210000000000000000000000080000
+ufs: super tables0 +280: 000000000000000038b451000000000000000000003000000000000000000000
+ufs: super tables0 +2a0: 40733a00000000000000000000e8510000000000000000009050270000000000
+ufs: super tables0 +2c0: 0000000000608c00000000000000000050024800000000000000000000b8b300
+ufs: super tables0 +2e0: 0000000000000000203e0300000000000000000000c0fb000000000000000000
+ufs: super tables0 +300: 64656661756c7400000000000000000000000000000000000000000000000000
+ufs: super tables0 +320: 000000000000000000000000000000007174695f64796e616d69635f70617274
+ufs: super tables0 +340: 6974696f6e735f61000000000000000000000000000000000000002002000000
+ufs: super tables0 +360: 7174695f64796e616d69635f706172746974696f6e735f620000000000000000
+ufs: super tables0 +380: 0000000000000000000000200200000000080000000000000000100000000000
+ufs: super tables0 +3a0: 0000002002000000737570657200000000000000000000000000000000000000
+ufs: super tables0 +3c0: 00000000000000000000000000000000
+ufs: super header1 +0: 30504c410a0002000001000060e62eb01791c6220f4dadf80f2f0e4c123c3869
+ufs: super header1 +20: ebd07515acc836d386a01f40d0030000cb4f480033b8e2e07930ec9082e80374
+ufs: super header1 +40: b1386153de7104a19f8d3bf651d03169000000000c0000003400000070020000
+ufs: super header1 +60: 0600000018000000000300000300000030000000900300000100000040000000
+ufs: super header1 +80: 0100000000000000000000000000000000000000000000000000000000000000
+ufs: super header1 +a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super header1 +c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super header1 +e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super tables1 +0: 6f646d5f61000000000000000000000000000000000000000000000000000000
+ufs: super tables1 +20: 00000000000000000000000001000000010000006f646d5f6200000000000000
+ufs: super tables1 +40: 0000000000000000000000000000000000000000000000000000000001000000
+ufs: super tables1 +60: 000000000200000070726f647563745f61000000000000000000000000000000
+ufs: super tables1 +80: 0000000000000000000000000000000001000000010000000100000070726f64
+ufs: super tables1 +a0: 7563745f62000000000000000000000000000000000000000000000000000000
+ufs: super tables1 +c0: 0000000002000000000000000200000073797374656d5f610000000000000000
+ufs: super tables1 +e0: 0000000000000000000000000000000000000000000000000200000001000000
+ufs: super tables1 +100: 0100000073797374656d5f620000000000000000000000000000000000000000
+ufs: super tables1 +120: 00000000000000000000000003000000000000000200000073797374656d5f65
+ufs: super tables1 +140: 78745f6100000000000000000000000000000000000000000000000000000000
+ufs: super tables1 +160: 03000000010000000100000073797374656d5f6578745f620000000000000000
+ufs: super tables1 +180: 0000000000000000000000000000000000000000040000000000000002000000
+ufs: super tables1 +1a0: 76656e646f725f61000000000000000000000000000000000000000000000000
+ufs: super tables1 +1c0: 000000000000000004000000010000000100000076656e646f725f6200000000
+ufs: super tables1 +1e0: 0000000000000000000000000000000000000000000000000000000005000000
+ufs: super tables1 +200: 000000000200000076656e646f725f646c6b6d5f610000000000000000000000
+ufs: super tables1 +220: 0000000000000000000000000000000005000000010000000100000076656e64
+ufs: super tables1 +240: 6f725f646c6b6d5f620000000000000000000000000000000000000000000000
+ufs: super tables1 +260: 0000000006000000000000000200000048210000000000000000000000080000
+ufs: super tables1 +280: 000000000000000038b451000000000000000000003000000000000000000000
+ufs: super tables1 +2a0: 40733a00000000000000000000e8510000000000000000009050270000000000
+ufs: super tables1 +2c0: 0000000000608c00000000000000000050024800000000000000000000b8b300
+ufs: super tables1 +2e0: 0000000000000000203e0300000000000000000000c0fb000000000000000000
+ufs: super tables1 +300: 64656661756c7400000000000000000000000000000000000000000000000000
+ufs: super tables1 +320: 000000000000000000000000000000007174695f64796e616d69635f70617274
+ufs: super tables1 +340: 6974696f6e735f61000000000000000000000000000000000000002002000000
+ufs: super tables1 +360: 7174695f64796e616d69635f706172746974696f6e735f620000000000000000
+ufs: super tables1 +380: 0000000000000000000000200200000000080000000000000000100000000000
+ufs: super tables1 +3a0: 0000002002000000737570657200000000000000000000000000000000000000
+ufs: super tables1 +3c0: 00000000000000000000000000000000
+ufs: part userdata: lba 3209728..61908986, 234797036 KB
+ufs: userdata sb +0: 1020f5f201000e000c000000000000000c000000090000000100000001000000
+ufs: userdata sb +20: 00000000f7ad7f03000000007bbe0100d5bf0100020000000a0000006e000000
+ufs: userdata sb +40: e00000007bbe0100000200000002000000060000001a000000f6000000b60200
+ufs: userdata sb +60: 030000000100000002000000318a075ae03b4ce7b4ad9f3d02ba292b00000000
+ufs: userdata sb +80: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +100: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +120: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +140: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +160: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +180: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +1a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +1c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +1e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +200: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +220: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +240: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +260: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +280: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +2a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +2c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +2e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +300: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +320: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +340: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +360: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +380: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +3a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +3c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +3e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb2 +0: 1020f5f201000e000c000000000000000c000000090000000100000001000000
+ufs: userdata sb2 +20: 00000000f7ad7f03000000007bbe0100d5bf0100020000000a0000006e000000
+ufs: part xbl_a: lba 6..2053, 8192 KB
+ufs: xbl_a: begins 7f 45 4c 46 1 1 1 0 0 0 0 0 0 0 0 0
+ufs: xbl_a: fnv aac0cd787086ef0a over 3706880 bytes, 18 ms
+ufs: part xbl_config_a: lba 2054..2181, 512 KB
+ufs: part multiimgqti_a: lba 2182..2189, 32 KB
+ufs: part multiimgoem_a: lba 2190..2197, 32 KB
+ufs: part apdp: lba 2198..2261, 256 KB
+ufs: part xbl_b: lba 6..2053, 8192 KB
+ufs: xbl_b: begins 7f 45 4c 46 1 1 1 0 0 0 0 0 0 0 0 0
+ufs: xbl_b: fnv aac0cd787086ef0a over 3706880 bytes, 18 ms
+ufs: part xbl_config_b: lba 2054..2181, 512 KB
+ufs: part multiimgqti_b: lba 2182..2189, 32 KB
+ufs: part multiimgoem_b: lba 2190..2197, 32 KB
+ufs: part apdp2: lba 2198..2261, 256 KB
+ufs: part ALIGN_TO_128K_1: lba 6..31, 104 KB
+ufs: part cdt: lba 32..63, 128 KB
+ufs: part bk31: lba 64..319, 1024 KB
+ufs: part ddr: lba 320..831, 2048 KB
+ufs: part bk32: lba 832..1343, 2048 KB
+ufs: part uefi_a: lba 6..1285, 5120 KB
+ufs: part aop_a: lba 1286..1413, 512 KB
+ufs: aop_a: begins 7f 45 4c 46 1 1 1 3 0 0 0 0 0 0 0 0
+ufs: aop_a: fnv 967b65bbe133607 over 208896 bytes, 1 ms
+ufs: part aop_config_a: lba 1414..1541, 512 KB
+ufs: part bk41_a: lba 1542..2053, 2048 KB
+ufs: part tz_a: lba 2054..3077, 4096 KB
+ufs: tz_a: begins 7f 45 4c 46 2 1 1 3 0 0 0 0 0 0 0 0
+ufs: tz_a: fnv f04999b7e7f3d973 over 3710976 bytes, 18 ms
+ufs: part hyp_a: lba 3078..5125, 8192 KB
+ufs: hyp_a: begins 7f 45 4c 46 2 1 1 0 0 0 0 0 0 0 0 0
+ufs: hyp_a: fnv bb4f759b34f0b3dd over 3653632 bytes, 18 ms
+ufs: part modem_a: lba 5126..102405, 389120 KB
+ufs: modem_a: begins eb 3c 90 4d 53 44 4f 53 35 2e 30 0 10 4 1 0
+ufs: modem_a: fnv 78a999db72d41ac over 214265856 bytes, 1224 ms
+ufs: part bluetooth_a: lba 102406..103685, 5120 KB
+ufs: bluetooth_a: begins eb 3c 90 4d 53 44 4f 53 35 2e 30 0 10 4 1 0
+ufs: bluetooth_a: fnv 6a7975c4fb6fc1d over 503808 bytes, 2 ms
+ufs: part mdtpsecapp_a: lba 103686..104965, 5120 KB
+ufs: part mdtp_a: lba 104966..113157, 32768 KB
+ufs: part abl_a: lba 113158..115205, 8192 KB
+ufs: abl_a: begins 7f 45 4c 46 1 1 1 0 0 0 0 0 0 0 0 0
+ufs: abl_a: fnv 964d10ab80c3c72e over 208896 bytes, 1 ms
+ufs: part dsp_a: lba 115206..131589, 65536 KB
+ufs: dsp_a: begins 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ufs: dsp_a: fnv cf41f153d26f4d38 over 67108864 bytes, 326 ms
+ufs: part keymaster_a: lba 131590..131845, 1024 KB
+ufs: part boot_a: lba 131846..180997, 196608 KB
+ufs: part devcfg_a: lba 180998..181061, 256 KB
+ufs: part qupfw_a: lba 181062..181093, 128 KB
+ufs: part vbmeta_a: lba 181094..181125, 128 KB
+ufs: part dtbo_a: lba 181126..187269, 24576 KB
+ufs: part uefisecapp_a: lba 187270..187781, 2048 KB
+ufs: part imagefv_a: lba 187782..200069, 49152 KB
+ufs: part shrm_a: lba 200070..200101, 128 KB
+ufs: part cpucp_a: lba 200102..200357, 1024 KB
+ufs: part featenabler_a: lba 200358..200389, 128 KB
+ufs: part vendor_boot_a: lba 200390..224965, 98304 KB
+ufs: part qmcs: lba 224966..232645, 30720 KB
+ufs: part qweslicstore_a: lba 232646..232709, 256 KB
+ufs: part recovery_a: lba 232710..258309, 102400 KB
+ufs: part xbl_ramdump_a: lba 258310..258821, 2048 KB
+ufs: part uefi_b: lba 258822..260101, 5120 KB
+ufs: part aop_b: lba 260102..260229, 512 KB
+ufs: aop_b: begins 7f 45 4c 46 1 1 1 3 0 0 0 0 0 0 0 0
+ufs: aop_b: fnv 967b65bbe133607 over 208896 bytes, 1 ms
+ufs: part aop_config_b: lba 260230..260357, 512 KB
+ufs: part bk41_b: lba 260358..260869, 2048 KB
+ufs: part tz_b: lba 260870..261893, 4096 KB
+ufs: tz_b: begins 7f 45 4c 46 2 1 1 3 0 0 0 0 0 0 0 0
+ufs: tz_b: fnv f04999b7e7f3d973 over 3710976 bytes, 18 ms
+ufs: part hyp_b: lba 261894..263941, 8192 KB
+ufs: hyp_b: begins 7f 45 4c 46 2 1 1 0 0 0 0 0 0 0 0 0
+ufs: hyp_b: fnv bb4f759b34f0b3dd over 3653632 bytes, 18 ms
+ufs: part modem_b: lba 263942..361221, 389120 KB
+ufs: modem_b: begins eb 3c 90 4d 53 44 4f 53 35 2e 30 0 10 4 1 0
+ufs: modem_b: fnv 78a999db72d41ac over 214265856 bytes, 1198 ms
+ufs: part bluetooth_b: lba 361222..362501, 5120 KB
+ufs: bluetooth_b: begins eb 3c 90 4d 53 44 4f 53 35 2e 30 0 10 4 1 0
+ufs: bluetooth_b: fnv 6a7975c4fb6fc1d over 503808 bytes, 2 ms
+ufs: part mdtpsecapp_b: lba 362502..363525, 4096 KB
+ufs: part mdtp_b: lba 363526..371717, 32768 KB
+ufs: part abl_b: lba 371718..373765, 8192 KB
+ufs: abl_b: begins 7f 45 4c 46 1 1 1 0 0 0 0 0 0 0 0 0
+ufs: abl_b: fnv 964d10ab80c3c72e over 208896 bytes, 1 ms
+ufs: part dsp_b: lba 373766..390149, 65536 KB
+ufs: dsp_b: begins 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ufs: dsp_b: fnv cf41f153d26f4d38 over 67108864 bytes, 326 ms
+ufs: part keymaster_b: lba 390150..390405, 1024 KB
+ufs: part boot_b: lba 390406..439557, 196608 KB
+ufs: part devcfg_b: lba 439558..439621, 256 KB
+ufs: part qupfw_b: lba 439622..439653, 128 KB
+ufs: part vbmeta_b: lba 439654..439685, 128 KB
+ufs: part dtbo_b: lba 439686..445829, 24576 KB
+ufs: part uefisecapp_b: lba 445830..446341, 2048 KB
+ufs: part imagefv_b: lba 446342..458629, 49152 KB
+ufs: part shrm_b: lba 458630..458661, 128 KB
+ufs: part cpucp_b: lba 458662..458917, 1024 KB
+ufs: part featenabler_b: lba 458918..458949, 128 KB
+ufs: part vendor_boot_b: lba 458950..483525, 98304 KB
+ufs: part qweslicstore_b: lba 483526..483589, 256 KB
+ufs: part recovery_b: lba 483590..509189, 102400 KB
+ufs: part xbl_ramdump_b: lba 509190..509701, 2048 KB
+ufs: part dip: lba 509702..509957, 1024 KB
+ufs: part bk42: lba 509958..510085, 512 KB
+ufs: part limits: lba 510086..510093, 32 KB
+ufs: part limits-cdsp: lba 510094..510101, 32 KB
+ufs: part toolsfv: lba 510102..510357, 1024 KB
+ufs: part gsort: lba 510358..514453, 16384 KB
+ufs: part bk43: lba 514454..522645, 32768 KB
+ufs: part storsec: lba 522646..522677, 128 KB
+ufs: part uefivarstore: lba 522678..522805, 512 KB
+ufs: part secdata: lba 522806..522813, 32 KB
+ufs: part mdcompress: lba 522814..527933, 20480 KB
+ufs: part connsec: lba 527934..527965, 128 KB
+ufs: part tzsc: lba 527966..527997, 128 KB
+ufs: part rtice: lba 527998..528125, 512 KB
+ufs: part xbl_sc_test_mode: lba 528126..528141, 64 KB
+ufs: part xbl_sc_logs: lba 528142..528173, 128 KB
+ufs: part ALIGN_TO_128K_2: lba 6..31, 104 KB
+ufs: part bk51: lba 32..255, 896 KB
+ufs: part modemst1: lba 256..2303, 8192 KB
+ufs: part modemst2: lba 2304..4351, 8192 KB
+ufs: part fsg: lba 4352..6399, 8192 KB
+ufs: part fsc: lba 6400..6655, 1024 KB
+ufs: part persist: lba 6656..14847, 32768 KB
+ufs: 6 raw units, 127 partitions
+ufs: firmware table 0: 5ad34ba-6f02-4214-952e-4da0398e2bb9 at fefacf90
+ufs: firmware table 1: 7739f24c-93d7-11d4-9a3a-090273fc14d at fedce018
+ufs: firmware table 2: 4c19049f-4137-4dd3-9c10-8b97a83ffdfa at feface60
+ufs: firmware table 3: 49152e77-1ada-4764-b7a2-7afefed95e8b at fefb16c8
+ufs: firmware table 4: b898d8dc-80a-40f7-99e3-31627b806a5a at 1588cefbf75d16ba
+ufs: firmware table 5: 1d301fe9-be79-4353-91c2-d23bc959aec at fc313818
+ufs: firmware table 6: ee4e5898-3914-4259-9d6e-dc7bd7943cf at fc313898
+ufs: firmware table 7: eb9d2d31-2d88-11d3-9a16-090273fc14d at fef60000
+ufs: firmware table 8: f2fd1544-9794-4a2c-992e-e5bbcf20e394 at fef5e000
+ufs: firmware table 9: dcfa911d-26eb-469f-a220-38b7dc461220 at fbd7e018
+ufs: unit 0: path 1.4[c145088609be55438bc130d64ff8e63a]
+ufs: unit 1: path 1.4[77d4908da339384aab9e586ff69ed051]
+ufs: unit 2: path 1.4[6858f8edec87774f9cda5f10df2fe601]
+ufs: unit 3: path 1.4[2490e61aeb8af84dbc980032dbdf5024]
+ufs: unit 4: path 1.4[85193fd307f1854abe3868dc7ad32cea]
+ufs: unit 5: path 1.4[5fd0a14b8e083f48a97eb19b9ccf59b0]
+ufs: block service: 127 partitions and 6 units, page fa511000, buffer fa629000 of 4096 KB
+return slot patched at 8d041a7f0, checkpoint 0
+ba: virtBase=fffffff007004000 physBase=8d0004000 slide=18c9000000 (kern_lo=8d0004000 vm_lo=fffffff007004000)
+cmdline: 200 of 607 characters
+cores for the kernel, in the order it takes them: 700 600 500 400 300 200 100
+device tree 96ce60000 len 4438, boot_args 96ce70000, top 96ce80000
+cmdline: debug=0x8 -v rd=md0 hv_wdt_pet=1 ufs_shared_pa=0x00000000fa511000 hakios_kver=2.1.13-hakios-darwin22.5-sm7435-g96ffbc53-dirty loader_return_after=180 epoch=1793895767 sb_delay=8 cpus=8 bootcpu=7 ufs=2
+the kernel will run on core 700 (this is core 0)
+jumping to 8d04194a8
+core 700: the firmware answers 0 to the request to start it
+kernel returned: log at 8d0ae09c0, 98750 bytes
+
+== KERNEL LOG ==
+cpu 4 (phys id 0x300) is a slower core: the scheduler uses it after cpu 3 (phys id 0x400)
+cpu 5 (phys id 0x200) is a slower core: the scheduler uses it after cpu 2 (phys id 0x500)
+cpu 6 (phys id 0x100) is a slower core: the scheduler uses it after cpu 1 (phys id 0x600)
+
+=== init: process 1, started as /redwood/sbin/init ===
+Darwin 22.5.0 iPhone10,3
+Darwin Kernel Version 22.5.0: Sen 02 Nov 2026 20:12:05 WIB; okihann:xnu-8796.121.2[xnu-8796.121.2-dirty]/BUILD/obj/DEVELOPMENT_ARM64_BCM2837
+memory 2928 MB, page size 16384, 7 cpu
+
+[ ok ] sysctl: kernel identifies itself
+
+-- writable filesystem --
+[ ok ] mount a memory filesystem on /private/var
+  111 directories, 8 files
+[ ok ] create the directories of the data volume
+
+-- read-only filesystem --
+  drwxr-xr-x  2        0 /redwood/empty
+  drwxr-xr-x  2        0 /redwood/bin
+  drwxr-xr-x  2        0 /redwood/hal
+  drwxr-xr-x  2        0 /redwood/sbin
+  drwxr-xr-x  2        0 /redwood/etc
+  drwxr-xr-x  2        0 /redwood/LaunchDaemons
+  drwxr-xr-x  2        0 /redwood/var
+  drwxr-xr-x  2        0 /redwood/private
+  drwxr-xr-x  2        0 /redwood/lib
+  drwxr-xr-x  2        0 /redwood/dev
+  drwxr-xr-x  2        0 /redwood/xpc
+  drwxr-xr-x  2        0 /redwood/share
+  -rwxr-xr-x  1    66416 /redwood/bin/torch_test
+  -rwxr-xr-x  1    67576 /redwood/bin/apfs_mmap_test
+  -rwxr-xr-x  1    66808 /redwood/bin/camera_avtest
+  -rwxr-xr-x  1    69216 /redwood/bin/sound_test
+  -rwxr-xr-x  1    69704 /redwood/bin/battery_test
+  -rwxr-xr-x  1    68256 /redwood/bin/cg_test
+  -rwxr-xr-x  1    66728 /redwood/bin/cputop
+  -rwxr-xr-x  1    71744 /redwood/bin/net_test
+  -rwxr-xr-x  1    66728 /redwood/bin/rwtouch
+  -rwxr-xr-x  1    66128 /redwood/bin/hello_dyn
+  -rwxr-xr-x  1    68296 /redwood/bin/font_test
+  -rwxr-xr-x  1    67240 /redwood/bin/fps_info
+  -rwxr-xr-x  1    67952 /redwood/bin/keychain_test
+  -rwxr-xr-x  1    66576 /redwood/bin/cpu_test
+  -rwxr-xr-x  1    69672 /redwood/bin/surf_test
+  -rwxr-xr-x  1    66864 /redwood/bin/shm_test
+  -rwxr-xr-x  1    68264 /redwood/bin/cow_test
+  -rwxr-xr-x  1    67936 /redwood/bin/wifipw_test
+  -rwxr-xr-x  1    52792 /redwood/bin/var_store
+  -rwxr-xr-x  1    71328 /redwood/bin/metal_test
+  -rwxr-xr-x  1    66400 /redwood/bin/mg_test
+  -rwxr-xr-x  1    83688 /redwood/bin/svc_test
+  -rwxr-xr-x  1    67504 /redwood/bin/vol_ls
+  -rwxr-xr-x  1    67312 /redwood/bin/snap_test
+  -rwxr-xr-x  1    34496 /redwood/bin/child
+  -rwxr-xr-x  1    85768 /redwood/bin/camera_test
+  -rwxr-xr-x  1    67704 /redwood/bin/record_test
+  lrwxrwxrwx  1       31 /redwood/hal/HakiosAudio.driver -> /redwood/lib/HakiosAudio.driver
+  -rwxr-xr-x  1    52384 /redwood/sbin/init
+  -rw-r--r--  1     6018 /redwood/etc/var.skel
+  -rw-r--r--  1      262 /redwood/etc/inject.conf
+  -rw-r--r--  1       88 /redwood/etc/rc
+  -rw-r--r--  1       47 /redwood/etc/motd
+  -rw-r--r--  1      349 /redwood/etc/rc.jobs
+  -rw-r--r--  1      457 /redwood/LaunchDaemons/com.apple.notifyd.plist
+  -rw-r--r--  1      377 /redwood/LaunchDaemons/com.apple.syslogd.plist
+  -rw-r--r--  1      692 /redwood/LaunchDaemons/com.apple.containermanagerd.system.plist
+  -rw-r--r--  1      285 /redwood/LaunchDaemons/com.apple.mobilegestalt.xpc.plist
+  -rw-r--r--  1      861 /redwood/LaunchDaemons/com.apple.logd.plist
+  -rw-r--r--  1     1086 /redwood/LaunchDaemons/com.apple.backboardd.plist
+  -rw-r--r--  1      377 /redwood/LaunchDaemons/com.apple.cfprefsd.xpc.daemon.plist
+  -rw-r--r--  1      657 /redwood/LaunchDaemons/com.hakios.wifi.plist
+  -rw-r--r--  1      530 /redwood/LaunchDaemons/com.apple.cfprefsd.xpc.daemon.system.plist
+  -rw-r--r--  1      270 /redwood/LaunchDaemons/com.apple.pluginkit.pkd.plist
+  -rw-r--r--  1      908 /redwood/LaunchDaemons/com.hakios.varstore.plist
+  -rw-r--r--  1      400 /redwood/LaunchDaemons/com.apple.fseventsd.plist
+  -rw-r--r--  1      475 /redwood/LaunchDaemons/com.apple.diagnosticd.plist
+  -rw-r--r--  1     2337 /redwood/LaunchDaemons/com.apple.SpringBoard.plist
+  -rw-r--r--  1      779 /redwood/LaunchDaemons/com.hakios.demo.plist
+  -rw-r--r--  1      539 /redwood/LaunchDaemons/com.apple.wifid.plist
+  -rw-r--r--  1      488 /redwood/LaunchDaemons/com.apple.powerd.plist
+  -rw-r--r--  1      926 /redwood/LaunchDaemons/com.apple.containermanagerd.plist
+  -rw-r--r--  1      424 /redwood/LaunchDaemons/com.apple.iconservices.iconservicesagent.plist
+  -rw-r--r--  1      504 /redwood/LaunchDaemons/com.apple.analyticsd.plist
+  -rw-r--r--  1      616 /redwood/LaunchDaemons/com.apple.distnoted.xpc.daemon.plist
+  -rw-r--r--  1      792 /redwood/LaunchDaemons/com.apple.lsd.plist
+  -rw-r--r--  1      415 /redwood/LaunchDaemons/com.apple.logd_helper.plist
+  -rw-r--r--  1      636 /redwood/LaunchDaemons/com.apple.mobile.usermanagerd.plist
+  -rw-r--r--  1      412 /redwood/LaunchDaemons/com.apple.runningboardd.plist
+  drwxr-xr-x  2        0 /redwood/var/mobile
+  drwxr-xr-x  2        0 /redwood/var/mobile/Library
+  drwxr-xr-x  2        0 /redwood/var/mobile/Library/Preferences
+  drwxr-xr-x  2        0 /redwood/private/var
+  -rwxr-xr-x  1    74112 /redwood/lib/libhakios.dylib
+  drwxr-xr-x  2        0 /redwood/lib/HakiosMetal.bundle
+  drwxr-xr-x  2        0 /redwood/lib/HakiosAudio.driver
+  -rwxr-xr-x  1    67976 /redwood/lib/libhakios.tweaks.dylib
+  -rwxr-xr-x  1    91496 /redwood/lib/libhakios.sb.dylib
+  -rwxr-xr-x  1   128536 /redwood/lib/libhakios.media.dylib
+  -rwxr-xr-x  1    68248 /redwood/lib/libhakios.app.dylib
+  -rw-r--r--  1      814 /redwood/lib/HakiosMetal.bundle/Info.plist
+  -rwxr-xr-x  1    90512 /redwood/lib/HakiosMetal.bundle/HakiosMetal
+  -rwxr-xr-x  1    68496 /redwood/lib/HakiosAudio.driver/HakiosAudio
+  -rw-r--r--  1     1044 /redwood/lib/HakiosAudio.driver/Info.plist
+  -rw-r--r--  1     1852 /redwood/xpc/extensions.plist.sig
+  -rw-r--r--  1   104731 /redwood/xpc/extensions.plist
+  -rw-r--r--  1   300000 /redwood/share/pattern.bin
+[ ok ] walk our image (readdir, lstat, readlink)
+[ ok ] the system image has the dynamic linker
+  etc/motd: Darwin on hakios: image built 2026-11-02 20:15
+[ ok ] read a small file
+[ ok ] follow a symlink to a directory
+[ ok ] missing file gives ENOENT
+[ ok ] creating a file gives EROFS
+[ ok ] read a 300 KB file and verify every byte
+[ ok ] seek into the middle and read
+[ ok ] mmap the file and verify every byte (page-in)
+
+-- writing files --
+[ ok ] create a file, write 100 KB, read it back
+[ ok ] overwrite in the middle
+[ ok ] append
+[ ok ] truncate, then extend: the new part reads as zeros
+[ ok ] rename
+[ ok ] hard link, remove the first name
+[ ok ] a removed file stays usable while it is open
+[ ok ] symbolic link
+[ ok ] directories: nest, refuse to remove a full one, rename, remove
+[ ok ] shared mapping: what is stored through memory is seen by read()
+[ ok ] and what write() stores is seen through the mapping
+[ ok ] bind a local socket to a name
+[ ok ] 300 files in one directory: create, list, remove
+  lrwxr-xr-x  1       15 /tmp/t/symlink -> some/where else
+  -rw-------  1    65536 /tmp/t/mapped
+  srwxr-xr-x  1        0 /tmp/t/socket
+
+-- memory --
+[ ok ] 64 MB of anonymous memory: touch every page, read it back
+[ ok ] unmap it
+
+-- processes --
+[ ok ] fork
+  child: pid 2, parent 1, 3 arguments: [/redwood/bin/child] [one] [two]
+  child: environment: [GREETING=hello from init]
+[ ok ] exec a second program from the image, collect its exit status
+[ ok ] pipe from a child process
+
+-- dynamic linking --
+Hello from a dynamically linked program! pid 4, 3 argument(s)
+uname: Darwin 22.5.0 iPhone10,3
+heap: malloc works (0x100a05380), stack near 0x16f763638, main at 0x1006a3d4c, printf at 0x18f6200b0
+argv[0] = /redwood/bin/hello_dyn
+argv[1] = from
+argv[2] = init
+  /redwood/bin/hello_dyn exited with status 7
+[ ok ] run a program through dyld and the shared cache
+
+-- devices --
+  crw--w--w-  1        0 /dev/console
+  crw-rw-rw-  1        0 /dev/tty
+  crw-rw-rw-  1        0 /dev/null
+  crw-rw-rw-  1        0 /dev/zero
+  crw-------  1        0 /dev/klog
+  crw-------  1        0 /dev/oslog
+  crw-------  1        0 /dev/oslog_stream
+  dr-xr-xr-x  1        0 /dev/fd
+  lr-xr-xr-x  1        0 /dev/stdin -> fd/0
+  lr-xr-xr-x  1        0 /dev/stdout -> fd/1
+  lr-xr-xr-x  1        0 /dev/stderr -> fd/2
+  crw-------  1        0 /dev/pf
+  crw-------  1        0 /dev/pfm
+  crw-rw-rw-  1        0 /dev/ttyp0
+  crw-rw-rw-  1        0 /dev/ptyp0
+  crw-rw-rw-  1        0 /dev/ttyp1
+  crw-rw-rw-  1        0 /dev/ptyp1
+  crw-rw-rw-  1        0 /dev/ttyp2
+  crw-rw-rw-  1        0 /dev/ptyp2
+  crw-rw-rw-  1        0 /dev/ttyp3
+  crw-rw-rw-  1        0 /dev/ptyp3
+  crw-rw-rw-  1        0 /dev/ttyp4
+  crw-rw-rw-  1        0 /dev/ptyp4
+  crw-rw-rw-  1        0 /dev/ttyp5
+  crw-rw-rw-  1        0 /dev/ptyp5
+  crw-rw-rw-  1        0 /dev/ttyp6
+  crw-rw-rw-  1        0 /dev/ptyp6
+  crw-rw-rw-  1        0 /dev/ttyp7
+  crw-rw-rw-  1        0 /dev/ptyp7
+  crw-rw-rw-  1        0 /dev/ttyp8
+  crw-rw-rw-  1        0 /dev/ptyp8
+  crw-rw-rw-  1        0 /dev/ttyp9
+  crw-rw-rw-  1        0 /dev/ptyp9
+  crw-rw-rw-  1        0 /dev/ttypa
+  crw-rw-rw-  1        0 /dev/ptypa
+  crw-rw-rw-  1        0 /dev/ttypb
+  crw-rw-rw-  1        0 /dev/ptypb
+  crw-rw-rw-  1        0 /dev/ttypc
+  crw-rw-rw-  1        0 /dev/ptypc
+  crw-rw-rw-  1        0 /dev/ttypd
+  crw-rw-rw-  1        0 /dev/ptypd
+  crw-rw-rw-  1        0 /dev/ttype
+  crw-rw-rw-  1        0 /dev/ptype
+  crw-rw-rw-  1        0 /dev/ttypf
+  crw-rw-rw-  1        0 /dev/ptypf
+  crw-rw-rw-  1        0 /dev/ptmx
+  crw-------  1        0 /dev/bpf0
+  crw-------  1        0 /dev/bpf1
+  crw-------  1        0 /dev/bpf2
+  crw-------  1        0 /dev/bpf3
+  crw-r--r--  1        0 /dev/fsevents
+  crw-rw-rw-  1        0 /dev/random
+  crw-rw-rw-  1        0 /dev/urandom
+  crw-rw-rw-  1        0 /dev/dtrace
+  crw-rw-rw-  1        0 /dev/dtracehelper
+  crw-rw-rw-  1        0 /dev/lockstat
+  crw-rw-rw-  1        0 /dev/sdt
+  crw-rw-rw-  1        0 /dev/systrace
+  crw-rw-rw-  1        0 /dev/machtrace
+  crw-rw-rw-  1        0 /dev/fbt
+  crw-rw-rw-  1        0 /dev/profile
+  brw-------  1        0 /dev/md0
+  crw-------  1        0 /dev/rmd0
+  brw-------  1        0 /dev/md1
+  crw-------  1        0 /dev/rmd1
+  crw-rw-rw-  1        0 /dev/hakios-touch
+  crw-rw-rw-  1        0 /dev/hakios-audio
+[ ok ] devfs is mounted on /dev
+[ ok ] /dev/zero
+[ ok ] /dev/null
+  /dev/random: 43 43 34 d0 65 84 6d 95 11 8d 39 7b bb 1f fd ab
+[ ok ] /dev/random
+
+-- time --
+  slept 200 ms, the clock advanced 205 ms
+[ ok ] sleep and wall clock agree
+
+=== 36 checks, 0 failed ===
+init: library insertion: /redwood/lib/libhakios.dylib backboardd containermanagerd containermanagerd_system;/redwood/lib/libhakios.sb.dylib SpringBoard;/redwood/lib/libhakios.media.dylib mediaserverd;/redwood/lib/libhakios.app.dylib Sileo;/redwood/lib/libhakios.tweaks.dylib Preferences
+init: up to 32768 vnodes
+
+=== /redwood/etc/rc ===
+
+$ exec /sbin/launchd.darwin
+Darwin Ignition Sequence Version 1.0.0: Tue Jul  2 20:41:23 PDT 2024; root:libignition-51~1974/libignition_core/RELEASE_ARM64
+libignition: 1: arguments           :
+libignition: 1:   ignition level    : 0x5
+libignition: 1:   force dylib root  : 0x0
+libignition: 1:   halt after stage  : n/a
+libignition: 1: ignition blob not available
+libignition: 1: configuration         :
+libignition: 1:   program             : launchd.darwin
+libignition: 1:   os environment      : n/a
+libignition: 1:   rd                  : md0
+libignition: 1:   arp0                : n/a
+libignition: 1:   rp                  : n/a
+libignition: 1:   pivot src           : n/a
+libignition: 1:   root ramdisk        : 0x0
+libignition: 1:   restore             : 0x0
+libignition: 1:   root device info    : 0x0
+libignition: 1:   can haz debugger    : 0x1
+libignition: 1:   rootfs mount flags  : 0x4005001
+libignition: 1:   ecid                : 0x0
+libignition: 1:   hardware target     : d22ap
+libignition: 1:   initproc            : 0x1
+libignition: 1:   single user         : 0x0
+libignition: 1:   userspace reboot    : 0x0
+libignition: 1:   secure boot level   : 0x0
+libignition: 1:   os version          : n/a
+libignition: 1: parameters          :
+libignition: 1:   version           : 0x1
+libignition: 1:   argc              : 0x1
+libignition: 1:   log fd            : 0xffffffffffffffff
+libignition: 1:   platform          : 0x2
+libignition: 1: boot spec           :
+libignition: 1:   name              : ramdisk
+libignition: 1:   stage count       : 0x2
+libignition: 1:        hello: commence primary ignition
+libignition: 1:        hello: hello from launchd.darwin.1
+libignition: 1:      goodbye: ignition sequence complete
+com.apple.xpc.launchd|2026-11-05 23:22:47.512690 <Notice>: hello
+com.apple.xpc.launchd|2026-11-05 23:22:47.514339 <Notice>: Darwin Bootstrapper Version 7.0.0: Thu Feb  1 20:33:09 PST 2024; root:libxpc_executables-2462.140.4.702.1~1/launchd/RELEASE_ARM64
+com.apple.xpc.launchd|2026-11-05 23:22:47.514396 <Notice>: boot-args = debug=0x8 -v rd=md0 hv_wdt_pet=1 ufs_shared_pa=0x00000000fa511000 hakios_kver=2.1.13-hakios-darwin22.5-sm7435-g96ffbc53-dirty loader_return_after=180 epoch=1793895767 sb_delay=8 cpus=8 bootcpu=7 ufs=2
+com.apple.xpc.launchd|2026-11-05 23:22:47.514708 <Notice>: Restore environment starting.
+com.apple.xpc.launchd|2026-11-05 23:22:47.516661 (system) <Notice>: entering ondemand mode
+com.apple.xpc.launchd|2026-11-05 23:22:47.517033 (system) <Notice>: created
+com.apple.xpc.launchd|2026-11-05 23:22:47.517482 (fsck) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-05 23:22:47.517512 (mount-phase-1) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-05 23:22:47.517524 (data-protection) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-05 23:22:47.517555 (finish-obliteration) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-05 23:22:47.517566 (detect-installed-roots) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-05 23:22:47.517581 (commit-boot-mode) <Notice>: Doing boot task
+com.apple.xpc.launchd|2026-11-05 23:22:47.517925 <Notice>: boot-mode committed: (null)
+com.apple.xpc.launchd|2026-11-05 23:22:47.517948 (restore-datapartition) <Notice>: Doing boot task
+com.apple.xpc.launchd|2026-11-05 23:22:47.518358 (restore-datapartition) <Notice>: optional boot task not present
+com.apple.xpc.launchd|2026-11-05 23:22:47.518385 (mount-phase-2) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-05 23:22:47.518400 (init-with-data-volume) <Notice>: Doing boot task
+com.apple.xpc.launchd|2026-11-05 23:22:47.518700 (MSUEarlyBootTask) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-05 23:22:47.518723 (fips) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-05 23:22:47.518734 (keybag) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-05 23:22:47.518742 (usermanagerd) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-05 23:22:47.518758 (dirs_cleaner) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-05 23:22:47.520032 <Notice>: Flushed 22 logs [limit: 20]
+com.apple.xpc.launchd|2026-11-05 23:22:47.518803 <Notice>: launchd logging initialized. name: com.apple.xpc.launchd pid: 1
+com.apple.xpc.launchd|2026-11-05 23:22:47.518804 (xpcroleaccountd) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-05 23:22:47.518806 (init_featureflags) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-05 23:22:47.518807 (auearlyboot) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-05 23:22:47.518808 (tzinit) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-05 23:22:47.518809 (finish-restore) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-05 23:22:47.518810 (finish-demo-restore) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-05 23:22:47.518820 (sysstatuscheck) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-05 23:22:47.518821 (prng_seedctl) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-05 23:22:47.518848 <Error>: Unable to open /System/Library/xpc/launchd.plist [2:No such file or directory]
+com.apple.xpc.launchd|2026-11-05 23:22:47.518849 (launchd_cache_loader) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-05 23:22:47.518850 <Error>: No MRM cache found
+com.apple.xpc.launchd|2026-11-05 23:22:47.518851 <Warning>: Unable to load cache
+com.apple.xpc.launchd|2026-11-05 23:22:47.518855 <Notice>: launchd UUID: 5C15DB07-B3BC-3DF3-B62F-3E498B993B8E
+com.apple.xpc.launchd|2026-11-05 23:22:47.518856 (boot) <Notice>: Early boot complete. Continuing system boot.
+com.apple.xpc.launchd|2026-11-05 23:22:47.519574 (user/501) <Notice>: entering ondemand mode
+com.apple.xpc.launchd|2026-11-05 23:22:47.519594 (user/501) <Notice>: created
+com.apple.xpc.launchd|2026-11-05 23:22:47.519597 (system) <Notice>: entering bootstrap mode
+com.apple.xpc.launchd|2026-11-05 23:22:47.519599 (user/501) <Notice>: entering bootstrap mode
+com.apple.xpc.launchd|2026-11-05 23:22:47.522101 (com.apple.backboardd) <Error>: Unknown key for plist importer (key: HighPriorityIO type: bool)
+com.apple.xpc.launchd|2026-11-05 23:22:47.522133 (com.apple.backboardd) <Notice>: This service is defined to be constantly running and is inherently inefficient.
+com.apple.xpc.launchd|2026-11-05 23:22:47.522157 (user/501) <Notice>: pending spawn, domain in on-demand-only mode: com.apple.backboardd
+com.apple.xpc.launchd|2026-11-05 23:22:47.522301 (user/501) <Notice>: pending spawn, domain in on-demand-only mode: com.hakios.wifi
+com.apple.xpc.launchd|2026-11-05 23:22:47.522861 (user/501) <Notice>: pending spawn, domain in on-demand-only mode: com.hakios.varstore
+com.apple.xpc.launchd|2026-11-05 23:22:47.523551 (com.apple.SpringBoard) <Error>: Unknown key for plist importer (key: HighPriorityIO type: bool)
+com.apple.xpc.launchd|2026-11-05 23:22:47.523572 (user/501/com.apple.SpringBoard) <Warning>: (lint): The HideUntilCheckIn property is an architectural performance issue. Please transition away from it.
+com.apple.xpc.launchd|2026-11-05 23:22:47.523614 <Notice>: Last log repeated 1 times
+com.apple.xpc.launchd|2026-11-05 23:22:47.523588 (com.apple.SpringBoard) <Notice>: This service is defined to be constantly running and is inherently inefficient.
+com.apple.xpc.launchd|2026-11-05 23:22:47.523835 (user/501/com.apple.SpringBoard) <Notice>: service will attempt to elide xpcproxy
+com.apple.xpc.launchd|2026-11-05 23:22:47.523950 (user/501) <Notice>: pending spawn, domain in on-demand-only mode: com.hakios.demo
+com.apple.xpc.launchd|2026-11-05 23:22:47.524017 (com.apple.wifid) <Notice>: This service is defined to be constantly running and is inherently inefficient.
+com.apple.xpc.launchd|2026-11-05 23:22:47.524041 (user/501) <Notice>: pending spawn, domain in on-demand-only mode: com.apple.wifid
+com.apple.xpc.launchd|2026-11-05 23:22:47.524096 (com.apple.powerd) <Notice>: This service is defined to be constantly running and is inherently inefficient.
+com.apple.xpc.launchd|2026-11-05 23:22:47.524116 (user/501) <Notice>: pending spawn, domain in on-demand-only mode: com.apple.powerd
+com.apple.xpc.launchd|2026-11-05 23:22:47.524197 (user/501/com.apple.containermanagerd) <Warning>: (lint): _PanicOnCrash key: InternalOnly not enabled in the current environment
+com.apple.xpc.launchd|2026-11-05 23:22:47.524266 (user/501) <Notice>: pending spawn, domain in on-demand-only mode: com.apple.containermanagerd
+com.apple.xpc.launchd|2026-11-05 23:22:47.524835 (com.apple.distnoted.xpc.daemon) <Notice>: This service is defined to be constantly running and is inherently inefficient.
+com.apple.xpc.launchd|2026-11-05 23:22:47.524864 (user/501) <Notice>: pending spawn, domain in on-demand-only mode: com.apple.distnoted.xpc.daemon
+com.apple.xpc.launchd|2026-11-05 23:22:47.525068 (user/501/com.apple.mobile.usermanagerd) <Warning>: (lint): _PanicOnCrash key: InternalOnly not enabled in the current environment
+com.apple.xpc.launchd|2026-11-05 23:22:47.525091 (com.apple.mobile.usermanagerd) <Notice>: This key does not do anything: OnDemand
+com.apple.xpc.launchd|2026-11-05 23:22:47.525103 (user/501) <Notice>: pending spawn, domain in on-demand-only mode: com.apple.mobile.usermanagerd
+com.apple.xpc.launchd|2026-11-05 23:22:47.525161 (com.apple.runningboardd) <Notice>: This service is defined to be constantly running and is inherently inefficient.
+com.apple.xpc.launchd|2026-11-05 23:22:47.525180 (user/501) <Notice>: pending spawn, domain in on-demand-only mode: com.apple.runningboardd
+com.apple.xpc.launchd|2026-11-05 23:22:47.525472 (com.apple.logd) <Error>: Unknown key for plist importer (key: BeginTransactionAtShutdown type: bool)
+com.apple.xpc.launchd|2026-11-05 23:22:47.525493 (com.apple.logd) <Notice>: This service is defined to be constantly running and is inherently inefficient.
+com.apple.xpc.launchd|2026-11-05 23:22:47.525504 (system/com.apple.logd - BSDSystemLogger) <Warning>: System logger socket was not opened during early boot. (Proceeding anyway)
+com.apple.xpc.launchd|2026-11-05 23:22:47.525515 (system) <Notice>: pending spawn, service not yet activated: com.apple.logd
+com.apple.xpc.launchd|2026-11-05 23:22:47.525821 (com.apple.fseventsd) <Error>: The HopefullyExitsLast key is no longer respected. Please remove it.
+com.apple.xpc.launchd|2026-11-05 23:22:47.525834 (com.apple.fseventsd) <Notice>: This service is defined to be constantly running and is inherently inefficient.
+com.apple.xpc.launchd|2026-11-05 23:22:47.525847 (system) <Notice>: pending spawn, domain in on-demand-only mode: com.apple.fseventsd
+com.apple.xpc.launchd|2026-11-05 23:22:47.528381 (user/501/com.apple.accessibility.axAuditDaemon.deviceservice) <Notice>: Did not import service from caller: path = /System/Library/DeveloperModeLaunchDaemons/com.apple.accessibility.axAuditDaemon.deviceservice.plist, caller = launchd.darwin[1], error = 152: Service cannot load in current boot environment
+com.apple.xpc.launchd|2026-11-05 23:22:47.528467 (user/501/com.apple.instruments.deviceservice) <Notice>: Did not import service from caller: path = /System/Library/DeveloperModeLaunchDaemons/com.apple.instruments.deviceservice.plist, caller = launchd.darwin[1], error = 152: Service cannot load in current boot environment
+com.apple.xpc.launchd|2026-11-05 23:22:47.528522 (user/501/com.apple.sysmond) <Notice>: Did not import service from caller: path = /System/Library/DeveloperModeLaunchDaemons/com.apple.sysmond.plist, caller = launchd.darwin[1], error = 152: Service cannot load in current boot environment
+com.apple.xpc.launchd|2026-11-05 23:22:47.528530 (user/501) <Error>: Failed to bootstrap path: path = /AppleInternal/Library/LaunchDaemons, error = 2: No such file or directory
+com.apple.xpc.launchd|2026-11-05 23:22:47.528534 (user/501) <Error>: Failed to bootstrap path: path = /AppleInternal/Library/LaunchAngels, error = 2: No such file or directory
+com.apple.xpc.launchd|2026-11-05 23:22:47.528862 (user/501) <Notice>: exiting bootstrap mode
+com.apple.xpc.launchd|2026-11-05 23:22:47.528880 (user/501/com.apple.SpringBoard) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.528890 (user/501/com.apple.SpringBoard) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-05 23:22:47.528893 (user/501/com.apple.SpringBoard) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-05 23:22:47.528982 (user/501/com.apple.SpringBoard) <Warning>: Skipping remaining service endpoints for importance boosting.
+com.apple.xpc.launchd|2026-11-05 23:22:47.528992 (user/501/com.apple.SpringBoard) <Warning>: Skipping remaining event endpoints for importance boosting.
+com.apple.xpc.launchd|2026-11-05 23:22:47.528995 (user/501/com.apple.SpringBoard) <Warning>: Skipping remaining instance endpoints for importance boosting.
+com.apple.xpc.launchd|2026-11-05 23:22:47.529038 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.529041 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.529046 (user/501/com.apple.SpringBoard) <Notice>: launching: system support
+com.apple.xpc.launchd|2026-11-05 23:22:47.529058 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.529060 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.529075 (user/501) <Notice>: exiting ondemand mode
+com.apple.xpc.launchd|2026-11-05 23:22:47.529079 (user/501/com.apple.runningboardd) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.529084 (user/501/com.apple.runningboardd) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-05 23:22:47.529090 (user/501/com.apple.runningboardd) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-05 23:22:47.529115 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.529118 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.529121 (user/501/com.apple.runningboardd) <Notice>: launching: speculative
+com.apple.xpc.launchd|2026-11-05 23:22:47.530108 (user/501/com.apple.runningboardd [6]) <Notice>: xpcproxy spawned with pid 6
+com.apple.xpc.launchd|2026-11-05 23:22:47.530144 (user/501/com.apple.runningboardd [6]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.530149 (user/501/com.apple.runningboardd [6]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-05 23:22:47.530156 (user/501/com.apple.powerd) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.530166 (user/501/com.apple.powerd) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-05 23:22:47.530169 (user/501/com.apple.powerd) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-05 23:22:47.530227 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.530231 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.530238 (user/501/com.apple.powerd) <Notice>: launching: speculative
+com.apple.xpc.launchd|2026-11-05 23:22:47.530888 (user/501/com.apple.powerd [8]) <Notice>: xpcproxy spawned with pid 8
+com.apple.xpc.launchd|2026-11-05 23:22:47.530921 (user/501/com.apple.powerd [8]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.530926 (user/501/com.apple.powerd [8]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-05 23:22:47.530935 (user/501/com.apple.wifid) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.530943 (user/501/com.apple.wifid) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-05 23:22:47.530946 (user/501/com.apple.wifid) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-05 23:22:47.531001 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.531004 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.531011 (user/501/com.apple.wifid) <Notice>: launching: speculative
+com.apple.xpc.launchd|2026-11-05 23:22:47.531567 (user/501/com.apple.wifid [9]) <Notice>: xpcproxy spawned with pid 9
+com.apple.xpc.launchd|2026-11-05 23:22:47.531602 (user/501/com.apple.wifid [9]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.531606 (user/501/com.apple.wifid [9]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-05 23:22:47.531612 (user/501/com.hakios.varstore) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.531620 (user/501/com.hakios.varstore) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-05 23:22:47.531623 (user/501/com.hakios.varstore) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-05 23:22:47.531660 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.531664 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.531668 (user/501/com.hakios.varstore) <Notice>: launching: speculative
+com.apple.xpc.launchd|2026-11-05 23:22:47.532283 (user/501/com.hakios.varstore [10]) <Notice>: xpcproxy spawned with pid 10
+com.apple.xpc.launchd|2026-11-05 23:22:47.532315 (user/501/com.hakios.varstore [10]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.532321 (user/501/com.hakios.varstore [10]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-05 23:22:47.532328 (user/501/com.apple.backboardd) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.532338 (user/501/com.apple.backboardd) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-05 23:22:47.532340 (user/501/com.apple.backboardd) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-05 23:22:47.532451 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.532454 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.532461 (user/501/com.apple.backboardd) <Notice>: launching: speculative
+com.apple.xpc.launchd|2026-11-05 23:22:47.533461 (user/501/com.apple.backboardd [11]) <Notice>: xpcproxy spawned with pid 11
+com.apple.xpc.launchd|2026-11-05 23:22:47.533503 (user/501/com.apple.backboardd [11]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.533510 (user/501/com.apple.backboardd [11]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-05 23:22:47.533517 (user/501/com.apple.containermanagerd) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.533527 (user/501/com.apple.containermanagerd) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-05 23:22:47.533531 (user/501/com.apple.containermanagerd) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-05 23:22:47.533578 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.533582 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.533586 (user/501/com.apple.containermanagerd) <Notice>: launching: speculative
+com.apple.xpc.launchd|2026-11-05 23:22:47.535189 (user/501/com.apple.containermanagerd [12]) <Notice>: xpcproxy spawned with pid 12
+com.apple.xpc.launchd|2026-11-05 23:22:47.535243 (user/501/com.apple.containermanagerd [12]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.535250 (user/501/com.apple.containermanagerd [12]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-05 23:22:47.535258 (user/501/com.hakios.demo) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.535268 (user/501/com.hakios.demo) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-05 23:22:47.535270 (user/501/com.hakios.demo) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-05 23:22:47.535315 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.535319 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.535324 (user/501/com.hakios.demo) <Notice>: launching: speculative
+com.apple.xpc.launchd|2026-11-05 23:22:47.537054 (user/501/com.hakios.demo [13]) <Notice>: xpcproxy spawned with pid 13
+com.apple.xpc.launchd|2026-11-05 23:22:47.537095 (user/501/com.hakios.demo [13]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.537100 (user/501/com.hakios.demo [13]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-05 23:22:47.537108 (user/501/com.apple.distnoted.xpc.daemon) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.537117 (user/501/com.apple.distnoted.xpc.daemon) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-05 23:22:47.537120 (user/501/com.apple.distnoted.xpc.daemon) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-05 23:22:47.537188 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.537192 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.537196 (user/501/com.apple.distnoted.xpc.daemon) <Notice>: launching: speculative
+com.apple.xpc.launchd|2026-11-05 23:22:47.538287 (user/501/com.apple.distnoted.xpc.daemon [14]) <Notice>: xpcproxy spawned with pid 14
+com.apple.xpc.launchd|2026-11-05 23:22:47.538330 (user/501/com.apple.distnoted.xpc.daemon [14]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.538336 (user/501/com.apple.distnoted.xpc.daemon [14]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-05 23:22:47.538343 (user/501/com.apple.mobile.usermanagerd) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.538353 (user/501/com.apple.mobile.usermanagerd) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-05 23:22:47.538356 (user/501/com.apple.mobile.usermanagerd) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-05 23:22:47.538417 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.538420 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.538424 (user/501/com.apple.mobile.usermanagerd) <Notice>: launching: speculative
+com.apple.xpc.launchd|2026-11-05 23:22:47.539702 (user/501/com.apple.mobile.usermanagerd [15]) <Notice>: xpcproxy spawned with pid 15
+com.apple.xpc.launchd|2026-11-05 23:22:47.539741 (user/501/com.apple.mobile.usermanagerd [15]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.539747 (user/501/com.apple.mobile.usermanagerd [15]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-05 23:22:47.539754 (user/501/com.hakios.wifi) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.539763 (user/501/com.hakios.wifi) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-05 23:22:47.539766 (user/501/com.hakios.wifi) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-05 23:22:47.539808 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.539811 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.539815 (user/501/com.hakios.wifi) <Notice>: launching: speculative
+com.apple.xpc.launchd|2026-11-05 23:22:47.540960 (user/501/com.hakios.wifi [16]) <Notice>: xpcproxy spawned with pid 16
+com.apple.xpc.launchd|2026-11-05 23:22:47.540987 (user/501/com.hakios.wifi [16]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.540993 (user/501/com.hakios.wifi [16]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-05 23:22:47.541287 (system) <Error>: Failed to bootstrap path: path = /AppleInternal/Library/LaunchDaemons, error = 2: No such file or directory
+com.apple.xpc.launchd|2026-11-05 23:22:47.541291 (system) <Error>: Failed to bootstrap path: path = /AppleInternal/Library/LaunchAngels, error = 2: No such file or directory
+com.apple.xpc.launchd|2026-11-05 23:22:47.541296 (system) <Notice>: exiting bootstrap mode
+com.apple.xpc.launchd|2026-11-05 23:22:47.541300 (system) <Notice>: pending spawn, domain in on-demand-only mode: com.apple.logd
+com.apple.xpc.launchd|2026-11-05 23:22:47.541302 (system) <Notice>: exiting ondemand mode
+com.apple.xpc.launchd|2026-11-05 23:22:47.541306 (system/com.apple.fseventsd) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.541317 (system/com.apple.fseventsd) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-05 23:22:47.541320 (system/com.apple.fseventsd) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-05 23:22:47.541370 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.541374 (system) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.541379 (system/com.apple.fseventsd) <Notice>: launching: speculative
+com.apple.xpc.launchd|2026-11-05 23:22:47.542965 (system/com.apple.fseventsd [17]) <Notice>: xpcproxy spawned with pid 17
+com.apple.xpc.launchd|2026-11-05 23:22:47.543051 (system/com.apple.fseventsd [17]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.543058 (system/com.apple.fseventsd [17]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-05 23:22:47.543067 (system/com.apple.logd) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.543080 (system/com.apple.logd) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-05 23:22:47.543084 (system/com.apple.logd) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-05 23:22:47.543169 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.543174 (system) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.543179 (system/com.apple.logd) <Notice>: launching: speculative
+com.apple.xpc.launchd|2026-11-05 23:22:47.544945 (system/com.apple.logd [18]) <Notice>: xpcproxy spawned with pid 18
+com.apple.xpc.launchd|2026-11-05 23:22:47.544989 (system/com.apple.logd [18]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.544995 (system/com.apple.logd [18]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-05 23:22:47.545081 (user/501/com.apple.runningboardd [6]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.545087 (user/501/com.apple.powerd [8]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.545092 (user/501/com.apple.wifid [9]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.545096 (user/501/com.hakios.varstore [10]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.545101 (user/501/com.apple.backboardd [11]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.545152 (user/501/com.apple.SpringBoard [7]) <Notice>: service spawned with pid 7
+com.apple.xpc.launchd|2026-11-05 23:22:47.545214 (user/501/com.apple.SpringBoard [7]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.545224 (user/501/com.apple.SpringBoard [7]) <Notice>: service state: spawned
+com.apple.xpc.launchd|2026-11-05 23:22:47.545243 (user/501/com.apple.SpringBoard [7]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-05 23:22:47.545251 (user/501/com.apple.SpringBoard [7]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.545265 (user/501/com.apple.SpringBoard [7]) <Notice>: Successfully spawned SpringBoard[7] because system support
+com.apple.xpc.launchd|2026-11-05 23:22:47.545272 (user/501/com.apple.containermanagerd [12]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.545278 (user/501/com.hakios.demo [13]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.545282 (user/501/com.apple.distnoted.xpc.daemon [14]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.545286 (user/501/com.apple.mobile.usermanagerd [15]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.545290 (user/501/com.hakios.wifi [16]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.545294 (system/com.apple.fseventsd [17]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.545298 (system/com.apple.logd [18]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.545302 (user/501/com.apple.SpringBoard [7]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.546271 <Notice>: Flushed 22 logs [limit: 20]
+com.apple.xpc.launchd|2026-11-05 23:22:47.644073 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.644095 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.644366 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.644380 (system) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.644454 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.644458 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.644519 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.644522 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.644582 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.644585 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.644642 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.644645 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.644704 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.644707 (system) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.644765 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.644768 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.644826 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.644829 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.644883 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.644885 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.644940 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.644942 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.645004 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.645007 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.645628 <Notice>: Flushed 20 logs [limit: 20]
+
+=== /redwood/etc/rc.jobs ===
+
+$ /redwood/bin/hello_dyn started by launchd
+distnoted(14,0x1e370cdc0) malloc: Maximum magazines set to 1
+Hello from a dynamically linked program! pid 19, 4 argument(s)
+uname: Darwin 22.5.0 iPhone10,3
+heap: malloc works (0x1011042c0), stack near 0x16f8f75a8, main at 0x10050fd4c, printf at 0x18f6200b0
+argv[0] = /redwood/bin/hello_dyn
+argv[1] = started
+argv[2] = by
+argv[3] = launchd
+[exit status 7]
+
+$ /redwood/bin/svc_test
+com.apple.xpc.launchd|2026-11-05 23:22:47.646748 (user/501/com.hakios.demo [13]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-05 23:22:47.646772 (user/501/com.hakios.demo [13]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.646780 (user/501/com.hakios.demo [13]) <Notice>: Successfully spawned init[13] because speculative
+com.apple.xpc.launchd|2026-11-05 23:22:47.647293 (system/com.apple.fseventsd [17]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-05 23:22:47.647300 (system/com.apple.fseventsd [17]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.647314 (system/com.apple.fseventsd [17]) <Notice>: Successfully spawned fseventsd[17] because speculative
+com.apple.xpc.launchd|2026-11-05 23:22:47.648892 (system/com.apple.logd [18]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-05 23:22:47.648901 (system/com.apple.logd [18]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.648918 (system/com.apple.logd [18]) <Notice>: Successfully spawned logd[18] because speculative
+com.apple.xpc.launchd|2026-11-05 23:22:47.649228 (user/501/com.apple.distnoted.xpc.daemon [14]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-05 23:22:47.649236 (user/501/com.apple.distnoted.xpc.daemon [14]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.649248 (user/501/com.apple.distnoted.xpc.daemon [14]) <Notice>: Successfully spawned distnoted[14] because speculative
+svc_test: pid 21, uid 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.649587 (user/501/com.apple.wifid [9]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-05 23:22:47.649595 (user/501/com.apple.wifid [9]) <Notice>: internal event: INIT, code = 0
+[ ok ] notifyd: register for a notification
+[ ok ] notifyd: store and fetch a state value
+com.apple.xpc.launchd|2026-11-05 23:22:47.649610 (user/501/com.apple.wifid [9]) <Notice>: Successfully spawned wifid[9] because speculative
+com.apple.xpc.launchd|2026-11-05 23:22:47.650372 (user/501/com.apple.mobile.usermanagerd [15]) <Notice>: service state: running
+var_store: not asked to keep the data volume (var_store=1): nothing to watch
+com.apple.xpc.launchd|2026-11-05 23:22:47.650378 (user/501/com.apple.mobile.usermanagerd [15]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.650391 (user/501/com.apple.mobile.usermanagerd [15]) <Notice>: Successfully spawned usermanagerd[15] because speculative
+com.apple.xpc.launchd|2026-11-05 23:22:47.650409 (user/501/com.apple.backboardd [11]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-05 23:22:47.650414 (user/501/com.apple.backboardd [11]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.650421 (user/501/com.apple.backboardd [11]) <Notice>: Successfully spawned backboardd[11] because speculative
+com.apple.xpc.launchd|2026-11-05 23:22:47.656416 (pid/17 [fseventsd]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-05 23:22:47.656436 (pid/17 [fseventsd]) <Notice>: created
+com.apple.xpc.launchd|2026-11-05 23:22:47.665807 (user/501/com.apple.containermanagerd [12]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-05 23:22:47.665817 (user/501/com.apple.containermanagerd [12]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.665834 (user/501/com.apple.containermanagerd [12]) <Notice>: Successfully spawned containermanagerd[12] because speculative
+com.apple.xpc.launchd|2026-11-05 23:22:47.665987 (system/com.apple.notifyd) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.666145 (system/com.apple.notifyd) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-05 23:22:47.666153 (system/com.apple.notifyd) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-05 23:22:47.666195 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.666199 (system) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.666204 (system/com.apple.notifyd) <Notice>: launching: ipc (mach)
+com.apple.xpc.launchd|2026-11-05 23:22:47.668109 (system/com.apple.notifyd [20]) <Notice>: xpcproxy spawned with pid 20
+com.apple.xpc.launchd|2026-11-05 23:22:47.668139 (system/com.apple.notifyd [20]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.668145 (system/com.apple.notifyd [20]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-05 23:22:47.668176 (system/com.apple.notifyd [20]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.678944 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.678950 (system) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-05 23:22:47.724383 <Notice>: Flushed 38 logs [limit: 20]
+com.apple.xpc.launchd|2026-11-05 23:22:47.687188 (system/com.apple.notifyd [20]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-05 23:22:47.687200 (system/com.apple.notifyd [20]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.687218 (system/com.apple.notifyd [20]) <Notice>: Successfully spawned notifyd[20] because ipc (mach)
+com.apple.xpc.launchd|2026-11-05 23:22:47.693289 (pid/20 [notifyd]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-05 23:22:47.693306 (pid/20 [notifyd]) <Notice>: created
+com.apple.xpc.launchd|2026-11-05 23:22:47.703774 (pid/18 [logd]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-05 23:22:47.703791 (pid/18 [logd]) <Notice>: created
+com.apple.xpc.launchd|2026-11-05 23:22:47.711534 (pid/12 [containermanage]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-05 23:22:47.711548 (pid/12 [containermanage]) <Notice>: created
+com.apple.xpc.launchd|2026-11-05 23:22:47.719680 (user/501/com.hakios.varstore [10]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-05 23:22:47.719692 (user/501/com.hakios.varstore [10]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.719706 (user/501/com.hakios.varstore [10]) <Notice>: Successfully spawned var_store[10] because speculative
+com.apple.xpc.launchd|2026-11-05 23:22:47.723908 (user/501/com.hakios.varstore [10]) <Notice>: exited due to exit(0)
+com.apple.xpc.launchd|2026-11-05 23:22:47.723917 (user/501/com.hakios.varstore [10]) <Notice>: service state: exited
+com.apple.xpc.launchd|2026-11-05 23:22:47.723924 (user/501/com.hakios.varstore [10]) <Notice>: internal event: EXITED, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.723928 (user/501) <Notice>: service inactive: com.hakios.varstore
+com.apple.xpc.launchd|2026-11-05 23:22:47.723932 (user/501/com.hakios.varstore [10]) <Notice>: service state: not running
+hakios: +[MCMUserIdentityCache personasAreSupported]: found 0x1c4c699f8, not what was expected; left alone
+com.apple.xpc.launchd|2026-11-05 23:22:47.732942 (user/501/com.hakios.wifi [16]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-05 23:22:47.732964 (user/501/com.hakios.wifi [16]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-05 23:22:47.732973 (user/501/com.hakios.wifi [16]) <Notice>: Successfully spawned net_test[16] because speculative
+2026-11-05 23:22:47.751 distnoted[14:217] # distnote server daemon  absolute time: 2.141277068   civil time: Thu Nov  5 23:22:47 2026   pid: 14 uid: 241  root: yes
+
+psci: cpu 3 ends the system: the return to the boot loader is the boot processor's to make
+
+--- kernel message buffer ---
+[  110.764573]:  vm_cache_geometry_colors: 8
+[  110.764577]: do_cacheid() - 65536 bytes Unknown cache (I:32768 D:32768 (separate)), 16-way assoc, 64 bytes/line
+[  110.764835]: kprintf initialized
+[  110.764923]: initialize_screen: b=B8000000, w=000004C4, h=00000A98, r=00001310, d=00000000
+[  110.764941]: pe_arm_init_interrupts: args: 0xfffffff007a8e720
+[  110.764944]: pe_arm_map_interrupt_controller: soc_phys:  0x400000
+[  110.764947]: pe_arm_map_interrupt_controller: failed to find the interrupt-controller.
+[  110.764951]: pe_arm_init_debug: failed to find cpu-debug-interface
+[  110.765017]: gic: v3, distributor 0xfffffff164120000, cpu 0's redistributor 0xfffffff164210000, virtual timer on PPI 27
+[  110.765035]: Darwin Kernel Version 22.5.0: Sen 02 Nov 2026 20:12:05 WIB; okihann:xnu-8796.121.2[xnu-8796.121.2-dirty]/BUILD/obj/DEVELOPMENT_ARM64_BCM2837
+[  110.765650]: pmap_startup() init/release time: 487 microsec
+[  110.765658]: pmap_startup() delayed init/release of 0 pages
+[  110.765662]: vm_page_bootstrap: 26471 free pages, 160921 wired pages, (up to 0 of which are delayed free)
+[  110.769635]: VM boostrap: 102 maps, 204 entries and 512 holes available
+[  110.769656]: Maximum number of VM swap files: 5
+[  110.769740]: gIOKitPageableFixed0    : 0xfffffff166000000 - 0xfffffff16c000000 (96M)
+[  110.769744]: zones                   : 0xfffffff16c000000 - 0xfffffff76c000000 (24G)
+[  110.769747]: io_submap               : 0xfffffff76c000000 - 0xfffffff76c800000 (8M)
+[  110.769750]: zone_meta               : 0xfffffff76c800000 - 0xfffffff76e15c000 (25M)
+[  110.769752]: gIOKitPageableFixed2    : 0xfffffff76e15c000 - 0xfffffff77415c000 (96M)
+[  110.769755]: ipc_kernel_copy_map     : 0xfffffff77415c000 - 0xfffffff77495c000 (8M)
+[  110.769757]: kmem_sprayqtn_range     : 0xfffffff77495c000 - 0xfffffff781a04000 (208M)
+[  110.769760]: kmem_ptr_range          : 0xfffffff781a04000 - 0xfffffff868004000 (3686M)
+[  110.769763]: ipc_kernel_map          : 0xfffffff868004000 - 0xfffffff86a004000 (32M)
+[  110.769765]: compressor              : 0xfffffff86a004000 - 0xfffffff949040000 (3568M)
+[  110.769768]: gIOKitPageableFixed3    : 0xfffffff949040000 - 0xfffffff94f040000 (96M)
+[  110.769771]: bsd_pageable            : 0xfffffff94f040000 - 0xfffffff94f988000 (9M)
+[  110.769773]: gIOKitPageableFixed1    : 0xfffffff94f988000 - 0xfffffff955988000 (96M)
+[  110.769776]: mb                      : 0xfffffff955988000 - 0xfffffff959988000 (64M)
+[  110.769778]: kmem_ptr_range_meta     : 0xfffffff959988000 - 0xfffffff959a38000 (704K)
+[  110.769781]: bufferhdr               : 0xfffffff959a38000 - 0xfffffff959a88000 (320K)
+[  110.769783]: kmem_data_range         : 0xfffffff959a88000 - 0xfffffffbffdfc000 (10G)
+[  110.769819]: kmem_large_ranges[1]    : 0 - 0 (0B)
+[  110.769821]: kmem_large_ranges[2]    : 0 - 0 (0B)
+[  110.769823]: kmem_large_ranges[3]    : 0 - 0 (0B)
+[  110.769825]: kmem_large_ranges[4]    : 0xfffffff776371000 - 0xfffffff781a04000 (182M)
+[  110.769827]: kmem_large_ranges[5]    : 0xfffffff9ae6f6800 - 0xfffffffbffdfc000 (9G)
+[  110.769835]: "vm_compressor_mode" is 2
+[  110.769871]: zone_init: pgzalloc  0xfffffff16c000000:0xfffffff16c344000 (3344K) [104 slots]
+[  110.769879]: zone_init: map VM    0xfffffff16c344000:0xfffffff25292c000 (3685M)
+[  110.769884]: zone_init: map RO    0xfffffff25292c000:0xfffffff29f5cc000 (1228M)
+[  110.769889]: zone_init: map GEN0  0xfffffff29f5cc000:0xfffffff385bb4000 (3685M)
+[  110.769894]: zone_init: map GEN1  0xfffffff385bb4000:0xfffffff46c19c000 (3685M)
+[  110.769898]: zone_init: map GEN2  0xfffffff46c19c000:0xfffffff552784000 (3685M)
+[  110.769903]: zone_init: map GEN3  0xfffffff552784000:0xfffffff638d70000 (3685M)
+[  110.769908]: zone_init: map DATA  0xfffffff638d70000:0xfffffff76c000000 (4914M)
+[  110.769912]: zone_init: metadata  0xfffffff76c810000:0xfffffff76e010000 (24M)
+[  110.769914]: zone_init: metabits  0xfffffff76e010000:0xfffffff76e14c000 (1264K)
+[  110.769916]: zone_init: extra     0:0 (0B)
+[  110.770114]: VM bootstrap done: 90 maps, 163 entries and 501 holes left
+[  110.772111]: IOKit IOMD setownership ENABLED
+[  110.772116]: ATM subsystem is initialized
+[  110.772517]: Firehose configured: 16 chunks, 8 io pages
+[  110.772531]: Long logs support configured: size: 16384
+[  110.772534]: OSLog stream configured: stream: 8192 bytes, cache: 2112 bytes
+[  110.772536]: OSLog stream verification: 0
+[  110.772925]: Log queues configured: slot count: 56, per-slot size: 32768, total size: 1835008
+[  110.772952]: Telemetry: Sampling all tasks once per 1 second
+[  110.772963]: Scheduler: Default of clutch
+[  110.772967]: Setting scheduler priority decay band limit 18
+[  110.772972]: standard timeslicing quantum is 10000 us
+[  110.772975]: standard background quantum is 2500 us
+[  110.773299]: BANK subsystem is initialized
+[  110.773336]: mig_table_max_displ = 54 mach_kobj_count = 371
+[  110.775141]: panic_trace: PE_arm_debug_enable_trace enter
+[  110.775147]: panic_trace: PE_arm_debug_enable_trace exit
+[  110.775154]: kdp_core zlib memory 0x8000
+[  110.775194]: Registered coredump handler for kernel
+[  110.775198]: Serial requested, consistent debug disabled or debug boot arg not present, configuring debugging over serial
+[  110.775199]: Initializing serial KDP
+[  110.775785]: iBoot version: iBoot-8422.100.650
+[  110.775787]: iBoot Stage 2 version: 
+[  110.777982]: IONVRAM.cpp:initImageFormat:1364 - NVRAM size is 8192 bytes
+[  110.778025]: IONVRAM.cpp:getNVRAMProperties:1176 - _bankSize=0x2000, _bankCount=0x1, _currentBank=0
+[  110.778076]: IONVRAMCHRPHandler.cpp:unserializeImage:479 - NVRAM : commonPartitionOffset - 0x30, commonPartitionSize - 0x1fd0, systemPartitionOffset - 0xffffffff, systemPartitionSize - 0
+[  110.778324]: minicrypto: registered (md5, sha1, sha2, hmac, aes-ecb/cbc/ctr, hmac-drbg prng); no xts/gcm, no RSA
+[  110.778327]: ulock_initialize>thread_max=1536, ull_hash_buckets=512
+[  110.779115]: hakios-kernel: 4 drivers built in (.config): virtio_sound virtio_input virtio_net virtio_blk
+[  110.779145]: calling mpo_policy_init for vnguard
+[  110.779150]: Security policy loaded: Guarded vnode policy (vnguard)
+[  110.779153]: calling mpo_policy_init for AMFI
+[  110.779155]: Security policy loaded: Apple Mobile File Integrity (stand-in) (AMFI)
+[  110.779157]: calling mpo_policy_init for Sandbox
+[  110.779159]: Security policy loaded: Seatbelt sandbox policy (stand-in) (Sandbox)
+[  110.779225]: No POST boot-arg set.
+[  110.779633]: PMRD: PMTraceWorker 0x15cb5592ff199da9
+[  110.779774]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 10001)
+[  110.780204]: GenericARMPE: platform "D22AP"
+[  110.780222]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[  110.780225]: [0]ml_processor_register>cpu_id 0xfffffff385d38b80 cluster_id 0 cpu_number 0 is type 0
+[  110.780242]: GenericARMCPU: cpu 0 (phys id 0x700) registered
+[  110.780263]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[  110.780265]: [0]ml_processor_register>cpu_id 0xfffffff385d3b040 cluster_id 0 cpu_number 1 is type 0
+[  110.780283]: GenericARMCPU: cpu 1 (phys id 0x600) registered
+[  110.780302]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[  110.780304]: [0]ml_processor_register>cpu_id 0xfffffff385d3a5c0 cluster_id 0 cpu_number 2 is type 0
+[  110.780319]: GenericARMCPU: cpu 2 (phys id 0x500) registered
+[  110.780339]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[  110.780340]: [0]ml_processor_register>cpu_id 0xfffffff385d3abc0 cluster_id 0 cpu_number 3 is type 0
+[  110.780356]: GenericARMCPU: cpu 3 (phys id 0x400) registered
+[  110.780374]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[  110.780376]: [0]ml_processor_register>cpu_id 0xfffffff385d39540 cluster_id 0 cpu_number 4 is type 0
+[  110.780381]: cpu 4 (phys id 0x300) is a slower core: the scheduler uses it after cpu 3 (phys id 0x400)
+[  110.780397]: GenericARMCPU: cpu 4 (phys id 0x300) registered
+[  110.780415]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[  110.780417]: [0]ml_processor_register>cpu_id 0xfffffff385d38100 cluster_id 0 cpu_number 5 is type 0
+[  110.780421]: cpu 5 (phys id 0x200) is a slower core: the scheduler uses it after cpu 2 (phys id 0x500)
+[  110.780437]: GenericARMCPU: cpu 5 (phys id 0x200) registered
+[  110.780456]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[  110.780458]: [0]ml_processor_register>cpu_id 0xfffffff385d3ba00 cluster_id 0 cpu_number 6 is type 0
+[  110.780462]: cpu 6 (phys id 0x100) is a slower core: the scheduler uses it after cpu 1 (phys id 0x600)
+[  110.780477]: GenericARMCPU: cpu 6 (phys id 0x100) registered
+[  110.780540]: Copyright (c) 1982, 1986, 1989, 1991, 1993
+	The Regents of the University of California. All rights reserved.
+
+[  110.780542]: bsd_init: calling kauth_init
+[  110.780575]: bsd_init: calling process_name
+[  110.780577]: bsd_init: calling get_bsdthread_info
+[  110.780579]: MAC Framework successfully initialized
+[  110.780626]: bsd_init: calling kauth_cred_create
+[  110.780628]: bsd_init: calling chgproccnt
+[  110.780630]: bsd_init: calling kmem_suballoc
+[  110.780639]: bsd_init: calling bsd_bufferinit
+[  110.780733]: using 534 buffer headers and 534 cluster IO buffer headers
+[  110.780746]: bsd_init: calling IOKitInitializeTime
+[  110.780778]: clock_initialize_calendar system does not have monotonic clock
+[  110.780782]: bsd_init: calling vfsinit
+[  110.780939]: ktriage_register_subsystem_strings: set subsystem 8 strings
+[  110.780965]: bsd_init: calling proc_uuid_policy_init()
+[  110.781096]: mcache: 7 CPU(s), 64 bytes CPU cache line size
+[  110.781098]: bsd_init: calling mbinit
+[  110.781243]: mbinit: done [64 MB total pool size, (42/21) split]
+[  110.781247]: bsd_init: calling knote_init
+[  110.781249]: bsd_init: calling eventhandler_init
+[  110.781250]: bsd_init: calling aio_init
+[  110.781289]: bsd_init: calling pshm_cache_init
+[  110.781291]: bsd_init: calling psem_cache_init
+[  110.781298]: bsd_init: calling nwk_wq_init
+[  110.781308]: bsd_init: calling dlil_init
+[  110.781312]: SK: netagent is enabled by default for this platform
+[  110.781461]: DLIL: running SUM16 self-tests ... PASSED
+[  110.781720]: dlil_init: Waiting for all the create dlil kernel threads to get scheduled at least once.
+[  110.781825]: PMRD: power event 7 args 0x15cb5592ff186a79 0x0
+[  110.781833]: PMRD: power event 7 args 0x15cb5592ff185c19 0x0
+[  110.782074]: PMRD: PowerChangeOverride (OFF_STATE->ON_STATE, f, 0x2) tag 0x20064
+[  110.782089]: PMRD: sysPowerDownHandler message kIOMessageSystemCapabilityChange
+[  110.782091]: PMRD: sysPowerDownHandler cap f -> f (flags 1)
+[  110.782132]: dlil_init: All the created dlil kernel threads have been scheduled at least once. Proceeding.
+[  110.782135]: bsd_init: calling socketinit
+[  110.782143]: bsd_init: calling domaininit
+[  110.782342]: bsd_init: calling skywalk_init
+[  110.782366]: SK[0]: skmem_region_init              seg_size 16384, md_seg_size 16384, drv_buf_seg_size 65536 [eff 81920], usr_buf_seg_size 16384
+[  110.783304]: Skywalk: running self-tests
+[  110.783306]: Skywalk: sk_copy64_8 ... PASSED
+[  110.783307]: Skywalk: sk_copy32_8 ... PASSED
+[  110.783308]: Skywalk: sk_copy64_16 ... PASSED
+[  110.783310]: Skywalk: sk_copy32_16 ... PASSED
+[  110.783311]: Skywalk: sk_copy64_20 ... PASSED
+[  110.783312]: Skywalk: sk_copy64_24 ... PASSED
+[  110.783313]: Skywalk: sk_copy64_32 ... PASSED
+[  110.783314]: Skywalk: sk_copy32_32 ... PASSED
+[  110.783316]: Skywalk: sk_copy64_40 ... PASSED
+[  110.783317]: Skywalk: sk_copy64_64x ... PASSED
+[  110.783318]: Skywalk: sk_copy64_32x ... PASSED
+[  110.783319]: Skywalk: sk_copy64_8x ... PASSED
+[  110.783321]: Skywalk: sk_copy64_4x ... PASSED
+[  110.783322]: Skywalk: sk_zero_16 ... PASSED
+[  110.783323]: Skywalk: sk_zero_32 ... PASSED
+[  110.783325]: Skywalk: sk_zero_48 ... PASSED
+[  110.783326]: Skywalk: sk_zero_128 ... PASSED
+[  110.783349]: Skywalk: memcmp mask ... PASSED
+[  110.783968]: bsd_init: calling memorystatus_freeze_init
+[  110.783970]: bsd_init: calling memorystatus_init
+[  110.784030]: bsd_init: calling sysctl_mib_init
+[  110.784033]: bsd_init: calling bsd_autoconf
+[  110.784034]: bsd_autoconf: calling kminit
+[  110.785527]: bsd_init: calling loopattach
+[  110.785804]: ifnet_attach: All kernel threads created for interface lo0 have been scheduled at least once. Proceeding.
+[  110.785812]: bsd_init: calling ether_family_init
+[  110.785884]: bsd_init: calling net_init_run
+[  110.785971]: skip attaching fsw to lo0 using legacy TX modelReinit'd ND information for interface lo0
+[  110.786455]: bsd_init: calling inittodr
+[  110.786457]: bsd_init: calling setconf
+[  110.786555]: PMRD: sysPowerDownHandler message kIOMessageSystemCapabilityChange
+[  110.786558]: PMRD: sysPowerDownHandler cap f -> f (flags 2)
+[  110.786563]: PMRD: tellChangeUp OFF_STATE->ON_STATE
+[  110.786571]: PMRD: PowerChangeDone: OFF_STATE->ON_STATE
+[  110.786573]: PMRD: Force re-evaluating aggressiveness
+[  110.786575]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 30002)
+[  110.786585]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x10001
+[  110.786588]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[  110.786590]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x302) tag 0x40064
+[  110.786595]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[  110.786596]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x302) tag 0x50064
+[  110.786600]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[  110.786605]: PMRD: adjustPowerState ON_STATE, asap 0, idleSleepEnabled 0
+[  110.786606]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 60008)
+[  110.786612]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x30002
+[  110.786614]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[  110.786617]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x60008
+[  110.786619]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[  110.786718]: cpu_start() cpu: 0
+[  110.786740]: cpu_start() cpu: 1
+[  110.787969]: gic: v3, distributor 0xfffffff164120000, cpu 1's redistributor 0xfffffff1641f0000, virtual timer on PPI 27
+[  110.787974]: panic_trace: PE_arm_debug_enable_trace enter
+[  110.787976]: panic_trace: PE_arm_debug_enable_trace exit
+[  110.787977]: arm_cpu_init(): cpu 1 online
+[  110.788476]: cpu_start() cpu: 2
+[  110.789462]: gic: v3, distributor 0xfffffff164120000, cpu 2's redistributor 0xfffffff1641d0000, virtual timer on PPI 27
+[  110.789466]: panic_trace: PE_arm_debug_enable_trace enter
+[  110.789467]: panic_trace: PE_arm_debug_enable_trace exit
+[  110.789468]: arm_cpu_init(): cpu 2 online
+[  110.790104]: cpu_start() cpu: 3
+[  110.791038]: gic: v3, distributor 0xfffffff164120000, cpu 3's redistributor 0xfffffff1641b0000, virtual timer on PPI 27
+[  110.791042]: panic_trace: PE_arm_debug_enable_trace enter
+[  110.791043]: panic_trace: PE_arm_debug_enable_trace exit
+[  110.791044]: arm_cpu_init(): cpu 3 online
+[  110.791705]: GenericARMPE: 4 of 7 processors are running
+[  110.791935]: MiniIOMobileFramebuffer: display 1125x2436 on a panel of 1220x2712 (4880 bytes per row)
+[  110.791983]: MiniIOMobileFramebuffer: IOMFBDisplayRefresh: 60 Hz (the panel: 60), an interval of 71582788 (2^-32 s), 319999 ticks
+[  110.888548]: !BSD
+[  110.888575]: Added memory device md0/rmd0 (01000000/0D000000) at FFFFFFF010000000 for 0000000093E60000
+[  110.888588]: Added memory device md1/rmd1 (01000001/0D000001) at FFFFFFF0081C0000 for 0000000000400000
+[  110.888591]: BSD root: md0, major 1, minor 0
+[  110.888594]: bsd_init: vfs_mountroot
+[  110.889156]: apfs: device 1,0: requests to it cost next to nothing (a disk in memory)
+[  110.889183]: apfs: 4 threads on a request of many pieces (3 helpers)
+[  110.889286]: apfs: volume 0 "System" of container 0 (at 0 MB): 45073 files, 16555 directories, 603066 blocks of 4096 used
+[  110.889310]: bsd_init: calling VFS_ROOT
+[  110.889318]: bsd_init: calling devfs_kernel_mount
+[  110.889651]: hakios-kernel: version 2.1.13-hakios-darwin22.5-sm7435-g96ffbc53-dirty
+[  110.889668]: bsd_init: calling siginit
+[  110.889670]: bsd_init: calling bsd_utaskbootstrap
+[  110.889755]: bsd_init: calling mountroot_post_hook
+[  110.889757]: bsd_init: done
+[  110.889761]: vm_free_delayed_pages: initialized 0 free pages
+[  110.889778]: No POST boot-arg set.
+[  110.889783]: bsd_init: bsd_do_post - doneload_init_program: attempting to load /usr/appleinternal/sbin/launchd.development
+[  110.889858]: VM Swap Subsystem is ON
+[  110.889895]: Failed to open swap file 2
+[  110.889900]: vm_swap_create_file failed @ 110 secs
+[  110.889903]: vm_swap_create_file failed @ 110 secs
+[  110.890042]: load_init_program: attempting to load /sbin/launchd
+[  110.892685]: apfs: device 1,1: requests to it cost next to nothing (a disk in memory)
+[  110.892743]: apfs: volume 0 "redwood" of container 0 (at 0 MB): 78 files, 18 directories, 110 blocks of 4096 used
+[  110.925187]: apfs: pagein asks for 32768 bytes at a time (page size 16384)
+[  110.930330]: shared_region: 0x15cb55904beedee9 [4(hello_dyn)] check_np(0x16f763c00) vm_shared_region_start_address() failed
+[  110.931052]: minisandbox: request 2 (first seen from hello_dyn[4]): allowed
+[  110.931626]: shared_region: 0x15cb55904beedee9 [4(hello_dyn)] check_np(0x16f763190) vm_shared_region_start_address() failed
+[  111.051620]: minisandbox: request 4 (first seen from hello_dyn[4]): answered
+[  111.054119]: vnode_create_internal: alias vnode 0xfffffff552999f30 is in state of change (start)
+[  111.054131]: vnode_create_internal: alias vnode 0xfffffff552999f30 is in state of change (end)
+[  111.301167]: skip attaching fsw to lo0 using legacy TX modelReinit'd ND information for interface lo0
+[  111.301226]: Reinit'd ND information for interface lo0
+[  111.303068]: [System Event] [2136958213] [INFO] [Subsystem: launchd] [Event: fsck] Skipping boot-task
+[  111.303147]: [System Event] [2136959772] [INFO] [Subsystem: launchd] [Event: mount-phase-1] Skipping boot-task
+[  111.303211]: [System Event] [2136960994] [INFO] [Subsystem: launchd] [Event: data-protection] Skipping boot-task
+[  111.303273]: [System Event] [2136962163] [INFO] [Subsystem: launchd] [Event: finish-obliteration] Skipping boot-task
+[  111.303335]: [System Event] [2136963347] [INFO] [Subsystem: launchd] [Event: detect-installed-roots] Skipping boot-task
+[  111.303400]: [System Event] [2136964573] [INFO] [Subsystem: launchd] [Event: commit-boot-mode] Doing boot task
+[  111.303469]: [System Event] [2136965882] [INFO] [Subsystem: launchd] [Event: restore-datapartition] Doing boot task
+[  111.303530]: [System Event] [2136967056] [INFO] [Subsystem: launchd] [Event: restore-datapartition] optional boot task not present
+[  111.303590]: [System Event] [2136968197] [INFO] [Subsystem: launchd] [Event: mount-phase-2] Skipping boot-task
+[  111.303650]: [System Event] [2136969325] [INFO] [Subsystem: launchd] [Event: init-with-data-volume] Doing boot task
+[  111.303709]: [System Event] [2136970453] [INFO] [Subsystem: launchd] [Event: MSUEarlyBootTask] Skipping boot-task
+[  111.303768]: [System Event] [2136971583] [INFO] [Subsystem: launchd] [Event: fips] Skipping boot-task
+[  111.303826]: [System Event] [2136972680] [INFO] [Subsystem: launchd] [Event: keybag] Skipping boot-task
+[  111.303885]: [System Event] [2136973792] [INFO] [Subsystem: launchd] [Event: usermanagerd] Skipping boot-task
+[  111.303943]: [System Event] [2136974898] [INFO] [Subsystem: launchd] [Event: dirs_cleaner] Skipping boot-task
+[  111.304046]: [System Event] [2136976845] [INFO] [Subsystem: launchd] [Event: xpcroleaccountd] Skipping boot-task
+[  111.304115]: [System Event] [2136978168] [INFO] [Subsystem: launchd] [Event: init_featureflags] Skipping boot-task
+[  111.304183]: [System Event] [2136979464] [INFO] [Subsystem: launchd] [Event: auearlyboot] Skipping boot-task
+[  111.304249]: [System Event] [2136980718] [INFO] [Subsystem: launchd] [Event: tzinit] Skipping boot-task
+[  111.304315]: [System Event] [2136981958] [INFO] [Subsystem: launchd] [Event: finish-restore] Skipping boot-task
+[  111.304380]: [System Event] [2136983202] [INFO] [Subsystem: launchd] [Event: finish-demo-restore] Skipping boot-task
+[  111.304460]: [System Event] [2136984725] [INFO] [Subsystem: launchd] [Event: sysstatuscheck] Skipping boot-task
+[  111.304528]: [System Event] [2136986010] [INFO] [Subsystem: launchd] [Event: prng_seedctl] Skipping boot-task
+[  111.304609]: [System Event] [2136987551] [INFO] [Subsystem: launchd] [Event: launchd_cache_loader] Skipping boot-task
+[  111.304710]: [System Event] [2136989467] [INFO] [Subsystem: launchd] [Event: boot] Early boot complete. Continuing system boot.
+[  111.313974]: memorystatus_update(enter): pid 6, priority 210, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.313989]: memorystatus_update: init: limit on pid 6 (-1MB F ) targeting priority(210) dirty?=0x0 
+[  111.314011]: memorystatus_update(enter): pid 7, priority 160, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.314017]: memorystatus_update: init: limit on pid 7 (-1MB F ) targeting priority(160) dirty?=0x0 
+[  111.314773]: memorystatus_update(enter): pid 8, priority 210, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.314780]: memorystatus_update: init: limit on pid 8 (-1MB F ) targeting priority(210) dirty?=0x0 
+[  111.315464]: memorystatus_update(enter): pid 9, priority 210, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.315476]: memorystatus_update: init: limit on pid 9 (-1MB F ) targeting priority(210) dirty?=0x0 
+[  111.316190]: memorystatus_update(enter): pid 10, priority 210, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.316199]: memorystatus_update: init: limit on pid 10 (-1MB F ) targeting priority(210) dirty?=0x0 
+[  111.317342]: memorystatus_update(enter): pid 11, priority 210, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.317357]: memorystatus_update: init: limit on pid 11 (-1MB F ) targeting priority(210) dirty?=0x0 
+[  111.319072]: memorystatus_update(enter): pid 12, priority 210, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.319085]: memorystatus_update: init: limit on pid 12 (-1MB F ) targeting priority(210) dirty?=0x0 
+[  111.320975]: memorystatus_update(enter): pid 13, priority 210, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.320991]: memorystatus_update: init: limit on pid 13 (-1MB F ) targeting priority(210) dirty?=0x0 
+[  111.322058]: memorystatus_update(enter): pid 14, priority 210, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.322072]: memorystatus_update: init: limit on pid 14 (-1MB F ) targeting priority(210) dirty?=0x0 
+[  111.323665]: memorystatus_update(enter): pid 15, priority 210, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.323676]: memorystatus_update: init: limit on pid 15 (-1MB F ) targeting priority(210) dirty?=0x0 
+[  111.324916]: memorystatus_update(enter): pid 16, priority 210, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.324934]: memorystatus_update: init: limit on pid 16 (-1MB F ) targeting priority(210) dirty?=0x0 
+[  111.326873]: memorystatus_update(enter): pid 17, priority 210, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.326889]: memorystatus_update: init: limit on pid 17 (-1MB F ) targeting priority(210) dirty?=0x0 
+[  111.328942]: memorystatus_update(enter): pid 18, priority 210, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.328958]: memorystatus_update: init: limit on pid 18 (-1MB F ) targeting priority(210) dirty?=0x0 
+[  111.431816]: memorystatus_update(enter): pid 13, priority 30, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.431827]: memorystatus_update: init: limit on pid 13 (-1MB F ) targeting priority(30) dirty?=0x0 
+[  111.432310]: memorystatus_update(enter): pid 17, priority 30, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.432320]: memorystatus_update: init: limit on pid 17 (-1MB F ) targeting priority(30) dirty?=0x0 
+[  111.433879]: memorystatus_update(enter): pid 9, priority 30, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.433892]: memorystatus_update: init: limit on pid 9 (-1MB F ) targeting priority(30) dirty?=0x0 
+[  111.433915]: memorystatus_update(enter): pid 18, priority 30, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.433925]: memorystatus_update: init: limit on pid 18 (-1MB F ) targeting priority(30) dirty?=0x0 
+[  111.434334]: memorystatus_update(enter): pid 14, priority 30, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.434345]: memorystatus_update: init: limit on pid 14 (-1MB F ) targeting priority(30) dirty?=0x0 
+[  111.434762]: memorystatus_update(enter): pid 11, priority 30, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.434777]: memorystatus_update: init: limit on pid 11 (-1MB F ) targeting priority(30) dirty?=0x0 
+[  111.435311]: memorystatus_update(enter): pid 15, priority 30, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.435321]: memorystatus_update: init: limit on pid 15 (-1MB F ) targeting priority(30) dirty?=0x0 
+[  111.450748]: memorystatus_update(enter): pid 12, priority 30, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.450763]: memorystatus_update: init: limit on pid 12 (-1MB F ) targeting priority(30) dirty?=0x0 
+[  111.453398]: memorystatus_update(enter): pid 20, priority 210, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.453411]: memorystatus_update: init: limit on pid 20 (-1MB F ) targeting priority(210) dirty?=0x0 
+[  111.472596]: memorystatus_update(enter): pid 20, priority 30, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.472610]: memorystatus_update: init: limit on pid 20 (-1MB F ) targeting priority(30) dirty?=0x0 
+[  111.505575]: memorystatus_update(enter): pid 10, priority 30, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.505588]: memorystatus_update: init: limit on pid 10 (-1MB F ) targeting priority(30) dirty?=0x0 
+[  111.518891]: memorystatus_update(enter): pid 16, priority 30, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.518903]: memorystatus_update: init: limit on pid 16 (-1MB F ) targeting priority(30) dirty?=0x0 
+[  111.520741]: memorystatus_update(enter): pid 6, priority 30, dirty=0x0, Active(-1MB NF), Inactive(-1MB, NF)
+[  111.520753]: memorystatus_update: init: limit on pid 6 (-1MB F ) targeting priority(30) dirty?=0x0 
+[  111.567490]: Unclassified kernel abort (fault_code=0x10)
+[  111.567514]: cpu_signal failed in DebuggerXCallEnter
+[  111.567516]: cpu_signal failed in DebuggerXCallEnter
+[  111.567517]: cpu_signal failed in DebuggerXCallEnter
+
+--- panic buffer ---
+panic(cpu 3 caller 0xfffffff007a37b20): Kernel data abort. at pc 0xfffffff007a3dad8, lr 0xfffffff0074eac08 (saved state: 0xfffffff774aa6df0)
+	  x0:  0xfffffff95a960000 x1:  0xfffffff95a5e4040  x2:  0x0000000000007fe0  x3:  0xfffffff95a960020
+	  x4:  0xfffffff95a918f6a x5:  0x0000000000000020  x6:  0x00000000000000df  x7:  0xfffffff76be7fd2c
+	  x8:  0xaa0003f3940561c8 x9:  0xb40001b4f94013f4  x10: 0xc85ffd0991002288  x11: 0xc80bfd0ad100052a
+	  x12: 0x3dc17100b0000188 x13: 0x910003e13d8003e0  x14: 0x9100226094003ba6  x15: 0x97fffe67910063e1
+	  x16: 0x0000000000004923 x17: 0x0000000000000000  x18: 0x0000000000000000  x19: 0xfffffff385ce3090
+	  x20: 0xfffffff385ce3090 x21: 0xfffffff5529fc570  x22: 0xfffffff774aa75e0  x23: 0xfffffff95a944000
+	  x24: 0x0000000004e54000 x25: 0x0000000000008000  x26: 0x00000000000004e7  x27: 0x0000000000010000
+	  x28: 0x00000000000004e8 fp:  0xfffffff774aa7140  lr:  0xfffffff0074eac08  sp:  0xfffffff774aa7140
+	  pc:  0xfffffff007a3dad8 cpsr: 0x20400204         esr: 0x96000010          far: 0xfffffff95a960000
+
+Debugger message: panic
+Device: D22
+Hardware Model: iPhone10,3
+ECID: 0000052445730001
+Boot args: debug=0x8 -v rd=md0 hv_wdt_pet=1 ufs_shared_pa=0x00000000fa511000 hakios_kver=2.1.13-hakios-darwin22.5-sm7435-g96ffbc53-dirty loader_return_after=180 epoch=1793895767 sb_delay=8 cpus=8 bootcpu=7 ufs=2
+Memory ID: 0x0
+OS release type: User
+OS version: 20H392
+Kernel version: Darwin Kernel Version 22.5.0: Sen 02 Nov 2026 20:12:05 WIB; okihann:xnu-8796.121.2[xnu-8796.121.2-dirty]/BUILD/obj/DEVELOPMENT_ARM64_BCM2837
+Kernel UUID: FBBE2F04-8A1C-3DB0-9735-15D16E09E99A
+Boot session UUID: C02D8009-F0E8-45FB-AA1D-3F8FD3E66F94
+iBoot version: iBoot-8422.100.650
+iBoot Stage 2 version: 
+secure boot?: NO
+roots installed: 0
+Paniclog version: 14
+Kernel text base:  0xfffffff007004000
+mach_absolute_time: 0x7fac1496
+Epoch Time:        sec       usec
+  Boot    : 0x6aecad57 0x00000000
+  Sleep   : 0x00000000 0x00000000
+  Wake    : 0x00000000 0x00000000
+  Calendar: 0x6aecad57 0x000bea6e
+
+Zone info:
+  Zone map: 0xfffffff16c000000 - 0xfffffff76c000000
+  . PGZ   : 0xfffffff16c000000 - 0xfffffff16c344000
+  . VM    : 0xfffffff16c344000 - 0xfffffff25292c000
+  . RO    : 0xfffffff25292c000 - 0xfffffff29f5cc000
+  . GEN0  : 0xfffffff29f5cc000 - 0xfffffff385bb4000
+  . GEN1  : 0xfffffff385bb4000 - 0xfffffff46c19c000
+  . GEN2  : 0xfffffff46c19c000 - 0xfffffff552784000
+  . GEN3  : 0xfffffff552784000 - 0xfffffff638d70000
+  . DATA  : 0xfffffff638d70000 - 0xfffffff76c000000
+  Metadata: 0xfffffff76c810000 - 0xfffffff76e010000
+  Bitmaps : 0xfffffff76e010000 - 0xfffffff76e14c000
+  Extra   : 0 - 0
+
+TPIDRx_ELy = {1: 0xfffffff385aa2f70  0: 0x0000000000000003  0ro: 0x00000001e370cea0 }
+CORE 0: PC=0xfffffff0073e96d4, LR=0x00000000734607c6, FP=0xfffffff774a832a0
+CORE 1: PC=0xfffffff00778a474, LR=0xfffffff007310020, FP=0xfffffff774a9bd30
+CORE 2: PC=0xfffffff007359304, LR=0xfffffff007300954, FP=0xfffffff774a52f90
+CORE 3 is the one that panicked. Check the full backtrace for details.
+CORE 4: PC=0x0000000000000000, LR=0x0000000000000000, FP=0x0000000000000000
+CORE 5: PC=0x0000000000000000, LR=0x0000000000000000, FP=0x0000000000000000
+CORE 6: PC=0x0000000000000000, LR=0x0000000000000000, FP=0x0000000000000000
+Compressor Info: 0% of compressed pages limit (OK) and 0% of segments limit (OK) with 0 swapfiles and OK swap space
+Panicked task 0xfffffff385ad1040: 38 pages, 1 threads: pid 7: SpringBoard
+Panicked thread: 0xfffffff385aa2f70, backtrace: 0xfffffff774aa6480, tid: 202
+		  lr: 0xfffffff00728b914  fp: 0xfffffff774aa6510
+		  lr: 0xfffffff007427a10  fp: 0xfffffff774aa6530
+		  lr: 0xfffffff007417dfc  fp: 0xfffffff774aa65b0
+		  lr: 0xfffffff007416e44  fp: 0xfffffff774aa66d0
+		  lr: 0xfffffff0074165a4  fp: 0xfffffff774aa66e0
+		  lr: 0xfffffff00728af50  fp: 0xfffffff774aa6a90
+		  lr: 0xfffffff00728c0ac  fp: 0xfffffff774aa6b10
+		  lr: 0xfffffff007a2d1c4  fp: 0xfffffff774aa6b30
+		  lr: 0xfffffff007a37b20  fp: 0xfffffff774aa6cb0
+		  lr: 0xfffffff00741794c  fp: 0xfffffff774aa6dd0
+		  lr: 0xfffffff0074165a4  fp: 0xfffffff774aa6de0
+		  lr: 0xfffffff0074eac08  fp: 0xfffffff774aa7140
+		  lr: 0xfffffff0074eac08  fp: 0xfffffff774aa7570
+		  lr: 0xfffffff0074f2f38  fp: 0xfffffff774aa76c0
+		  lr: 0xfffffff0074d2ea8  fp: 0xfffffff774aa7720
+		  lr: 0xfffffff007828a8c  fp: 0xfffffff774aa77e0
+		  lr: 0xfffffff007338128  fp: 0xfffffff774aa7840
+		  lr: 0xfffffff007337318  fp: 0xfffffff774aa78c0
+		  lr: 0xfffffff00734c518  fp: 0xfffffff774aa7a70
+		  lr: 0xfffffff007352d48  fp: 0xfffffff774aa7d60
+		  lr: 0xfffffff007350d90  fp: 0xfffffff774aa7d80
+		  lr: 0xfffffff007417ae0  fp: 0xfffffff774aa7df0
+		  lr: 0xfffffff007417028  fp: 0xfffffff774aa7f10
+		  lr: 0xfffffff0074165a4  fp: 0xfffffff774aa7f20
+
+PMOC€0ˆkcd_c_type0ˆkcd_c_totalout:0ˆkcd_c_totalin@“X¢Y€Hbf``0â â’ÄäìâŒü’øÌ¼ø´œÄôbˆ8Œdgyícƒhÿÿb@ÜÄ €¢¿ 3,ˆDü$.ÿÿbr€¸ˆA ¸²¸$57hLI*6ûAö!ÿÿäd`
+ô "±ÿÿRB“gG’1ÿÿ@“gp@UÿÿâÊO
+5C…]‹Ê3ó¼S‹òRsÂR‹Š3óóŒŒôLõ¬‚SóŒüòËŒŒÌ€„•¡‘•©B¸§“µB~vfFb^UE^©®…¹¥™¡‘¡Q4*W7%³¨¤2Vß)ÔÓÇE??)KßÅ5ÌÕÇ?À×Õ/$Ş1È×Ì$ŞÉÙ×ÈÂØä$ÿÿ,Ûƒ0E;AgğA
+Ì%Ä
+h¢<h;A×ëHÿøèÊ²Î½f¿o†Ïé§Q¥‘—¯È^óU—0mâ©£p9…d‚“ô¨…“ù°<ÇÈ†ÒÌ0Éùnƒ˜7ô¼*hAkrDDÿ»ï]IXÙ­nÈØ·Æ¨¡©kX¬Ôè…Ç˜üCHóÚ•€Î§¬¯»¾a-ƒ „ÆE¾yƒK!/emÌÈÙnÈ«³Îåÿÿ1€¸ˆA ˜xÀ,ÿÿ2R@ÜÄ -¿¦Â‚ÿÿ2R@ÜÄ °oÃ‹Îx6Hÿÿb fbpâ„Ğ0ÿÿrò€œ †€¹`¥ıÓY‚N>¶ëØ(òoc›÷És!f@h›ÿÿê‚ñÿÿbâd`pŠ5CÅïí9µ_ÕŠ¡(ãâ„Z&9	 >(Bhl$ÈLÿÿ‚¹&Ï4ÿÿÒr€¤ÖˆØ?óàï}ú,]2¶¦›Š^Ìã|9$ÿÿbêo2:€024( ócCxákßdYÈ²6ÈN\ œâK‹³q)‹ÿÿRºGÈêó˜¡4ŒÿÿÒB“‡‰Ãhÿÿ‚…O*T€¨ÿÿbò€ 0u;Ö‚ÃÉc“%˜†Èâ&WÙ¢ºì\ï“:jPy0k£¢Á†8¿ñzZÄ9" €¨ĞÈnbófÓôÔüÒ’øâäÄ<ˆ 	¤$Ğ< ú4=«´!Ëf±!KÿÿrR¡4ÿÿ‚…_”~ÿÿB?˜:¨r†˜,¢ÂoûûVˆµH¤¥ÄZït¸D·€$p²–¸ğËLÉIUP6@ÒIWøÍåatÛ}	²‰ÿÿr`áÿÿ‚…_:T=üÿÿB?˜:|H¸Áhd;°±9Q\ÁÀpíÕœz:HêC¤¿x†x°vIâÂ¯89XSä&fæ•¤æ%æ%§Æ—d¥&¦€!‚À~P½R‚¨†ÿÿraáÿÿò€8ˆA=üÿÿB¿°*†%¹ğƒÑPaœ”šLFÃ‘:®ğë´Æ~¸üË5Š”¥ÿÿÒPÿÿ‚ù7ÊG÷/ÿÿB÷/L]‡ß)p>;óA‹¨ü–dÈµB=XQb¡û7€!¬àå<ìşåäD-¯RSsóóôRRÓR‹€mİ”ÔÄœœüäÄ`3	lWø		@4ŞC‹(ÿÿšÿÿ‚…_T=üÿÿB?˜º©¤…Ôx&J£‡_,C,XÆp9IáÉdºàÖ4šø¹¸Â—. „3±'ÃÔòÿÿŠƒ,œÿÿ‚…o6D#?ÿÿB_˜º)´	_Xúü˜BNø¦V$§›4Á>¦vøÿÿ†#,œÿÿ‚…oT=ıÿÿB_˜:¥_Xø^t&'|“€É’¢ÄäT¨oSÔ_ÿÿZ™¥ÿÿ‚…o.”¾ÿÿB_˜º†çKÀåªÎY=¢ÊWQ´‚¡W{{0!ì’ÄâÂR0Ä'KÕxHYõ‘®ğ•êo@5ÿÿraáÿÿ‚…_T=üÿÿB?˜º†¥÷‰
+7˜í¦P,sZ°ÕÇ@+cˆ?OÿàÔ¢²ÌäÔÔ¢ÜÌ¼Ä’Ôª´g`îÜÇvœP²€˜ˆAåëc'p8¬Q‡”³¸!tH•X<!g
+˜>pÔLÿÿêX8ÿÿ‚…D£üÿÿB˜ºÍS`óˆm@g`‚1 4zıfÏ`–‰ì#.ü¡íƒäü¢TİÄ¼ÄœÊ’ÌäbİÔ²Ô¼’b4«°rq¥_¬Š‚@,ÄŒ@
+ôúÿÿŠƒ,œÿÿ‚…/Ì1èéÿÿB_˜º)‡ ıD17é&ÅÛ½|g«\8¸ğEê/¦'%»ñÉù99©É%hâàâ
+_¨z`¢ÿÿò`áÿÿò€¸ˆA=üÿÿB¿°*†‹k%ÿO
+=-ú€y:8B…qRVh2IØÊxùprï;ï	@óAÚ€(Àå_f¨ü$˜B(ÿÿÒ%Pÿÿ‚ù·ÊG÷/ÿÿB÷/L]ÃeH}²å¼Qş­‡Z¥ş.¯1Ñó#¬½)Ùƒİ¿œÀtêkb€Ô'
+ úD!#3=CAÙ"A$‰+ül!°¢ÿÿraáÿÿ‚…_T=üÿÿB?˜ºÆ¤¥—CP ”ñ¼cu &zøÁêÇbâÂÏÓ?À·(?¿Ä%?713Õbx¸Âï!T³¶4ª)ÿÿr+ 4ÿÿ‚…_/”~ÿÿB?˜ºŠİkÀé®£Ø‚¨ô—5F¥Å~ññ`%–o‰.¯2óã‹RŠ2ó‹2K2«Rã!IfWøÁ’İ:Tÿÿraáÿÿ‚…_T=üÿÿB?˜ºŠK÷Àá¦p´’¨ğ³€š£Òİ°‡,ı	²½%©¼b‚|—f„ÿÿraîÿÿ‚ù·*î_ÿÿB÷/LCè1°?¤zå_%¨ù0ª“€¿bO/¸â—jğ2˜ÿÿraîÿÿ‚ùwTİ¿ÿÿB÷/LÔ¿iÄùWj>ŒZIÀ¿‘|¤Å/Ì¿X`6@hÿÿr'@iÿÿ‚ùw"”î_ÿÿB÷/Lİƒ&Hû|†x=Qñ{–à ödyâOÏÅHó¯*Ô\]f(JÿÿÒ0wÿÿ‚ùwTİ¿ÿÿB÷/L]Cá2°?¢J‰ò¯Ô|5‰€?ª| +ÿ2¢ùÿÿZs7ÿÿ‚ùw2Tİ¿ÿÿB÷/L©ş•„yJ¯&àß“¶¤ù—jî/´tÿÿŠÃÜÿÿ‚ùw
+Tİ¿ÿÿB÷/Lİ^Hz&¶|V†š£Îğoçï÷$Å/Ì¿7ÑüÿÿZ8Jÿÿ‚ùw*”î_ÿÿB÷/LİúÅàtL¬e¡æÃ¨×ü{‘™¼øMFó/ÿÿZs7ÿÿ‚ùwTİ¿ÿÿB÷/LİHş%Ö¿2Póa»şòJ’‡<ÿ£ùÿÿZs7ÿÿ‚ùw:Tİ¿ÿÿB÷/LİÏ÷Àñëñ4œ¨òjÔ|•?@{÷3ié™jp…Ìÿÿraîÿÿ‚ùwTİ¿ÿÿB÷/LÁWˆ3şç_F¨Pê°?~ÿ¦“¿|PsÙùQíÿÿrg@iÿÿ‚ùw&”î_ÿÿB÷/L]Æìû$å_}¨ù0jøM!Í¿°d,À³Bÿÿraîÿÿ‚ùwTİ¿ÿÿB÷/L]ïÓ+ı¡§E×U•÷CÍ‡Qü°Ç/¬ÿ±0»99€†41„ùÆç¦ææU—$–”ÇB„‰&qµO¹`&°Áÿÿraáÿÿ‚…ßl¨8zøÿÿB?˜º½$†Ÿ)Ô|%#ÀÂo¥yág³€HWø1AõÿeE5ÿÿraáÿÿ‚…ß¨8zøÿÿB?˜º·$†Ÿ9Ô|åG ü"ıÈ?c˜DÒ„Âï7Zøÿÿš;Jÿÿ‚…ß<(=üÿÿB?˜ºWóíŠƒÉDåß6¨ù0Ê"!²ÄşŒP‰@†@0ËR—¸ğsvóô‰q	rğ
+šC,…+üØ¡lcB5	ÿÿraáÿÿ‚…ß|¨8zøÿÿB?˜:˜©1Y:D…ŸôíNˆåÁØRbÍY)[ Âpòäß7XÛ§œœ¨å_fJNª‚²!\©\á—ëÈ6ŠÅi	²™ÿÿr`áÿÿò€x!T=üÿÿB?˜:¨rbÃÏCv*D„ÒYİ¿,õãu ‘ˆ0œ|)‡½¿Š=üŒàúHeà
+?¹›ğ‹3A?ÿÿZÿÿ‚…ßb¨8zøÿÿB?˜:˜;‰¿ÔO³!Z8 ÔJíæzË{öğ3T'%üŒ!†’Aâ
+?]S°iõÖ¨áÿÿÚÿÿò€x9T=üÿÿB?˜:Ï„£‰ÀöTAJª‚	fò	pºƒ•œ`q† OˆË¿iE‰¹©Å
+%ù
+%©
+‰y©9`ıÄ¸ÂæNV4ƒ4€| fb £÷;Ë¯5êrì7„©Ò‹kLœ	)ßÊ ô£(åÿÿš°pÿÿ²€xƒz|ÿÿB`U³I‹)¨>˜?SÄGâ²ãÃJ!Q!#5§ µj'>
+W|0B5± iVò€˜ˆ‰‰´xÿÿê`’ÿÿ‚…ÿJ(=üÿÿB˜:RÃ_j>,üÇÍÃ3üÿÿ†,ÿÿ‚…ÿ:áÿÿB˜:†kKÀùjËy=”ü5“bFò{ĞU•GàôŒX{ìâaâÂ¿$£(51E!91'G!;µX‘ÖºÀ•ş5 Îu†%(ÿÿÒ°pÿÿ‚…ßz¨8zúÿÿB?˜:—÷ˆ7¨¹Û¶3ƒY0çô/YU€…'T,ü:wc?\ş7‚ è5J)i æbbòûŠ•`9†ĞøüÁ|X9ÿÿš°pÿÿ²€xƒzøÿÿB¿`U¤†ßû3Ì`°ğã­^^À~’gH?ScˆÃ6Ù@h©d81S#üÿÿšÀ$ÿÿÒ@¼ÊG?ÿÿB?˜:RÃïÀaf°°ğ{>au=HWø­¼CZøí„¦¿Ÿ¶P@) íÄ@Lğÿÿš°pÿÿ‚…ßfˆ0FúÿÿB?˜º]kÁéš¡Ë
+BCõã¢R 
+PúpÛ“:=ü¢¢Á*.6¿÷§€¼@ÌÄ ÀÉ		0!Ì7¾ 1=5¿´$>µ¢X&æÄgæCJE¨¼®ò€ª‹M7ÿÿòaáÿÿò€xƒzúÿÿB¿-`U'X‚ÃFC…qR	h2IíØÃOA¬2q
+$ü@œ 
+°…_QjqqiQ*L	I4©áÿÿš¾Jÿÿ‚…ßV(=üÿÿB?˜º®gÀá÷ Ä‚¨ôç5FÍÁ~°ô·rÑá—Ÿ”•š\¬‡MÎxâ“Ø)¸ÂêPv˜ƒ¡4ÿÿÒ°pÿÿ‚…ß6¨8zøÿÿB?˜º3kÀáÆ3Ó˜¨ğ‹†š£Òº°§?Xø}\‚=üpù—j0ºÿÿŠÃÜÿÿ‚ùw;Tİ¿ÿÿB÷/L]@7¤¼òé'®¼òš£Ô»ñû×r-vÿbÉoÉù¹ ,—_3œšÔğÿÿšÿÿ‚…ß¨8zøÿÿB?˜:GHzÒPí8)#4™Há×¸•èğ+.O,–÷hÉÅ~LPı¬hæÿÿòw@iÿÿ‚…ßN(=üÿÿB?˜º7!ù-ÃPí8)kT©cıøÓŸà1’Â/-3'5>Xd•¤¢ÚCˆ‡+ü,¡­Ñÿÿòaáÿÿ‚…ß.¨8zøÿÿB?˜ºĞğ›áO\øiBÍW€Ò|=øÃ/ò$ü<€ê1ƒ–üJàğKO†¨!…Ä~¸Òÿÿÿÿ‚ñavÿÿ‚…'#T€™&¡ÿÿrò€Ì—¦ÊeÿÿâÊ90†¹`%ıÓY‚N>¶ëØ(òoc›÷És!za4DÿÿÒR
+@’3b†3ÀìÑÛì›÷Ø~Ş¦oçÙ=Óº$ÿÿbåd`h2:€ f‚h „¯}“lè„È5ˆÃÕ´…Ú<¸„23'±4/9#E/%±¨<3MÿÿRäd`ò; bÌPFÿÿÒB“çA8¬ÿÿrƒÊ·@5020(A™`
+ÿÿ’@|ÌÃlÿÿBOï0u.­àòÖFRBsC@£²R˜À"›?‚iFˆÉWqõ ¬}t¨2¨2°²20¼¼-/˜€d‚‚Hôôi­fØñBág„0 ¤b. ã†{÷¿Ã &§’úA4Ëó0]q:ì2ˆ?å'„sBË,„È«èÏbÉ»8ÿ_
+¢aÿÿ2`áÿÿò€øƒzùÿÿBÏ#`U˜ÄT1y(÷ëf0kÏ/ˆv¨¸íÿyõ &Œ†Èûd@ÈÌÌÀ¸ğ,<nÕ1İI’œôÙ
+æ10+½Ä‚‚œT½Š‚d=X*ÍÉO/„(@)Cˆ¸¸3„VÊ5	Bi© æbPø@ÂŸcJ"8Ü¶Í‡«Ãf}d=„nhË{üÓâ¡`úŠ)$>68Bh‘ûúÂjH|),‡Ğ@ëÀ@H1‹íßcìN¯kÔuÀônóUÌ“î¦36U€é^Á´€«˜.˜à¦ï\ƒĞo6ôù"ù}KR!4Ğ:0ÿÿÒG 4ÿÿÒ@|ÊGOÿÿBO0u•ï ñg±´lß}F¨hÔ)ˆÄ—Zf°£DÁ¹„…õ ®üfø–>ğç·Ç €}}°BÃH Cˆ™€ßD ñ‹ÿÿŠƒÀQÅÿÿ‚…Ç1(=<ÿÿB˜º™2Ÿ½'„U8Z	V¨~tª*°‡Â€R+3gcPÿ”……Á2÷Ø|O€´
+5‚HŒò‡,ÊÀ ¥¿Ai¥d(13ƒÂC§' åPÿÿò`şÿÿò€øƒzøÿÿBŸ`U‘½÷ÃÒKÈX@úLˆà«ÓŒ`£„¯±¢ÄÂ•^Û áÓ€?½q@Ì3‘€ĞÛ”!4ŒT2€˜	ˆAáƒ^ÿÿŠƒÀ	0ÉÀÿÿRÒ
+@r­,P=ˆÃŠ!²jqj?0]°-‹ÿÿŠÃÔÿÿò€˜*Şÿÿrå„È÷@åaú \ÿÿâÊ90Û#ÿÿRê3b˜áØ—ü«Õüo”¹yuÀº+<.SÎ‚Å{wjN-¶ø¶MEŒ­!,=ÿÿbÚßÔÕÄ óã†ÀÚ'88 R@ `*Ğ@Ìå3Bi™ÁE™yéNù‰E)PQìÿÿR'”ê€J³AiÿÿÒB“çADX	ÿÿrƒÊ·@50¢µOÿÿŠñ)¨<zúÿÿbêoÊ0ÀÔAxr*‚‰Âª“Úçş;ƒif0Åğ}æªz«w1„f3è!Ğ“/ã>@Ëf†@¹†Îƒ`’@÷(Y`ƒ"?„a<…Ì8>BC¥4€Œ )¥ƒÿÀí‹H;£åzüeuZ–h‘Jf0}!¢®ÃBWØBèo!tÍNÍ¡o¼`ë;“1÷j;h4(É@,Â@÷¬×—¯k@è#ù
+Õ‹Á´O¥#˜†Õ{küÀ|m¡ïæ¯ĞóÓ=]M`Z£ÑLKCé£&`¾‡®)˜À¡TAÌ×(€Ğ0{€ÎÿÿÒ°xÿÿ‚ñÙ¡âÿÿÒ@ÌÄ €ßÿÿ"”ßÿÿ¢4¿ÿÿÒÚ©Ä ¸3b‡`¶Êş”TÅ]‹—X,öi|'’ÿÿBÏßaG†(…‚åï†“<ñ>¸¼ĞR b…‹@@
+Øº+(Ê¯¨D“ÂàÿÿBÏß\h*ÿÿÒâd`Šu@ÅyĞò7ÿÿrƒÊ·@åÑò7ÿÿ‚ÅÏi¨<zşÿÿbêoÊ0ÀÔAxò"‚	fíƒ¦m:çDD\Â¿ûo^=ˆ£Y€lfa`"A7Xş†Ôoª[€*íå.0¹½œ›˜™§[’Q”š˜•Q’œ¨åÁl ¤ t	„%5€´³±P­E(¤½0g64İL†Ğèı r0P’€XˆAù—Øö.$ß
+xAè£ºá„¾qB§¬‡Ğæ| ¡uD}ÁùvÉN0m³B¯h*ógBhBíeÿÿº`ñÿÿóùÿÿò€X*Ÿÿÿrú$ß•g„Ò0
+ÿÿ¢4?ÿÿÒ¤Ä s˜¡á(˜­êh”üÏÌké—M§ÖôKë¤@ÿÿbå„¤İînF¨
+ÏÏœBñ"pù3@KAkÃE A •VœZ–šWRœ‚&‡ÎÿÿRºG(Ø•Ò0
+ÿÿ"”Ÿÿÿ"”Ÿÿÿ‚ÅÏ5¨èùÿÿBÏÏ0u.­t#©¦ıŠdµC$n¦°¥ ªçL¯±ĞÛ«°öüÅæDµçgŠ@ÌSƒĞLÏ!4ŒT2€˜ˆAù3§’?MN%õƒ\Æm×Wœ†ôC§ü„ĞsîAh™…şêŒÓtƒÿÿš°pÿÿ‚…ç°(fûÿÿBO˜:¨r†9sÕÀá@£S¥!û!4È 07m&Şğì¬&.<¡şa…˜{EBÃH cƒü	
+OHxîĞı¤UEÂ?³3¾
+«CÁt†Œå<|Ê50½Âßp®íõwzƒÁê'@Åo|†Èë<†ÿ[Í3Ò?³B¿9‰/åhÿÿÒo 4ÿÿ‚ÅÏ[(=½ÿÿB˜:K‹Oàôë¿2Cõ£SáP&ägĞ1ŸQ¢q¥÷Æ­ÄÅÈ ‡P»A		hÙ
+@r(~õ_ÿÿª˜?ÿÿR²€ä|Y ~A × CåfhÂg–Ğo ÃÌŒ³àîP;#XHH*1ˆ§	4ï»ŠAÉÊ‚¨ÿÿò€Âc`0á„JC)ÿÿ2òAòP~r~®^bAANª^N~z
+ÿÿ2…ÊwCå4Ãÿÿ2`bÿÿ‚ñ¡âÿÿ‚ÙÏå£×Wÿÿrå„Øß•‡™å2ÿÿ¢´¾ÿÿÒ¤Ä s˜¡¡Ì¾â]%g¤k§5afŸåê×–¤@ÿÿbº§Èèb€¹›Ñ¡,€FÀê+O F8À¡¤$Ã$ ­
+0@f¦d—äå—¤¦ É¡sÿÿR+ì€JˆAiÿÿÒB“çAÿÿrƒÊ·@50¢µ?ÿÿ‚ÅÏM¨<zşÿÿbêoÊ0ÀÔ}ù¼\®BD~úT”<ÚÅĞzD20ôË
+iv0Å°oşâzWş•ìù@T}õSbè=Õ!@á	@,ÄbœT(_¿G_fš…^¾òÜ…ˆïYI_{!ôšC½@2ˆ¹Xè>\íÕšYzÌÅBÏÙ¬–Ú¦ÅÌŸS„½Ÿ4ÿÿÒ7¡4ÿÿRÒ
+@ò“,Ğ~H,!âYò!¤|b) VbW¨ş&»ŠAÑÊ©``ÿÿ‚¥/³üÿÿ2ã„¤ïF¨.ôòÿÿ2…Êw#™
+3$ÿÿA1ÿÿ‚ñù âÿÿ‚Ù4ĞËÿÿr…šß•G6$ÿÿ¢´üÿÿÒ¢Ä s˜Áa˜ıaâ|6çcæÊë?9
+›MIÿÿbº§ÈèbrÁ€Ñ¡ÂB%aåÏ6ˆÄv¸‚L+á"ÈÌòÌ´Ì4ql\ÿÿR*Jt@%y 4ŒÿÿÒÂ”g„ÉhÿÿrƒÊ·@’JÈòÿÿ‚ÅÏu¨ P=2ÿÿbò€ 0u‚´Œ(û@$.µKƒ¥™5 ªôûW×ƒX0š"lÈ3°9‰S>UşTB4~(‚Ø:èH@Ènb~ ãd`Ğ8øo)HeÀ0İr=\è´0,‰‹T2ƒéAuîºÂBŸx¡kvBh†}ã#Xß™Dˆ¹œ 4ĞH äMb! º'„Ó\n´˜8éQ-0!¡küÁü5«üÀ´…>„¿BÏ¢¾«	Lk4ƒi‰b(}ÔÌ÷Ğ5Óx!ôƒ*Gˆú½$BÿÿÒ°xÿÿ‚ñNÿÿ’@
+O@ÏÏÿÿ"”ŸÿÿâdÔ×Ä0—D÷Og	:ùØ®c£È¿mŞ'{`	8QÿÿÒR
+@’3b††\0ûÆŠÄ<­Ş¯
+íy¾"úÆ%ÿÿBÏÏ0w3:pô@T ’°üÜà)•ƒ+(gb`xäéÂE ™¥Å©E¹‰y‰é©E)hÒ(\ÿÿBÏÏ(²ÿÿ"”Ÿÿÿ"”Ÿÿÿš'Ä7€Ğó3ÿÿBÏÏ7Àª¬¿Vô+2`„rÌÍ ûA610°*€)‘şõ ®öÄÊ9Øó³'$>» Æ0 êŸÜÄÌ<İ’Œ¢ÔÄ¨ˆ’„ªï€Š•…0ø¹ .,µ@u¸P:ˆ¹€”ÿqõï<6u€Lxp	B+È6ƒùo¸ÛÁtÂ×B<z;ÿÿŠÀ0ÉÀÿÿ‚…ÿ(=üÿÿB˜ºÊuoÁåÅÒpşDõÔ0 erÔ3ChF?ü—CÌõ„€´5‚HŒğ‹Ëe(}j”Ë d1È} ğü òï0H‰´Ÿ
+ÿÿ²Aà˜d`ÿÿRÒ
+@R#T7 Œú=FCO‹B½ÃÿÿŠóCiÿÿÒ@Ìå£—7ÿÿrš	’ïÊ3Biÿÿ¢´¼ÿÿÒ¤Ä s@ì[ŸÖj7îİójHø÷­OÁ@ÿÿbåI@ºˆA€B10:4@™(¼¼ñ™
+PÈŒ2U´8H	ğÙ™y™%HB8™ÿÿRäd`Êv@Uˆ@iÿÿÒB“çx&ÍÿÿrƒÊ·ÀEPÿÿ‚ÅÏ-¨0zzÿÿBOï0u™ZŸÀé]áh%8½ÿ@5ÎS?a^sc3 ü¾£}õ ®òæã’`ó	¥÷\ó&…@è¸gFj@Ì
+Ä ôî	 G(Í¡o„Ch¨<P9ÿÿÒ· 4ÿÿRÒ
+@ÌÄ ü 
+¤A&áAúK 6ÿÿ
+ğBiÿÿÒ@Ìå£çÿÿ"”ÿÿ¢4?ÿÿRÚkÄL@lÄñ`¿lWv(®²,îv÷›YğåÍN‡r°¸HÃKm‹©”Ö×|©ÿÿBÏ00:04€ŒC°üÁàÉ‘jà„+ÕQŞŒ>\È™™”˜œ”ŸX”’‚,ƒÉÿÿBÏhJÿÿ"”?ÿÿBÏ@ç(!ÿÿr@fŞ†
+¢çÿÿBÏ0uPåpJàH ¢¤à1Ğ.†—	åKâ`Yvˆ¢WV×ƒX‹–ƒiˆ0¼}m¹–¸ü±@¢ñ‹È6`Úİ‡ê Ø ÙÊ…+Áí¶Gı"B+ğAÚ×W¬ íe™ö±ÂH»¹D¢î@uX?È¦‹CÀô:·Ï5€v1/‹ı®,—S:wjÁô{š!ÇÌ_£n¦%ÈlwÃìÿÿ2nCiÿÿ‚ñ¹¡|ÿÿÒ@ÌÄ €ÿÿÿ"”ÿÿÿ¢4ÿÿÿRÚiÄ T`ÄÔõÒïš*%F7ö›Ì ²õ÷zq°8zşÿÿBÏÿ< 3€€Ñ^…C $,ÿ7œäƒŠÁåY€¨òôá"JÎÏ+6 	6ÊÿÿBÏÿÓ!fÿÿ"”ÿÿÿ"”ÿÿÿ‚Å×ˆqíqÿÿBÏÿ0uPå°ö¸Ğ¯È–ÿ±C$ìçK³*@T-M_Xbáª-s‰kFKCÌ»2BH£:D(¼ˆE”ÿqµ¯Ïì„äk…Õ¡à|!c9¨'åš˜ŞÀá/¸“p$ŞĞQ§7¬>*®‘š–¯I†Ğ9™úB:„H„Ğ_VAh™ÿô‰ŞnZÿÿÒw 4ÿÿRÒ
+@rƒ,'0É@pL20Ì<¿8µØ^†H	ƒ
++1ˆ£	THƒÀ]Å Ïäe•3ÿÿò€Âc`0á„JC)ÿÿ2òAòP>¢?”“ŸÂÀÿÿ2…ÊwCå4Ãÿÿ2`bÿÿ‚ñy âÿÿ‚Ù/å£—ÿÿr…šß•‡™å2ÿÿ¢´üÿÿÒ¤Ä s˜ÁÌæyÎĞÿ`wCÇ	mîÎpkÿÿbå¦ ª ˜»8€\//8¡*Äàjü™.yÚp¤ºhX¸ÿÿRºG(Ş•“ƒÒ0
+ÿÿÒB“çAÿÿrƒÊ·@50¢µÿÿ‚ÅÏ]¨<P=2ÿÿbò€ 0uß?•˜L—Q†'l0„f„rEXÁ¬µ)â`š]"ÁÆµ¦Ä‚•œax{ác
+¼¼à8’j‘@…
+@ºÄDzÍ¿º%E©‰)`!	Ußsñ„0­ÁãJ&¨„ÒR@ÌÄb@½g ıÍHyÁ2	B‰¶§#†…ô„+¿+Íib š·ÇØ	Zë€éÜZCXÌ¯ğÓW4!ôm_0Å/0ÍP¡yVú€ùwKÁô—úÍ†>0_$ßL/I…Ğ@ëÁÿÿÒw¡4ÿÿ‚Åÿ;(=şÿÿB˜º¦ò£>¤øg„ê‡QÒPÆDhğöÊC@á
+µ|XâŸ…ƒA„A™™qá4hü702Üªgº“$ñßæ!Ç?(Gé—ä¥B¥Àzü+A%WBl°Y5$m9…8€ÿ	<K@J÷´@âVOü1ƒ´Ÿ8Bh‘ûúÂê°Ë õ
+Ë¡4]Ä|@Œ/şgh@âŸCB—2Çš˜&·ÿÿÚï ÿÿÒ@üÊGoÿÿBo˜:¨r’)eT-+–ÕƒDX Â"ÀÆ7ÃËyØã=ş ÚàÔ8ÌĞ’@ŠPü¡ €³1(>Áá{¦BLïYS¦¶Bè+ ô“¥úÀQÔüÿÿš°pÿÿR²€˜	ˆeæŸÒ pB1tBËMFÿ6Tø”n„f+(£¾‡™3W®¬ÿÿj‚ÒÿÿÒ@ÌÄ@Ğ€^ÿÿÿrå„È÷€¥Ñ* ÿÿâÊé †€¹Œ º:KĞÉÇvEşmló>ù€a.¸† !ªÿÿÒR
+@ÒdÄ0 ²?%Uq—Áâ%Ëƒ}ß‰ÁÄÿÿbÚ×ät1p€I†G†‚•„Õ¿0…¨²Øy?€•NEArAQ~E%vQÿÿRºGÈí€
+qAiÿÿÒB“çABÿÿrƒÊ·@50¢Õ¿ÿÿ‚ÅÏ}¨<z~ÿÿbêoÊ0ÀÔEnúì=Xş®Ñ×…¤Wˆ4AÒPU	zıËÌ™L@%'k¡ùÈ>Äª[€Hİ£¤;€˜ T$Ä@cÍÿÿŠƒÌ_ÿÿóñÿÿò $…~ÿÿ"”~ÿÿ¢4ıÿÿÒÚ©Ä ÷1°æ³yåª}ï,·]:UæéÌ¼C]	 ÿÿBO¿aGDBE ,ı6p€l‚ ä€Bl@¦(LJé¼Ô’ø’Ôâ¨N
+ÿÿBO¿Rh*ÿÿ"”~ÿÿBO¿hÚÿÿ‚ÅÏ¨zúÿÿBO¿0u0s`é÷)L.ßøù>èéwÁÏ¹õ ,pL¿@`,ı21Ê©ni’˜é÷'X˜á¿$„îãa‚0 ¤bíb@µ»Àl ÿÿÒ 4ÿÿ‚ñ |ÿÿ‚…(A=ıÿÿ"”~ÿÿ¢4ıÿÿÒÚ©Ä ÷1Ã$0»ÿ«dn}š)Ëöiš×ëfœK	ÿÿBO¿0w;’‘~[€æ±±(#™E¥yy™yéIù‰E))È’hlÿÿBO¿hòÿÿÒâd`Šu@Åy ^…òÿÿrƒÊ·@EÑÊ_ÿÿ‚ÅÏC¨<zúÿÿbêoÊ0ÀÔAx°ô{&€FGo†H˜mC0'ÂºçÕƒ8,pI¿‘}Ä¥ß û@ÀEL1\ƒTÏÔb ÙN¿Àl ÿÿÒ¡4ÿÿ‚ñañÿÿ‚…L=ıÿÿ"”~ÿÿ¢4ıÿÿÒºKˆAî7b‡>0Û|Åú¿·ÕŒ¾ö<º_¨¿Î$ÿÿBO¿"aF(…‚—¿œ¼ñ>¸ü> ‹ˆ•á"†ÊË/ÉL«Là!ÿÿBO¿
+hjÿÿ"”~ÿÿ"”~ÿÿ‚ÅÏ3¨¹èéÿÿBO¿0u.­àvƒ$¤ıpÀXÀŒ\ˆ„ŒX–Q¢È3hj=ˆk?À´Ë3È3°°ËßcÀíPKøPƒP#ˆÄh?Ø‚<_dÀƒW„†‘
+@Fs1(ıætÿ;²ËäTR?ˆfyéwUœ†ô·¦ü„ĞsîAh™…ù5 éÆÅùÿR>ÿÿ2`áÿÿ‚…ç¨8zxÿÿBO˜:¨rh?ÁÙ˜$6ˆ†pªU 
+¡r1ì+Àá¹ŒB³@ÅY€%S£),<åT·8IÌğ<ÃfHá‡Ğü­F*@ÌÄ ğü 	OXÿÿŠƒÀ0ÉÀÿÿ‚…ÇK(=<ÿÿB˜º…W!î……T?:uèÈ…º—QÄc`ø½úŠ<üé«bÃy(ıÊ€R
+@Zˆq…ÿÿÊÌ_ÿÿ‚…Ç+ˆ0zxÿÿB˜:ÎcŸÀùAáh%8ß1Cõ£SÙPùŒ”b8<x¼¼G\x°BÍ…Ò‡X (¥¤€ä>1NNHú8Íg@aÿÿò`şÿÿ‚…Ïk¨8zøÿÿB˜ºÊw÷ÃÒŠ%X87¡bŒÆ¾ÕøÃÇğ9qá5–Ê¸0(_H1#ƒÂÿÿ
+ÀüÿÿRò€¤^¨^HƒÀ3ÅğÓşlj?°Ç,7AÿÿŠÃhÿÿò€XˆA½şÿÿrš)ïb`„PpÿÿâÊyp‘¹`%ıÓY‚N>¶ëØ(òoc›÷És!za4DÿÿÒR
+@’3b†-0Ûnÿ³³W™ş™ûì¤ğ!-&ÿÿbå„´•: \¸» B(¬şu8Éwà†ËGYl@,0DTqY2QıÿÿRä„èï€š!¥aÿÿÒB“çABÿÿrƒÊ·À4 Ñÿÿ‚ÅÏs¨8zzÿÿBOï0uèõï4s+J
+3ÅÄ›!_ÿBhV}>pF=ˆ…«şu,&.½?0ÄòBèt#5€ fbPz_­/V$$ö3Åşü„¤ôz(ÿÿÒÏ¡4ÿÿRÒ
+@ÒÊ¢@`ò’v°ü ÿÿ“uÿÿò€šZĞóÿÿÒÊ)1È|C fpp³Uö§¤*î2X¼Äby°Oã;1ÿÿBO¯0s9 *PIXzmè€ŠCÛ‹`û€+PXUÃ7`$U$åWT¢IapÿÿBO¯|h*ÿÿÒâ„ø¿*Îƒ–^ÿÿrƒÊ·@åÑú;ÿÿ‚…ßY¨<zzÿÿbêoÊ0ÀÔAxò2‚‰Â’Ûá:˜2A
+~²Â¬zkràr0Íd‹1¸}lâœÜ‹š^U·4e1Û7Œ\`a†²Zâ5#„%€´s±Ğ/{ŒÀõíu0ıBO¹çæ;lìÓ"ù`zI*„jÿÿÒ°pÿÿ‚ñ¡Îhÿÿ‚…§DFzÿÿÒŠ+1È•†@ÌÀğozÿÿBO`=ä¤GU ¥l@ıb3àäÒ#ÿÿBORpS ÿÿ"”ÿÿ"”ÿÿ‚…ße¨¹èéÿÿBO0uwaé¢ñ)š»`Üò]Ö
+3&0#HÂ¿øgn=ˆ+?9l †¥Ç…×`æCÚ—¸ÒãF ¸$¡“ ö@x
+@†s±P-¥éÿÿš°pÿÿó eÙÿÿ@ÌÄ@€‘ÿÿÒ
+*1#1°Ç›ÿÿBO0s‰N|`[@öu1‹1ˆ¿HHÿÿBO0C 4ÿÿ"”ÿÿ"”ÿÿ‚…ßI¨yèéÿÿBO0u‰5o ı]ˆÆPıèTôfˆHÁ$H)@økgÌ«±p¥ÇÆR˜ùøÓc'Ä<=Q}`Äúéÿÿ|Jÿÿ‚ñaéÿÿbŠqƒ@qIbrvqF~I|ANF|qfU*DN¢:—ÿÿÂ¯?'??»´ ®’¾¸ÿÿÂ¯?-¿4/Y93
+ÿÿÂ¯?3¯8µ¨YšóÿÿÂ¯âşøâT¸+X²ÿÿ’æ„ÄY7TdLÍCAÿÿ’‚ªï€
+­;¨‹ÄÂÿÿù×ˆ;€ñ“_ZŸ–“˜^‘€’ì,¯‘‘ÉMvíX‘ñ
+** Stackshot Succeeded ** Bytes Traced 15108 (Uncompressed 37696) **
+
+== END OF LOG ==

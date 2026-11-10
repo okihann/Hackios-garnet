@@ -1,0 +1,1465 @@
+== XNULOADER run (usb) ==
+payload entry 'kernel' size f24828
+payload entry 'ramdisk' size b66000
+payload entry 'cmdline' size 9a
+payload entry 'kernel.ver' size 2f
+kernel va fffffff007004000..fffffff0082ec828 entry fffffff0074694a8
+largest free block 8c0000000 size c0000000
+phys window 8c0000000 size c0000000, claim status 0
+kernel loaded at pa 8c7004000..8c82f0000
+ramdisk at pa 8c82f0000 size b70000
+ufs: unit 0: media 544433781, 61908992 blocks of 4096 (241832 MB), writable, align 8
+ufs: unit 0: GPT header crc right (cb86c9c4), table of 64 entries crc right (2b2352eb)
+ufs: unit 1: media 544433781, 4096 blocks of 4096 (16 MB), writable, align 8
+ufs: unit 1: GPT header crc right (31c0084c), table of 32 entries crc right (90c1c4a5)
+ufs: unit 2: media 544433781, 4096 blocks of 4096 (16 MB), writable, align 8
+ufs: unit 2: GPT header crc right (78036ed2), table of 32 entries crc right (afdb4e32)
+ufs: unit 3: media 544433781, 8192 blocks of 4096 (32 MB), writable, align 8
+ufs: unit 3: GPT header crc right (f2de4e3f), table of 32 entries crc right (190eed78)
+ufs: unit 4: media 544433781, 528384 blocks of 4096 (2064 MB), writable, align 8
+ufs: unit 4: GPT header crc right (f2123d60), table of 96 entries crc right (2984c472)
+ufs: unit 5: media 544433781, 16384 blocks of 4096 (64 MB), writable, align 8
+ufs: unit 5: GPT header crc right (1a7df885), table of 32 entries crc right (9a905b93)
+ufs: part switch: lba 6..7, 8 KB
+ufs: part ssd: lba 8..15, 32 KB
+ufs: part dbg: lba 16..23, 32 KB
+ufs: part bk01: lba 24..31, 32 KB
+ufs: part bk02: lba 32..63, 128 KB
+ufs: part bk03: lba 64..127, 256 KB
+ufs: part bk04: lba 128..255, 512 KB
+ufs: part keystore: lba 256..383, 512 KB
+ufs: part frp: lba 384..511, 512 KB
+ufs: part countrycode: lba 512..1023, 2048 KB
+ufs: part misc: lba 1024..2047, 4096 KB
+ufs: part bk05: lba 2048..4095, 8192 KB
+ufs: part logfs: lba 4096..6143, 8192 KB
+ufs: part ffu: lba 6144..8191, 8192 KB
+ufs: part oops: lba 8192..12287, 16384 KB
+ufs: part devinfo: lba 12288..16383, 16384 KB
+ufs: part metadata: lba 16384..32767, 65536 KB
+ufs: part bk06: lba 32768..36863, 16384 KB
+ufs: part bk07: lba 36864..45055, 32768 KB
+ufs: part mtdblk: lba 45056..53247, 32768 KB
+ufs: part crash_history: lba 53248..68095, 59392 KB
+ufs: part minidump: lba 68096..92671, 98304 KB
+ufs: part rawdump: lba 92672..169471, 307200 KB
+ufs: part vbmeta_system_a: lba 169472..169503, 128 KB
+ufs: part vbmeta_system_b: lba 169504..169535, 128 KB
+ufs: part bk010: lba 169536..176639, 28416 KB
+ufs: part mem: lba 176640..177663, 4096 KB
+ufs: part opconfig: lba 177664..182783, 20480 KB
+ufs: part opcust: lba 182784..285183, 409600 KB
+ufs: part mbnconfig: lba 285184..293375, 32768 KB
+ufs: part rescue: lba 293376..326143, 131072 KB
+ufs: part cust: lba 326144..850431, 2097152 KB
+ufs: part super: lba 850432..3209727, 9437184 KB
+ufs: super geometry +0: 67446c613400000012ff55f0aba7b506f25cb5da5dca09344234e8df1d9c93ae
+ufs: super geometry +20: 82a499d98019467e000001000300000000100000
+ufs: super header0 +0: 30504c410a0002000001000060e62eb01791c6220f4dadf80f2f0e4c123c3869
+ufs: super header0 +20: ebd07515acc836d386a01f40d0030000cb4f480033b8e2e07930ec9082e80374
+ufs: super header0 +40: b1386153de7104a19f8d3bf651d03169000000000c0000003400000070020000
+ufs: super header0 +60: 0600000018000000000300000300000030000000900300000100000040000000
+ufs: super header0 +80: 0100000000000000000000000000000000000000000000000000000000000000
+ufs: super header0 +a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super header0 +c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super header0 +e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super tables0 +0: 6f646d5f61000000000000000000000000000000000000000000000000000000
+ufs: super tables0 +20: 00000000000000000000000001000000010000006f646d5f6200000000000000
+ufs: super tables0 +40: 0000000000000000000000000000000000000000000000000000000001000000
+ufs: super tables0 +60: 000000000200000070726f647563745f61000000000000000000000000000000
+ufs: super tables0 +80: 0000000000000000000000000000000001000000010000000100000070726f64
+ufs: super tables0 +a0: 7563745f62000000000000000000000000000000000000000000000000000000
+ufs: super tables0 +c0: 0000000002000000000000000200000073797374656d5f610000000000000000
+ufs: super tables0 +e0: 0000000000000000000000000000000000000000000000000200000001000000
+ufs: super tables0 +100: 0100000073797374656d5f620000000000000000000000000000000000000000
+ufs: super tables0 +120: 00000000000000000000000003000000000000000200000073797374656d5f65
+ufs: super tables0 +140: 78745f6100000000000000000000000000000000000000000000000000000000
+ufs: super tables0 +160: 03000000010000000100000073797374656d5f6578745f620000000000000000
+ufs: super tables0 +180: 0000000000000000000000000000000000000000040000000000000002000000
+ufs: super tables0 +1a0: 76656e646f725f61000000000000000000000000000000000000000000000000
+ufs: super tables0 +1c0: 000000000000000004000000010000000100000076656e646f725f6200000000
+ufs: super tables0 +1e0: 0000000000000000000000000000000000000000000000000000000005000000
+ufs: super tables0 +200: 000000000200000076656e646f725f646c6b6d5f610000000000000000000000
+ufs: super tables0 +220: 0000000000000000000000000000000005000000010000000100000076656e64
+ufs: super tables0 +240: 6f725f646c6b6d5f620000000000000000000000000000000000000000000000
+ufs: super tables0 +260: 0000000006000000000000000200000048210000000000000000000000080000
+ufs: super tables0 +280: 000000000000000038b451000000000000000000003000000000000000000000
+ufs: super tables0 +2a0: 40733a00000000000000000000e8510000000000000000009050270000000000
+ufs: super tables0 +2c0: 0000000000608c00000000000000000050024800000000000000000000b8b300
+ufs: super tables0 +2e0: 0000000000000000203e0300000000000000000000c0fb000000000000000000
+ufs: super tables0 +300: 64656661756c7400000000000000000000000000000000000000000000000000
+ufs: super tables0 +320: 000000000000000000000000000000007174695f64796e616d69635f70617274
+ufs: super tables0 +340: 6974696f6e735f61000000000000000000000000000000000000002002000000
+ufs: super tables0 +360: 7174695f64796e616d69635f706172746974696f6e735f620000000000000000
+ufs: super tables0 +380: 0000000000000000000000200200000000080000000000000000100000000000
+ufs: super tables0 +3a0: 0000002002000000737570657200000000000000000000000000000000000000
+ufs: super tables0 +3c0: 00000000000000000000000000000000
+ufs: super header1 +0: 30504c410a0002000001000060e62eb01791c6220f4dadf80f2f0e4c123c3869
+ufs: super header1 +20: ebd07515acc836d386a01f40d0030000cb4f480033b8e2e07930ec9082e80374
+ufs: super header1 +40: b1386153de7104a19f8d3bf651d03169000000000c0000003400000070020000
+ufs: super header1 +60: 0600000018000000000300000300000030000000900300000100000040000000
+ufs: super header1 +80: 0100000000000000000000000000000000000000000000000000000000000000
+ufs: super header1 +a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super header1 +c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super header1 +e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super tables1 +0: 6f646d5f61000000000000000000000000000000000000000000000000000000
+ufs: super tables1 +20: 00000000000000000000000001000000010000006f646d5f6200000000000000
+ufs: super tables1 +40: 0000000000000000000000000000000000000000000000000000000001000000
+ufs: super tables1 +60: 000000000200000070726f647563745f61000000000000000000000000000000
+ufs: super tables1 +80: 0000000000000000000000000000000001000000010000000100000070726f64
+ufs: super tables1 +a0: 7563745f62000000000000000000000000000000000000000000000000000000
+ufs: super tables1 +c0: 0000000002000000000000000200000073797374656d5f610000000000000000
+ufs: super tables1 +e0: 0000000000000000000000000000000000000000000000000200000001000000
+ufs: super tables1 +100: 0100000073797374656d5f620000000000000000000000000000000000000000
+ufs: super tables1 +120: 00000000000000000000000003000000000000000200000073797374656d5f65
+ufs: super tables1 +140: 78745f6100000000000000000000000000000000000000000000000000000000
+ufs: super tables1 +160: 03000000010000000100000073797374656d5f6578745f620000000000000000
+ufs: super tables1 +180: 0000000000000000000000000000000000000000040000000000000002000000
+ufs: super tables1 +1a0: 76656e646f725f61000000000000000000000000000000000000000000000000
+ufs: super tables1 +1c0: 000000000000000004000000010000000100000076656e646f725f6200000000
+ufs: super tables1 +1e0: 0000000000000000000000000000000000000000000000000000000005000000
+ufs: super tables1 +200: 000000000200000076656e646f725f646c6b6d5f610000000000000000000000
+ufs: super tables1 +220: 0000000000000000000000000000000005000000010000000100000076656e64
+ufs: super tables1 +240: 6f725f646c6b6d5f620000000000000000000000000000000000000000000000
+ufs: super tables1 +260: 0000000006000000000000000200000048210000000000000000000000080000
+ufs: super tables1 +280: 000000000000000038b451000000000000000000003000000000000000000000
+ufs: super tables1 +2a0: 40733a00000000000000000000e8510000000000000000009050270000000000
+ufs: super tables1 +2c0: 0000000000608c00000000000000000050024800000000000000000000b8b300
+ufs: super tables1 +2e0: 0000000000000000203e0300000000000000000000c0fb000000000000000000
+ufs: super tables1 +300: 64656661756c7400000000000000000000000000000000000000000000000000
+ufs: super tables1 +320: 000000000000000000000000000000007174695f64796e616d69635f70617274
+ufs: super tables1 +340: 6974696f6e735f61000000000000000000000000000000000000002002000000
+ufs: super tables1 +360: 7174695f64796e616d69635f706172746974696f6e735f620000000000000000
+ufs: super tables1 +380: 0000000000000000000000200200000000080000000000000000100000000000
+ufs: super tables1 +3a0: 0000002002000000737570657200000000000000000000000000000000000000
+ufs: super tables1 +3c0: 00000000000000000000000000000000
+ufs: part userdata: lba 3209728..45131766, 167688156 KB
+ufs: userdata sb +0: 1020f5f201000e000c000000000000000c000000090000000100000001000000
+ufs: userdata sb +20: 00000000f7ad7f02000000007b3e0100d53f0100020000000a0000006e000000
+ufs: userdata sb +40: e00000007b3e0100000200000002000000060000001a000000f6000000b60200
+ufs: userdata sb +60: 030000000100000002000000318a075ae03b4ce7b4ad9f3d02ba292b00000000
+ufs: userdata sb +80: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +100: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +120: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +140: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +160: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +180: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +1a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +1c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +1e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +200: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +220: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +240: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +260: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +280: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +2a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +2c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +2e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +300: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +320: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +340: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +360: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +380: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +3a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +3c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +3e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb2 +0: 1020f5f201000e000c000000000000000c000000090000000100000001000000
+ufs: userdata sb2 +20: 00000000f7ad7f02000000007b3e0100d53f0100020000000a0000006e000000
+ufs: part darwin: lba 45131776..61908986, 67108844 KB
+ufs: part xbl_a: lba 6..2053, 8192 KB
+ufs: xbl_a: begins 7f 45 4c 46 1 1 1 0 0 0 0 0 0 0 0 0
+ufs: xbl_a: fnv aac0cd787086ef0a over 3706880 bytes, 18 ms
+ufs: part xbl_config_a: lba 2054..2181, 512 KB
+ufs: part multiimgqti_a: lba 2182..2189, 32 KB
+ufs: part multiimgoem_a: lba 2190..2197, 32 KB
+ufs: part apdp: lba 2198..2261, 256 KB
+ufs: part xbl_b: lba 6..2053, 8192 KB
+ufs: xbl_b: begins 7f 45 4c 46 1 1 1 0 0 0 0 0 0 0 0 0
+ufs: xbl_b: fnv aac0cd787086ef0a over 3706880 bytes, 18 ms
+ufs: part xbl_config_b: lba 2054..2181, 512 KB
+ufs: part multiimgqti_b: lba 2182..2189, 32 KB
+ufs: part multiimgoem_b: lba 2190..2197, 32 KB
+ufs: part apdp2: lba 2198..2261, 256 KB
+ufs: part ALIGN_TO_128K_1: lba 6..31, 104 KB
+ufs: part cdt: lba 32..63, 128 KB
+ufs: part bk31: lba 64..319, 1024 KB
+ufs: part ddr: lba 320..831, 2048 KB
+ufs: part bk32: lba 832..1343, 2048 KB
+ufs: part uefi_a: lba 6..1285, 5120 KB
+ufs: part aop_a: lba 1286..1413, 512 KB
+ufs: aop_a: begins 7f 45 4c 46 1 1 1 3 0 0 0 0 0 0 0 0
+ufs: aop_a: fnv 967b65bbe133607 over 208896 bytes, 1 ms
+ufs: part aop_config_a: lba 1414..1541, 512 KB
+ufs: part bk41_a: lba 1542..2053, 2048 KB
+ufs: part tz_a: lba 2054..3077, 4096 KB
+ufs: tz_a: begins 7f 45 4c 46 2 1 1 3 0 0 0 0 0 0 0 0
+ufs: tz_a: fnv f04999b7e7f3d973 over 3710976 bytes, 18 ms
+ufs: part hyp_a: lba 3078..5125, 8192 KB
+ufs: hyp_a: begins 7f 45 4c 46 2 1 1 0 0 0 0 0 0 0 0 0
+ufs: hyp_a: fnv bb4f759b34f0b3dd over 3653632 bytes, 18 ms
+ufs: part modem_a: lba 5126..102405, 389120 KB
+ufs: modem_a: begins eb 3c 90 4d 53 44 4f 53 35 2e 30 0 10 4 1 0
+ufs: modem_a: fnv 78a999db72d41ac over 214265856 bytes, 1193 ms
+ufs: part bluetooth_a: lba 102406..103685, 5120 KB
+ufs: bluetooth_a: begins eb 3c 90 4d 53 44 4f 53 35 2e 30 0 10 4 1 0
+ufs: bluetooth_a: fnv 6a7975c4fb6fc1d over 503808 bytes, 2 ms
+ufs: part mdtpsecapp_a: lba 103686..104965, 5120 KB
+ufs: part mdtp_a: lba 104966..113157, 32768 KB
+ufs: part abl_a: lba 113158..115205, 8192 KB
+ufs: abl_a: begins 7f 45 4c 46 1 1 1 0 0 0 0 0 0 0 0 0
+ufs: abl_a: fnv 964d10ab80c3c72e over 208896 bytes, 1 ms
+ufs: part dsp_a: lba 115206..131589, 65536 KB
+ufs: dsp_a: begins 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ufs: dsp_a: fnv cf41f153d26f4d38 over 67108864 bytes, 326 ms
+ufs: part keymaster_a: lba 131590..131845, 1024 KB
+ufs: part boot_a: lba 131846..180997, 196608 KB
+ufs: part devcfg_a: lba 180998..181061, 256 KB
+ufs: part qupfw_a: lba 181062..181093, 128 KB
+ufs: part vbmeta_a: lba 181094..181125, 128 KB
+ufs: part dtbo_a: lba 181126..187269, 24576 KB
+ufs: part uefisecapp_a: lba 187270..187781, 2048 KB
+ufs: part imagefv_a: lba 187782..200069, 49152 KB
+ufs: part shrm_a: lba 200070..200101, 128 KB
+ufs: part cpucp_a: lba 200102..200357, 1024 KB
+ufs: part featenabler_a: lba 200358..200389, 128 KB
+ufs: part vendor_boot_a: lba 200390..224965, 98304 KB
+ufs: part qmcs: lba 224966..232645, 30720 KB
+ufs: part qweslicstore_a: lba 232646..232709, 256 KB
+ufs: part recovery_a: lba 232710..258309, 102400 KB
+ufs: part xbl_ramdump_a: lba 258310..258821, 2048 KB
+ufs: part uefi_b: lba 258822..260101, 5120 KB
+ufs: part aop_b: lba 260102..260229, 512 KB
+ufs: aop_b: begins 7f 45 4c 46 1 1 1 3 0 0 0 0 0 0 0 0
+ufs: aop_b: fnv 967b65bbe133607 over 208896 bytes, 1 ms
+ufs: part aop_config_b: lba 260230..260357, 512 KB
+ufs: part bk41_b: lba 260358..260869, 2048 KB
+ufs: part tz_b: lba 260870..261893, 4096 KB
+ufs: tz_b: begins 7f 45 4c 46 2 1 1 3 0 0 0 0 0 0 0 0
+ufs: tz_b: fnv f04999b7e7f3d973 over 3710976 bytes, 18 ms
+ufs: part hyp_b: lba 261894..263941, 8192 KB
+ufs: hyp_b: begins 7f 45 4c 46 2 1 1 0 0 0 0 0 0 0 0 0
+ufs: hyp_b: fnv bb4f759b34f0b3dd over 3653632 bytes, 18 ms
+ufs: part modem_b: lba 263942..361221, 389120 KB
+ufs: modem_b: begins eb 3c 90 4d 53 44 4f 53 35 2e 30 0 10 4 1 0
+ufs: modem_b: fnv 78a999db72d41ac over 214265856 bytes, 1138 ms
+ufs: part bluetooth_b: lba 361222..362501, 5120 KB
+ufs: bluetooth_b: begins eb 3c 90 4d 53 44 4f 53 35 2e 30 0 10 4 1 0
+ufs: bluetooth_b: fnv 6a7975c4fb6fc1d over 503808 bytes, 2 ms
+ufs: part mdtpsecapp_b: lba 362502..363525, 4096 KB
+ufs: part mdtp_b: lba 363526..371717, 32768 KB
+ufs: part abl_b: lba 371718..373765, 8192 KB
+ufs: abl_b: begins 7f 45 4c 46 1 1 1 0 0 0 0 0 0 0 0 0
+ufs: abl_b: fnv 964d10ab80c3c72e over 208896 bytes, 1 ms
+ufs: part dsp_b: lba 373766..390149, 65536 KB
+ufs: dsp_b: begins 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ufs: dsp_b: fnv cf41f153d26f4d38 over 67108864 bytes, 325 ms
+ufs: part keymaster_b: lba 390150..390405, 1024 KB
+ufs: part boot_b: lba 390406..439557, 196608 KB
+ufs: part devcfg_b: lba 439558..439621, 256 KB
+ufs: part qupfw_b: lba 439622..439653, 128 KB
+ufs: part vbmeta_b: lba 439654..439685, 128 KB
+ufs: part dtbo_b: lba 439686..445829, 24576 KB
+ufs: part uefisecapp_b: lba 445830..446341, 2048 KB
+ufs: part imagefv_b: lba 446342..458629, 49152 KB
+ufs: part shrm_b: lba 458630..458661, 128 KB
+ufs: part cpucp_b: lba 458662..458917, 1024 KB
+ufs: part featenabler_b: lba 458918..458949, 128 KB
+ufs: part vendor_boot_b: lba 458950..483525, 98304 KB
+ufs: part qweslicstore_b: lba 483526..483589, 256 KB
+ufs: part recovery_b: lba 483590..509189, 102400 KB
+ufs: part xbl_ramdump_b: lba 509190..509701, 2048 KB
+ufs: part dip: lba 509702..509957, 1024 KB
+ufs: part bk42: lba 509958..510085, 512 KB
+ufs: part limits: lba 510086..510093, 32 KB
+ufs: part limits-cdsp: lba 510094..510101, 32 KB
+ufs: part toolsfv: lba 510102..510357, 1024 KB
+ufs: part gsort: lba 510358..514453, 16384 KB
+ufs: part bk43: lba 514454..522645, 32768 KB
+ufs: part storsec: lba 522646..522677, 128 KB
+ufs: part uefivarstore: lba 522678..522805, 512 KB
+ufs: part secdata: lba 522806..522813, 32 KB
+ufs: part mdcompress: lba 522814..527933, 20480 KB
+ufs: part connsec: lba 527934..527965, 128 KB
+ufs: part tzsc: lba 527966..527997, 128 KB
+ufs: part rtice: lba 527998..528125, 512 KB
+ufs: part xbl_sc_test_mode: lba 528126..528141, 64 KB
+ufs: part xbl_sc_logs: lba 528142..528173, 128 KB
+ufs: part ALIGN_TO_128K_2: lba 6..31, 104 KB
+ufs: part bk51: lba 32..255, 896 KB
+ufs: part modemst1: lba 256..2303, 8192 KB
+ufs: part modemst2: lba 2304..4351, 8192 KB
+ufs: part fsg: lba 4352..6399, 8192 KB
+ufs: part fsc: lba 6400..6655, 1024 KB
+ufs: part persist: lba 6656..14847, 32768 KB
+ufs: 6 raw units, 128 partitions
+ufs: firmware table 0: 5ad34ba-6f02-4214-952e-4da0398e2bb9 at fefacf90
+ufs: firmware table 1: 7739f24c-93d7-11d4-9a3a-090273fc14d at fedce018
+ufs: firmware table 2: 4c19049f-4137-4dd3-9c10-8b97a83ffdfa at feface60
+ufs: firmware table 3: 49152e77-1ada-4764-b7a2-7afefed95e8b at fefb16c8
+ufs: firmware table 4: b898d8dc-80a-40f7-99e3-31627b806a5a at 1794c7794a250eb9
+ufs: firmware table 5: 1d301fe9-be79-4353-91c2-d23bc959aec at fc2d2a98
+ufs: firmware table 6: ee4e5898-3914-4259-9d6e-dc7bd7943cf at fc2d2918
+ufs: firmware table 7: eb9d2d31-2d88-11d3-9a16-090273fc14d at fef60000
+ufs: firmware table 8: f2fd1544-9794-4a2c-992e-e5bbcf20e394 at fef5e000
+ufs: firmware table 9: dcfa911d-26eb-469f-a220-38b7dc461220 at fbc7f018
+ufs: unit 0: path 1.4[c145088609be55438bc130d64ff8e63a]
+ufs: unit 1: path 1.4[77d4908da339384aab9e586ff69ed051]
+ufs: unit 2: path 1.4[6858f8edec87774f9cda5f10df2fe601]
+ufs: unit 3: path 1.4[2490e61aeb8af84dbc980032dbdf5024]
+ufs: unit 4: path 1.4[85193fd307f1854abe3868dc7ad32cea]
+ufs: unit 5: path 1.4[5fd0a14b8e083f48a97eb19b9ccf59b0]
+ufs: block service: 128 partitions and 6 units, page fa4d0000, buffer fa5e8000 of 4096 KB
+return slot patched at 8c746a7f0, checkpoint 0
+ba: virtBase=fffffff007004000 physBase=8c7004000 slide=18c0000000 (kern_lo=8c7004000 vm_lo=fffffff007004000)
+cmdline: 275 of 607 characters
+cores for the kernel, in the order it takes them: 700 600 500 400 300 200 100
+device tree 8c8e60000 len 4404, boot_args 8c8e70000, top 8c8e80000
+cmdline: debug=0x8 rd=md0 hv_wdt_pet=1 ufs_shared_pa=0x00000000fa4d0000 hakios_kver=2.3.4-hakios-darwin22.5-sm7435-gd852e4bd-dirty loader_return_after=90 epoch=1794239848 sb_delay=8 -v cpus=8 bootcpu=7 ufs=2 wifi=1 wifi_loud=1 wifi_diag=1 root_apfs=ufs_darwin wifi_nocal=1 wifi_keep=1
+the kernel will run on core 700 (this is core 0)
+jumping to 8c74694a8
+core 700: the firmware answers 0 to the request to start it
+kernel returned: log at 8c7bc89c0, 82297 bytes
+
+== KERNEL LOG ==
+cpu 4 (phys id 0x300) is a slower core: the scheduler uses it after cpu 3 (phys id 0x400)
+cpu 5 (phys id 0x200) is a slower core: the scheduler uses it after cpu 2 (phys id 0x500)
+cpu 6 (phys id 0x100) is a slower core: the scheduler uses it after cpu 1 (phys id 0x600)
+wifi: 0: the driver asks for the radio's address: none given (wifi_mac), using default 02:00:00:47:61:72
+lx: the radio is the link behind en0
+wifi: the radio is being brought up beside the system's start (wifi=1)
+
+=== init: process 1, started as /sbin/launchd ===
+
+-- the Darwin root volume on /dev/ufs_darwin as the root --
+[ ok ] mount the Darwin volume read only
+wifi: 0: apps smmu scr0 (0x15000000) = 0x250406
+[ ok ] the system volume on flash is the root, this image on /redwood
+wifi: 0: apps smmu idr0 (0x15000020) = 0x4c017e7e
+wifi: 0: apps smmu idr1 (0x15000024) = 0x6000004d
+wifi: 0: match register 0 is in use: stream 0x60 mask 0, s2cr 0
+wifi: 0: match register 1 is in use: stream 0x540 mask 0, s2cr 0x1
+wifi: 0: match register 2 is in use: stream 0x20 mask 0, s2cr 0x2
+wifi: 0: match register 3 is in use: stream 0x800 mask 0x402, s2cr 0x3
+wifi: 0: match register 4 is in use: stream 0x80 mask 0, s2cr 0x4
+wifi: 0: match register 5 is in use: stream 0x484 mask 0x11, s2cr 0x5
+Darwin 22.5.0 iPhone10,3
+Darwin Kernel Version 22.5.0: Sen 09 Nov 2026 22:54:31 WIB; okihann:xnu-8796.121.2[xnu-8796.121.2-dirty]/BUILD/obj/DEVELOPMENT_ARM64_BCM2837
+memory 2959 MB, page size 16384, 7 cpu
+
+[ ok ] sysctl: kernel identifies itself
+
+-- writable filesystem --
+[ ok ] mount a memory filesystem on /private/var
+wifi: 0: free: match register 6 (smr 0, s2cr 0x20000) and context 6, whose registers are at 0x15086000; the SMMU's pages are of 0x1000 bytes, 128 before the contexts'
+wifi: 0: apps smmu cbar (0x15001018) = 0
+wifi: 0: apps smmu cba2r (0x15001818) = 0
+wifi: 0: apps smmu, the radio's context sctlr (0x15086000) = 0x1cc4a300
+wifi: 0: apps smmu, the radio's context ttbr0, low (0x15086020) = 0
+wifi: 0: apps smmu, the radio's context fsr (0x15086058) = 0
+wifi: 0: the radio is to see 45056 KB of ours (0x8ca9d8000) at 0xa0000000
+wifi: 0: THE SMMU IS ABOUT TO BE WRITTEN: context 6 gets page tables of ours (root 0x8cddac000) and is switched on, and match register 6 sends stream 0x4c0 mask 0x1 through it; before: smr 0, s2cr 0x20000, the context's sctlr 0x1cc4a300
+wifi: 0: about to write apps smmu, the radio's context sctlr at 0x15086000: 0
+wifi: 0: about to write apps smmu cba2r at 0x15001818: 0x1
+wifi: 0: about to write apps smmu cbar at 0x15001018: 0x1f300
+wifi: 0: about to write apps smmu, the radio's context tcr2 at 0x15086010: 0x38011
+wifi: 0: about to write apps smmu, the radio's context tcr at 0x15086030: 0x803519
+wifi: 0: about to write apps smmu, the radio's context ttbr0, low at 0x15086020: 0xcddac000
+wifi: 0: about to write apps smmu, the radio's context ttbr0, high at 0x15086024: 0x60008
+wifi: 0: about to write apps smmu, the radio's context ttbr1, low at 0x15086028: 0
+wifi: 0: about to write apps smmu, the radio's context ttbr1, high at 0x1508602c: 0
+wifi: 0: about to write apps smmu, the radio's context mair0 at 0x15086038: 0xf404ff44
+wifi: 0: about to write apps smmu, the radio's context mair1 at 0x1508603c: 0
+wifi: 0: about to write apps smmu, the radio's context fsr at 0x15086058: 0xc00001fe
+wifi: 0: about to write apps smmu, the radio's context tlbiasid at 0x15086610: 0x6
+wifi: 0: about to write apps smmu, the radio's context tlbsync at 0x150867f0: 0x1
+wifi: 0: about to write apps smmu, the radio's context sctlr at 0x15086000: 0x1127
+wifi: 0: about to write apps smmu s2cr at 0x15000c18: 0x6
+wifi: 0: about to write apps smmu smr at 0x15000818: 0x800104c0
+wifi: 0: apps smmu smr (0x15000818) = 0x800104c0
+wifi: 0: apps smmu s2cr (0x15000c18) = 0x6
+wifi: 0: apps smmu cbar (0x15001018) = 0x1f300
+wifi: 0: apps smmu, the radio's context sctlr (0x15086000) = 0x127
+wifi: 0: apps smmu, the radio's context ttbr0, low (0x15086020) = 0xcddac000
+wifi: 0: apps smmu, the radio's context ttbr0, high (0x15086024) = 0x60008
+wifi: 0: apps smmu, the radio's context tcr (0x15086030) = 0x803519
+wifi: 0: apps smmu, the radio's context tcr2 (0x15086010) = 0x38071
+wifi: 0: apps smmu cba2r (0x15001818) = 0x1
+wifi: 0: apps smmu sgfsr (0x15000048) = 0
+wifi: 0: THE RADIO'S STREAM GOES THROUGH CONTEXT 6 of the SMMU, with our page tables
+wifi: 0: the SMMU has refused the radio nothing (context 6: fsr 0x400; sgfsr 0)
+lx: 44 MB for the radio to read and write; it knows them from 0xa0000000 on
+wifi: step 1: map the shared memory area (0x80900000, 2 MB: memory, not registers) and read how the boot loader laid it out
+wifi: 1: the boot loader's version word is 0xc0000; the table of partitions begins 24 54 4f 43, version 1, 16 entries
+wifi: 1: partition 0: processors 0xffff and 0xffff, at 0x80aff000, 0x1000 bytes, flags 0x1, alignment 0
+wifi: 1: partition 1: processors 0 and 0x2, at 0x80acf000, 0x30000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 2: processors 0 and 0x5, at 0x80aaf000, 0x20000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 3: processors 0 and 0xe, at 0x80aad000, 0x2000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 4: processors 0 and 0x1, at 0x80a31000, 0x7c000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 5: processors 0x1 and 0x2, at 0x80a11000, 0x20000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 6: processors 0x1 and 0xe, at 0x80a0f000, 0x2000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 7: processors 0x7 and 0x1, at 0x80a0d000, 0x2000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 8: processors 0x7 and 0x2, at 0x80a0b000, 0x2000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 9: processors 0x7 and 0x5, at 0x80a09000, 0x2000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 10: processors 0x7 and 0xd, at 0x80a05000, 0x4000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 11: processors 0 and 0xd, at 0x809c5000, 0x40000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 12: processors 0x1 and 0xd, at 0x809a5000, 0x20000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 13: processors 0xd and 0x2, at 0x80985000, 0x20000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 14: processors 0xfffe and 0xfffe, at 0x80901000, 0x84000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 15: processors 0xffff and 0xffff, at 0x80900000, 0x1000 bytes, flags 0x3, alignment 0
+wifi: 1: the partition for us and the Wi-Fi DSP (0 and 13): at 0x809c5000, 0x40000 bytes, of which 0x3bfa0 free; 2 items
+wifi: 1:   items (bytes): 478 (32) 479 (16384)
+wifi: 1: the partition for everybody (the global one): at 0x80901000, 0x84000 bytes, of which 0x7c308 free; 18 items
+wifi: 1:   items (bytes): 469 (4096) 473 (12288) 604 (2120) 603 (492) 402 (2328) 404 (8192) 137 (288) 602 (592) 403 (16) 474 (12) 614 (720) 632 (4)
+wifi: 1:   items (bytes): 612 (320) 631 (32) 628 (4) 135 (88) 498 (18) 81 (36)
+wifi: 1: item 616, SMP2P from us to the DSP: not there
+wifi: 1: item 626, the DSP's last words: not there
+wifi: 1: item 617, SMP2P from the DSP to us: not there (the DSP has not run since the phone was started)
+wifi: step 2: read the description at the start of the always-on processor's message memory (0xc300000)
+wifi: 2: mailbox magic (0xc300000) = 0x4d41494c
+wifi: 2: mailbox version (0xc300004) = 0x1
+wifi: 2: mailbox features (0xc300008) = 0
+wifi: 2: mailbox their link (0xc30000c) = 0xffff
+wifi: 2: mailbox their link, seen by us (0xc300010) = 0xffff
+wifi: 2: mailbox their channel (0xc300014) = 0xffff
+wifi: 2: mailbox their channel, seen by us (0xc300018) = 0xffff
+wifi: 2: mailbox their mailbox's size (0xc30001c) = 0x68
+wifi: 2: mailbox their mailbox (0xc300020) = 0xc0
+wifi: 2: mailbox our link (0xc300024) = 0xffff
+wifi: 2: mailbox our link, seen by them (0xc300028) = 0xffff
+wifi: 2: mailbox our channel (0xc30002c) = 0xffff0000
+wifi: 2: mailbox our channel, seen by them (0xc300030) = 0xffff0000
+wifi: 2: mailbox our mailbox's size (0xc300034) = 0x2d8
+wifi: 2: mailbox our mailbox (0xc300038) = 0x128
+wifi: 2: mailbox the length of the message in our mailbox (0xc300128) = 0
+wifi: step 2: read who has rung our doorbell (IPCC, 0xed18000: the first access to that block)
+wifi: 2: ipcc received (0xed18010) = 0xffffffff
+wifi: step 6: find the DSP's image in the small image that came with the kernel, and check it against its own header
+wifi: 6: segment 1: 0x2000 bytes at 0x85300000, of which 0x1928 from its file
+wifi: 6: segment 2: 0x71000 bytes at 0x85302000, of which 0x70ab9 from its file
+wifi: 6: segment 3: 0x1000 bytes at 0x85373000, of which 0x450 from its file
+wifi: 6: segment 4: 0x1000 bytes at 0x85400000, of which 0x100 from its file
+wifi: 6: segment 5: 0x1000 bytes at 0x85401000, of which 0x1000 from its file
+wifi: 6: segment 6: 0x480000 bytes at 0x85402000, of which 0x47f4bc from its file
+wifi: 6: segment 7: 0xcd1000 bytes at 0x85882000, of which 0x3f550 from its file
+wifi: 6: segment 8: 0xb2000 bytes at 0x86900000, of which 0xb137e from its file
+wifi: 6: segment 9: 0x24e000 bytes at 0x869b2000, of which 0 from its file
+wifi: 6: the image is whole: a header of 4684 bytes (4280 of hashes), 9 segments, 6174395 bytes of files, 0x1900000 bytes of the DSP's 0x1900000 from 0x85300000
+wifi: step 7: open the mailbox to the always-on processor: words of the message memory, and its doorbell
+wifi: 7: mailbox magic (0xc300000) = 0x4d41494c
+wifi: 7: mailbox version (0xc300004) = 0x1
+wifi: 7: mailbox our mailbox (0xc300038) = 0x128
+wifi: 7: mailbox our mailbox's size (0xc300034) = 0x2d8
+wifi: 7: mailbox our link (0xc300024) = 0xffff
+wifi: 7: mailbox our link, seen by them (0xc300028) = 0xffff
+wifi: 7: mailbox our channel (0xc30002c) = 0xffff0000
+wifi: 7: mailbox their link (0xc30000c) = 0xffff
+wifi: 7: about to write mailbox their link, seen by us at 0xc300010: 0xffff
+wifi: 7: about to write mailbox our link at 0xc300024: 0xffff
+wifi: 7: about to write ipcc the always-on processor's doorbell at 0xed1800c: 0
+wifi: 7: the always-on processor has seen our link
+wifi: 7: about to write mailbox our channel at 0xc30002c: 0xffff
+wifi: 7: about to write ipcc the always-on processor's doorbell at 0xed1800c: 0
+wifi: 7: about to write mailbox their channel, seen by us at 0xc300018: 0xffff
+wifi: 7: about to write ipcc the always-on processor's doorbell at 0xed1800c: 0
+wifi: 7: THE MAILBOX TO THE ALWAYS-ON PROCESSOR IS OPEN; the doorbells say 0
+wifi: 8: the DSP has left nothing in the shared memory: it has not run since the phone was started, and there is nothing to shut down
+wifi: step 8: hand the image's header to TrustZone to check its signature (image 6), in a page of ours
+wifi: 8: about to ask TrustZone to take the Wi-Fi DSP's header: smc 0x42000201, arguments 0x6, 0x8ce65c000, 0
+wifi: 8: TrustZone returns 0, answer 0
+wifi: 8: TRUSTZONE ACCEPTS THE WI-FI DSP'S SIGNATURE FROM THIS KERNEL
+wifi: step 8: tell TrustZone where the image will be
+wifi: 8: about to ask TrustZone where the image will be: smc 0x42000202, arguments 0x6, 0x85300000, 0x1900000
+wifi: 8: TrustZone returns 0, answer 0
+wifi: 8: TrustZone takes the place: 0x1900000 bytes at 0x85300000
+wifi: step 9: put the image's segments into the DSP's memory (0x85300000, 25 MB: memory of nobody's until TrustZone starts the DSP), with zeroes where a segment is longer th
+wifi: 9: the memory begins 0, the image 0x5800c0005800c00e
+wifi: 9: about to write 0x2000 bytes at 0x85300000 (0x1928 of them the file's)
+wifi: 9: about to write 0x71000 bytes at 0x85302000 (0x70ab9 of them the file's)
+wifi: 9: about to write 0x1000 bytes at 0x85373000 (0x450 of them the file's)
+wifi: 9: about to write 0x1000 bytes at 0x85400000 (0x100 of them the file's)
+wifi: 9: about to write 0x1000 bytes at 0x85401000 (0x1000 of them the file's)
+wifi: 9: about to write 0x480000 bytes at 0x85402000 (0x47f4bc of them the file's)
+wifi: 9: about to write 0xcd1000 bytes at 0x85882000 (0x3f550 of them the file's)
+wifi: 9: about to write 0xb2000 bytes at 0x86900000 (0xb137e of them the file's)
+wifi: 9: about to write 0x24e000 bytes at 0x869b2000 (0 of them the file's)
+  113 directories, 9 files
+wifi: 9: 6174395 bytes written and 15612229 cleared; read back, 0 words of eight bytes differ
+wifi: step 10: look at our partition with the DSP in the shared memory, and for an SMP2P item of ours (616) in it
+wifi: 10: the partition for us and the Wi-Fi DSP (0 and 13): at 0x809c5000, 0x40000 bytes, of which 0x3bfa0 free; 2 items
+wifi: 10:   items (bytes): 478 (32) 479 (16384)
+wifi: 10: its items from the bottom end at +0x4060, those from the top begin at +0x40000
+wifi: step 10: make the item: the SoC's lock for the shared memory (0x1f43000: the first access to that block) around it
+wifi: 10: shared memory's lock owner (0x1f43000) = 0
+wifi: 10: about to take the lock (write 1 at 0x1f43000, until it reads back so, for a second at most), write an entry of 16 bytes for item 616 with 344 bytes behind it where the partition's items from the bottom end, move the partition's mark by 360, and release the lock (write 0)
+wifi: 10: the lock is released (it reads 0); the entry is at the old mark, the mark moved
+wifi: 10: item 616 made, at 0x809c9070
+wifi: 10: the partition for us and the Wi-Fi DSP (0 and 13): at 0x809c5000, 0x40000 bytes, of which 0x3be38 free; 3 items
+wifi: 10:   items (bytes): 478 (32) 479 (16384) 616 (340)
+wifi: step 10: fill our item in (340 bytes at the address above): zeroes, then from processor 0 to 13, room for 16 entries, the entries "master-kernel" and "wlan" at zero, feature bit 0, and last the version, which makes it valid; then the DSP's SMP2P doorbell, as Linux rings it
+wifi: 10: about to write ipcc the DSP's SMP2P doorbell at 0xed1800c: 0x180002
+wifi: 10: our item reads back: SMP2P version 1, features 0x1, from processor 0 to 13, flags 0, 2 of 16 entries: master-kernel = 0; wlan = 0;
+wifi: step 10: see that our two marks in GLINK's descriptor are at zero before the DSP starts
+wifi: 10: GLINK's descriptor at 0x809c5030: our queue read to 0 and written to 0, the DSP's read to 0 and written to 0
+wifi: step 11: tell the doorbells that rings from before this kernel have been heard and that the DSP's SMP2P ring is listened for, tell the always-on processor that the image is loaded, and ask TrustZone to authenticate it and let the DSP out of reset
+wifi: 11: about to write ipcc heard at 0xed1801c: 0
+wifi: 11: about to write ipcc listened for at 0xed18014: 0x180002
+wifi: 11: about to tell the always-on processor "{class: image, res: load_state, name: wpss, val: on}": 64 bytes into our mailbox at 0xc300128, its length in front, and the doorbell
+wifi: 11: the always-on processor has taken it
+wifi: 11: about to ask TrustZone to authenticate the Wi-Fi DSP's image and start it: smc 0x42000205, arguments 0x6, 0, 0
+[ ok ] create the directories of the data volume
+wifi: 11: TrustZone returns 0, answer 0
+wifi: 11: TRUSTZONE HAS AUTHENTICATED THE IMAGE AND LET THE WI-FI DSP OUT OF RESET; watching the shared memory and our doorbell for 10 s
+wifi: doorbell: +0.009 ms: client 0, signal 0; heard and cleared
+
+-- read-only filesystem --
+wifi: doorbell: +29.253 ms: client 24, signal 0; heard and cleared
+wifi: doorbell: +36.092 ms: client 24, signal 2; heard and cleared
+wifi: 11: +36.090 ms: the DSP's item APPEARS: SMP2P version 1, features 0x1, from processor 13 to 0, flags 0, 2 of 16 entries: smp2p = 0; slave-kernel = 0x6;
+wifi: 11: the DSP and we agree on SMP2P: version 1, features 0x1
+wifi: 11: THE WI-FI DSP SAYS IT IS UP: its entry "slave-kernel" says 0x6 (bit 1: "error ready"), 36.090 ms after TrustZone started it
+wifi: 11: the DSP says it has asked for its own power (bit 2), 36.090 ms after the start
+wifi: 11: at the end of the watch the DSP's item says: SMP2P version 1, features 0x1, from processor 13 to 0, flags 0, 2 of 16 entries: smp2p = 0; slave-kernel = 0x6;
+wifi: 11: and ours: SMP2P version 1, features 0x1, from processor 0 to 13, flags 0, 2 of 16 entries: master-kernel = 0; wlan = 0;
+wifi: 11: the watch is over after 36 ms; doorbells heard: GLINK 1, SMP2P 1, the mailbox 1, others 0
+wifi: 11: the DSP said it was up, and that it has asked for its own power
+wifi: step 12: find GLINK's descriptor and the two queues in the shared memory, and read what the DSP has put into its own (nothing is taken out)
+wifi: 12: our queue: 16384 bytes at 0x809c5060, written to 0, read by the DSP to 0; the DSP's: 16384 bytes at 0x809c9208, written to 0x8, read by us to 0
+wifi: 12:   in the DSP's queue at 0: version 1 0x7 
+wifi: step 13: take up GLINK with the DSP: our version into our queue and its doorbell, then whatever its messages call for (writes: our queue, our two marks in the descriptor, the doorbell); a thread of ours listens from here on, every millisecond
+wifi: glink: > version 1 0x1
+wifi: doorbell: +1.165 ms: client 24, signal 0; heard and cleared
+wifi: glink: < version 1 0x7
+wifi: glink: > version-ack 1 0x1
+wifi: glink: < version-ack 1 0x1
+wifi: glink: < open 1 0x7
+wifi: glink: the DSP opens "IPCRTR" as its channel 1: acknowledged, and opened from our side as channel 1
+wifi: glink: > open-ack 1 0
+wifi: glink: > open 1 0x7
+wifi: doorbell: +2.340 ms: client 24, signal 0; heard and cleared
+wifi: glink: < open-ack 1 0
+wifi: glink: THE CHANNEL "IPCRTR" IS OPEN both ways (ours 1, the DSP's 1); telling the DSP our intents
+wifi: glink: > intent 1 0x1
+wifi: glink: > intent 1 0x1
+wifi: glink: > intent 1 0x1
+wifi: glink: > intent 1 0x1
+wifi: glink: > intent 1 0x1
+wifi: glink: > intent 1 0x1
+wifi: glink: > intent 1 0x1
+wifi: glink: > intent 1 0x1
+wifi: glink: > intent 1 0x1
+wifi: glink: > intent 1 0x1
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 0
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 1
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 2
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 3
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 4
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 5
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 6
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 7
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 8
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 9
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 10
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 11
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 12
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 13
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 14
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 15
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 512 bytes into its intent 16
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 512 bytes into its intent 17
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 512 bytes into its intent 18
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 512 bytes into its intent 19
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 512 bytes into its intent 20
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 512 bytes into its intent 21
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 512 bytes into its intent 22
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 512 bytes into its intent 23
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 1152 bytes into its intent 24
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 1152 bytes into its intent 25
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 1152 bytes into its intent 26
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 1152 bytes into its intent 27
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 1152 bytes into its intent 28
+wifi: glink: < intent 1 0x1
+wifi: glink:   the DSP will take 8320 bytes into its intent 29
+wifi: glink: < intent-request 1 0x34
+wifi: glink: > intent 1 0x1
+wifi: glink: > intent-request-ack 1 0x1
+wifi: glink: > done-reuse 1 0x1
+wifi: glink: < open 2 0x12
+wifi: glink: the DSP opens "LOOPBACK_CTL_WPSS" as its channel 2: left unanswered, nobody here speaks it
+wifi: qrtr: HELLO FROM NODE 13; ours to it: SENT
+wifi: doorbell: +3.832 ms: client 24, signal 0; heard and cleared
+wifi: glink: < done-reuse 1 0
+wifi: glink: > done-reuse 1 0xb
+wifi: glink: > done-reuse 1 0x2
+wifi: glink: > done-reuse 1 0x3
+wifi: glink: > done-reuse 1 0x4
+wifi: qrtr: a service: 66 (0x42), version 1, instance 111, at node 13 port 3
+wifi: qrtr: a service: 43 (0x2b), version 2, instance 25, at node 13 port 2
+wifi: qrtr: a service: 15 (0xf), version 1, instance 128, at node 13 port 1
+wifi: qrtr: a service: 51 (0x33), version 1, instance 3, at node 13 port 6
+wifi: doorbell: +6.186 ms: client 24, signal 0; heard and cleared
+wifi: doorbell: +6.192 ms: client 24, signal 2; heard and cleared
+wifi: glink: > done-reuse 1 0xb
+wifi: qrtr: a service: 69 (0x45), version 1, instance 0, at node 13 port 8
+  drwxr-xr-x  2        0 /redwood/empty
+wifi: 13: 54 ms after our version: versions agreed (features 0x1); the channel "IPCRTR" is OPEN
+wifi: step 14: listen for QRTR on the channel: the DSP's hello is answered with ours, its services are written down; and a port of ours looks the Wi-Fi firmware's service up, as the radio's driver will
+wifi: qrtr: THE WI-FI FIRMWARE'S SERVICE (0x45) IS AT node 13 port 8
+  drwxr-xr-x  2        0 /redwood/bin
+  drwxr-xr-x  2        0 /redwood/hal
+  drwxr-xr-x  2        0 /redwood/fw
+  drwxr-xr-x  2        0 /redwood/sbin
+  drwxr-xr-x  2        0 /redwood/etc
+  drwxr-xr-x  2        0 /redwood/LaunchDaemons
+  drwxr-xr-x  2        0 /redwood/var
+  drwxr-xr-x  2        0 /redwood/flash
+  drwxr-xr-x  2        0 /redwood/private
+  drwxr-xr-x  2        0 /redwood/lib
+  drwxr-xr-x  2        0 /redwood/dev
+  drwxr-xr-x  2        0 /redwood/xpc
+  drwxr-xr-x  2        0 /redwood/share
+  -rwxr-xr-x  1    66416 /redwood/bin/torch_test
+  -rwxr-xr-x  1    67576 /redwood/bin/apfs_mmap_test
+  -rwxr-xr-x  1    66808 /redwood/bin/camera_avtest
+  -rwxr-xr-x  1    69216 /redwood/bin/sound_test
+  -rwxr-xr-x  1    69704 /redwood/bin/battery_test
+  -rwxr-xr-x  1    68256 /redwood/bin/cg_test
+  -rwxr-xr-x  1    66728 /redwood/bin/cputop
+  -rwxr-xr-x  1    71744 /redwood/bin/net_test
+  -rwxr-xr-x  1    66728 /redwood/bin/rwtouch
+  -rwxr-xr-x  1    66128 /redwood/bin/hello_dyn
+  -rwxr-xr-x  1    68296 /redwood/bin/font_test
+  -rwxr-xr-x  1    67240 /redwood/bin/fps_info
+  -rwxr-xr-x  1    67952 /redwood/bin/keychain_test
+  -rwxr-xr-x  1    66576 /redwood/bin/cpu_test
+  -rwxr-xr-x  1    69672 /redwood/bin/surf_test
+  -rwxr-xr-x  1    66864 /redwood/bin/shm_test
+  -rwxr-xr-x  1    68264 /redwood/bin/cow_test
+  -rwxr-xr-x  1    67936 /redwood/bin/wifipw_test
+  -rwxr-xr-x  1    52792 /redwood/bin/var_store
+  -rwxr-xr-x  1    71328 /redwood/bin/metal_test
+  -rwxr-xr-x  1    66400 /redwood/bin/mg_test
+  -rwxr-xr-x  1    83688 /redwood/bin/svc_test
+  -rwxr-xr-x  1    67504 /redwood/bin/vol_ls
+  -rwxr-xr-x  1    67312 /redwood/bin/snap_test
+  -rwxr-xr-x  1    34496 /redwood/bin/child
+  -rwxr-xr-x  1    85768 /redwood/bin/camera_test
+  -rwxr-xr-x  1    67704 /redwood/bin/record_test
+  lrwxrwxrwx  1       31 /redwood/hal/HakiosAudio.driver -> /redwood/lib/HakiosAudio.driver
+  -rw-r--r--  1     4684 /redwood/fw/wpss.mdt
+  -rw-r--r--  1     3896 /redwood/fw/a710_zap.b02
+  -rw-r--r--  1    26328 /redwood/fw/bd_n16g.bin
+  -rw-r--r--  1    26328 /redwood/fw/bdwlan.bin
+  -rw-r--r--  1    12088 /redwood/fw/a710_zap.mbn
+  -rw-------  1       29 /redwood/fw/network
+  -rw-r--r--  1      404 /redwood/fw/wpss.b00
+  -rw-r--r--  1   259408 /redwood/fw/wpss.b07
+  -rw-r--r--  1   725886 /redwood/fw/wpss.b08
+  -rw-r--r--  1  4715708 /redwood/fw/wpss.b06
+  -rw-r--r--  1     6440 /redwood/fw/wpss.b01
+  -rw-r--r--  1     4280 /redwood/fw/wpss.b10
+  -rw-r--r--  1    19348 /redwood/fw/regdb.bin
+  -rw-r--r--  1    57272 /redwood/fw/gmu_gen70000.bin
+  -rw-r--r--  1     1948 /redwood/fw/a710_zap.b01
+  -rw-r--r--  1     6044 /redwood/fw/a710_zap.elf
+  -rw-r--r--  1      148 /redwood/fw/a710_zap.b00
+  -rw-r--r--  1    35572 /redwood/fw/a710_sqe.fw
+  -rw-r--r--  1     4044 /redwood/fw/a710_zap.mdt
+  -rw-r--r--  1    26328 /redwood/fw/bd_n16.bin
+  -rw-r--r--  1      256 /redwood/fw/wpss.b04
+  -rw-r--r--  1     1104 /redwood/fw/wpss.b03
+  -rw-r--r--  1    19348 /redwood/fw/regdb_xiaomi.bin
+  -rw-r--r--  1   461497 /redwood/fw/wpss.b02
+  -rw-r--r--  1     4096 /redwood/fw/wpss.b05
+  -rwxr-xr-x  1    52384 /redwood/sbin/init
+  lrwxrwxrwx  1        4 /redwood/sbin/launchd -> init
+  -rw-r--r--  1     6216 /redwood/etc/var.skel
+  -rw-r--r--  1      262 /redwood/etc/inject.conf
+  -rw-r--r--  1       88 /redwood/etc/rc
+  -rw-r--r--  1       47 /redwood/etc/motd
+  -rw-r--r--  1      349 /redwood/etc/rc.jobs
+  -rw-r--r--  1      457 /redwood/LaunchDaemons/com.apple.notifyd.plist
+  -rw-r--r--  1      377 /redwood/LaunchDaemons/com.apple.syslogd.plist
+  -rw-r--r--  1      692 /redwood/LaunchDaemons/com.apple.containermanagerd.system.plist
+  -rw-r--r--  1      285 /redwood/LaunchDaemons/com.apple.mobilegestalt.xpc.plist
+  -rw-r--r--  1      861 /redwood/LaunchDaemons/com.apple.logd.plist
+  -rw-r--r--  1     1086 /redwood/LaunchDaemons/com.apple.backboardd.plist
+  -rw-r--r--  1      377 /redwood/LaunchDaemons/com.apple.cfprefsd.xpc.daemon.plist
+  -rw-r--r--  1      657 /redwood/LaunchDaemons/com.hakios.wifi.plist
+  -rw-r--r--  1      530 /redwood/LaunchDaemons/com.apple.cfprefsd.xpc.daemon.system.plist
+  -rw-r--r--  1      270 /redwood/LaunchDaemons/com.apple.pluginkit.pkd.plist
+  -rw-r--r--  1      908 /redwood/LaunchDaemons/com.hakios.varstore.plist
+  -rw-r--r--  1      400 /redwood/LaunchDaemons/com.apple.fseventsd.plist
+  -rw-r--r--  1      475 /redwood/LaunchDaemons/com.apple.diagnosticd.plist
+  -rw-r--r--  1     2337 /redwood/LaunchDaemons/com.apple.SpringBoard.plist
+  -rw-r--r--  1      779 /redwood/LaunchDaemons/com.hakios.demo.plist
+  -rw-r--r--  1      539 /redwood/LaunchDaemons/com.apple.wifid.plist
+  -rw-r--r--  1      488 /redwood/LaunchDaemons/com.apple.powerd.plist
+  -rw-r--r--  1      926 /redwood/LaunchDaemons/com.apple.containermanagerd.plist
+  -rw-r--r--  1      424 /redwood/LaunchDaemons/com.apple.iconservices.iconservicesagent.plist
+  -rw-r--r--  1      504 /redwood/LaunchDaemons/com.apple.analyticsd.plist
+  -rw-r--r--  1      616 /redwood/LaunchDaemons/com.apple.distnoted.xpc.daemon.plist
+  -rw-r--r--  1      792 /redwood/LaunchDaemons/com.apple.lsd.plist
+  -rw-r--r--  1      415 /redwood/LaunchDaemons/com.apple.logd_helper.plist
+  -rw-r--r--  1      636 /redwood/LaunchDaemons/com.apple.mobile.usermanagerd.plist
+  -rw-r--r--  1      412 /redwood/LaunchDaemons/com.apple.runningboardd.plist
+  drwxr-xr-x  2        0 /redwood/var/mobile
+  drwxr-xr-x  2        0 /redwood/var/mobile/Library
+  -rw-r--r--  1 10368016 /redwood/var/mobile/Library/hakios-wallpaper.raw
+  drwxr-xr-x  2        0 /redwood/var/mobile/Library/Preferences
+  drwxr-xr-x  2        0 /redwood/private/var
+  -rwxr-xr-x  1    90528 /redwood/lib/libhakios.dylib
+  drwxr-xr-x  2        0 /redwood/lib/HakiosMetal.bundle
+  drwxr-xr-x  2        0 /redwood/lib/HakiosAudio.driver
+  -rwxr-xr-x  1    67976 /redwood/lib/libhakios.tweaks.dylib
+  -rwxr-xr-x  1   113448 /redwood/lib/libhakios.sb.dylib
+  -rwxr-xr-x  1   128536 /redwood/lib/libhakios.media.dylib
+  -rwxr-xr-x  1    68608 /redwood/lib/libhakios.app.dylib
+  -rw-r--r--  1      814 /redwood/lib/HakiosMetal.bundle/Info.plist
+  -rwxr-xr-x  1  8694560 /redwood/lib/HakiosMetal.bundle/HakiosMetal
+  -rwxr-xr-x  1    68496 /redwood/lib/HakiosAudio.driver/HakiosAudio
+  -rw-r--r--  1     1044 /redwood/lib/HakiosAudio.driver/Info.plist
+  -rw-r--r--  1     1852 /redwood/xpc/extensions.plist.sig
+  -rw-r--r--  1   104731 /redwood/xpc/extensions.plist
+  -rw-r--r--  1   300000 /redwood/share/pattern.bin
+  drwxr-xr-x  2        0 /redwood/share/ca-share
+  -rw-r--r--  1  3831132 /redwood/share/ca-share/QuartzCore-default.metallib
+[ ok ] walk our image (readdir, lstat, readlink)
+[ ok ] the system image has the dynamic linker
+  etc/motd: Darwin on hakios: image built 2026-11-09 20:33
+[ ok ] read a small file
+[ ok ] follow a symlink to a directory
+[ ok ] missing file gives ENOENT
+[ ok ] creating a file gives EROFS
+[ ok ] read a 300 KB file and verify every byte
+[ ok ] seek into the middle and read
+[ ok ] mmap the file and verify every byte (page-in)
+
+-- writing files --
+[ ok ] create a file, write 100 KB, read it back
+[ ok ] overwrite in the middle
+[ ok ] append
+[ ok ] truncate, then extend: the new part reads as zeros
+[ ok ] rename
+[ ok ] hard link, remove the first name
+[ ok ] a removed file stays usable while it is open
+[ ok ] symbolic link
+[ ok ] directories: nest, refuse to remove a full one, rename, remove
+[ ok ] shared mapping: what is stored through memory is seen by read()
+[ ok ] and what write() stores is seen through the mapping
+[ ok ] bind a local socket to a name
+[ ok ] 300 files in one directory: create, list, remove
+  lrwxr-xr-x  1       15 /tmp/t/symlink -> some/where else
+  -rw-------  1    65536 /tmp/t/mapped
+  srwxr-xr-x  1        0 /tmp/t/socket
+
+-- memory --
+[ ok ] 64 MB of anonymous memory: touch every page, read it back
+[ ok ] unmap it
+
+-- processes --
+[ ok ] fork
+  child: pid 2, parent 1, 3 arguments: [/redwood/bin/child] [one] [two]
+  child: environment: [GREETING=hello from init]
+[ ok ] exec a second program from the image, collect its exit status
+[ ok ] pipe from a child process
+
+-- dynamic linking --
+wifi: 14: QRTR: the DSP is node 13; hellos from it 1; datagrams received 6, sent 1; services it has told of: 5; the Wi-Fi firmware's service: THERE
+wifi: the radio's DSP is up and linked, 812 ms in; now the driver
+wifi: doorbell: +619.868 ms: client 24, signal 0; heard and cleared
+wifi: step 15: hand the radio to ath11k itself: its exchange with the firmware up to mission mode, then THE RADIO'S REGISTERS ARE WRITTEN, by ce.c and hal.c: the copy engines' rings (every write is said as it is made)
+wifi: glink: < done-reuse 1 0
+wifi: 15: wifi_diag=1: a thread looks at the SMMU every 3 s while the driver runs
+wifi: wifi_irq: THE RADIO'S SMMU CONTEXT GETS AN ENTRY for the GIC's register that raises an interrupt (0x17210040), as a device's page
+wifi: 15: the radio is to see 4 KB of ours (0x17210000) at 0xa2c00000
+wifi: 15: about to write apps smmu, the radio's context tlbiasid at 0x15086610: 0x6
+wifi: 15: about to write apps smmu, the radio's context tlbsync at 0x150867f0: 0x1
+wifi: wifi_irq: the radio raises its interrupt vector v by writing 421 + v at 0xa2c00040
+ath11k: wcn6750 hw1.0
+lx: the driver asks for the file "ath11k/WCN6750/hw1.0/firmware-2.bin": not there
+ath11k (debug): failed to load firmware-2.bin: -2
+ath11k (debug): using fw api 1
+lx: the driver ("wcn6750 hw1.0") is set up; its exchange with the firmware begins (registers: for real)
+ath11k (debug): pm policy 0
+wifi: 15: the driver asks for the firmware's processor: it has been up since step 11, with the link of step 13
+ath11k (debug): wifi fw qmi service connected
+ath11k (debug): indication register request
+wifi: doorbell: +638.734 ms: client 24, signal 0; heard and cleared
+ath11k (debug): host cap request
+wifi: doorbell: +642.012 ms: client 24, signal 0; heard and cleared
+ath11k (debug): qmi msa info req addr 0x82a00000 size 0x300000
+wifi: doorbell: +645.280 ms: client 24, signal 0; heard and cleared
+ath11k (debug): qmi msa info request succeeded
+ath11k (debug): qmi msa ready req
+wifi: doorbell: +650.840 ms: client 24, signal 0; heard and cleared
+ath11k (debug): firmware msa ready indication
+ath11k (debug): qmi msa ready request succeeded
+ath11k (debug): target cap request
+wifi: doorbell: +654.008 ms: client 24, signal 0; heard and cleared
+Hello from a dynamically linked program! pid 4, 3 argument(s)
+uname: Darwin 22.5.0 iPhone10,3
+heap: malloc works (0x153d05380), stack near 0x16ee8f638, main at 0x100f77d4c, printf at 0x1c4a9c0b0
+argv[0] = /redwood/bin/hello_dyn
+argv[1] = from
+argv[2] = init
+wifi: doorbell: +702.530 ms: client 24, signal 0; heard and cleared
+ath11k: chip_id 0x4320 chip_family 0x4001 board_id 0xff soc_id 0x400f0000
+ath11k: fw_version 0x34367fff fw_build_timestamp 2023-10-12 07:14 fw_build_id WLAN.HL.3.4.3-00347.2-QCAHLSWMTPLZ-1.44046.4.47379.2
+ath11k (debug): SMBIOS bdf variant name not set.
+ath11k (debug): DT bdf variant name not set.
+wifi: doorbell: +703.709 ms: client 24, signal 0; heard and cleared
+ath11k WARNS: qmi device info request failed: 1 94
+ath11k WARNS: device info not supported (error 94): using Garnet aperture 0x22800000
+
+psci: cpu 1 ends the system: the return to the boot loader is the boot processor's to make
+wifi: 15: the kernel is on its way back to the loader: the DSP is asked to stop, then TrustZone to shut it down
+wifi: 15: about to ask the DSP to stop: bit 0 of our entry "master-kernel" at 0x809c9094 (it holds 0), and its SMP2P doorbell
+wifi: 15: THE DSP ACKNOWLEDGES THE STOP after 8.208 ms; its entry says 0x10e, its flags 0
+wifi: 15: about to ask TrustZone to shut the Wi-Fi DSP down: smc 0x42000206, arguments 0x6, 0, 0
+wifi: 15: TrustZone returns 0, answer 0
+wifi: 15: THE WI-FI DSP IS SHUT DOWN
+wifi: 15: about to tell the always-on processor "{class: image, res: load_state, name: wpss, val: off}": 64 bytes into our mailbox at 0xc300128, its length in front, and the doorbell
+wifi: 15: the always-on processor has taken it
+wifi: 15: the SMMU has refused the radio nothing (context 6: fsr 0x400; sgfsr 0)
+wifi: 15: the radio's stream and context 6 of the SMMU are put back as they were found
+wifi: 15: about to write apps smmu smr at 0x15000818: 0
+wifi: 15: about to write apps smmu s2cr at 0x15000c18: 0x20000
+wifi: 15: about to write apps smmu, the radio's context sctlr at 0x15086000: 0x1cc4a300
+wifi: 15: apps smmu smr (0x15000818) = 0
+wifi: 15: apps smmu s2cr (0x15000c18) = 0x20000
+wifi: 15: apps smmu, the radio's context sctlr (0x15086000) = 0x1cc4a300
+
+--- kernel message buffer ---
+[  395.902633]:  vm_cache_geometry_colors: 8
+[  395.902638]: do_cacheid() - 65536 bytes Unknown cache (I:32768 D:32768 (separate)), 16-way assoc, 64 bytes/line
+[  395.902913]: kprintf initialized
+[  395.903000]: initialize_screen: b=B8000000, w=000004C4, h=00000A98, r=00001310, d=00000000
+[  395.903017]: pe_arm_init_interrupts: args: 0xfffffff007b76720
+[  395.903020]: pe_arm_map_interrupt_controller: soc_phys:  0x400000
+[  395.903024]: pe_arm_map_interrupt_controller: failed to find the interrupt-controller.
+[  395.903027]: pe_arm_init_debug: failed to find cpu-debug-interface
+[  395.903093]: gic: v3, distributor 0xfffffff0d0920000, cpu 0's redistributor 0xfffffff0d0a10000, virtual timer on PPI 27
+[  395.903110]: Darwin Kernel Version 22.5.0: Sen 09 Nov 2026 22:54:31 WIB; okihann:xnu-8796.121.2[xnu-8796.121.2-dirty]/BUILD/obj/DEVELOPMENT_ARM64_BCM2837
+[  395.907251]: pmap_startup() init/release time: 3368 microsec
+[  395.907259]: pmap_startup() delayed init/release of 0 pages
+[  395.907263]: vm_page_bootstrap: 186698 free pages, 2741 wired pages, (up to 0 of which are delayed free)
+[  395.911221]: VM boostrap: 102 maps, 204 entries and 512 holes available
+[  395.911243]: Maximum number of VM swap files: 5
+[  395.911328]: ipc_kernel_map          : 0xfffffff00239c000 - 0xfffffff00439c000 (32M)
+[  395.911333]: mb                      : 0xfffffff0d2000000 - 0xfffffff0d6000000 (64M)
+[  395.911336]: ipc_kernel_copy_map     : 0xfffffff0d6000000 - 0xfffffff0d6800000 (8M)
+[  395.911339]: io_submap               : 0xfffffff0d6800000 - 0xfffffff0d7000000 (8M)
+[  395.911342]: bufferhdr               : 0xfffffff0d7000000 - 0xfffffff0d7220000 (2176K)
+[  395.911344]: zones                   : 0xfffffff0d7220000 - 0xfffffff6d7220000 (24G)
+[  395.911347]: gIOKitPageableFixed3    : 0xfffffff6d7220000 - 0xfffffff6dd220000 (96M)
+[  395.911350]: gIOKitPageableFixed2    : 0xfffffff6dd220000 - 0xfffffff6e3220000 (96M)
+[  395.911352]: zone_meta               : 0xfffffff6e3220000 - 0xfffffff6e52d8000 (32M)
+[  395.911355]: gIOKitPageableFixed1    : 0xfffffff6e52d8000 - 0xfffffff6eb2d8000 (96M)
+[  395.911357]: gIOKitPageableFixed0    : 0xfffffff6eb2d8000 - 0xfffffff6f12d8000 (96M)
+[  395.911360]: kmem_ptr_range          : 0xfffffff6f12d8000 - 0xfffffff7fbe78000 (4267M)
+[  395.911363]: kmem_sprayqtn_range     : 0xfffffff7fbe78000 - 0xfffffff85771c000 (1464M)
+[  395.911365]: compressor              : 0xfffffff85771c000 - 0xfffffff938738000 (3600M)
+[  395.911368]: bsd_pageable            : 0xfffffff938738000 - 0xfffffff939080000 (9M)
+[  395.911371]: kmem_data_range         : 0xfffffff939080000 - 0xfffffffbfdd30000 (11G)
+[  395.911373]: kmem_ptr_range_meta     : 0xfffffffbfdd30000 - 0xfffffffbfddfc000 (816K)
+[  395.911410]: kmem_large_ranges[1]    : 0 - 0 (0B)
+[  395.911413]: kmem_large_ranges[2]    : 0 - 0 (0B)
+[  395.911414]: kmem_large_ranges[3]    : 0 - 0 (0B)
+[  395.911417]: kmem_large_ranges[4]    : 0xfffffff80758c800 - 0xfffffff85771c000 (1281M)
+[  395.911419]: kmem_large_ranges[5]    : 0xfffffff991a16000 - 0xfffffffbfdd30000 (9G)
+[  395.911428]: "vm_compressor_mode" is 2
+[  395.911472]: zone_init: pgzalloc  0xfffffff0d7220000:0xfffffff0d8904000 (22M) [732 slots]
+[  395.911482]: zone_init: map VM    0xfffffff0d8904000:0xfffffff1bebf8000 (3682M)
+[  395.911489]: zone_init: map RO    0xfffffff1bebf8000:0xfffffff20b7a0000 (1227M)
+[  395.911494]: zone_init: map GEN0  0xfffffff20b7a0000:0xfffffff2f1a98000 (3682M)
+[  395.911499]: zone_init: map GEN1  0xfffffff2f1a98000:0xfffffff3d7d90000 (3682M)
+[  395.911504]: zone_init: map GEN2  0xfffffff3d7d90000:0xfffffff4be088000 (3682M)
+[  395.911509]: zone_init: map GEN3  0xfffffff4be088000:0xfffffff5a4380000 (3682M)
+[  395.911514]: zone_init: map DATA  0xfffffff5a4380000:0xfffffff6d7220000 (4910M)
+[  395.911518]: zone_init: metadata  0xfffffff6e3230000:0xfffffff6e4a30000 (24M)
+[  395.911521]: zone_init: metabits  0xfffffff6e4a30000:0xfffffff6e52c8000 (8M)
+[  395.911523]: zone_init: extra     0:0 (0B)
+[  395.911736]: VM bootstrap done: 90 maps, 163 entries and 501 holes left
+[  395.913710]: IOKit IOMD setownership ENABLED
+[  395.913717]: ATM subsystem is initialized
+[  395.914578]: Log queues configured: slot count: 56, per-slot size: 32768, total size: 1835008
+[  395.914590]: OSLog stream configured: stream: 8192 bytes, cache: 2112 bytes
+[  395.914593]: OSLog stream verification: 0
+[  395.914613]: Long logs support configured: size: 16384
+[  395.914752]: Firehose configured: 16 chunks, 8 io pages
+[  395.914764]: Telemetry: Sampling all tasks once per 1 second
+[  395.914773]: Scheduler: Default of clutch
+[  395.914777]: Setting scheduler priority decay band limit 18
+[  395.914782]: standard timeslicing quantum is 10000 us
+[  395.914784]: standard background quantum is 2500 us
+[  395.915033]: BANK subsystem is initialized
+[  395.915064]: mig_table_max_displ = 54 mach_kobj_count = 371
+[  395.917192]: panic_trace: PE_arm_debug_enable_trace enter
+[  395.917198]: panic_trace: PE_arm_debug_enable_trace exit
+[  395.917207]: kdp_core zlib memory 0x8000
+[  395.917322]: Registered coredump handler for kernel
+[  395.917327]: Serial requested, consistent debug disabled or debug boot arg not present, configuring debugging over serial
+[  395.917328]: Initializing serial KDP
+[  395.923934]: iBoot version: iBoot-8422.100.650
+[  395.923960]: iBoot Stage 2 version: 
+[  395.926199]: IONVRAM.cpp:initImageFormat:1364 - NVRAM size is 8192 bytes
+[  395.926379]: IONVRAM.cpp:getNVRAMProperties:1176 - _bankSize=0x2000, _bankCount=0x1, _currentBank=0
+[  395.926498]: IONVRAMCHRPHandler.cpp:unserializeImage:479 - NVRAM : commonPartitionOffset - 0x30, commonPartitionSize - 0x1fd0, systemPartitionOffset - 0xffffffff, systemPartitionSize - 0
+[  395.926947]: minicrypto: registered (md5, sha1, sha2, hmac, aes-ecb/cbc/ctr, hmac-drbg prng); no xts/gcm, no RSA
+[  395.926954]: ulock_initialize>thread_max=1536, ull_hash_buckets=512
+[  395.927980]: hakios-kernel: 14 drivers built in (.config): virtio_sound adreno virtio_input goodix buttons qmi virtio_net battery cpufreq thermal pmic ufs virtio_blk wifi
+[  395.928081]: calling mpo_policy_init for vnguard
+[  395.928126]: Security policy loaded: Guarded vnode policy (vnguard)
+[  395.928154]: calling mpo_policy_init for AMFI
+[  395.928208]: Security policy loaded: Apple Mobile File Integrity (stand-in) (AMFI)
+[  395.928238]: calling mpo_policy_init for Sandbox
+[  395.928288]: Security policy loaded: Seatbelt sandbox policy (stand-in) (Sandbox)
+[  395.928377]: No POST boot-arg set.
+[  395.928736]: PMRD: PMTraceWorker 0x7c09eab32211c17f
+[  395.928896]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 10001)
+[  395.929385]: GenericARMPE: platform "D22AP"
+[  395.929431]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[  395.929434]: [0]ml_processor_register>cpu_id 0xfffffff4be182140 cluster_id 0 cpu_number 0 is type 0
+[  395.929451]: GenericARMCPU: cpu 0 (phys id 0x700) registered
+[  395.929510]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[  395.929513]: [0]ml_processor_register>cpu_id 0xfffffff4be181e40 cluster_id 0 cpu_number 1 is type 0
+[  395.929531]: GenericARMCPU: cpu 1 (phys id 0x600) registered
+[  395.929590]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[  395.929592]: [0]ml_processor_register>cpu_id 0xfffffff4be182d40 cluster_id 0 cpu_number 2 is type 0
+[  395.929610]: GenericARMCPU: cpu 2 (phys id 0x500) registered
+[  395.929669]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[  395.929671]: [0]ml_processor_register>cpu_id 0xfffffff4be183f40 cluster_id 0 cpu_number 3 is type 0
+[  395.929688]: GenericARMCPU: cpu 3 (phys id 0x400) registered
+[  395.929743]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[  395.929745]: [0]ml_processor_register>cpu_id 0xfffffff4be180c40 cluster_id 0 cpu_number 4 is type 0
+[  395.929816]: cpu 4 (phys id 0x300) is a slower core: the scheduler uses it after cpu 3 (phys id 0x400)
+[  395.929833]: GenericARMCPU: cpu 4 (phys id 0x300) registered
+[  395.929888]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[  395.929890]: [0]ml_processor_register>cpu_id 0xfffffff4be180280 cluster_id 0 cpu_number 5 is type 0
+[  395.929962]: cpu 5 (phys id 0x200) is a slower core: the scheduler uses it after cpu 2 (phys id 0x500)
+[  395.929978]: GenericARMCPU: cpu 5 (phys id 0x200) registered
+[  395.930038]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[  395.930040]: [0]ml_processor_register>cpu_id 0xfffffff4be180ac0 cluster_id 0 cpu_number 6 is type 0
+[  395.930116]: cpu 6 (phys id 0x100) is a slower core: the scheduler uses it after cpu 1 (phys id 0x600)
+[  395.930133]: GenericARMCPU: cpu 6 (phys id 0x100) registered
+[  395.930321]: Copyright (c) 1982, 1986, 1989, 1991, 1993
+	The Regents of the University of California. All rights reserved.
+
+[  395.930324]: bsd_init: calling kauth_init
+[  395.930442]: bsd_init: calling process_name
+[  395.930445]: bsd_init: calling get_bsdthread_info
+[  395.930478]: MAC Framework successfully initialized
+[  395.930611]: bsd_init: calling kauth_cred_create
+[  395.930614]: bsd_init: calling chgproccnt
+[  395.930615]: bsd_init: calling kmem_suballoc
+[  395.930625]: bsd_init: calling bsd_bufferinit
+[  395.931515]: using 3749 buffer headers and 3749 cluster IO buffer headers
+[  395.931543]: bsd_init: calling IOKitInitializeTime
+[  395.931578]: clock_initialize_calendar system does not have monotonic clock
+[  395.931583]: bsd_init: calling vfsinit
+[  395.931747]: ktriage_register_subsystem_strings: set subsystem 8 strings
+[  395.931775]: bsd_init: calling proc_uuid_policy_init()
+[  395.931915]: mcache: 7 CPU(s), 64 bytes CPU cache line size
+[  395.931916]: bsd_init: calling mbinit
+[  395.932102]: mbinit: done [64 MB total pool size, (42/21) split]
+[  395.932108]: bsd_init: calling knote_init
+[  395.932110]: bsd_init: calling eventhandler_init
+[  395.932112]: bsd_init: calling aio_init
+[  395.932153]: bsd_init: calling pshm_cache_init
+[  395.932155]: bsd_init: calling psem_cache_init
+[  395.932162]: bsd_init: calling nwk_wq_init
+[  395.932173]: bsd_init: calling dlil_init
+[  395.932178]: SK: netagent is enabled by default for this platform
+[  395.932354]: DLIL: running SUM16 self-tests ... PASSED
+[  395.932618]: dlil_init: Waiting for all the create dlil kernel threads to get scheduled at least once.
+[  395.932733]: PMRD: power event 7 args 0x7c09eab155ae830f 0x0
+[  395.932743]: PMRD: power event 7 args 0x7c09eab155ae7eaf 0x0
+[  395.933002]: PMRD: PowerChangeOverride (OFF_STATE->ON_STATE, f, 0x2) tag 0x20064
+[  395.933019]: PMRD: sysPowerDownHandler message kIOMessageSystemCapabilityChange
+[  395.933021]: PMRD: sysPowerDownHandler cap f -> f (flags 1)
+[  395.933136]: dlil_init: All the created dlil kernel threads have been scheduled at least once. Proceeding.
+[  395.933138]: bsd_init: calling socketinit
+[  395.933148]: bsd_init: calling domaininit
+[  395.933384]: bsd_init: calling skywalk_init
+[  395.933414]: SK[0]: skmem_region_init              seg_size 16384, md_seg_size 16384, drv_buf_seg_size 65536 [eff 65536], usr_buf_seg_size 16384
+[  395.934340]: Skywalk: running self-tests
+[  395.934342]: Skywalk: sk_copy64_8 ... PASSED
+[  395.934343]: Skywalk: sk_copy32_8 ... PASSED
+[  395.934345]: Skywalk: sk_copy64_16 ... PASSED
+[  395.934346]: Skywalk: sk_copy32_16 ... PASSED
+[  395.934347]: Skywalk: sk_copy64_20 ... PASSED
+[  395.934348]: Skywalk: sk_copy64_24 ... PASSED
+[  395.934350]: Skywalk: sk_copy64_32 ... PASSED
+[  395.934351]: Skywalk: sk_copy32_32 ... PASSED
+[  395.934352]: Skywalk: sk_copy64_40 ... PASSED
+[  395.934353]: Skywalk: sk_copy64_64x ... PASSED
+[  395.934355]: Skywalk: sk_copy64_32x ... PASSED
+[  395.934356]: Skywalk: sk_copy64_8x ... PASSED
+[  395.934357]: Skywalk: sk_copy64_4x ... PASSED
+[  395.934358]: Skywalk: sk_zero_16 ... PASSED
+[  395.934360]: Skywalk: sk_zero_32 ... PASSED
+[  395.934361]: Skywalk: sk_zero_48 ... PASSED
+[  395.934362]: Skywalk: sk_zero_128 ... PASSED
+[  395.934385]: Skywalk: memcmp mask ... PASSED
+[  395.934990]: bsd_init: calling memorystatus_freeze_init
+[  395.934991]: bsd_init: calling memorystatus_init
+[  395.935054]: bsd_init: calling sysctl_mib_init
+[  395.935057]: bsd_init: calling bsd_autoconf
+[  395.935058]: bsd_autoconf: calling kminit
+[  395.936639]: bsd_init: calling loopattach
+[  395.936958]: ifnet_attach: All kernel threads created for interface lo0 have been scheduled at least once. Proceeding.
+[  395.936967]: bsd_init: calling ether_family_init
+[  395.937041]: bsd_init: calling net_init_run
+[  395.937159]: skip attaching fsw to lo0 using legacy TX modelReinit'd ND information for interface lo0
+[  395.937476]: bsd_init: calling inittodr
+[  395.937478]: bsd_init: calling setconf
+[  395.937586]: PMRD: sysPowerDownHandler message kIOMessageSystemCapabilityChange
+[  395.937589]: PMRD: sysPowerDownHandler cap f -> f (flags 2)
+[  395.937594]: PMRD: tellChangeUp OFF_STATE->ON_STATE
+[  395.937602]: PMRD: PowerChangeDone: OFF_STATE->ON_STATE
+[  395.937603]: PMRD: Force re-evaluating aggressiveness
+[  395.937606]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 30002)
+[  395.937618]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x10001
+[  395.937620]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[  395.937622]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x302) tag 0x40064
+[  395.937627]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[  395.937629]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x302) tag 0x50064
+[  395.937632]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[  395.937636]: PMRD: adjustPowerState ON_STATE, asap 0, idleSleepEnabled 0
+[  395.937638]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 60008)
+[  395.937643]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x30002
+[  395.937645]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[  395.937648]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x60008
+[  395.937650]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[  395.937746]: cpu_start() cpu: 0
+[  395.937769]: cpu_start() cpu: 1
+[  395.939021]: gic: v3, distributor 0xfffffff0d0920000, cpu 1's redistributor 0xfffffff0d09f0000, virtual timer on PPI 27
+[  395.939027]: panic_trace: PE_arm_debug_enable_trace enter
+[  395.939028]: panic_trace: PE_arm_debug_enable_trace exit
+[  395.939029]: arm_cpu_init(): cpu 1 online
+[  395.939549]: cpu_start() cpu: 2
+[  395.940568]: gic: v3, distributor 0xfffffff0d0920000, cpu 2's redistributor 0xfffffff0d09d0000, virtual timer on PPI 27
+[  395.940572]: panic_trace: PE_arm_debug_enable_trace enter
+[  395.940573]: panic_trace: PE_arm_debug_enable_trace exit
+[  395.940574]: arm_cpu_init(): cpu 2 online
+[  395.941208]: cpu_start() cpu: 3
+[  395.942178]: gic: v3, distributor 0xfffffff0d0920000, cpu 3's redistributor 0xfffffff0d09b0000, virtual timer on PPI 27
+[  395.942182]: panic_trace: PE_arm_debug_enable_trace enter
+[  395.942183]: panic_trace: PE_arm_debug_enable_trace exit
+[  395.942184]: arm_cpu_init(): cpu 3 online
+[  395.942840]: GenericARMPE: 4 of 7 processors are running
+[  395.943055]: MiniIOMobileFramebuffer: display 1125x2436 on a panel of 1220x2712 (4880 bytes per row)
+[  395.943170]: MiniIOMobileFramebuffer: IOMFBDisplayRefresh: 60 Hz (the panel: 60), an interval of 71582788 (2^-32 s), 319999 ticks
+[  396.029047]: !BSD
+[  396.029162]: Added memory device md0/rmd0 (01000000/0D000000) at FFFFFFF0082F0000 for 0000000000B70000
+[  396.029167]: BSD root: md0, major 1, minor 0
+[  396.029200]: bsd_init: vfs_mountroot
+[  396.029542]: apfs: device 1,0: requests to it cost next to nothing (a disk in memory)
+[  396.029619]: apfs: 4 threads on a request of many pieces (3 helpers)
+[  396.029775]: apfs: volume 0 "redwood" of container 0 (at 0 MB): 105 files, 21 directories, 2576 blocks of 4096 used
+[  396.029799]: bsd_init: calling VFS_ROOT
+[  396.029807]: bsd_init: calling devfs_kernel_mount
+[  396.030156]: hakios-kernel: version 2.3.4-hakios-darwin22.5-sm7435-gd852e4bd-dirty
+[  396.031566]: ufs: 128 partitions of the phone's storage as /dev/ufs_NAME and /dev/rufs_NAME, read only, through the loader's page at fa4d0000 and its 4096 KB buffer
+[  396.032051]: wifi: 0: the driver asks for the radio's address: none given (wifi_mac), using default 02:00:00:47:61:72
+[  396.032242]: ifnet_attach: All kernel threads created for interface en0 have been scheduled at least once. Proceeding.
+[  396.032314]: net: en0 attached on the phone's radio (ath11k) (a radio), link down
+[  396.032475]: lx: the radio is the link behind en0
+[  396.032564]: wifi: the radio is being brought up beside the system's start (wifi=1)
+[  396.032589]: bsd_init: calling siginit
+[  396.032591]: bsd_init: calling bsd_utaskbootstrap
+[  396.032800]: bsd_init: calling mountroot_post_hook
+[  396.032806]: bsd_init: done
+[  396.032813]: vm_free_delayed_pages: initialized 0 free pages
+[  396.032987]: No POST boot-arg set.
+[  396.033002]: bsd_init: bsd_do_post - doneVM Swap Subsystem is ON
+[  396.033153]: Failed to open swap file 2
+[  396.033163]: vm_swap_create_file failed @ 396 secs
+[  396.033167]: vm_swap_create_file failed @ 396 secs
+[  396.033859]: load_init_program: attempting to load /usr/appleinternal/sbin/launchd.development
+[  396.034392]: load_init_program: attempting to load /sbin/launchd
+[  396.042596]: apfs: device 2,34: requests to it are worth putting together
+[  396.043566]: apfs: volume 0 "System" of container 0 (at 0 MB): 45073 files, 16555 directories, 603066 blocks of 4096 used
+[  396.044330]: vfs_switch_root : shuffling mount points : /flash <-> / <-> redwood
+[  396.044532]: will preserve mountpoint across pivot: /dev
+[  396.044543]: skipping preserved mountpoint because not found or error: 2: System/Volumes/Preboot
+[  396.044547]: skipping preserved mountpoint because not found or error: 2: System/Volumes/Recovery
+[  396.044551]: skipping preserved mountpoint because not found or error: 2: System/Volumes/VM
+[  396.044554]: skipping preserved mountpoint because not found or error: 2: System/Volumes/Update
+[  396.044558]: skipping preserved mountpoint because not found or error: 2: System/Volumes/iSCPreboot
+[  396.044561]: skipping preserved mountpoint because not found or error: 2: System/Volumes/Hardware
+[  396.044564]: skipping preserved mountpoint because not found or error: 2: System/Volumes/xarts
+[  396.044569]: skipping preserved mountpoint because not found or error: 2: FactoryLogs
+[  396.044572]: skipping preserved mountpoint because not found or error: 2: System/Volumes/Diags
+[  396.044599]: vfs_switch_root : done shuffling mount points with error: 0
+[  396.044602]: hakios: /flash is the root now, the one before it on /redwood: 0
+[  396.045402]: wifi: 0: apps smmu scr0 (0x15000000) = 0x250406
+[  396.045461]: wifi: 0: apps smmu idr0 (0x15000020) = 0x4c017e7e
+[  396.045518]: wifi: 0: apps smmu idr1 (0x15000024) = 0x6000004d
+[  396.045591]: wifi: 0: match register 0 is in use: stream 0x60 mask 0, s2cr 0
+[  396.045664]: wifi: 0: match register 1 is in use: stream 0x540 mask 0, s2cr 0x1
+[  396.045734]: wifi: 0: match register 2 is in use: stream 0x20 mask 0, s2cr 0x2
+[  396.045812]: wifi: 0: match register 3 is in use: stream 0x800 mask 0x402, s2cr 0x3
+[  396.045882]: wifi: 0: match register 4 is in use: stream 0x80 mask 0, s2cr 0x4
+[  396.045962]: wifi: 0: match register 5 is in use: stream 0x484 mask 0x11, s2cr 0x5
+[  396.047099]: wifi: 0: free: match register 6 (smr 0, s2cr 0x20000) and context 6, whose registers are at 0x15086000; the SMMU's pages are of 0x1000 bytes, 128 before the contexts'
+[  396.047111]: wifi: 0: apps smmu cbar (0x15001018) = 0
+[  396.047119]: wifi: 0: apps smmu cba2r (0x15001818) = 0
+[  396.047124]: wifi: 0: apps smmu, the radio's context sctlr (0x15086000) = 0x1cc4a300
+[  396.047128]: wifi: 0: apps smmu, the radio's context ttbr0, low (0x15086020) = 0
+[  396.047132]: wifi: 0: apps smmu, the radio's context fsr (0x15086058) = 0
+[  396.055099]: wifi: 0: the radio is to see 45056 KB of ours (0x8ca9d8000) at 0xa0000000
+[  396.055108]: wifi: 0: THE SMMU IS ABOUT TO BE WRITTEN: context 6 gets page tables of ours (root 0x8cddac000) and is switched on, and match register 6 sends stream 0x4c0 mask 0x1 through it; before: smr 0, s2cr 0x20000, the context's sctlr 0x1cc4a300
+[  396.055114]: wifi: 0: about to write apps smmu, the radio's context sctlr at 0x15086000: 0
+[  396.055119]: wifi: 0: about to write apps smmu cba2r at 0x15001818: 0x1
+[  396.055130]: wifi: 0: about to write apps smmu cbar at 0x15001018: 0x1f300
+[  396.055178]: wifi: 0: about to write apps smmu, the radio's context tcr2 at 0x15086010: 0x38011
+[  396.055182]: wifi: 0: about to write apps smmu, the radio's context tcr at 0x15086030: 0x803519
+[  396.055187]: wifi: 0: about to write apps smmu, the radio's context ttbr0, low at 0x15086020: 0xcddac000
+[  396.055192]: wifi: 0: about to write apps smmu, the radio's context ttbr0, high at 0x15086024: 0x60008
+[  396.055196]: wifi: 0: about to write apps smmu, the radio's context ttbr1, low at 0x15086028: 0
+[  396.055200]: wifi: 0: about to write apps smmu, the radio's context ttbr1, high at 0x1508602c: 0
+[  396.055205]: wifi: 0: about to write apps smmu, the radio's context mair0 at 0x15086038: 0xf404ff44
+[  396.055209]: wifi: 0: about to write apps smmu, the radio's context mair1 at 0x1508603c: 0
+[  396.055213]: wifi: 0: about to write apps smmu, the radio's context fsr at 0x15086058: 0xc00001fe
+[  396.055218]: wifi: 0: about to write apps smmu, the radio's context tlbiasid at 0x15086610: 0x6
+[  396.055222]: wifi: 0: about to write apps smmu, the radio's context tlbsync at 0x150867f0: 0x1
+[  396.056373]: wifi: 0: about to write apps smmu, the radio's context sctlr at 0x15086000: 0x1127
+[  396.056378]: wifi: 0: about to write apps smmu s2cr at 0x15000c18: 0x6
+[  396.056388]: wifi: 0: about to write apps smmu smr at 0x15000818: 0x800104c0
+[  396.056407]: wifi: 0: apps smmu smr (0x15000818) = 0x800104c0
+[  396.056416]: wifi: 0: apps smmu s2cr (0x15000c18) = 0x6
+[  396.056423]: wifi: 0: apps smmu cbar (0x15001018) = 0x1f300
+[  396.056427]: wifi: 0: apps smmu, the radio's context sctlr (0x15086000) = 0x127
+[  396.056431]: wifi: 0: apps smmu, the radio's context ttbr0, low (0x15086020) = 0xcddac000
+[  396.056435]: wifi: 0: apps smmu, the radio's context ttbr0, high (0x15086024) = 0x60008
+[  396.056439]: wifi: 0: apps smmu, the radio's context tcr (0x15086030) = 0x803519
+[  396.056443]: wifi: 0: apps smmu, the radio's context tcr2 (0x15086010) = 0x38071
+[  396.056450]: wifi: 0: apps smmu cba2r (0x15001818) = 0x1
+[  396.056457]: wifi: 0: apps smmu sgfsr (0x15000048) = 0
+[  396.056460]: wifi: 0: THE RADIO'S STREAM GOES THROUGH CONTEXT 6 of the SMMU, with our page tables
+[  396.056469]: wifi: 0: the SMMU has refused the radio nothing (context 6: fsr 0x400; sgfsr 0)
+[  396.056477]: lx: 44 MB for the radio to read and write; it knows them from 0xa0000000 on
+[  396.056484]: wifi: step 1: map the shared memory area (0x80900000, 2 MB: memory, not registers) and read how the boot loader laid it out
+[  396.056512]: wifi: 1: the boot loader's version word is 0xc0000; the table of partitions begins 24 54 4f 43, version 1, 16 entries
+[  396.056519]: wifi: 1: partition 0: processors 0xffff and 0xffff, at 0x80aff000, 0x1000 bytes, flags 0x1, alignment 0
+[  396.056525]: wifi: 1: partition 1: processors 0 and 0x2, at 0x80acf000, 0x30000 bytes, flags 0x3, alignment 32
+[  396.056531]: wifi: 1: partition 2: processors 0 and 0x5, at 0x80aaf000, 0x20000 bytes, flags 0x3, alignment 32
+[  396.056536]: wifi: 1: partition 3: processors 0 and 0xe, at 0x80aad000, 0x2000 bytes, flags 0x3, alignment 32
+[  396.056542]: wifi: 1: partition 4: processors 0 and 0x1, at 0x80a31000, 0x7c000 bytes, flags 0x3, alignment 32
+[  396.056548]: wifi: 1: partition 5: processors 0x1 and 0x2, at 0x80a11000, 0x20000 bytes, flags 0x3, alignment 32
+[  396.056553]: wifi: 1: partition 6: processors 0x1 and 0xe, at 0x80a0f000, 0x2000 bytes, flags 0x3, alignment 32
+[  396.056558]: wifi: 1: partition 7: processors 0x7 and 0x1, at 0x80a0d000, 0x2000 bytes, flags 0x3, alignment 32
+[  396.056564]: wifi: 1: partition 8: processors 0x7 and 0x2, at 0x80a0b000, 0x2000 bytes, flags 0x3, alignment 32
+[  396.056569]: wifi: 1: partition 9: processors 0x7 and 0x5, at 0x80a09000, 0x2000 bytes, flags 0x3, alignment 32
+[  396.056575]: wifi: 1: partition 10: processors 0x7 and 0xd, at 0x80a05000, 0x4000 bytes, flags 0x3, alignment 32
+[  396.056580]: wifi: 1: partition 11: processors 0 and 0xd, at 0x809c5000, 0x40000 bytes, flags 0x3, alignment 32
+[  396.056586]: wifi: 1: partition 12: processors 0x1 and 0xd, at 0x809a5000, 0x20000 bytes, flags 0x3, alignment 32
+[  396.056592]: wifi: 1: partition 13: processors 0xd and 0x2, at 0x80985000, 0x20000 bytes, flags 0x3, alignment 32
+[  396.056598]: wifi: 1: partition 14: processors 0xfffe and 0xfffe, at 0x80901000, 0x84000 bytes, flags 0x3, alignment 32
+[  396.056604]: wifi: 1: partition 15: processors 0xffff and 0xffff, at 0x80900000, 0x1000 bytes, flags 0x3, alignment 0
+[  396.056624]: wifi: 1: the partition for us and the Wi-Fi DSP (0 and 13): at 0x809c5000, 0x40000 bytes, of which 0x3bfa0 free; 2 items
+[  396.056627]: wifi: 1:   items (bytes): 478 (32) 479 (16384)
+[  396.056649]: wifi: 1: the partition for everybody (the global one): at 0x80901000, 0x84000 bytes, of which 0x7c308 free; 18 items
+[  396.056657]: wifi: 1:   items (bytes): 469 (4096) 473 (12288) 604 (2120) 603 (492) 402 (2328) 404 (8192) 137 (288) 602 (592) 403 (16) 474 (12) 614 (720) 632 (4)
+[  396.056662]: wifi: 1:   items (bytes): 612 (320) 631 (32) 628 (4) 135 (88) 498 (18) 81 (36)
+[  396.056697]: wifi: 1: item 616, SMP2P from us to the DSP: not there
+[  396.056729]: wifi: 1: item 626, the DSP's last words: not there
+[  396.056766]: wifi: 1: item 617, SMP2P from the DSP to us: not there (the DSP has not run since the phone was started)
+[  396.056771]: wifi: step 2: read the description at the start of the always-on processor's message memory (0xc300000)
+[  396.056778]: wifi: 2: mailbox magic (0xc300000) = 0x4d41494c
+[  396.056782]: wifi: 2: mailbox version (0xc300004) = 0x1
+[  396.056785]: wifi: 2: mailbox features (0xc300008) = 0
+[  396.056789]: wifi: 2: mailbox their link (0xc30000c) = 0xffff
+[  396.056794]: wifi: 2: mailbox their link, seen by us (0xc300010) = 0xffff
+[  396.056798]: wifi: 2: mailbox their channel (0xc300014) = 0xffff
+[  396.056802]: wifi: 2: mailbox their channel, seen by us (0xc300018) = 0xffff
+[  396.056807]: wifi: 2: mailbox their mailbox's size (0xc30001c) = 0x68
+[  396.056811]: wifi: 2: mailbox their mailbox (0xc300020) = 0xc0
+[  396.056815]: wifi: 2: mailbox our link (0xc300024) = 0xffff
+[  396.056819]: wifi: 2: mailbox our link, seen by them (0xc300028) = 0xffff
+[  396.056823]: wifi: 2: mailbox our channel (0xc30002c) = 0xffff0000
+[  396.056827]: wifi: 2: mailbox our channel, seen by them (0xc300030) = 0xffff0000
+[  396.056832]: wifi: 2: mailbox our mailbox's size (0xc300034) = 0x2d8
+[  396.056836]: wifi: 2: mailbox our mailbox (0xc300038) = 0x128
+[  396.056840]: wifi: 2: mailbox the length of the message in our mailbox (0xc300128) = 0
+[  396.056845]: wifi: step 2: read who has rung our doorbell (IPCC, 0xed18000: the first access to that block)
+[  396.056852]: wifi: 2: ipcc received (0xed18010) = 0xffffffff
+[  396.056857]: wifi: step 6: find the DSP's image in the small image that came with the kernel, and check it against its own header
+[  396.057335]: wifi: 6: segment 1: 0x2000 bytes at 0x85300000, of which 0x1928 from its file
+[  396.057517]: wifi: 6: segment 2: 0x71000 bytes at 0x85302000, of which 0x70ab9 from its file
+[  396.057692]: wifi: 6: segment 3: 0x1000 bytes at 0x85373000, of which 0x450 from its file
+[  396.057865]: wifi: 6: segment 4: 0x1000 bytes at 0x85400000, of which 0x100 from its file
+[  396.058039]: wifi: 6: segment 5: 0x1000 bytes at 0x85401000, of which 0x1000 from its file
+[  396.058218]: wifi: 6: segment 6: 0x480000 bytes at 0x85402000, of which 0x47f4bc from its file
+[  396.058389]: wifi: 6: segment 7: 0xcd1000 bytes at 0x85882000, of which 0x3f550 from its file
+[  396.058560]: wifi: 6: segment 8: 0xb2000 bytes at 0x86900000, of which 0xb137e from its file
+[  396.058565]: wifi: 6: segment 9: 0x24e000 bytes at 0x869b2000, of which 0 from its file
+[  396.058572]: wifi: 6: the image is whole: a header of 4684 bytes (4280 of hashes), 9 segments, 6174395 bytes of files, 0x1900000 bytes of the DSP's 0x1900000 from 0x85300000
+[  396.058579]: wifi: step 7: open the mailbox to the always-on processor: words of the message memory, and its doorbell
+[  396.058586]: wifi: 7: mailbox magic (0xc300000) = 0x4d41494c
+[  396.058590]: wifi: 7: mailbox version (0xc300004) = 0x1
+[  396.058594]: wifi: 7: mailbox our mailbox (0xc300038) = 0x128
+[  396.058598]: wifi: 7: mailbox our mailbox's size (0xc300034) = 0x2d8
+[  396.058602]: wifi: 7: mailbox our link (0xc300024) = 0xffff
+[  396.058607]: wifi: 7: mailbox our link, seen by them (0xc300028) = 0xffff
+[  396.058611]: wifi: 7: mailbox our channel (0xc30002c) = 0xffff0000
+[  396.058615]: wifi: 7: mailbox their link (0xc30000c) = 0xffff
+[  396.058619]: wifi: 7: about to write mailbox their link, seen by us at 0xc300010: 0xffff
+[  396.058625]: wifi: 7: about to write mailbox our link at 0xc300024: 0xffff
+[  396.058630]: wifi: 7: about to write ipcc the always-on processor's doorbell at 0xed1800c: 0
+[  396.058635]: wifi: 7: the always-on processor has seen our link
+[  396.058639]: wifi: 7: about to write mailbox our channel at 0xc30002c: 0xffff
+[  396.058643]: wifi: 7: about to write ipcc the always-on processor's doorbell at 0xed1800c: 0
+[  396.058649]: wifi: 7: about to write mailbox their channel, seen by us at 0xc300018: 0xffff
+[  396.058654]: wifi: 7: about to write ipcc the always-on processor's doorbell at 0xed1800c: 0
+[  396.058661]: wifi: 7: THE MAILBOX TO THE ALWAYS-ON PROCESSOR IS OPEN; the doorbells say 0
+[  396.058706]: wifi: 8: the DSP has left nothing in the shared memory: it has not run since the phone was started, and there is nothing to shut down
+[  396.058711]: wifi: step 8: hand the image's header to TrustZone to check its signature (image 6), in a page of ours
+[  396.058726]: wifi: 8: about to ask TrustZone to take the Wi-Fi DSP's header: smc 0x42000201, arguments 0x6, 0x8ce65c000, 0
+[  396.078460]: wifi: 8: TrustZone returns 0, answer 0
+[  396.078467]: wifi: 8: TRUSTZONE ACCEPTS THE WI-FI DSP'S SIGNATURE FROM THIS KERNEL
+[  396.078471]: wifi: step 8: tell TrustZone where the image will be
+[  396.078477]: wifi: 8: about to ask TrustZone where the image will be: smc 0x42000202, arguments 0x6, 0x85300000, 0x1900000
+[  396.079023]: wifi: 8: TrustZone returns 0, answer 0
+[  396.079027]: wifi: 8: TrustZone takes the place: 0x1900000 bytes at 0x85300000
+[  396.079036]: wifi: step 9: put the image's segments into the DSP's memory (0x85300000, 25 MB: memory of nobody's until TrustZone starts the DSP), with zeroes where a segment is longer th
+[  396.079289]: wifi: 9: the memory begins 0, the image 0x5800c0005800c00e
+[  396.079293]: wifi: 9: about to write 0x2000 bytes at 0x85300000 (0x1928 of them the file's)
+[  396.079303]: wifi: 9: about to write 0x71000 bytes at 0x85302000 (0x70ab9 of them the file's)
+[  396.079514]: wifi: 9: about to write 0x1000 bytes at 0x85373000 (0x450 of them the file's)
+[  396.079520]: wifi: 9: about to write 0x1000 bytes at 0x85400000 (0x100 of them the file's)
+[  396.079526]: wifi: 9: about to write 0x1000 bytes at 0x85401000 (0x1000 of them the file's)
+[  396.079536]: wifi: 9: about to write 0x480000 bytes at 0x85402000 (0x47f4bc of them the file's)
+[  396.081646]: wifi: 9: about to write 0xcd1000 bytes at 0x85882000 (0x3f550 of them the file's)
+[  396.083728]: wifi: 9: about to write 0xb2000 bytes at 0x86900000 (0xb137e of them the file's)
+[  396.084065]: wifi: 9: about to write 0x24e000 bytes at 0x869b2000 (0 of them the file's)
+[  396.155391]: wifi: 9: 6174395 bytes written and 15612229 cleared; read back, 0 words of eight bytes differ
+[  396.155485]: wifi: step 10: look at our partition with the DSP in the shared memory, and for an SMP2P item of ours (616) in it
+[  396.155519]: wifi: 10: the partition for us and the Wi-Fi DSP (0 and 13): at 0x809c5000, 0x40000 bytes, of which 0x3bfa0 free; 2 items
+[  396.155523]: wifi: 10:   items (bytes): 478 (32) 479 (16384)
+[  396.155527]: wifi: 10: its items from the bottom end at +0x4060, those from the top begin at +0x40000
+[  396.155558]: wifi: step 10: make the item: the SoC's lock for the shared memory (0x1f43000: the first access to that block) around it
+[  396.155568]: wifi: 10: shared memory's lock owner (0x1f43000) = 0
+[  396.155578]: wifi: 10: about to take the lock (write 1 at 0x1f43000, until it reads back so, for a second at most), write an entry of 16 bytes for item 616 with 344 bytes behind it where the partition's items from the bottom end, move the partition's mark by 360, and release the lock (write 0)
+[  396.155590]: wifi: 10: the lock is released (it reads 0); the entry is at the old mark, the mark moved
+[  396.155605]: wifi: 10: item 616 made, at 0x809c9070
+[  396.155624]: wifi: 10: the partition for us and the Wi-Fi DSP (0 and 13): at 0x809c5000, 0x40000 bytes, of which 0x3be38 free; 3 items
+[  396.155628]: wifi: 10:   items (bytes): 478 (32) 479 (16384) 616 (340)
+[  396.155638]: wifi: step 10: fill our item in (340 bytes at the address above): zeroes, then from processor 0 to 13, room for 16 entries, the entries "master-kernel" and "wlan" at zero, feature bit 0, and last the version, which makes it valid; then the DSP's SMP2P doorbell, as Linux rings it
+[  396.155646]: wifi: 10: about to write ipcc the DSP's SMP2P doorbell at 0xed1800c: 0x180002
+[  396.155662]: wifi: 10: our item reads back: SMP2P version 1, features 0x1, from processor 0 to 13, flags 0, 2 of 16 entries: master-kernel = 0; wlan = 0;
+[  396.155667]: wifi: step 10: see that our two marks in GLINK's descriptor are at zero before the DSP starts
+[  396.155684]: wifi: 10: GLINK's descriptor at 0x809c5030: our queue read to 0 and written to 0, the DSP's read to 0 and written to 0
+[  396.155723]: wifi: step 11: tell the doorbells that rings from before this kernel have been heard and that the DSP's SMP2P ring is listened for, tell the always-on processor that the image is loaded, and ask TrustZone to authenticate it and let the DSP out of reset
+[  396.155731]: wifi: 11: about to write ipcc heard at 0xed1801c: 0
+[  396.155738]: wifi: 11: about to write ipcc listened for at 0xed18014: 0x180002
+[  396.155746]: wifi: 11: about to tell the always-on processor "{class: image, res: load_state, name: wpss, val: on}": 64 bytes into our mailbox at 0xc300128, its length in front, and the doorbell
+[  396.155896]: wifi: 11: the always-on processor has taken it
+[  396.155903]: wifi: 11: about to ask TrustZone to authenticate the Wi-Fi DSP's image and start it: smc 0x42000205, arguments 0x6, 0, 0
+[  396.190426]: wifi: 11: TrustZone returns 0, answer 0
+[  396.190435]: wifi: 11: TRUSTZONE HAS AUTHENTICATED THE IMAGE AND LET THE WI-FI DSP OUT OF RESET; watching the shared memory and our doorbell for 10 s
+[  396.190443]: wifi: doorbell: +0.009 ms: client 0, signal 0; heard and cleared
+[  396.219995]: wifi: doorbell: +29.253 ms: client 24, signal 0; heard and cleared
+[  396.226906]: wifi: doorbell: +36.092 ms: client 24, signal 2; heard and cleared
+[  396.226939]: wifi: 11: +36.090 ms: the DSP's item APPEARS: SMP2P version 1, features 0x1, from processor 13 to 0, flags 0, 2 of 16 entries: smp2p = 0; slave-kernel = 0x6;
+[  396.226948]: wifi: 11: the DSP and we agree on SMP2P: version 1, features 0x1
+[  396.226954]: wifi: 11: THE WI-FI DSP SAYS IT IS UP: its entry "slave-kernel" says 0x6 (bit 1: "error ready"), 36.090 ms after TrustZone started it
+[  396.226959]: wifi: 11: the DSP says it has asked for its own power (bit 2), 36.090 ms after the start
+[  396.227198]: wifi: 11: at the end of the watch the DSP's item says: SMP2P version 1, features 0x1, from processor 13 to 0, flags 0, 2 of 16 entries: smp2p = 0; slave-kernel = 0x6;
+[  396.227213]: wifi: 11: and ours: SMP2P version 1, features 0x1, from processor 0 to 13, flags 0, 2 of 16 entries: master-kernel = 0; wlan = 0;
+[  396.227218]: wifi: 11: the watch is over after 36 ms; doorbells heard: GLINK 1, SMP2P 1, the mailbox 1, others 0
+[  396.227222]: wifi: 11: the DSP said it was up, and that it has asked for its own power
+[  396.227228]: wifi: step 12: find GLINK's descriptor and the two queues in the shared memory, and read what the DSP has put into its own (nothing is taken out)
+[  396.227285]: wifi: 12: our queue: 16384 bytes at 0x809c5060, written to 0, read by the DSP to 0; the DSP's: 16384 bytes at 0x809c9208, written to 0x8, read by us to 0
+[  396.227290]: wifi: 12:   in the DSP's queue at 0: version 1 0x7 
+[  396.227298]: wifi: step 13: take up GLINK with the DSP: our version into our queue and its doorbell, then whatever its messages call for (writes: our queue, our two marks in the descriptor, the doorbell); a thread of ours listens from here on, every millisecond
+[  396.227305]: wifi: glink: > version 1 0x1
+[  396.228483]: wifi: doorbell: +1.165 ms: client 24, signal 0; heard and cleared
+[  396.228495]: wifi: glink: < version 1 0x7
+[  396.228500]: wifi: glink: > version-ack 1 0x1
+[  396.228503]: wifi: glink: < version-ack 1 0x1
+[  396.228507]: wifi: glink: < open 1 0x7
+[  396.228513]: wifi: glink: the DSP opens "IPCRTR" as its channel 1: acknowledged, and opened from our side as channel 1
+[  396.228517]: wifi: glink: > open-ack 1 0
+[  396.228521]: wifi: glink: > open 1 0x7
+[  396.229671]: wifi: doorbell: +2.340 ms: client 24, signal 0; heard and cleared
+[  396.229683]: wifi: glink: < open-ack 1 0
+[  396.229687]: wifi: glink: THE CHANNEL "IPCRTR" IS OPEN both ways (ours 1, the DSP's 1); telling the DSP our intents
+[  396.229694]: wifi: glink: > intent 1 0x1
+[  396.229699]: wifi: glink: > intent 1 0x1
+[  396.229704]: wifi: glink: > intent 1 0x1
+[  396.229709]: wifi: glink: > intent 1 0x1
+[  396.229714]: wifi: glink: > intent 1 0x1
+[  396.229721]: wifi: glink: > intent 1 0x1
+[  396.229727]: wifi: glink: > intent 1 0x1
+[  396.229757]: wifi: glink: > intent 1 0x1
+[  396.229776]: wifi: glink: > intent 1 0x1
+[  396.229781]: wifi: glink: > intent 1 0x1
+[  396.229784]: wifi: glink: < intent 1 0x1
+[  396.229788]: wifi: glink:   the DSP will take 128 bytes into its intent 0
+[  396.229791]: wifi: glink: < intent 1 0x1
+[  396.229795]: wifi: glink:   the DSP will take 128 bytes into its intent 1
+[  396.229798]: wifi: glink: < intent 1 0x1
+[  396.229801]: wifi: glink:   the DSP will take 128 bytes into its intent 2
+[  396.229805]: wifi: glink: < intent 1 0x1
+[  396.229809]: wifi: glink:   the DSP will take 128 bytes into its intent 3
+[  396.229812]: wifi: glink: < intent 1 0x1
+[  396.229815]: wifi: glink:   the DSP will take 128 bytes into its intent 4
+[  396.229819]: wifi: glink: < intent 1 0x1
+[  396.229822]: wifi: glink:   the DSP will take 128 bytes into its intent 5
+[  396.229825]: wifi: glink: < intent 1 0x1
+[  396.229829]: wifi: glink:   the DSP will take 128 bytes into its intent 6
+[  396.229832]: wifi: glink: < intent 1 0x1
+[  396.229836]: wifi: glink:   the DSP will take 128 bytes into its intent 7
+[  396.229839]: wifi: glink: < intent 1 0x1
+[  396.229842]: wifi: glink:   the DSP will take 128 bytes into its intent 8
+[  396.229845]: wifi: glink: < intent 1 0x1
+[  396.229849]: wifi: glink:   the DSP will take 128 bytes into its intent 9
+[  396.229852]: wifi: glink: < intent 1 0x1
+[  396.229856]: wifi: glink:   the DSP will take 128 bytes into its intent 10
+[  396.229859]: wifi: glink: < intent 1 0x1
+[  396.229863]: wifi: glink:   the DSP will take 128 bytes into its intent 11
+[  396.229866]: wifi: glink: < intent 1 0x1
+[  396.229870]: wifi: glink:   the DSP will take 128 bytes into its intent 12
+[  396.229873]: wifi: glink: < intent 1 0x1
+[  396.229876]: wifi: glink:   the DSP will take 128 bytes into its intent 13
+[  396.229880]: wifi: glink: < intent 1 0x1
+[  396.229884]: wifi: glink:   the DSP will take 128 bytes into its intent 14
+[  396.229888]: wifi: glink: < intent 1 0x1
+[  396.229891]: wifi: glink:   the DSP will take 128 bytes into its intent 15
+[  396.229894]: wifi: glink: < intent 1 0x1
+[  396.229898]: wifi: glink:   the DSP will take 512 bytes into its intent 16
+[  396.229901]: wifi: glink: < intent 1 0x1
+[  396.229905]: wifi: glink:   the DSP will take 512 bytes into its intent 17
+[  396.229908]: wifi: glink: < intent 1 0x1
+[  396.229911]: wifi: glink:   the DSP will take 512 bytes into its intent 18
+[  396.229914]: wifi: glink: < intent 1 0x1
+[  396.229918]: wifi: glink:   the DSP will take 512 bytes into its intent 19
+[  396.229921]: wifi: glink: < intent 1 0x1
+[  396.229925]: wifi: glink:   the DSP will take 512 bytes into its intent 20
+[  396.229929]: wifi: glink: < intent 1 0x1
+[  396.229932]: wifi: glink:   the DSP will take 512 bytes into its intent 21
+[  396.229935]: wifi: glink: < intent 1 0x1
+[  396.229940]: wifi: glink:   the DSP will take 512 bytes into its intent 22
+[  396.229943]: wifi: glink: < intent 1 0x1
+[  396.229946]: wifi: glink:   the DSP will take 512 bytes into its intent 23
+[  396.229949]: wifi: glink: < intent 1 0x1
+[  396.229953]: wifi: glink:   the DSP will take 1152 bytes into its intent 24
+[  396.229957]: wifi: glink: < intent 1 0x1
+[  396.229960]: wifi: glink:   the DSP will take 1152 bytes into its intent 25
+[  396.229963]: wifi: glink: < intent 1 0x1
+[  396.229967]: wifi: glink:   the DSP will take 1152 bytes into its intent 26
+[  396.229970]: wifi: glink: < intent 1 0x1
+[  396.229974]: wifi: glink:   the DSP will take 1152 bytes into its intent 27
+[  396.229977]: wifi: glink: < intent 1 0x1
+[  396.229981]: wifi: glink:   the DSP will take 1152 bytes into its intent 28
+[  396.229984]: wifi: glink: < intent 1 0x1
+[  396.229988]: wifi: glink:   the DSP will take 8320 bytes into its intent 29
+[  396.229992]: wifi: glink: < intent-request 1 0x34
+[  396.229998]: wifi: glink: > intent 1 0x1
+[  396.230003]: wifi: glink: > intent-request-ack 1 0x1
+[  396.230010]: wifi: glink: > done-reuse 1 0x1
+[  396.230013]: wifi: glink: < open 2 0x12
+[  396.230019]: wifi: glink: the DSP opens "LOOPBACK_CTL_WPSS" as its channel 2: left unanswered, nobody here speaks it
+[  396.230028]: wifi: qrtr: HELLO FROM NODE 13; ours to it: SENT
+[  396.231179]: wifi: doorbell: +3.832 ms: client 24, signal 0; heard and cleared
+[  396.231195]: wifi: glink: < done-reuse 1 0
+[  396.231203]: wifi: glink: > done-reuse 1 0xb
+[  396.231211]: wifi: glink: > done-reuse 1 0x2
+[  396.231219]: wifi: glink: > done-reuse 1 0x3
+[  396.231226]: wifi: glink: > done-reuse 1 0x4
+[  396.231231]: wifi: qrtr: a service: 66 (0x42), version 1, instance 111, at node 13 port 3
+[  396.231237]: wifi: qrtr: a service: 43 (0x2b), version 2, instance 25, at node 13 port 2
+[  396.231243]: wifi: qrtr: a service: 15 (0xf), version 1, instance 128, at node 13 port 1
+[  396.231249]: wifi: qrtr: a service: 51 (0x33), version 1, instance 3, at node 13 port 6
+[  396.233557]: wifi: doorbell: +6.186 ms: client 24, signal 0; heard and cleared
+[  396.233564]: wifi: doorbell: +6.192 ms: client 24, signal 2; heard and cleared
+[  396.233586]: wifi: glink: > done-reuse 1 0xb
+[  396.233590]: wifi: qrtr: a service: 69 (0x45), version 1, instance 0, at node 13 port 8
+[  396.281933]: wifi: 13: 54 ms after our version: versions agreed (features 0x1); the channel "IPCRTR" is OPEN
+[  396.281948]: wifi: step 14: listen for QRTR on the channel: the DSP's hello is answered with ours, its services are written down; and a port of ours looks the Wi-Fi firmware's service up, as the radio's driver will
+[  396.283092]: wifi: qrtr: THE WI-FI FIRMWARE'S SERVICE (0x45) IS AT node 13 port 8
+[  396.709774]: apfs: pagein asks for 32768 bytes at a time (page size 16384)
+[  396.718110]: shared_region: 0x7c09eab155cfbe77 [4(hello_dyn)] check_np(0x16ee8fc00) vm_shared_region_start_address() failed
+[  396.719851]: minisandbox: request 2 (first seen from hello_dyn[4]): allowed
+[  396.721882]: shared_region: 0x7c09eab155cfbe77 [4(hello_dyn)] check_np(0x16ee8f190) vm_shared_region_start_address() failed
+[  396.853350]: wifi: 14: QRTR: the DSP is node 13; hellos from it 1; datagrams received 6, sent 1; services it has told of: 5; the Wi-Fi firmware's service: THERE
+[  396.854198]: wifi: the radio's DSP is up and linked, 812 ms in; now the driver
+[  396.855087]: wifi: doorbell: +619.868 ms: client 24, signal 0; heard and cleared
+[  396.856823]: wifi: step 15: hand the radio to ath11k itself: its exchange with the firmware up to mission mode, then THE RADIO'S REGISTERS ARE WRITTEN, by ce.c and hal.c: the copy engines' rings (every write is said as it is made)
+[  396.857634]: wifi: glink: < done-reuse 1 0
+[  396.858492]: wifi: 15: wifi_diag=1: a thread looks at the SMMU every 3 s while the driver runs
+[  396.859460]: wifi: wifi_irq: THE RADIO'S SMMU CONTEXT GETS AN ENTRY for the GIC's register that raises an interrupt (0x17210040), as a device's page
+[  396.860327]: wifi: 15: the radio is to see 4 KB of ours (0x17210000) at 0xa2c00000
+[  396.861212]: wifi: 15: about to write apps smmu, the radio's context tlbiasid at 0x15086610: 0x6
+[  396.862103]: wifi: 15: about to write apps smmu, the radio's context tlbsync at 0x150867f0: 0x1
+[  396.863013]: wifi: wifi_irq: the radio raises its interrupt vector v by writing 421 + v at 0xa2c00040
+[  396.863864]: ath11k: wcn6750 hw1.0
+[  396.864782]: lx: the driver asks for the file "ath11k/WCN6750/hw1.0/firmware-2.bin": not there
+[  396.865677]: ath11k (debug): failed to load firmware-2.bin: -2
+[  396.866557]: ath11k (debug): using fw api 1
+[  396.867567]: lx: the driver ("wcn6750 hw1.0") is set up; its exchange with the firmware begins (registers: for real)
+[  396.868476]: ath11k (debug): pm policy 0
+[  396.869487]: wifi: 15: the driver asks for the firmware's processor: it has been up since step 11, with the link of step 13
+[  396.870454]: ath11k (debug): wifi fw qmi service connected
+[  396.871488]: ath11k (debug): indication register request
+[  396.873753]: wifi: doorbell: +638.734 ms: client 24, signal 0; heard and cleared
+[  396.874746]: ath11k (debug): host cap request
+[  396.877061]: wifi: doorbell: +642.012 ms: client 24, signal 0; heard and cleared
+[  396.878082]: ath11k (debug): qmi msa info req addr 0x82a00000 size 0x300000
+[  396.880376]: wifi: doorbell: +645.280 ms: client 24, signal 0; heard and cleared
+[  396.881395]: ath11k (debug): qmi msa info request succeeded
+[  396.882377]: ath11k (debug): qmi msa ready req
+[  396.886014]: wifi: doorbell: +650.840 ms: client 24, signal 0; heard and cleared
+[  396.887040]: ath11k (debug): firmware msa ready indication
+[  396.888063]: ath11k (debug): qmi msa ready request succeeded
+[  396.889058]: ath11k (debug): target cap request
+[  396.890106]: wifi: doorbell: +654.008 ms: client 24, signal 0; heard and cleared
+[  396.928819]: minisandbox: request 4 (first seen from hello_dyn[4]): answered
+[  396.937234]: wifi: doorbell: +702.530 ms: client 24, signal 0; heard and cleared
+[  396.937284]: ath11k: chip_id 0x4320 chip_family 0x4001 board_id 0xff soc_id 0x400f0000
+[  396.937297]: ath11k: fw_version 0x34367fff fw_build_timestamp 2023-10-12 07:14 fw_build_id WLAN.HL.3.4.3-00347.2-QCAHLSWMTPLZ-1.44046.4.47379.2
+[  396.937303]: ath11k (debug): SMBIOS bdf variant name not set.
+[  396.937307]: ath11k (debug): DT bdf variant name not set.
+[  396.938422]: wifi: doorbell: +703.709 ms: client 24, signal 0; heard and cleared
+[  396.938448]: ath11k WARNS: qmi device info request failed: 1 94
+[  396.938453]: ath11k WARNS: device info not supported (error 94): using Garnet aperture 0x22800000
+[  396.938663]: Unclassified kernel abort (fault_code=0x10)
+[  396.938674]: cpu_signal failed in DebuggerXCallEnter
+[  396.938676]: cpu_signal failed in DebuggerXCallEnter
+[  396.938677]: cpu_signal failed in DebuggerXCallEnter
+
+== END OF LOG ==

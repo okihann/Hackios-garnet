@@ -1,0 +1,7 @@
+== XNULOADER run (usb) ==
+payload entry 'kernel' size e1e7c0
+payload entry 'ramdisk' size 400000
+payload entry 'cmdline' size 132
+payload entry 'kernel.ver' size 30
+kernel va fffffff007004000..fffffff0081b27c0 entry fffffff0074194a8
+not enough contiguous RAM

@@ -1,0 +1,2133 @@
+== XNULOADER run (usb) ==
+payload entry 'kernel' size f24878
+payload entry 'ramdisk' size ba5000
+payload entry 'cmdline' size 74
+payload entry 'kernel.ver' size 2f
+kernel va fffffff007004000..fffffff0082ec878 entry fffffff0074694a8
+largest free block 8c0000000 size c0000000
+phys window 8c0000000 size c0000000, claim status 0
+kernel loaded at pa 8c7004000..8c82f0000
+ramdisk at pa 8c82f0000 size bb0000
+return slot patched at 8c746a7f0, checkpoint 0
+ba: virtBase=fffffff007004000 physBase=8c7004000 slide=18c0000000 (kern_lo=8c7004000 vm_lo=fffffff007004000)
+cmdline: 204 of 607 characters
+cores for the kernel, in the order it takes them: 700 600 500 400 300 200 100
+device tree 8c8ea0000 len 4404, boot_args 8c8eb0000, top 8c8ec0000
+cmdline: debug=0x8 rd=md0 hv_wdt_pet=1 hakios_kver=2.3.4-hakios-darwin22.5-sm7435-gd852e4bd-dirty loader_return_after=40 epoch=1794311378 sb_delay=8 gpu=1 metal=1 gpu_recover=1 bootcpu=7 cpus=8 cpufreq=1 gpu_log=1
+the kernel will run on core 700 (this is core 0)
+jumping to 8c74694a8
+core 700: the firmware answers 0 to the request to start it
+kernel returned: log at 8c7bc89c0, 135649 bytes
+
+== KERNEL LOG ==
+cpu 4 (phys id 0x300) is a slower core: the scheduler uses it after cpu 3 (phys id 0x400)
+cpu 5 (phys id 0x200) is a slower core: the scheduler uses it after cpu 2 (phys id 0x500)
+cpu 6 (phys id 0x100) is a slower core: the scheduler uses it after cpu 1 (phys id 0x600)
+ddr: memory bandwidth vote 16383 on MC0 (0x50000) and SH0 (0x50004)
+cpufreq: group 0 (3 of our cores): row 7 -> 8 of the frequency table, 1958 MHz
+cpufreq: group 1 (4 of our cores): row 6 -> 11 of the frequency table, 2400 MHz
+adreno: steps up to 21, without those in mask 0x1c00; step 21 is the new one and waits 0 ms after each announcement
+adreno: step 1: read the GPU's clocks in the global clock controller (registers the touch screen driver uses too)
+adreno: 1: gcc pll votes (0x162000) = 0x60257f
+adreno: 1: gcc gpu_cfg_ahb (0x181004) = 0x9
+adreno: 1: gcc gpu_memnoc_gfx (0x181010) = 0x80000003
+adreno: 1: gcc gpu_snoc_dvm_gfx (0x181018) = 0x80000001
+adreno: 1: gcc ddrss_gpu_axi (0x181154) = 0x300001
+adreno: step 1: look up the GPU's supply rails in the boot loader's list of RPMh resources (memory at 0x80860000)
+adreno: 1: RPMh has "gfx.lvl" at 0x30050; levels: 0 56 64 128 192 224 256 320 384 416
+adreno: 1: RPMh has "cx.lvl" at 0x30000; levels: 0 16 64 128 192 224 256 288 320 336 384 400 416 432
+adreno: 1: RPMh has "mx.lvl" at 0x30010; levels: 0 16 56 64 128 192 224 256 288 320 336 384 400 416 432
+adreno: step 1: done
+adreno: step 2: set the GPU's speed bin to 0 (qfprom at 0x221c8119 is protected by the hypervisor on Garnet)
+adreno: 2: speed bin 0: an Adreno 710
+adreno: step 2: done
+adreno: step 3: make sure the clock of the GPU clock controller's registers runs (gcc_gpu_cfg_ahb)
+adreno: 3: gcc gpu_cfg_ahb (0x181004) = 0x9
+adreno: step 3: read the GPU's clock controller (0x3d90000) as it is: the first access to the GPU's part of the SoC
+adreno: 3: gpucc cx_gdscr (0x3d99108) = 0x22f001
+adreno: 3: gpucc cx_hw_ctrl (0x3d9953c) = 0x5ff4
+adreno: 3: gpucc gx_gdscr (0x3d9905c) = 0x22f001
+adreno: 3: gpucc gx_sw_reset (0x3d99058) = 0
+adreno: 3: gpucc gx_domain_misc (0x3d99504) = 0x3c0001
+adreno: 3: gpucc pll0 mode (0x3d90000) = 0x100
+adreno: 3: gpucc pll0 multiplier (0x3d90004) = 0
+adreno: 3: gpucc pll1 mode (0x3d91000) = 0x100
+adreno: 3: gpucc pll1 multiplier (0x3d91004) = 0
+adreno: 3: gpucc gmu_clk_src command (0x3d99318) = 0x80000000
+adreno: 3: gpucc gmu_clk_src source (0x3d9931c) = 0
+adreno: 3: gpucc hub_clk_src command (0x3d993ec) = 0
+adreno: 3: gpucc hub_clk_src source (0x3d993f0) = 0
+adreno: 3: gpucc cxo_aon (0x3d99004) = 0
+adreno: 3: gpucc gx_gmu (0x3d99060) = 0x88000
+adreno: 3: gpucc ahb (0x3d9911c) = 0
+adreno: 3: gpucc cx_gmu (0x3d9913c) = 0x80000221
+adreno: 3: gpucc cxo (0x3d99144) = 0x80000001
+adreno: 3: gpucc cb (0x3d993a4) = 0x1
+adreno: 3: gpucc hub_aon (0x3d993e8) = 0x1
+adreno: 3: gpucc hub_cx_int (0x3d99148) = 0x80000001
+adreno: 3: gpucc smmu vote (0x3d97000) = 0x80000000
+adreno: step 3: done
+adreno: step 4: switch the CX half of the GPU block on (gpu_cx_gdsc): clear the collapse bit of its power switch
+adreno: 4: gpucc cx_gdscr (0x3d99108) = 0x22f001
+adreno: 4: gpucc cx_hw_ctrl (0x3d9953c) = 0x5ff4
+adreno: 4: about to write gpucc cx_gdscr at 0x3d99108: 0x22f000
+adreno: 4: gpucc cx_gdscr (0x3d99108) = 0xf822f000
+adreno: 4: gpucc cx_hw_ctrl (0x3d9953c) = 0x80001fe0
+adreno: 4: CX is on
+adreno: step 4: done
+adreno: step 5: in the global clock controller: ask for the 300 MHz tap for the GPU; the GPU's bus and memory clocks on
+adreno: 5: gcc pll votes (0x162000) = 0x60257f
+adreno: 5: about to write gcc pll votes at 0x162000: 0x61257f
+adreno: 5: gcc pll votes (0x162000) = 0x61257f
+adreno: 5: gcc gpu_memnoc_gfx (0x181010) = 0x3
+adreno: 5: gcc gpu_snoc_dvm_gfx (0x181018) = 0x1
+adreno: 5: gcc ddrss_gpu_axi (0x181154) = 0x300001
+adreno: step 5: in the GPU's clock controller: the GMU's clock to 200 MHz, the hub's to 150 MHz
+adreno: 5: gpucc gmu_clk_src (0x3d9931c) = 0
+adreno: 5: about to write gpucc gmu_clk_src at 0x3d9931c: 0x602
+adreno: 5: about to write gpucc gmu_clk_src at 0x3d99318: 0x11
+adreno: 5: gpucc gmu_clk_src (0x3d9931c) = 0x602
+adreno: 5: gpucc hub_clk_src (0x3d993f0) = 0
+adreno: 5: about to write gpucc hub_clk_src at 0x3d993f0: 0x603
+adreno: 5: about to write gpucc hub_clk_src at 0x3d993ec: 0x11
+adreno: 5: gpucc hub_clk_src (0x3d993f0) = 0x603
+adreno: step 5: in the GPU's clock controller: the clocks of the GMU and of the SMMU on
+adreno: 5: gpucc cb (0x3d993a4) = 0x1
+adreno: 5: gpucc cxo (0x3d99144) = 0x1
+adreno: 5: gpucc ahb (0x3d9911c) = 0
+adreno: 5: about to write gpucc ahb at 0x3d9911c: 0x1
+adreno: 5: gpucc ahb (0x3d9911c) = 0
+adreno: 5: gpucc hub_aon (0x3d993e8) = 0x1
+adreno: 5: gpucc hub_cx_int (0x3d99148) = 0x1
+adreno: 5: gpucc cx_gmu (0x3d9913c) = 0x221
+adreno: 5: gpucc smmu vote (0x3d97000) = 0x80000000
+adreno: 5: about to write gpucc smmu vote at 0x3d97000: 0x80000001
+adreno: 5: gpucc smmu vote (0x3d97000) = 0x1
+adreno: step 5: measure the GPU block's clocks with the SoC's frequency counter (debug registers at gcc 0x162000.., gpucc 0x3d910fc, 0x3d91100, 0x3d91568)
+adreno: 5: gpucc debug mux (0x3d99568) = 0
+adreno: 5: gpucc debug divider (0x3d99280) = 0x1
+adreno: 5: gpucc debug output (0x3d99284) = 0x80000000
+adreno: 5: gcc debug mux (0x172000) = 0x14b
+adreno: 5: gcc debug divider (0x172004) = 0
+adreno: 5: gcc debug input (0x172008) = 0x80000000
+adreno: 5: gcc crystal/4 (0x17200c) = 0x80000000
+adreno: 5: gcc measure control (0x172038) = 0
+adreno: 5: about to write gpucc debug mux at 0x3d99568: 0x1b
+adreno: 5: about to write gpucc debug divider at 0x3d99280: 0x1
+adreno: 5: about to write gpucc debug output at 0x3d99284: 0x80000001
+adreno: 5: about to write gcc debug mux at 0x172000: 0x146
+adreno: 5: about to write gcc debug divider at 0x172004: 0x1
+adreno: 5: about to write gcc debug input at 0x172008: 0x80000001
+adreno: 5: about to write gcc crystal/4 at 0x17200c: 0x80000001
+adreno: 5: gcc measure control (0x172038) = 0
+adreno: 5: about to write gcc measure control at 0x172038: 0x200000
+adreno: 5: about to write gcc measure control at 0x172038: 0x1000
+adreno: 5: about to write gcc measure control at 0x172038: 0x101000
+adreno: 5: about to write gcc measure control at 0x172038: 0x1000
+adreno: 5: gcc measure status (0x17203c) = 0x2000000
+adreno: 5: gcc measure control (0x172038) = 0x1000
+adreno: 5: about to write gcc measure control at 0x172038: 0x200000
+adreno: 5: about to write gcc measure control at 0x172038: 0x20000
+adreno: 5: about to write gcc measure control at 0x172038: 0x120000
+adreno: 5: about to write gcc measure control at 0x172038: 0x20000
+adreno: 5: gcc measure status (0x17203c) = 0x2000000
+adreno: 5: about to write gcc measure control at 0x172038: 0
+adreno: 5: about to write gcc crystal/4 at 0x17200c: 0x80000000
+adreno: 5: about to write gcc debug input at 0x172008: 0x80000000
+adreno: 5: about to write gcc debug divider at 0x172004: 0
+adreno: 5: about to write gcc debug mux at 0x172000: 0x14b
+adreno: 5: about to write gpucc debug output at 0x3d99284: 0x80000000
+adreno: 5: about to write gpucc debug divider at 0x3d99280: 0x1
+adreno: 5: about to write gpucc debug mux at 0x3d99568: 0
+adreno: 5: measured: cxo runs at 0 Hz (the crystal: 19200000)
+adreno: 5: the frequency counter cannot be used on this SoC: going on by the control registers
+adreno: step 5: done
+adreno: step 6: read registers of the GMU (0x3d6a000): the first words from the GPU block itself
+adreno: 6: gmu cm3_sysreset (0x3d7e000) = 0x1
+adreno: 6: gmu cm3_boot_config (0x3d7e004) = 0
+adreno: 6: gmu cm3_fw_init_result (0x3d7e070) = 0
+adreno: 6: gmu cm3_cfg (0x3d7e0b4) = 0x4052
+adreno: 6: gmu hfi_ctrl_status (0x3d7e600) = 0
+adreno: 6: gmu hfi_version_info (0x3d7e604) = 0
+adreno: 6: gmu general_7 (0x3d7e730) = 0
+adreno: 6: gmu rpmh_power_state (0x3d7e3b0) = 0xf
+adreno: 6: gmu sptprac_pwr_clk_status (0x3d7e340) = 0x3
+adreno: 6: gmu ao_host_interrupt_status (0x3d8ec14) = 0
+adreno: 6: gmu ao_gpu_cx_busy_status (0x3d8ec30) = 0x30000000
+adreno: 6: gmu ahb_fence_status (0x3d8ec4c) = 0
+adreno: 6: gmu always_on_counter_h (0x3d7e224) = 0
+adreno: 6: gmu always_on_counter_l (0x3d7e220) = 0x879f6
+adreno: 6: the GMU's counter counts at 19199182 Hz: the 19.2 MHz crystal: THE GPU BLOCK IS ALIVE
+adreno: 6: gmu dtcm, where firmware has its versions (0x3d74fe0) = 0xf8228517
+adreno: 6: gmu dtcm, where firmware has its versions (0x3d74fe4) = 0x88234646
+adreno: 6: gmu dtcm, where firmware has its versions (0x3d74fe8) = 0xac27a31a
+adreno: 6: gmu dtcm, where firmware has its versions (0x3d74fec) = 0x166ef8db
+adreno: 6: gmu dtcm, where firmware has its versions (0x3d74ff0) = 0xa3abd376
+adreno: step 6: read the GPU's bus interface (0x3d0f000) and the CX odds and ends (0x3d9e000)
+adreno: 6: gbif scache_cntl0 (0x3d0f004) = 0
+adreno: 6: gbif halt (0x3d0f114) = 0x8
+adreno: 6: gbif halt_ack (0x3d0f118) = 0x3
+adreno: 6: cx_misc system_cache_cntl_0 (0x3d9e004) = 0
+adreno: 6: cx_misc system_cache_cntl_1 (0x3d9e008) = 0
+adreno: step 6: done
+adreno: step 7: read the GMU's RPMh channel (0x3de0000)
+adreno: 7: rscc rsc_status0_drv0 (0x3d50010) = 0
+adreno: 7: rscc pdc_slave_id_drv0 (0x3d5002c) = 0x1
+adreno: 7: rscc seq_busy_drv0 (0x3d50404) = 0
+adreno: 7: rscc seq_mem_0_drv0 (0x3d50600) = 0
+adreno: 7: rscc tcs0_drv0_status (0x3d50d18) = 0x1
+adreno: 7: gmu rscc_control_ack (0x3d8ec20) = 0
+adreno: step 7: done
+adreno: step 8: read the ID registers of the GPU's SMMU (0x3da0000): global registers, which the hypervisor answers for
+adreno: 8: smmu idr0 (0x3da0020) = 0x4c017e18
+adreno: 8: smmu idr1 (0x3da0024) = 0x40000016
+adreno: 8: SMMU: 24 stream match registers, 22 contexts, 32 pages of 0x1000 before the contexts' own
+adreno: 8: smmu idr2 (0x3da0028) = 0x5511
+adreno: 8: smmu idr7 (0x3da003c) = 0x24
+adreno: 8: smmu scr0 (0x3da0000) = 0x2c0406
+adreno: 8: smmu sgfsr (0x3da0048) = 0
+adreno: step 8: read the SMMU's stream table and the kinds of its contexts, as the boot loader and hypervisor left them
+adreno: 8: smmu smr (0x3da0800) = 0
+adreno: 8: smmu s2cr (0x3da0c00) = 0x20000
+adreno: 8: smmu smr (0x3da0804) = 0
+adreno: 8: smmu s2cr (0x3da0c04) = 0x20000
+adreno: 8: smmu smr (0x3da0808) = 0
+adreno: 8: smmu s2cr (0x3da0c08) = 0x20000
+adreno: 8: smmu smr (0x3da080c) = 0
+adreno: 8: smmu s2cr (0x3da0c0c) = 0x20000
+adreno: 8: smmu smr (0x3da0810) = 0
+adreno: 8: smmu s2cr (0x3da0c10) = 0x20000
+adreno: 8: smmu smr (0x3da0814) = 0
+adreno: 8: smmu s2cr (0x3da0c14) = 0x20000
+adreno: 8: smmu smr (0x3da0818) = 0
+adreno: 8: smmu s2cr (0x3da0c18) = 0x20000
+adreno: 8: smmu smr (0x3da081c) = 0
+adreno: 8: smmu s2cr (0x3da0c1c) = 0x20000
+adreno: 8: smmu smr (0x3da0820) = 0
+adreno: 8: smmu s2cr (0x3da0c20) = 0x20000
+adreno: 8: smmu smr (0x3da0824) = 0
+adreno: 8: smmu s2cr (0x3da0c24) = 0x20000
+adreno: 8: smmu smr (0x3da0828) = 0
+adreno: 8: smmu s2cr (0x3da0c28) = 0x20000
+adreno: 8: smmu smr (0x3da082c) = 0
+adreno: 8: smmu s2cr (0x3da0c2c) = 0x20000
+adreno: 8: smmu smr (0x3da0830) = 0
+adreno: 8: smmu s2cr (0x3da0c30) = 0x20000
+adreno: 8: smmu smr (0x3da0834) = 0
+adreno: 8: smmu s2cr (0x3da0c34) = 0x20000
+adreno: 8: smmu smr (0x3da0838) = 0
+adreno: 8: smmu s2cr (0x3da0c38) = 0x20000
+adreno: 8: smmu smr (0x3da083c) = 0
+adreno: 8: smmu s2cr (0x3da0c3c) = 0x20000
+adreno: 8: smmu cbar (0x3da1000) = 0
+adreno: 8: smmu cbar (0x3da1004) = 0
+adreno: 8: smmu cbar (0x3da1008) = 0
+adreno: 8: smmu cbar (0x3da100c) = 0
+adreno: 8: smmu cbar (0x3da1010) = 0
+adreno: 8: smmu cbar (0x3da1014) = 0
+adreno: 8: smmu cbar (0x3da1018) = 0
+adreno: 8: smmu cbar (0x3da101c) = 0
+adreno: 8: smmu cbar (0x3da1020) = 0
+adreno: 8: smmu cbar (0x3da1024) = 0
+adreno: 8: smmu cbar (0x3da1028) = 0
+adreno: 8: smmu cbar (0x3da102c) = 0
+adreno: 8: smmu cbar (0x3da1030) = 0
+adreno: 8: smmu cbar (0x3da1034) = 0
+adreno: 8: smmu cbar (0x3da1038) = 0
+adreno: 8: smmu cbar (0x3da103c) = 0
+adreno: step 8: done
+adreno: step 9: read translation context 0 of the SMMU: registers of the hardware itself, not the hypervisor's
+adreno: 9: smmu idr0 (0x3da0020) = 0x4c017e18
+adreno: 9: smmu idr1 (0x3da0024) = 0x40000016
+adreno: 9: SMMU: 24 stream match registers, 22 contexts, 32 pages of 0x1000 before the contexts' own
+adreno: 9: smmu cb0 sctlr (0x3dc0000) = 0x817471a
+adreno: 9: smmu cb0 ttbr0, low (0x3dc0020) = 0x403a4140
+adreno: 9: smmu cb0 ttbr0, high (0x3dc0024) = 0xa322504
+adreno: 9: smmu cb0 tcr (0x3dc0030) = 0x8210001
+adreno: 9: smmu cb0 fsr (0x3dc0058) = 0
+adreno: step 9: done
+adreno: step 13: find the GMU's firmware, fw/gmu_gen70000.bin, in the small image, and make the memory it asks for
+adreno: 13: fw/gmu_gen70000.bin: 57272 bytes in the image of /dev/md0
+adreno: 13: the GMU sees 0x4000..0x11fff in memory of ours (0x8caa10000)
+adreno: 13: the GMU sees 0x100000..0x108fff in memory of ours (0x8caa20000)
+adreno: 13: the GMU sees 0x200000..0x212fff in memory of ours (0x8caa34000)
+adreno: 13: the GMU sees 0x300000..0x306fff in memory of ours (0x8caa1c000)
+adreno: 13: the GMU sees 0x60000000..0x60000fff in memory of ours (0x8caa40000)
+adreno: 13: the GMU sees 0x60001000..0x60001fff in memory of ours (0x8caa48000)
+adreno: 13: the GMU sees 0x60002000..0x60005fff in memory of ours (0x8caa4c000)
+adreno: 13: the GMU sees 0x60006000..0x60009fff in memory of ours (0x8caa50000)
+adreno: step 13: give the SMMU's context 1 these tables and send the GMU's requests (stream 5) through it: the first writes to the SMMU, the global ones (cbar, cba2r, s2cr, smr) through the hypervisor
+adreno: 13: smmu idr0 (0x3da0020) = 0x4c017e18
+adreno: 13: smmu idr1 (0x3da0024) = 0x40000016
+adreno: 13: SMMU: 24 stream match registers, 22 contexts, 32 pages of 0x1000 before the contexts' own
+adreno: 13: about to write smmu cb sctlr at 0x3dc1000: 0
+adreno: 13: about to write smmu cba2r at 0x3da1804: 0x1
+adreno: 13: about to write smmu cbar at 0x3da1004: 0x1f300
+adreno: 13: about to write smmu cb tcr2 at 0x3dc1010: 0x38011
+adreno: 13: about to write smmu cb tcr at 0x3dc1030: 0x803519
+adreno: 13: about to write smmu cb ttbr0, low at 0x3dc1020: 0xcaa14000
+adreno: 13: about to write smmu cb ttbr0, high at 0x3dc1024: 0x10008
+adreno: 13: about to write smmu cb ttbr1, low at 0x3dc1028: 0
+adreno: 13: about to write smmu cb ttbr1, high at 0x3dc102c: 0
+adreno: 13: about to write smmu cb mair0 at 0x3dc1038: 0xf404ff44
+adreno: 13: about to write smmu cb mair1 at 0x3dc103c: 0
+adreno: 13: about to write smmu cb fsr at 0x3dc1058: 0xc00001fe
+adreno: 13: about to write smmu cb tlbiasid at 0x3dc1610: 0x1
+adreno: 13: about to write smmu cb tlbsync at 0x3dc17f0: 0x1
+adreno: 13: about to write smmu cb sctlr at 0x3dc1000: 0x1027
+adreno: 13: about to write smmu s2cr at 0x3da0c04: 0x1
+adreno: 13: about to write smmu smr at 0x3da0804: 0x84000005
+adreno: 13: smmu smr (0x3da0804) = 0x84000005
+adreno: 13: smmu s2cr (0x3da0c04) = 0x1
+adreno: 13: smmu cbar (0x3da1004) = 0x1f300
+adreno: 13: smmu cb sctlr (0x3dc1000) = 0x27
+adreno: 13: smmu cb ttbr0, low (0x3dc1020) = 0xcaa14000
+adreno: 13: smmu cb ttbr0, high (0x3dc1024) = 0x10008
+adreno: 13: smmu cb tcr (0x3dc1030) = 0x803519
+adreno: 13: smmu cba2r (0x3da1804) = 0x1
+adreno: 13: smmu cb tcr2 (0x3dc1010) = 0x38071
+adreno: 13: smmu cb fsr (0x3dc1058) = 0x400
+adreno: 13: smmu sgfsr (0x3da0048) = 0
+adreno: step 13: done
+adreno: step 14: load the GMU's firmware: its first 16K of code and of data through the GMU's registers (0x3d6d000, 0x3d71000), the rest into the memory just made
+adreno: 14: about to write gmu cm3_sysreset at 0x3d7e000: 0x1
+adreno: 14: 0xdcac bytes at the GMU's 0x4000, in memory
+adreno: 14: 0x1dc bytes at the GMU's 0, through its registers
+adreno: 14: 0x28 bytes at the GMU's 0x10007f98, through its registers
+adreno: 14: 0x18 bytes at the GMU's 0x10007fdc, through its registers
+adreno: 14: THE GMU'S FIRMWARE IS LOADED; its versions, read back from the GMU: core 0x40000007, power 0x40000007, HFI 0x20010000
+adreno: step 14: done
+adreno: step 15: tell the GMU where things are, by its registers: the message table, the log, which GPU this is; its caches and its use of RPMh; then let its processor out of reset
+adreno: 15: gmu cm3_sysreset (0x3d7e000) = 0x1
+adreno: 15: rscc drv config (0x3d5000c) = 0x4000000a
+adreno: 15: rscc rsc_status0_drv0 (0x3d50010) = 0
+adreno: 15: rscc seq_busy_drv0 (0x3d50404) = 0
+adreno: 15: rscc slots' interrupts enabled (0x3d50d00) = 0
+adreno: 15: rscc slots' interrupts pending (0x3d50d04) = 0
+adreno: 15: rscc slot 0: wait 0, control 0, idle 0x1, enabled 0; commands (number, address, data, status):
+adreno: 15:   0 0 0 0 | 0 0 0 0 | 0 0 0 0 | 0 0 0 0
+adreno: 15: rscc slot 1: wait 0, control 0, idle 0x1, enabled 0; commands (number, address, data, status):
+adreno: 15:   0 0 0 0 | 0 0 0 0 | 0 0 0 0 | 0 0 0 0
+adreno: 15: rscc slot 2: wait 0, control 0, idle 0x1, enabled 0; commands (number, address, data, status):
+adreno: 15:   0 0 0 0 | 0 0 0 0 | 0 0 0 0 | 0 0 0 0
+adreno: 15: rscc slot 3: wait 0, control 0, idle 0x1, enabled 0; commands (number, address, data, status):
+adreno: 15:   0 0 0 0 | 0 0 0 0 | 0 0 0 0 | 0 0 0 0
+adreno: 15: about to write gmu cx_falnext_intf at 0x3d7e3c4: 0x1
+adreno: 15: about to write gmu cx_fal_intf at 0x3d7e3c0: 0x1
+adreno: 15: about to write gmu general_7 at 0x3d7e730: 0x1
+adreno: 15: about to write gmu cm3_fw_init_result at 0x3d7e070: 0
+adreno: 15: about to write gmu cm3_boot_config at 0x3d7e004: 0x2
+adreno: 15: about to write gmu hfi_qtbl_addr at 0x3d7e614: 0x60006000
+adreno: 15: about to write gmu hfi_qtbl_info at 0x3d7e610: 0x1
+adreno: 15: about to write gmu ahb_fence_range_0 at 0x3d8ec44: 0x80a008a0
+adreno: 15: about to write gmu cm3_cfg at 0x3d7e0b4: 0x4052
+adreno: 15: about to write gbif halt at 0x3d0f114: 0
+adreno: 15: about to write gmu pwr_col_cp_resp at 0x3d7e404: 0
+adreno: 15: about to write gmu hfi_sfr_addr at 0x3d7e608: 0x7010000
+adreno: 15: about to write gmu pwr_col_cp_msg at 0x3d7e400: 0x60002003
+adreno: 15: about to write gmu general_9 at 0x3d7e738: 0
+adreno: 15: about to write gmu general_10 at 0x3d7e73c: 0x7010000
+adreno: 15: about to write gmu general_8 at 0x3d7e734: 0x60002003
+adreno: 15: about to write gmu sys_bus_config at 0x3d7d03c: 0x1
+adreno: 15: about to write gmu icache_config at 0x3d7d000: 0x1
+adreno: 15: about to write gmu dcache_config at 0x3d7d004: 0x1
+adreno: 15: about to write gmu pwr_col_inter_frame_ctrl at 0x3d7e300: 0x9c40400
+adreno: 15: gmu rpmh_ctrl (0x3d7e3a0) = 0
+adreno: 15: about to write gmu rpmh_ctrl at 0x3d7e3a0: 0xf11
+adreno: 15: gmu rpmh_ctrl (0x3d7e3a0) = 0
+adreno: 15: about to write gmu gmu2host_intr_clr at 0x3d7e644: 0xffffffff
+adreno: 15: about to write gmu cm3_sysreset at 0x3d7e000: 0
+adreno: 15: gmu cm3_fw_init_result (0x3d7e070) = 0x100
+adreno: 15: gmu gmu2host_intr_info (0x3d7e648) = 0
+adreno: 15: gmu ao_host_interrupt_status (0x3d8ec14) = 0
+adreno: 15: gmu hfi_ctrl_status (0x3d7e600) = 0x1
+adreno: 15: THE GMU'S FIRMWARE RUNS
+adreno: step 15: done
+adreno: step 16: enable the GPU's part of the always-on sequencer (pdc, 0xb294500 and 0xb294520: a part of the SoC not touched before)
+adreno: 16: pdc gpu_enable (0xb274500) = 0x101
+adreno: 16: pdc gpu_seq_start_addr (0xb274520) = 0
+adreno: 16: about to write pdc gpu_seq_start_addr at 0xb274520: 0
+adreno: 16: about to write pdc gpu_enable at 0xb274500: 0x80000001
+adreno: 16: pdc gpu_enable (0xb274500) = 0x80000001
+adreno: step 16: give the GMU's RPMh channel its sleep and wake program (rscc, 0x3de0000), unless it has it
+adreno: 16: rscc seq_mem_0_drv0 (0x3d50600) = 0
+adreno: 16: about to write rscc rsc_status0_drv0 at 0x3d50010: 0x1000000
+adreno: 16: about to write rscc pdc_slave_id_drv0 at 0x3d5002c: 0x1
+adreno: 16: about to write rscc hidden_tcs_cmd0_data at 0x3d50038: 0
+adreno: 16: about to write rscc hidden_tcs_cmd0_addr at 0x3d50034: 0
+adreno: 16: about to write rscc hidden_tcs_cmd1_data at 0x3d50040: 0
+adreno: 16: about to write rscc hidden_tcs_cmd1_addr at 0x3d5003c: 0
+adreno: 16: about to write rscc hidden_tcs_cmd2_data at 0x3d50048: 0x80000021
+adreno: 16: about to write rscc hidden_tcs_cmd2_addr at 0x3d50044: 0
+adreno: 16: about to write rscc override_start_addr at 0x3d50400: 0
+adreno: 16: about to write rscc pdc_seq_start_addr at 0x3d50020: 0x4520
+adreno: 16: about to write rscc pdc_match_value_lo at 0x3d50024: 0x4510
+adreno: 16: about to write rscc pdc_match_value_hi at 0x3d50028: 0x4514
+adreno: 16: about to write rscc seq_mem_drv0 at 0x3d50600: 0xeaaae5a0
+adreno: 16: about to write rscc seq_mem_drv0 at 0x3d50604: 0xe1a1ebab
+adreno: 16: about to write rscc seq_mem_drv0 at 0x3d50608: 0xa2e0a581
+adreno: 16: about to write rscc seq_mem_drv0 at 0x3d5060c: 0xecac82e2
+adreno: 16: about to write rscc seq_mem_drv0 at 0x3d50610: 0x20edad
+adreno: 16: rscc seq_mem_0_drv0 (0x3d50600) = 0xeaaae5a0
+adreno: step 16: ask the GMU to start its message queues
+adreno: 16: about to write gmu hfi_ctrl_init at 0x3d7e618: 0x1
+adreno: 16: gmu hfi_ctrl_status (0x3d7e600) = 0x1
+adreno: 16: gmu hfi_version_info (0x3d7e604) = 0x20010000
+adreno: 16: THE GMU'S MESSAGE QUEUES ARE UP
+adreno: step 16: done
+adreno: 17: votes: 3D core 0 0x380201 0x400302 0x800403, GMU 0 0x400302
+adreno: 17: RPMh's bus resources: SH0 0x50004, MC0 0x50000, ACV 0x5004c, CN0 0x50030 (Linux has 0x50004, 0x50000, 0x50088, 0x5006c)
+adreno: 17: the speed wanted: 500 MHz
+adreno: step 17: send the GMU its tables (speeds and supply levels, bus votes), "start", and the speed wanted; from here on it casts votes in RPMh by itself
+adreno: 17: about to send the GMU the table of speeds: message 4, 59 words, number 1
+adreno: 17: the GMU accepts the table of speeds
+adreno: 17: about to send the GMU the table of bus votes: message 3, 160 words, number 2
+adreno: 17: the GMU accepts the table of bus votes
+adreno: 17: about to send the GMU "start the core firmware": message 14, 2 words, number 3
+adreno: 17: the GMU accepts "start the core firmware"
+adreno: 17: about to send the GMU the speed wanted: message 30, 4 words, number 4
+adreno: 17: the GMU accepts the speed wanted
+adreno: step 17: ask the GMU to power the 3D core and keep it powered
+adreno: 17: gmu sptprac_pwr_clk_status (0x3d7e340) = 0x3
+adreno: 17: gpucc gx_gdscr (0x3d9905c) = 0x22f001
+adreno: 17: about to write gmu host2gmu_intr_set at 0x3d7e650: 0x40000000
+adreno: 17: about to write gmu gmu2host_intr_clr at 0x3d7e644: 0x80000000
+adreno: 17: gmu sptprac_pwr_clk_status (0x3d7e340) = 0
+adreno: 17: gpucc gx_gdscr (0x3d9905c) = 0xf8222800
+adreno: 17: gmu rpmh_power_state (0x3d7e3b0) = 0
+adreno: 17: about to send the GMU "start": message 10, 1 words, number 5
+adreno: 17: the GMU accepts "start"
+adreno: 17: measured: the 3D core's clock runs at 0 Hz (500 MHz was asked for), the GMU's in it at 0 Hz
+adreno: step 17: read registers of the 3D core itself (0x3d00000): the first time it has power
+adreno: 17: gpu rbbm_status (0x3d00840) = 0x1
+adreno: 17: gpu rbbm_int_0_status (0x3d00804) = 0
+adreno: 17: gpu rbbm_clock_cntl (0x3d002b8) = 0
+adreno: 17: gpu cp_rb_base (0x3d02000) = 0
+adreno: 17: THE 3D CORE HAS POWER AND ANSWERS
+adreno: step 17: done
+adreno: step 18: make the 3D core's memory: its ring, its microcode (fw/a710_sqe.fw), a page to try writing to
+adreno: 18: fw/a710_sqe.fw: 35572 bytes in the image of /dev/md0
+adreno: 18: the 3D core sees 0x1000000..0x1007fff in memory of ours (0x8caa88000)
+adreno: 18: the 3D core sees 0x1100000..0x1108fff in memory of ours (0x8caa78000)
+adreno: 18: the 3D core sees 0x1200000..0x1200fff in memory of ours (0x8caa7c000)
+adreno: step 18: give the SMMU's context 0 these tables and send the 3D core's requests (stream 0) through it
+adreno: 18: about to write smmu cb sctlr at 0x3dc0000: 0
+adreno: 18: about to write smmu cba2r at 0x3da1800: 0x1
+adreno: 18: about to write smmu cbar at 0x3da1000: 0x1f300
+adreno: 18: about to write smmu cb tcr2 at 0x3dc0010: 0x38011
+adreno: 18: about to write smmu cb tcr at 0x3dc0030: 0x803519
+adreno: 18: about to write smmu cb ttbr0, low at 0x3dc0020: 0xcaa46000
+adreno: 18: about to write smmu cb ttbr0, high at 0x3dc0024: 0x8
+adreno: 18: about to write smmu cb ttbr1, low at 0x3dc0028: 0
+adreno: 18: about to write smmu cb ttbr1, high at 0x3dc002c: 0
+adreno: 18: about to write smmu cb mair0 at 0x3dc0038: 0xf404ff44
+adreno: 18: about to write smmu cb mair1 at 0x3dc003c: 0
+adreno: 18: about to write smmu cb fsr at 0x3dc0058: 0xc00001fe
+adreno: 18: about to write smmu cb tlbiasid at 0x3dc0610: 0
+adreno: 18: about to write smmu cb tlbsync at 0x3dc07f0: 0x1
+adreno: 18: about to write smmu cb sctlr at 0x3dc0000: 0x1127
+adreno: 18: about to write smmu s2cr at 0x3da0c00: 0
+adreno: 18: about to write smmu smr at 0x3da0800: 0x84000000
+adreno: 18: smmu smr (0x3da0800) = 0x84000000
+adreno: 18: smmu s2cr (0x3da0c00) = 0
+adreno: 18: smmu cbar (0x3da1000) = 0x1f300
+adreno: 18: smmu cb sctlr (0x3dc0000) = 0x127
+adreno: 18: smmu cb ttbr0, low (0x3dc0020) = 0xcaa46000
+adreno: 18: smmu cb ttbr0, high (0x3dc0024) = 0x8
+adreno: 18: smmu cb tcr (0x3dc0030) = 0x803519
+adreno: 18: smmu cba2r (0x3da1800) = 0x1
+adreno: 18: smmu cb tcr2 (0x3dc0010) = 0x38071
+adreno: 18: smmu cb fsr (0x3dc0058) = 0x400
+adreno: 18: smmu sgfsr (0x3da0048) = 0
+adreno: 18: gpu rbbm_status (0x3d00840) = 0x1
+adreno: step 18: done
+adreno: step 19: ask TrustZone to give up a zap shader that a kernel before this one may have left
+adreno: 19: about to ask TrustZone to give up the zap shader: smc 0x42000206, arguments 0xd, 0, 0
+adreno: 19: TrustZone returns -3145800, answer 0
+adreno: 19: TRUSTZONE DOES NOT GIVE IT UP: the next answers tell whether it keeps one
+adreno: 19: fw/a710_zap.b01: 1948 bytes in the image of /dev/md0
+adreno: step 19: hand the zap shader's header to TrustZone, tell it where the image goes, put the image there, and ask TrustZone to authenticate and run it
+adreno: 19: fw/a710_zap.mdt: 4044 bytes in the image of /dev/md0
+adreno: 19: an ELF header of 3 segments, 148 bytes with its table, then 3896 bytes; by the table, 3896 of hashes
+adreno: 19: about to ask TrustZone to take the zap shader's signature: smc 0x42000201, arguments 0xd, 0x8cab00000, 0
+adreno: 19: TrustZone returns 0, answer 0
+adreno: 19: about to ask TrustZone where the image will be: smc 0x42000202, arguments 0xd, 0x89e1a000, 0x1000
+adreno: 19: TrustZone returns 0, answer 0
+adreno: 19: the reserved memory begins 00 00 00 00, the zap shader 14 00 71 01
+adreno: 19: about to write 1948 bytes at 0x89e1a000
+adreno: 19: about to ask TrustZone to authenticate the zap shader and run it: smc 0x42000205, arguments 0xd, 0, 0
+adreno: 19: TrustZone returns 0, answer 0
+adreno: 19: TRUSTZONE HAS AUTHENTICATED AND STARTED THE ZAP SHADER
+adreno: step 19: done
+adreno: step 20: write the 3D core's registers as Linux does before it starts the command processor: the first writes to the core itself
+adreno: 20: about to write gbif halt at 0x3d0f114: 0
+adreno: 20: about to write gpu rbbm_gbif_halt at 0x3d00058: 0
+adreno: 20: about to write gpu rbbm_secvid_tsb_cntl at 0x3d3e00c: 0
+adreno: 20: about to write gpu rbbm_secvid_tsb_trusted_base at 0x3d3e000: 0
+adreno: 20: about to write gpu rbbm_secvid_tsb_trusted_base at 0x3d3e004: 0
+adreno: 20: about to write gpu rbbm_secvid_tsb_trusted_size at 0x3d3e008: 0
+adreno: 20: about to write gbif qsb_side at 0x3d0f00c: 0x71620
+adreno: 20: about to write gbif qsb_side at 0x3d0f010: 0x71620
+adreno: 20: about to write gbif qsb_side at 0x3d0f014: 0x71620
+adreno: 20: about to write gbif qsb_side at 0x3d0f018: 0x71620
+adreno: 20: about to write gpu rbbm_gbif_client_qos_cntl at 0x3d00044: 0x2120212
+adreno: 20: about to write gpu uche_gbif_gx_config at 0x3d038e8: 0x10240e0
+adreno: 20: about to write gpu rbbm_perfctr_gpu_busy_masked at 0x3d0142c: 0xffffffff
+adreno: 20: about to write gpu uche_trap_base at 0x3d03824: 0xfffff000
+adreno: 20: about to write gpu uche_trap_base at 0x3d03828: 0x1ffff
+adreno: 20: about to write gpu uche_write_thru_base at 0x3d0381c: 0xfffff000
+adreno: 20: about to write gpu uche_write_thru_base at 0x3d03820: 0x1ffff
+adreno: 20: about to write gpu uche_gmem_range_min at 0x3d0382c: 0x100000
+adreno: 20: about to write gpu uche_gmem_range_min at 0x3d03830: 0
+adreno: 20: about to write gpu uche_gmem_range_max at 0x3d03834: 0x17ffff
+adreno: 20: about to write gpu uche_gmem_range_max at 0x3d03838: 0
+adreno: 20: about to write gpu uche_cache_ways at 0x3d0385c: 0x800000
+adreno: 20: about to write gpu cp_ahb_cntl at 0x3d02634: 0x1
+adreno: 20: about to write gpu rb_nc_mode_cntl at 0x3d23820: 0x812
+adreno: 20: about to write gpu tpl1_nc_mode_cntl at 0x3d2d810: 0x2
+adreno: 20: about to write gpu sp_nc_mode_cntl at 0x3d2b808: 0x22
+adreno: 20: about to write gpu gras_nc_mode_cntl at 0x3d21808: 0x20
+adreno: 20: about to write gpu uche_mode_cntl at 0x3d03804: 0x200000
+adreno: 20: about to write gpu rbbm_nc_mode_cntl at 0x3d014d0: 0x1
+adreno: 20: about to write gpu rbbm_perfctr_cntl at 0x3d01400: 0x1
+adreno: 20: about to write gpu rbbm_interface_hang_int_cntl at 0x3d0007c: 0x401fffff
+adreno: 20: about to write gpu uche_client_pf at 0x3d03864: 0x81
+adreno: 20: about to write gpu uche_cmdq_config at 0x3d038f0: 0x6906
+adreno: 20: about to write gpu cp_apriv_cntl at 0x3d02110: 0x7ff
+adreno: 20: about to write gpu cp_bv_apriv_cntl at 0x3d02b40: 0x7ff
+adreno: 20: about to write gpu cp_sqe_instr_base at 0x3d020c0: 0x1100000
+adreno: 20: about to write gpu cp_sqe_instr_base at 0x3d020c4: 0
+adreno: 20: about to write gpu cp_rb_base at 0x3d02000: 0x1000000
+adreno: 20: about to write gpu cp_rb_base at 0x3d02004: 0
+adreno: 20: about to write gpu cp_rb_cntl at 0x3d02008: 0x800020c
+adreno: 20: gpu cp_sqe_instr_base (0x3d020c0) = 0x1100000
+adreno: 20: gpu cp_rb_base (0x3d02000) = 0x1000000
+adreno: 20: gpu cp_rb_cntl (0x3d02008) = 0x800020c
+adreno: 20: gpu cp_apriv_cntl (0x3d02110) = 0x7f
+adreno: 20: gpu rbbm_status (0x3d00840) = 0x1
+adreno: step 20: start the 3D core's command processor
+adreno: 20: about to write gpu cp_sqe_cntl at 0x3d02020: 0x1
+adreno: 20: alive after it; status 0x1, interrupts 0, command processor: fault 0, interrupts 0, protection 0, ring read up to 0
+adreno: 20: smmu sgfsr (0x3da0048) = 0
+adreno: 20: smmu sgfsynr0 (0x3da0050) = 0
+adreno: 20: smmu sgfsynr1 (0x3da0054) = 0
+adreno: step 20: give the 3D core its first command, "initialize"
+adreno: 20: about to have the 3D core initialize its command processor: the ring up to word 10
+adreno: 20: the 3D core has done it (ring read up to 10, status 0x1)
+adreno: 20: THE 3D CORE TAKES COMMANDS
+adreno: step 20: done
+adreno: step 21: command the 3D core out of secure mode (it asks the zap shader), then to write a word into a page of ours
+adreno: 21: about to have the 3D core leave secure mode: the ring up to word 12
+adreno: 21: the 3D core has done it (ring read up to 12, status 0x1)
+adreno: 21: about to have the 3D core write a word to memory: the ring up to word 16
+adreno: 21: the 3D core has done it (ring read up to 16, status 0x1)
+adreno: 21: the page reads 0x600dc0de: THE 3D CORE WRITES OUR MEMORY ON COMMAND
+adreno: step 21: done
+adreno: THE GPU STAYS ON for the system to draw with: the service HakiosGPU
+
+=== init: process 1, started as /sbin/launchd ===
+Darwin 22.5.0 iPhone10,3
+Darwin Kernel Version 22.5.0: Sen 09 Nov 2026 23:42:06 WIB; okihann:xnu-8796.121.2[xnu-8796.121.2-dirty]/BUILD/obj/DEVELOPMENT_ARM64_BCM2837
+memory 2959 MB, page size 16384, 7 cpu
+
+[ ok ] sysctl: kernel identifies itself
+
+-- writable filesystem --
+[ ok ] mount a memory filesystem on /private/var
+  113 directories, 9 files
+[ ok ] create the directories of the data volume
+
+-- read-only filesystem --
+  drwxr-xr-x  2        0 /empty
+  drwxr-xr-x  2        0 /bin
+  drwxr-xr-x  2        0 /hal
+  drwxr-xr-x  2        0 /fw
+  drwxr-xr-x  2        0 /sbin
+  drwxr-xr-x  2        0 /etc
+  drwxr-xr-x  2        0 /LaunchDaemons
+  drwxr-xr-x  2        0 /var
+  drwxr-xr-x  2        0 /flash
+  drwxr-xr-x  2        0 /private
+  drwxr-xr-x  2        0 /lib
+  dr-xr-xr-x  3      871 /dev
+  drwxr-xr-x  2        0 /xpc
+  drwxr-xr-x  2        0 /share
+  -rwxr-xr-x  1    66416 /bin/torch_test
+  -rwxr-xr-x  1    67576 /bin/apfs_mmap_test
+  -rwxr-xr-x  1    66808 /bin/camera_avtest
+  -rwxr-xr-x  1    69216 /bin/sound_test
+  -rwxr-xr-x  1    69704 /bin/battery_test
+  -rwxr-xr-x  1    68256 /bin/cg_test
+  -rwxr-xr-x  1    66728 /bin/cputop
+  -rwxr-xr-x  1    71744 /bin/net_test
+  -rwxr-xr-x  1    66728 /bin/rwtouch
+  -rwxr-xr-x  1    66128 /bin/hello_dyn
+  -rwxr-xr-x  1    68296 /bin/font_test
+  -rwxr-xr-x  1    67240 /bin/fps_info
+  -rwxr-xr-x  1    67952 /bin/keychain_test
+  -rwxr-xr-x  1    66576 /bin/cpu_test
+  -rwxr-xr-x  1    69672 /bin/surf_test
+  -rwxr-xr-x  1    66864 /bin/shm_test
+  -rwxr-xr-x  1    68264 /bin/cow_test
+  -rwxr-xr-x  1    67936 /bin/wifipw_test
+  -rwxr-xr-x  1    52792 /bin/var_store
+  -rwxr-xr-x  1    71328 /bin/metal_test
+  -rwxr-xr-x  1    66400 /bin/mg_test
+  -rwxr-xr-x  1    83688 /bin/svc_test
+  -rwxr-xr-x  1    67504 /bin/vol_ls
+  -rwxr-xr-x  1    67312 /bin/snap_test
+  -rwxr-xr-x  1    34496 /bin/child
+  -rwxr-xr-x  1    85768 /bin/camera_test
+  -rwxr-xr-x  1    67704 /bin/record_test
+  lrwxrwxrwx  1       31 /hal/HakiosAudio.driver -> /redwood/lib/HakiosAudio.driver
+  -rw-r--r--  1     4684 /fw/wpss.mdt
+  -rw-r--r--  1     3896 /fw/a710_zap.b02
+  -rw-r--r--  1    26328 /fw/bd_n16g.bin
+  -rw-r--r--  1    26328 /fw/bdwlan.bin
+  -rw-r--r--  1    12088 /fw/a710_zap.mbn
+  -rw-------  1       29 /fw/network
+  -rw-r--r--  1      404 /fw/wpss.b00
+  -rw-r--r--  1   259408 /fw/wpss.b07
+  -rw-r--r--  1   725886 /fw/wpss.b08
+  -rw-r--r--  1  4715708 /fw/wpss.b06
+  -rw-r--r--  1     6440 /fw/wpss.b01
+  -rw-r--r--  1     4280 /fw/wpss.b10
+  -rw-r--r--  1    19348 /fw/regdb.bin
+  -rw-r--r--  1    57272 /fw/gmu_gen70000.bin
+  -rw-r--r--  1     1948 /fw/a710_zap.b01
+  -rw-r--r--  1     6044 /fw/a710_zap.elf
+  -rw-r--r--  1      148 /fw/a710_zap.b00
+  -rw-r--r--  1    35572 /fw/a710_sqe.fw
+  -rw-r--r--  1     4044 /fw/a710_zap.mdt
+  -rw-r--r--  1    26328 /fw/bd_n16.bin
+  -rw-r--r--  1      256 /fw/wpss.b04
+  -rw-r--r--  1     1104 /fw/wpss.b03
+  -rw-r--r--  1    19348 /fw/regdb_xiaomi.bin
+  -rw-r--r--  1   461497 /fw/wpss.b02
+  -rw-r--r--  1     4096 /fw/wpss.b05
+  -rwxr-xr-x  1    52384 /sbin/init
+  lrwxrwxrwx  1        4 /sbin/launchd -> init
+  -rw-r--r--  1     6216 /etc/var.skel
+  -rw-r--r--  1      262 /etc/inject.conf
+  -rw-r--r--  1       88 /etc/rc
+  -rw-r--r--  1       47 /etc/motd
+  -rw-r--r--  1     1345 /etc/rc.jobs
+  -rw-r--r--  1      323 /LaunchDaemons/com.apple.mobile.assertion_agent.plist
+  -rw-r--r--  1      543 /LaunchDaemons/com.apple.symptomsd.plist
+  -rw-r--r--  1      410 /LaunchDaemons/com.apple.accessibility.axassetsd.plist
+  -rw-r--r--  1      286 /LaunchDaemons/com.apple.aslmanager.plist
+  -rw-r--r--  1      388 /LaunchDaemons/com.apple.dasd.plist
+  -rw-r--r--  1      435 /LaunchDaemons/com.apple.bookdatastored.plist
+  -rw-r--r--  1      344 /LaunchDaemons/com.apple.MobileFileIntegrity.plist
+  -rw-r--r--  1      361 /LaunchDaemons/com.apple.arkitd.plist
+  -rw-r--r--  1      792 /LaunchDaemons/com.apple.imagent.plist
+  -rw-r--r--  1      296 /LaunchDaemons/com.apple.coredatad.plist
+  -rw-r--r--  1      364 /LaunchDaemons/com.apple.DataDetectorsSourceAccess.plist
+  -rw-r--r--  1      302 /LaunchDaemons/com.apple.mobile.installd.plist
+  -rw-r--r--  1      465 /LaunchDaemons/com.apple.driverkitd.plist
+  -rw-r--r--  1      464 /LaunchDaemons/com.apple.knowledgeconstructiond.plist
+  -rw-r--r--  1      481 /LaunchDaemons/com.apple.icloudsubscriptionoptimizerd.plist
+  -rw-r--r--  1     2155 /LaunchDaemons/com.apple.suggestd.plist
+  -rw-r--r--  1      479 /LaunchDaemons/com.apple.idscredentialsagent.plist
+  -rw-r--r--  1      370 /LaunchDaemons/com.apple.relatived.plist
+  -rw-r--r--  1      457 /LaunchDaemons/com.apple.notifyd.plist
+  -rw-r--r--  1      293 /LaunchDaemons/com.apple.crashreportcopymobile.plist
+  -rw-r--r--  1      568 /LaunchDaemons/com.apple.synapse.contentlinkingd.plist
+  -rw-r--r--  1      400 /LaunchDaemons/com.apple.mediaartworkd.plist
+  -rw-r--r--  1      851 /LaunchDaemons/com.apple.nanoregistryd.plist
+  -rw-r--r--  1      526 /LaunchDaemons/com.apple.weatherd.plist
+  -rw-r--r--  1      558 /LaunchDaemons/com.apple.sharing.airdropui.plist
+  -rw-r--r--  1      377 /LaunchDaemons/com.apple.syslogd.plist
+  -rw-r--r--  1      275 /LaunchDaemons/com.apple.asd.plist
+  -rw-r--r--  1      292 /LaunchDaemons/com.apple.mobile.cache_delete_daily.plist
+  -rw-r--r--  1      404 /LaunchDaemons/com.apple.adid.plist
+  -rw-r--r--  1      434 /LaunchDaemons/com.apple.voicemail.vmd.plist
+  -rw-r--r--  1      540 /LaunchDaemons/com.apple.siriknowledged.plist
+  -rw-r--r--  1      455 /LaunchDaemons/com.apple.sosd.plist
+  -rw-r--r--  1      349 /LaunchDaemons/com.apple.cfnetwork.AuthBrokerAgent.plist
+  -rw-r--r--  1      425 /LaunchDaemons/com.apple.assistant_service.plist
+  -rw-r--r--  1      484 /LaunchDaemons/com.apple.replaykitangel.plist
+  -rw-r--r--  1      322 /LaunchDaemons/com.apple.deviceaccessd.plist
+  -rw-r--r--  1      412 /LaunchDaemons/com.apple.geod.plist
+  -rw-r--r--  1      379 /LaunchDaemons/com.apple.sociallayerd.plist
+  -rw-r--r--  1      561 /LaunchDaemons/com.apple.proximitycontrold.plist
+  -rw-r--r--  1      277 /LaunchDaemons/com.apple.mobilestoredemodhelper.plist
+  -rw-r--r--  1      360 /LaunchDaemons/com.apple.GSSCred.plist
+  -rw-r--r--  1      568 /LaunchDaemons/com.apple.safetyalertsd.plist
+  -rw-r--r--  1      594 /LaunchDaemons/com.apple.assistivetouchd.plist
+  -rw-r--r--  1      626 /LaunchDaemons/com.apple.mobiletimerd.plist
+  -rw-r--r--  1      517 /LaunchDaemons/com.apple.bookassetd.plist
+  -rw-r--r--  1      292 /LaunchDaemons/com.apple.naturallanguaged.plist
+  -rw-r--r--  1     1193 /LaunchDaemons/com.apple.ScreenTimeAgent.plist
+  -rw-r--r--  1      692 /LaunchDaemons/com.apple.containermanagerd.system.plist
+  -rw-r--r--  1      662 /LaunchDaemons/com.apple.akd.plist
+  -rw-r--r--  1      294 /LaunchDaemons/com.apple.webinspectord.plist
+  -rw-r--r--  1      367 /LaunchDaemons/com.apple.apsd.plist
+  -rw-r--r--  1      450 /LaunchDaemons/com.apple.Safari.History.plist
+  -rw-r--r--  1      285 /LaunchDaemons/com.apple.mobilegestalt.xpc.plist
+  -rw-r--r--  1      427 /LaunchDaemons/com.apple.keychainsharingmessagingd.plist
+  -rw-r--r--  1      425 /LaunchDaemons/com.apple.activityawardsd.plist
+  -rw-r--r--  1      374 /LaunchDaemons/com.apple.recentsd.plist
+  -rw-r--r--  1      639 /LaunchDaemons/com.apple.contextstored.plist
+  -rw-r--r--  1      462 /LaunchDaemons/com.apple.ShortcutsUI.plist
+  -rw-r--r--  1      341 /LaunchDaemons/com.apple.awdd.plist
+  -rw-r--r--  1      675 /LaunchDaemons/com.apple.wcd.plist
+  -rw-r--r--  1      285 /LaunchDaemons/com.apple.mobilebackup2.plist
+  -rw-r--r--  1      359 /LaunchDaemons/com.apple.contactsd.plist
+  -rw-r--r--  1      861 /LaunchDaemons/com.apple.logd.plist
+  -rw-r--r--  1     1086 /LaunchDaemons/com.apple.backboardd.plist
+  -rw-r--r--  1      392 /LaunchDaemons/com.apple.mediasetupd.plist
+  -rw-r--r--  1      792 /LaunchDaemons/com.apple.security.cryptexd.plist
+  -rw-r--r--  1      273 /LaunchDaemons/com.apple.tipsd.plist
+  -rw-r--r--  1      868 /LaunchDaemons/com.apple.configd.plist
+  -rw-r--r--  1      299 /LaunchDaemons/com.apple.safarifetcherd.plist
+  -rw-r--r--  1      269 /LaunchDaemons/com.apple.afcd.plist
+  -rw-r--r--  1      377 /LaunchDaemons/com.apple.cfprefsd.xpc.daemon.plist
+  -rw-r--r--  1      369 /LaunchDaemons/com.apple.IOAccelMemoryInfoCollector.plist
+  -rw-r--r--  1      368 /LaunchDaemons/com.apple.terminusd.plist
+  -rw-r--r--  1      558 /LaunchDaemons/com.apple.sensorkitd.plist
+  -rw-r--r--  1      386 /LaunchDaemons/com.apple.mediaremoted.plist
+  -rw-r--r--  1      357 /LaunchDaemons/com.apple.mobileactivationd.plist
+  -rw-r--r--  1      364 /LaunchDaemons/com.apple.ClipServices.clipserviced.plist
+  -rw-r--r--  1      397 /LaunchDaemons/com.apple.managedconfiguration.profiled.plist
+  -rw-r--r--  1      428 /LaunchDaemons/com.apple.fitnesscoachingd.plist
+  -rw-r--r--  1      378 /LaunchDaemons/com.apple.datastored.plist
+  -rw-r--r--  1      354 /LaunchDaemons/com.apple.timezoneupdates.tzd.plist
+  -rw-r--r--  1      487 /LaunchDaemons/com.apple.security.cloudkeychainproxy3.plist
+  -rw-r--r--  1      411 /LaunchDaemons/com.apple.corespotlightservice.plist
+  -rw-r--r--  1      324 /LaunchDaemons/com.apple.cfnetwork.cfnetworkagent.plist
+  -rw-r--r--  1      352 /LaunchDaemons/com.apple.cdpd.plist
+  -rw-r--r--  1      547 /LaunchDaemons/com.apple.accountsd.plist
+  -rw-r--r--  1      477 /LaunchDaemons/com.apple.preboardservice_v2.plist
+  -rw-r--r--  1      653 /LaunchDaemons/com.apple.liveactivitiesd.plist
+  -rw-r--r--  1      341 /LaunchDaemons/com.apple.symptomsd.helper.plist
+  -rw-r--r--  1      479 /LaunchDaemons/com.apple.UsageTrackingAgent.plist
+  -rw-r--r--  1      432 /LaunchDaemons/com.apple.timed.plist
+  -rw-r--r--  1      480 /LaunchDaemons/com.apple.coresymbolicationd.plist
+  -rw-r--r--  1      377 /LaunchDaemons/com.apple.translationd.plist
+  -rw-r--r--  1      863 /LaunchDaemons/com.apple.email.maild.plist
+  -rw-r--r--  1      402 /LaunchDaemons/com.apple.UserEventAgent-System.plist
+  -rw-r--r--  1      657 /LaunchDaemons/com.hakios.wifi.plist
+  -rw-r--r--  1      259 /LaunchDaemons/com.apple.idamd.plist
+  -rw-r--r--  1      463 /LaunchDaemons/com.apple.mobile.cache_delete_app_container_caches.plist
+  -rw-r--r--  1      267 /LaunchDaemons/com.apple.online-auth-agent.xpc.plist
+  -rw-r--r--  1      433 /LaunchDaemons/com.apple.webkit.webpushd.plist
+  -rw-r--r--  1      521 /LaunchDaemons/com.apple.icloud.findmydeviced.plist
+  -rw-r--r--  1      350 /LaunchDaemons/com.apple.SCHelper.plist
+  -rw-r--r--  1      422 /LaunchDaemons/com.apple.assistant_cdmd.plist
+  -rw-r--r--  1      387 /LaunchDaemons/com.apple.OTACrashCopier.plist
+  -rw-r--r--  1      608 /LaunchDaemons/com.apple.trustd.plist
+  -rw-r--r--  1      530 /LaunchDaemons/com.apple.cfprefsd.xpc.daemon.system.plist
+  -rw-r--r--  1      517 /LaunchDaemons/com.apple.protectedcloudstorage.protectedcloudkeysyncing.plist
+  -rw-r--r--  1      275 /LaunchDaemons/com.apple.mDNSResponderHelper.plist
+  -rw-r--r--  1      357 /LaunchDaemons/com.apple.devicecheckd.plist
+  -rw-r--r--  1      476 /LaunchDaemons/com.apple.imtransferagent.plist
+  -rw-r--r--  1      274 /LaunchDaemons/com.apple.softposreaderd.plist
+  -rw-r--r--  1      280 /LaunchDaemons/com.apple.nanoregistrylaunchd.plist
+  -rw-r--r--  1      362 /LaunchDaemons/com.apple.SafariBookmarksSyncAgent.plist
+  -rw-r--r--  1      411 /LaunchDaemons/com.apple.dt.automationmode-writer.plist
+  -rw-r--r--  1      386 /LaunchDaemons/com.apple.privacyaccountingd.plist
+  -rw-r--r--  1      262 /LaunchDaemons/com.apple.inboxupdaterd.plist
+  -rw-r--r--  1      270 /LaunchDaemons/com.apple.pluginkit.pkd.plist
+  -rw-r--r--  1      280 /LaunchDaemons/com.apple.nexusd.plist
+  -rw-r--r--  1      358 /LaunchDaemons/com.apple.fontservicesd.plist
+  -rw-r--r--  1      908 /LaunchDaemons/com.hakios.varstore.plist
+  -rw-r--r--  1      514 /LaunchDaemons/com.apple.linkd.plist
+  -rw-r--r--  1      475 /LaunchDaemons/com.apple.familycircled.plist
+  -rw-r--r--  1      382 /LaunchDaemons/com.apple.fairplaydeviceidentityd.plist
+  -rw-r--r--  1      389 /LaunchDaemons/com.apple.reversetemplated.plist
+  -rw-r--r--  1      223 /LaunchDaemons/com.apple.pfd.plist
+  -rw-r--r--  1      406 /LaunchDaemons/com.apple.racoon.plist
+  -rw-r--r--  1      329 /LaunchDaemons/com.apple.neagent-ios.plist
+  -rw-r--r--  1      519 /LaunchDaemons/com.apple.mobile.insecure_notification_proxy.plist
+  -rw-r--r--  1      672 /LaunchDaemons/com.apple.nearbyd.plist
+  -rw-r--r--  1      347 /LaunchDaemons/com.apple.ndoagent.plist
+  -rw-r--r--  1     1355 /LaunchDaemons/com.apple.searchd.plist
+  -rw-r--r--  1      283 /LaunchDaemons/com.apple.hangreporter.plist
+  -rw-r--r--  1      364 /LaunchDaemons/com.apple.Safari.passwordbreachd.plist
+  -rw-r--r--  1      512 /LaunchDaemons/com.apple.familynotificationd.plist
+  -rw-r--r--  1     1007 /LaunchDaemons/com.apple.dt.remotepairingdeviced.plist
+  -rw-r--r--  1      396 /LaunchDaemons/com.apple.revisiond.plist
+  -rw-r--r--  1      334 /LaunchDaemons/com.apple.betaenrollmentd.plist
+  -rw-r--r--  1      400 /LaunchDaemons/com.apple.fseventsd.plist
+  -rw-r--r--  1      467 /LaunchDaemons/com.apple.newsd.plist
+  -rw-r--r--  1      290 /LaunchDaemons/com.apple.devicemanagementclient.teslad.plist
+  -rw-r--r--  1      378 /LaunchDaemons/com.apple.scrod.plist
+  -rw-r--r--  1      262 /LaunchDaemons/com.apple.storagekitd.plist
+  -rw-r--r--  1      402 /LaunchDaemons/com.apple.handwritingd.plist
+  -rw-r--r--  1      397 /LaunchDaemons/com.apple.DMHelper.plist
+  -rw-r--r--  1      372 /LaunchDaemons/com.apple.cmfsyncagent.plist
+  -rw-r--r--  1      261 /LaunchDaemons/com.apple.corerepaird.plist
+  -rw-r--r--  1      375 /LaunchDaemons/com.apple.cache_delete.plist
+  -rw-r--r--  1      774 /LaunchDaemons/com.apple.CarPlayApp.plist
+  -rw-r--r--  1      255 /LaunchDaemons/com.apple.misagent.plist
+  -rw-r--r--  1      362 /LaunchDaemons/com.apple.mobile.cache_delete_mobile_backup.plist
+  -rw-r--r--  1      522 /LaunchDaemons/com.apple.calaccessd.plist
+  -rw-r--r--  1      418 /LaunchDaemons/com.apple.memory-maintenance.plist
+  -rw-r--r--  1      470 /LaunchDaemons/com.apple.photos.ImageConversionService.plist
+  -rw-r--r--  1      467 /LaunchDaemons/com.apple.triald.plist
+  -rw-r--r--  1      407 /LaunchDaemons/com.apple.security.swcagent.plist
+  -rw-r--r--  1      362 /LaunchDaemons/com.apple.businessservicesd.plist
+  -rw-r--r--  1      286 /LaunchDaemons/com.apple.mobilerepaird.plist
+  -rw-r--r--  1      384 /LaunchDaemons/com.apple.abm-helper.plist
+  -rw-r--r--  1      305 /LaunchDaemons/com.apple.fs_task_scheduler.plist
+  -rw-r--r--  1      415 /LaunchDaemons/com.apple.mediaanalysisd.service.plist
+  -rw-r--r--  1      276 /LaunchDaemons/com.apple.MobileInternetSharing.plist
+  -rw-r--r--  1      425 /LaunchDaemons/com.apple.nsurlsessiond.plist
+  -rw-r--r--  1      286 /LaunchDaemons/com.apple.matd.plist
+  -rw-r--r--  1      497 /LaunchDaemons/com.apple.filesystems.userfsd.plist
+  -rw-r--r--  1      980 /LaunchDaemons/com.apple.itunescloudd.plist
+  -rw-r--r--  1      281 /LaunchDaemons/com.apple.preboardservice.plist
+  -rw-r--r--  1      434 /LaunchDaemons/com.apple.progressd.plist
+  -rw-r--r--  1      478 /LaunchDaemons/com.apple.ManagedSettingsAgent.plist
+  -rw-r--r--  1      475 /LaunchDaemons/com.apple.diagnosticd.plist
+  -rw-r--r--  1      422 /LaunchDaemons/com.apple.ctkd.plist
+  -rw-r--r--  1      591 /LaunchDaemons/com.apple.FileProvider.plist
+  -rw-r--r--  1      417 /LaunchDaemons/com.apple.nesessionmanager.plist
+  -rw-r--r--  1      459 /LaunchDaemons/com.apple.PaperBoard.plist
+  -rw-r--r--  1      516 /LaunchDaemons/com.apple.shazamd.plist
+  -rw-r--r--  1     1035 /LaunchDaemons/com.apple.TextInput.kbd.plist
+  -rw-r--r--  1      264 /LaunchDaemons/com.apple.AdminLite.plist
+  -rw-r--r--  1      543 /LaunchDaemons/com.apple.mobile.notification_proxy.plist
+  -rw-r--r--  1      463 /LaunchDaemons/com.apple.icloud.fmfd.plist
+  -rw-r--r--  1      348 /LaunchDaemons/com.apple.healthappd.plist
+  -rw-r--r--  1      571 /LaunchDaemons/com.apple.idsremoteurlconnectionagent.plist
+  -rw-r--r--  1      379 /LaunchDaemons/com.apple.installcoordinationd.plist
+  -rw-r--r--  1      505 /LaunchDaemons/com.apple.PointerUI.pointeruid.plist
+  -rw-r--r--  1      507 /LaunchDaemons/com.apple.devicemanagementclient.mdmd.plist
+  -rw-r--r--  1      419 /LaunchDaemons/com.apple.DesktopServicesHelper.plist
+  -rw-r--r--  1     2337 /LaunchDaemons/com.apple.SpringBoard.plist
+  -rw-r--r--  1      264 /LaunchDaemons/com.apple.crash_mover.plist
+  -rw-r--r--  1      403 /LaunchDaemons/com.apple.uikit.eyedropperd.plist
+  -rw-r--r--  1      362 /LaunchDaemons/com.apple.ABDatabaseDoctor.plist
+  -rw-r--r--  1      947 /LaunchDaemons/com.apple.coreduetd.plist
+  -rw-r--r--  1      328 /LaunchDaemons/com.apple.mlruntimed.plist
+  -rw-r--r--  1      569 /LaunchDaemons/com.apple.accessoryupdaterd.plist
+  -rw-r--r--  1      462 /LaunchDaemons/com.apple.peopled.plist
+  -rw-r--r--  1      779 /LaunchDaemons/com.hakios.demo.plist
+  -rw-r--r--  1      434 /LaunchDaemons/com.apple.diskarbitrationd.plist
+  -rw-r--r--  1      452 /LaunchDaemons/com.apple.PosterBoard.plist
+  -rw-r--r--  1      412 /LaunchDaemons/com.apple.diskimagesiod.plist
+  -rw-r--r--  1      387 /LaunchDaemons/com.apple.hangtracerd.plist
+  -rw-r--r--  1      454 /LaunchDaemons/com.apple.CallHistorySyncHelper.plist
+  -rw-r--r--  1      371 /LaunchDaemons/com.apple.WebBookmarks.webbookmarksd.plist
+  -rw-r--r--  1      446 /LaunchDaemons/com.apple.voiced.plist
+  -rw-r--r--  1      235 /LaunchDaemons/com.apple.gpsd.plist
+  -rw-r--r--  1      366 /LaunchDaemons/com.apple.ckdiscretionaryd.plist
+  -rw-r--r--  1      555 /LaunchDaemons/com.apple.coordinated.plist
+  -rw-r--r--  1      336 /LaunchDaemons/com.apple.splashboardd.plist
+  -rw-r--r--  1      406 /LaunchDaemons/com.apple.certui.relay.plist
+  -rw-r--r--  1      303 /LaunchDaemons/com.apple.tailspind.plist
+  -rw-r--r--  1      498 /LaunchDaemons/com.apple.fullkeyboardaccess.plist
+  -rw-r--r--  1      286 /LaunchDaemons/com.apple.OTATaskingAgent.plist
+  -rw-r--r--  1      334 /LaunchDaemons/com.apple.filesystems.userfs_helper.plist
+  -rw-r--r--  1      262 /LaunchDaemons/com.apple.ptpd.plist
+  -rw-r--r--  1      401 /LaunchDaemons/com.apple.iapauthd.plist
+  -rw-r--r--  1      542 /LaunchDaemons/com.apple.InputUI.plist
+  -rw-r--r--  1      261 /LaunchDaemons/com.apple.rtcreportingd.plist
+  -rw-r--r--  1      404 /LaunchDaemons/com.apple.storekitd.plist
+  -rw-r--r--  1      355 /LaunchDaemons/com.apple.absd.plist
+  -rw-r--r--  1      290 /LaunchDaemons/com.apple.securityuploadd.plist
+  -rw-r--r--  1      489 /LaunchDaemons/com.apple.seserviced.plist
+  -rw-r--r--  1      500 /LaunchDaemons/com.apple.locationpushd.plist
+  -rw-r--r--  1      489 /LaunchDaemons/com.apple.ReportMemoryException.plist
+  -rw-r--r--  1      522 /LaunchDaemons/com.apple.PurpleReverseProxy.plist
+  -rw-r--r--  1     1613 /LaunchDaemons/com.apple.sharingd.plist
+  -rw-r--r--  1      539 /LaunchDaemons/com.apple.wifid.plist
+  -rw-r--r--  1      295 /LaunchDaemons/com.apple.mobile.MCInstall.plist
+  -rw-r--r--  1      597 /LaunchDaemons/com.apple.mediaanalysisd.plist
+  -rw-r--r--  1      450 /LaunchDaemons/com.apple.aggregated.plist
+  -rw-r--r--  1      762 /LaunchDaemons/com.apple.itunesstored.plist
+  -rw-r--r--  1      637 /LaunchDaemons/com.apple.announced.plist
+  -rw-r--r--  1      946 /LaunchDaemons/com.apple.corespeechd.plist
+  -rw-r--r--  1      392 /LaunchDaemons/com.apple.spotlight.IndexAgent.plist
+  -rw-r--r--  1      528 /LaunchDaemons/com.apple.storebookkeeperd.plist
+  -rw-r--r--  1      366 /LaunchDaemons/com.apple.sportsd.plist
+  -rw-r--r--  1      391 /LaunchDaemons/com.apple.proactiveeventtrackerd.plist
+  -rw-r--r--  1      470 /LaunchDaemons/com.apple.AccessibilityUIServer.plist
+  -rw-r--r--  1      599 /LaunchDaemons/com.apple.remindd.plist
+  -rw-r--r--  1      578 /LaunchDaemons/com.apple.touchsetupd.plist
+  -rw-r--r--  1      430 /LaunchDaemons/com.apple.siriinferenced.plist
+  -rw-r--r--  1      545 /LaunchDaemons/com.apple.RemoteManagementAgent.plist
+  -rw-r--r--  1      828 /LaunchDaemons/com.apple.healthd.plist
+  -rw-r--r--  1      289 /LaunchDaemons/com.apple.dprivacyd.plist
+  -rw-r--r--  1      408 /LaunchDaemons/com.apple.quicklook.ThumbnailsAgent.plist
+  -rw-r--r--  1      412 /LaunchDaemons/com.apple.AuthenticationServicesCore.AuthenticationServicesAgent.plist
+  -rw-r--r--  1      488 /LaunchDaemons/com.apple.powerd.plist
+  -rw-r--r--  1      381 /LaunchDaemons/com.apple.speechmodeltrainingd.plist
+  -rw-r--r--  1      629 /LaunchDaemons/com.apple.PowerUIAgent.plist
+  -rw-r--r--  1      612 /LaunchDaemons/com.apple.lsd.system.plist
+  -rw-r--r--  1      294 /LaunchDaemons/com.apple.xpc.roleaccountd.plist
+  -rw-r--r--  1      598 /LaunchDaemons/com.apple.watchlistd.plist
+  -rw-r--r--  1      346 /LaunchDaemons/com.apple.seld.plist
+  -rw-r--r--  1      333 /LaunchDaemons/com.apple.deferredmediad.plist
+  -rw-r--r--  1      256 /LaunchDaemons/com.apple.fdrhelper.plist
+  -rw-r--r--  1      531 /LaunchDaemons/com.apple.FileCoordination.plist
+  -rw-r--r--  1      468 /LaunchDaemons/com.apple.corecaptured.plist
+  -rw-r--r--  1      326 /LaunchDaemons/com.apple.deleted_helper.plist
+  -rw-r--r--  1      422 /LaunchDaemons/com.apple.AssetCacheLocatorService.plist
+  -rw-r--r--  1      357 /LaunchDaemons/com.apple.WirelessRadioManager.plist
+  -rw-r--r--  1      337 /LaunchDaemons/com.apple.tzlinkd.plist
+  -rw-r--r--  1      423 /LaunchDaemons/com.apple.metrickitd.plist
+  -rw-r--r--  1      604 /LaunchDaemons/com.apple.nanoprefsyncd.plist
+  -rw-r--r--  1      505 /LaunchDaemons/com.apple.PassbookUISceneService.plist
+  -rw-r--r--  1      251 /LaunchDaemons/com.apple.momentsd.plist
+  -rw-r--r--  1      694 /LaunchDaemons/com.apple.nanotimekitcompaniond.plist
+  -rw-r--r--  1      705 /LaunchDaemons/com.apple.atc.plist
+  -rw-r--r--  1      639 /LaunchDaemons/com.apple.iap2d.plist
+  -rw-r--r--  1      624 /LaunchDaemons/com.apple.cloudpaird.plist
+  -rw-r--r--  1      582 /LaunchDaemons/com.apple.mediastream.mstreamd.plist
+  -rw-r--r--  1      504 /LaunchDaemons/com.apple.dataaccess.dataaccessd.plist
+  -rw-r--r--  1      687 /LaunchDaemons/com.apple.intelligenceplatformd.plist
+  -rw-r--r--  1      373 /LaunchDaemons/com.apple.pipelined.plist
+  -rw-r--r--  1      487 /LaunchDaemons/com.apple.VoiceOverTouch.plist
+  -rw-r--r--  1      613 /LaunchDaemons/com.apple.icloud.fmflocatord.plist
+  -rw-r--r--  1      597 /LaunchDaemons/com.apple.mDNSResponder.plist
+  -rw-r--r--  1      387 /LaunchDaemons/com.apple.diskimagesiod.ram.plist
+  -rw-r--r--  1      303 /LaunchDaemons/com.apple.swcd.plist
+  -rw-r--r--  1      456 /LaunchDaemons/com.apple.ProxiedCrashCopier.ProxyingDevice.plist
+  -rw-r--r--  1      532 /LaunchDaemons/com.apple.financed.plist
+  -rw-r--r--  1      466 /LaunchDaemons/com.apple.diagnosticextensionsd.plist
+  -rw-r--r--  1      639 /LaunchDaemons/com.apple.ap.promotedcontentd.plist
+  -rw-r--r--  1      507 /LaunchDaemons/com.apple.amsaccountsd.plist
+  -rw-r--r--  1      342 /LaunchDaemons/com.apple.mobile.house_arrest.plist
+  -rw-r--r--  1      426 /LaunchDaemons/com.apple.merchantd.plist
+  -rw-r--r--  1      926 /LaunchDaemons/com.apple.containermanagerd.plist
+  -rw-r--r--  1      355 /LaunchDaemons/com.apple.parsec-fbf.plist
+  -rw-r--r--  1      432 /LaunchDaemons/com.apple.medialibraryd.plist
+  -rw-r--r--  1      243 /LaunchDaemons/com.apple.mobilecheckpoint.checkpointd.plist
+  -rw-r--r--  1      476 /LaunchDaemons/com.apple.FamilyControlsAgent.plist
+  -rw-r--r--  1      558 /LaunchDaemons/com.apple.gamed.plist
+  -rw-r--r--  1      453 /LaunchDaemons/com.apple.ThreadCommissionerService.plist
+  -rw-r--r--  1      283 /LaunchDaemons/com.apple.aggregated.addaily.plist
+  -rw-r--r--  1      471 /LaunchDaemons/com.apple.DragUI.druid.plist
+  -rw-r--r--  1      402 /LaunchDaemons/com.apple.assetsd.nebulad.plist
+  -rw-r--r--  1      270 /LaunchDaemons/com.apple.sysdiagnose_helper.plist
+  -rw-r--r--  1      527 /LaunchDaemons/com.apple.webkit.adattributiond.plist
+  -rw-r--r--  1      275 /LaunchDaemons/com.apple.mobile_installation_proxy.plist
+  -rw-r--r--  1      485 /LaunchDaemons/com.apple.accessibility.heard.plist
+  -rw-r--r--  1      865 /LaunchDaemons/com.apple.Maps.pushdaemon.plist
+  -rw-r--r--  1      476 /LaunchDaemons/com.apple.askpermissiond.plist
+  -rw-r--r--  1      927 /LaunchDaemons/com.apple.donotdisturbd.plist
+  -rw-r--r--  1      475 /LaunchDaemons/com.apple.contacts.donation-agent.plist
+  -rw-r--r--  1      843 /LaunchDaemons/com.apple.checkerboard.plist
+  -rw-r--r--  1      294 /LaunchDaemons/com.apple.SyncAgent.plist
+  -rw-r--r--  1      289 /LaunchDaemons/com.apple.mobile.heartbeat.plist
+  -rw-r--r--  1      287 /LaunchDaemons/com.apple.storagedatad.plist
+  -rw-r--r--  1      424 /LaunchDaemons/com.apple.iconservices.iconservicesagent.plist
+  -rw-r--r--  1      367 /LaunchDaemons/com.apple.filesystems.livefileproviderd.plist
+  -rw-r--r--  1     1007 /LaunchDaemons/com.apple.ClarityBoard.plist
+  -rw-r--r--  1      534 /LaunchDaemons/com.apple.remotemanagementd.plist
+  -rw-r--r--  1      282 /LaunchDaemons/com.apple.BlueTool.plist
+  -rw-r--r--  1      619 /LaunchDaemons/com.apple.followupd.plist
+  -rw-r--r--  1     2301 /LaunchDaemons/com.apple.chronod.plist
+  -rw-r--r--  1      248 /LaunchDaemons/com.apple.powerdatad.plist
+  -rw-r--r--  1      475 /LaunchDaemons/com.apple.exchangesyncd.plist
+  -rw-r--r--  1      577 /LaunchDaemons/com.apple.GameController.gamecontrollerd.plist
+  -rw-r--r--  1      448 /LaunchDaemons/com.apple.fitcore.session.plist
+  -rw-r--r--  1      420 /LaunchDaemons/com.apple.avatarsd.plist
+  -rw-r--r--  1      298 /LaunchDaemons/com.apple.sirittsd.plist
+  -rw-r--r--  1      388 /LaunchDaemons/com.apple.SecureBackupDaemon.plist
+  -rw-r--r--  1      504 /LaunchDaemons/com.apple.analyticsd.plist
+  -rw-r--r--  1      510 /LaunchDaemons/com.apple.maps.destinationd.plist
+  -rw-r--r--  1      713 /LaunchDaemons/com.apple.amsengagementd.plist
+  -rw-r--r--  1      507 /LaunchDaemons/com.apple.ap.adprivacyd.plist
+  -rw-r--r--  1      359 /LaunchDaemons/com.apple.perfdiagsselfenabled.plist
+  -rw-r--r--  1      253 /LaunchDaemons/com.apple.nehelper-embedded.plist
+  -rw-r--r--  1      298 /LaunchDaemons/com.apple.ospredictiond.plist
+  -rw-r--r--  1      616 /LaunchDaemons/com.apple.distnoted.xpc.daemon.plist
+  -rw-r--r--  1      566 /LaunchDaemons/com.apple.assetsd.plist
+  -rw-r--r--  1      792 /LaunchDaemons/com.apple.lsd.plist
+  -rw-r--r--  1      489 /LaunchDaemons/com.apple.sleepd.plist
+  -rw-r--r--  1     1068 /LaunchDaemons/com.apple.appstored.plist
+  -rw-r--r--  1      415 /LaunchDaemons/com.apple.logd_helper.plist
+  -rw-r--r--  1      539 /LaunchDaemons/com.apple.ind.plist
+  -rw-r--r--  1      547 /LaunchDaemons/com.apple.BarcodeSupport.BarcodeNotificationService.plist
+  -rw-r--r--  1      378 /LaunchDaemons/com.apple.MTLAssetUpgraderD.plist
+  -rw-r--r--  1      687 /LaunchDaemons/com.apple.rapportd.plist
+  -rw-r--r--  1      468 /LaunchDaemons/com.apple.MediaRemoteUI.plist
+  -rw-r--r--  1      572 /LaunchDaemons/com.apple.voicememod.plist
+  -rw-r--r--  1     4483 /LaunchDaemons/com.apple.mediaserverd.plist
+  -rw-r--r--  1      360 /LaunchDaemons/com.apple.healthrecordsd.plist
+  -rw-r--r--  1      628 /LaunchDaemons/com.apple.coreidvd.plist
+  -rw-r--r--  1      862 /LaunchDaemons/com.apple.remoted.plist
+  -rw-r--r--  1      413 /LaunchDaemons/com.apple.iosdiagnosticsd.plist
+  -rw-r--r--  1      462 /LaunchDaemons/com.apple.subridged.plist
+  -rw-r--r--  1      232 /LaunchDaemons/com.apple.mdt.plist
+  -rw-r--r--  1      454 /LaunchDaemons/com.apple.biomesyncd.plist
+  -rw-r--r--  1      861 /LaunchDaemons/com.apple.carkitd.plist
+  -rw-r--r--  1      382 /LaunchDaemons/com.apple.cloudd.plist
+  -rw-r--r--  1      387 /LaunchDaemons/com.apple.PerfPowerServicesExtended.plist
+  -rw-r--r--  1      482 /LaunchDaemons/com.apple.devicedataresetd.plist
+  -rw-r--r--  1      860 /LaunchDaemons/com.apple.siriactionsd.plist
+  -rw-r--r--  1      669 /LaunchDaemons/com.apple.biomed.plist
+  -rw-r--r--  1      643 /LaunchDaemons/com.apple.iapd.plist
+  -rw-r--r--  1      568 /LaunchDaemons/com.apple.commandandcontrol.plist
+  -rw-r--r--  1      729 /LaunchDaemons/com.apple.dt.previewsd.plist
+  -rw-r--r--  1      454 /LaunchDaemons/com.apple.companionauthd.plist
+  -rw-r--r--  1      282 /LaunchDaemons/com.apple.griddatad.plist
+  -rw-r--r--  1      761 /LaunchDaemons/com.apple.sysdiagnose.plist
+  -rw-r--r--  1      368 /LaunchDaemons/com.apple.accessibility.motiontrackingd.plist
+  -rw-r--r--  1      348 /LaunchDaemons/com.apple.companion_proxy.plist
+  -rw-r--r--  1      487 /LaunchDaemons/com.apple.CoreAuthentication.daemon.plist
+  -rw-r--r--  1      590 /LaunchDaemons/com.apple.anomalydetectiond.plist
+  -rw-r--r--  1      543 /LaunchDaemons/com.apple.StatusKitAgent.plist
+  -rw-r--r--  1      417 /LaunchDaemons/com.apple.transparencyStaticKey.plist
+  -rw-r--r--  1      471 /LaunchDaemons/com.apple.appstorecomponentsd.plist
+  -rw-r--r--  1      525 /LaunchDaemons/com.apple.navd.plist
+  -rw-r--r--  1      288 /LaunchDaemons/com.apple.countryd.plist
+  -rw-r--r--  1      729 /LaunchDaemons/com.apple.coreservices.useractivityd.plist
+  -rw-r--r--  1      636 /LaunchDaemons/com.apple.mobile.usermanagerd.plist
+  -rw-r--r--  1      468 /LaunchDaemons/com.apple.ClockAngel.plist
+  -rw-r--r--  1      445 /LaunchDaemons/com.apple.fusiond.plist
+  -rw-r--r--  1      410 /LaunchDaemons/com.apple.tvremoted.plist
+  -rw-r--r--  1      412 /LaunchDaemons/com.apple.runningboardd.plist
+  -rw-r--r--  1      546 /LaunchDaemons/com.apple.checkerboardd.plist
+  -rw-r--r--  1      411 /LaunchDaemons/com.apple.backgroundassets.user.plist
+  -rw-r--r--  1      433 /LaunchDaemons/com.apple.and.plist
+  -rw-r--r--  1      403 /LaunchDaemons/com.apple.AppSSODaemon.plist
+  -rw-r--r--  1      321 /LaunchDaemons/com.apple.parsecd.plist
+  -rw-r--r--  1      644 /LaunchDaemons/com.apple.appleaccountd.plist
+  -rw-r--r--  1      589 /LaunchDaemons/com.apple.spotlightknowledged.plist
+  -rw-r--r--  1      616 /LaunchDaemons/com.apple.mediaparserd.plist
+  -rw-r--r--  1      490 /LaunchDaemons/com.apple.fitcore.plist
+  -rw-r--r--  1      621 /LaunchDaemons/com.apple.symptomsd-diag.plist
+  -rw-r--r--  1      372 /LaunchDaemons/com.apple.transparencyd.plist
+  -rw-r--r--  1      498 /LaunchDaemons/com.apple.UIKit.OverlayUI.plist
+  -rw-r--r--  1      350 /LaunchDaemons/com.apple.mobilestoredemod.plist
+  -rw-r--r--  1      765 /LaunchDaemons/com.apple.securityd.plist
+  -rw-r--r--  1      291 /LaunchDaemons/com.apple.streaming_zip_conduit.plist
+  -rw-r--r--  1      260 /LaunchDaemons/com.apple.NetworkLinkConditioner.plist
+  -rw-r--r--  1      431 /LaunchDaemons/com.apple.videosubscriptionsd.plist
+  -rw-r--r--  1      323 /LaunchDaemons/com.apple.networkserviceproxy.plist
+  -rw-r--r--  1      771 /LaunchDaemons/com.apple.sysdiagnose.darwinos.plist
+  -rw-r--r--  1      519 /LaunchDaemons/com.apple.cloudphotod.plist
+  -rw-r--r--  1      432 /LaunchDaemons/com.apple.pasteboard.pasted.plist
+  -rw-r--r--  1      389 /LaunchDaemons/com.apple.idcredd.plist
+  -rw-r--r--  1      271 /LaunchDaemons/com.apple.sidecar-relay.plist
+  -rw-r--r--  1      382 /LaunchDaemons/com.apple.captiveagent.plist
+  -rw-r--r--  1      258 /LaunchDaemons/com.apple.spindump.plist
+  -rw-r--r--  1      542 /LaunchDaemons/com.apple.screensharingserver.plist
+  -rw-r--r--  1      418 /LaunchDaemons/com.apple.localizationswitcherd.plist
+  -rw-r--r--  1      376 /LaunchDaemons/com.apple.Safari.SafeBrowsing.Service.plist
+  -rw-r--r--  1      564 /LaunchDaemons/com.apple.tccd.plist
+  -rw-r--r--  1      560 /LaunchDaemons/com.apple.replayd.plist
+  -rw-r--r--  1      263 /LaunchDaemons/com.apple.languageassetd.plist
+  -rw-r--r--  1      361 /LaunchDaemons/com.apple.filesystems.smbclientd.plist
+  -rw-r--r--  1      470 /LaunchDaemons/com.apple.photos.VideoConversionService.plist
+  -rw-r--r--  1      287 /LaunchDaemons/com.apple.watchpresenced.plist
+  -rw-r--r--  1      338 /LaunchDaemons/com.apple.midiserver-ios.plist
+  -rw-r--r--  1      530 /LaunchDaemons/com.apple.powerlogHelperd.plist
+  -rw-r--r--  1      256 /LaunchDaemons/com.apple.pcapd.plist
+  drwxr-xr-x  2        0 /var/mobile
+  drwxr-xr-x  2        0 /var/mobile/Library
+  -rw-r--r--  1 10368016 /var/mobile/Library/hakios-wallpaper.raw
+  drwxr-xr-x  2        0 /var/mobile/Library/Preferences
+  drwxr-xr-x 30      960 /private/var
+  drwxr-xr-x  2       64 /private/var/Keychains
+  drwxr-xr-x  3       96 /private/var/Managed Preferences
+  drwxr-xr-x  2       64 /private/var/MobileAsset
+  drwxr-xr-x  3       96 /private/var/MobileDevice
+  drwxr-xr-x  2       64 /private/var/MobileSoftwareUpdate
+  drwx------  2       64 /private/var/audit
+  drwx------  2       64 /private/var/buddy
+  drwxr-xr-x  5      160 /private/var/containers
+  drwxr-xr-x  2       64 /private/var/datamigrator
+  drwxr-xr-x 35     1120 /private/var/db
+  drwxr-xr-x  2       64 /private/var/dextcores
+  drwxr-xr-x  2       64 /private/var/empty
+  drwxr-xr-x  2       64 /private/var/folders
+  drwxr-xr-x  2       64 /private/var/hardware
+  drwxr-xr-x  2       64 /private/var/installd
+  drwxr-xr-x  6      192 /private/var/log
+  drwxr-xr-x  5      160 /private/var/logs
+  drwx--x--x  7      224 /private/var/mobile
+  drwxr-xr-x  2       64 /private/var/msgs
+  drwxr-xr-x  2       64 /private/var/networkd
+  drwxr-xr-x  3       96 /private/var/preferences
+  drwxr-xr-x  3       96 /private/var/protected
+  drwxr-x---  3       96 /private/var/root
+  drwxrwxr-x  2       64 /private/var/run
+  drwxr-xr-x  2       64 /private/var/select
+  drwxrwxrwx  3       96 /private/var/tmp
+  drwxr-xr-x  2       64 /private/var/vm
+  drwxr-xr-x  4      128 /private/var/wireless
+  drwxr-xr-x  2       64 /private/var/Managed Preferences/mobile
+  drwxr-xr-x  2       64 /private/var/MobileDevice/ProvisioningProfiles
+  drwxr-xr-x  2       64 /private/var/containers/Bundle
+  drwxr-xr-x  2       64 /private/var/containers/Data
+  drwxr-xr-x  2       64 /private/var/containers/Shared
+  drwxr-xr-x  2       64 /private/var/db/DumpPanic
+  drwxr-xr-x  3       96 /private/var/db/ExtensibleSSO
+  drwx------  2       64 /private/var/db/Sandbox
+  drwxrwxrwx  2       64 /private/var/db/UpdateMetrics
+  drwxr-x--x  2       64 /private/var/db/accessoryupdater
+  drwxr-x---  2       64 /private/var/db/analyticsd
+  drwxr-xr-x  2       64 /private/var/db/astris
+  drwx------  2       64 /private/var/db/biome
+  drwxr-xr-x  2       64 /private/var/db/com.apple.dt.automationmode
+  drwxr-xr-x  3       96 /private/var/db/com.apple.xpc.launchd
+  drwx------  2       64 /private/var/db/com.apple.xpc.roleaccountd.staging
+  drwxr-x---  2       64 /private/var/db/coreml
+  drwxr-x---  3       96 /private/var/db/darwindaemon
+  drwx--x--x  2       64 /private/var/db/datadetectors
+  drwxr-x--x  3      128 /private/var/db/diagnostics
+  drwxr-x---  2       64 /private/var/db/diskimagesiod
+  drwxr-xr-x  2       64 /private/var/db/findmydevice
+  drwxr-x---  2       64 /private/var/db/fpsd
+  drwx------  2       64 /private/var/db/gpsd
+  drwxr-x---  2       64 /private/var/db/knowledgegraphd
+  drwx------  2       64 /private/var/db/lockdown
+  drwxr-xr-x  2       64 /private/var/db/lsd
+  drwxr-x---  2       64 /private/var/db/mmaintenanced
+  drwxr-x---  2       64 /private/var/db/nearbyd
+  drwxr-xr-x  2       64 /private/var/db/ondemand
+  drwxr-x---  2       64 /private/var/db/reportmemoryexception
+  drwxr-x---  2       64 /private/var/db/rmd
+  drwxr-xr-x  4      128 /private/var/db/sysdiagnose
+  drwxr-xr-x  2       64 /private/var/db/systemstats
+  drwxr-x---  2       64 /private/var/db/timed
+  drwxr-xr-x  2      128 /private/var/db/timezone
+  drwxr-xr-x  2       96 /private/var/db/uuidtext
+  drwxrwxrwx  2       64 /private/var/db/hakios-metal-cache
+  drwxr-xr-x  2       64 /private/var/log/asl
+  drwxr-xr-x  2       64 /private/var/log/com.apple.xpc.launchd
+  drwxr-xr-x  2       64 /private/var/log/mDNSResponder
+  drwxr-xr-x  2       64 /private/var/log/ppp
+  drwxr-xr-x  2       64 /private/var/logs/Baseband
+  drwxr-xr-x  2       64 /private/var/logs/hidfw-crashlogs
+  drwxr-xr-x  2       64 /private/var/logs/mediaserverd
+  drwxr-xr-x  2       64 /private/var/mobile/Applications
+  drwxr-xr-x  4      128 /private/var/mobile/Containers
+  drwx--x--x 13      448 /private/var/mobile/Library
+  drwxr-x---  5      160 /private/var/mobile/Media
+  drwx------  2       64 /private/var/mobile/tmp
+  drwxr-xr-x  4      128 /private/var/preferences/Logging
+  drwxr-xr-x  2       64 /private/var/protected/trustd
+  drwx------  5      160 /private/var/root/Library
+  drwxr-xr-x  2       64 /private/var/tmp/com.apple.chrono
+  drwxr-xr-x  2       64 /private/var/wireless/Library
+  drwxr-xr-x  2       64 /private/var/wireless/baseband_data
+  -rwxr-xr-x  1    90528 /lib/libhakios.dylib
+  drwxr-xr-x  2        0 /lib/HakiosMetal.bundle
+  drwxr-xr-x  2        0 /lib/HakiosAudio.driver
+  -rwxr-xr-x  1    67976 /lib/libhakios.tweaks.dylib
+  -rwxr-xr-x  1   113448 /lib/libhakios.sb.dylib
+  -rwxr-xr-x  1   128536 /lib/libhakios.media.dylib
+  -rwxr-xr-x  1    68608 /lib/libhakios.app.dylib
+  -rw-r--r--  1      814 /lib/HakiosMetal.bundle/Info.plist
+  -rwxr-xr-x  1  8694560 /lib/HakiosMetal.bundle/HakiosMetal
+  -rwxr-xr-x  1    68496 /lib/HakiosAudio.driver/HakiosAudio
+  -rw-r--r--  1     1044 /lib/HakiosAudio.driver/Info.plist
+  crw--w--w-  1        0 /dev/console
+  crw-rw-rw-  1        0 /dev/tty
+  crw-rw-rw-  1        0 /dev/null
+  crw-rw-rw-  1        0 /dev/zero
+  crw-------  1        0 /dev/klog
+  crw-------  1        0 /dev/oslog
+  crw-------  1        0 /dev/oslog_stream
+  dr-xr-xr-x  1        0 /dev/fd
+  lr-xr-xr-x  1        0 /dev/stdin -> fd/0
+  lr-xr-xr-x  1        0 /dev/stdout -> fd/1
+  lr-xr-xr-x  1        0 /dev/stderr -> fd/2
+  crw-------  1        0 /dev/pf
+  crw-------  1        0 /dev/pfm
+  crw-rw-rw-  1        0 /dev/ttyp0
+  crw-rw-rw-  1        0 /dev/ptyp0
+  crw-rw-rw-  1        0 /dev/ttyp1
+  crw-rw-rw-  1        0 /dev/ptyp1
+  crw-rw-rw-  1        0 /dev/ttyp2
+  crw-rw-rw-  1        0 /dev/ptyp2
+  crw-rw-rw-  1        0 /dev/ttyp3
+  crw-rw-rw-  1        0 /dev/ptyp3
+  crw-rw-rw-  1        0 /dev/ttyp4
+  crw-rw-rw-  1        0 /dev/ptyp4
+  crw-rw-rw-  1        0 /dev/ttyp5
+  crw-rw-rw-  1        0 /dev/ptyp5
+  crw-rw-rw-  1        0 /dev/ttyp6
+  crw-rw-rw-  1        0 /dev/ptyp6
+  crw-rw-rw-  1        0 /dev/ttyp7
+  crw-rw-rw-  1        0 /dev/ptyp7
+  crw-rw-rw-  1        0 /dev/ttyp8
+  crw-rw-rw-  1        0 /dev/ptyp8
+  crw-rw-rw-  1        0 /dev/ttyp9
+  crw-rw-rw-  1        0 /dev/ptyp9
+  crw-rw-rw-  1        0 /dev/ttypa
+  crw-rw-rw-  1        0 /dev/ptypa
+  crw-rw-rw-  1        0 /dev/ttypb
+  crw-rw-rw-  1        0 /dev/ptypb
+  crw-rw-rw-  1        0 /dev/ttypc
+  crw-rw-rw-  1        0 /dev/ptypc
+  crw-rw-rw-  1        0 /dev/ttypd
+  crw-rw-rw-  1        0 /dev/ptypd
+  crw-rw-rw-  1        0 /dev/ttype
+  crw-rw-rw-  1        0 /dev/ptype
+  crw-rw-rw-  1        0 /dev/ttypf
+  crw-rw-rw-  1        0 /dev/ptypf
+  crw-rw-rw-  1        0 /dev/ptmx
+  crw-------  1        0 /dev/bpf0
+  crw-------  1        0 /dev/bpf1
+  crw-------  1        0 /dev/bpf2
+  crw-------  1        0 /dev/bpf3
+  crw-r--r--  1        0 /dev/fsevents
+  crw-rw-rw-  1        0 /dev/random
+  crw-rw-rw-  1        0 /dev/urandom
+  crw-rw-rw-  1        0 /dev/dtrace
+  crw-rw-rw-  1        0 /dev/dtracehelper
+  crw-rw-rw-  1        0 /dev/lockstat
+  crw-rw-rw-  1        0 /dev/sdt
+  crw-rw-rw-  1        0 /dev/systrace
+  crw-rw-rw-  1        0 /dev/machtrace
+  crw-rw-rw-  1        0 /dev/fbt
+  crw-rw-rw-  1        0 /dev/profile
+  brw-------  1        0 /dev/md0
+  crw-------  1        0 /dev/rmd0
+  crw-rw-rw-  1        0 /dev/hakios-touch
+  crw-rw-rw-  1        0 /dev/hakios-audio
+  -rw-r--r--  1     1852 /xpc/extensions.plist.sig
+  -rw-r--r--  1   104731 /xpc/extensions.plist
+  -rw-r--r--  1   300000 /share/pattern.bin
+  drwxr-xr-x  2        0 /share/ca-share
+  -rw-r--r--  1  3831132 /share/ca-share/QuartzCore-default.metallib
+[ ok ] walk our image (readdir, lstat, readlink)
+[ ok ] the system image has the dynamic linker
+  etc/motd: Darwin on hakios: image built 2026-11-09 23:58
+[ ok ] read a small file
+[FAIL] follow a symlink to a directory
+[ ok ] missing file gives ENOENT
+[ ok ] creating a file gives EROFS
+[ ok ] read a 300 KB file and verify every byte
+[ ok ] seek into the middle and read
+[ ok ] mmap the file and verify every byte (page-in)
+
+-- memory --
+[ ok ] 64 MB of anonymous memory: touch every page, read it back
+[ ok ] unmap it
+
+-- processes --
+[ ok ] fork
+  child: pid 2, parent 1, 3 arguments: [/bin/child] [one] [two]
+  child: environment: [GREETING=hello from init]
+[ ok ] exec a second program from the image, collect its exit status
+[ ok ] pipe from a child process
+
+-- devices --
+  crw--w--w-  1        0 /dev/console
+  crw-rw-rw-  1        0 /dev/tty
+  crw-rw-rw-  1        0 /dev/null
+  crw-rw-rw-  1        0 /dev/zero
+  crw-------  1        0 /dev/klog
+  crw-------  1        0 /dev/oslog
+  crw-------  1        0 /dev/oslog_stream
+  dr-xr-xr-x  1        0 /dev/fd
+  lr-xr-xr-x  1        0 /dev/stdin -> fd/0
+  lr-xr-xr-x  1        0 /dev/stdout -> fd/1
+  lr-xr-xr-x  1        0 /dev/stderr -> fd/2
+  crw-------  1        0 /dev/pf
+  crw-------  1        0 /dev/pfm
+  crw-rw-rw-  1        0 /dev/ttyp0
+  crw-rw-rw-  1        0 /dev/ptyp0
+  crw-rw-rw-  1        0 /dev/ttyp1
+  crw-rw-rw-  1        0 /dev/ptyp1
+  crw-rw-rw-  1        0 /dev/ttyp2
+  crw-rw-rw-  1        0 /dev/ptyp2
+  crw-rw-rw-  1        0 /dev/ttyp3
+  crw-rw-rw-  1        0 /dev/ptyp3
+  crw-rw-rw-  1        0 /dev/ttyp4
+  crw-rw-rw-  1        0 /dev/ptyp4
+  crw-rw-rw-  1        0 /dev/ttyp5
+  crw-rw-rw-  1        0 /dev/ptyp5
+  crw-rw-rw-  1        0 /dev/ttyp6
+  crw-rw-rw-  1        0 /dev/ptyp6
+  crw-rw-rw-  1        0 /dev/ttyp7
+  crw-rw-rw-  1        0 /dev/ptyp7
+  crw-rw-rw-  1        0 /dev/ttyp8
+  crw-rw-rw-  1        0 /dev/ptyp8
+  crw-rw-rw-  1        0 /dev/ttyp9
+  crw-rw-rw-  1        0 /dev/ptyp9
+  crw-rw-rw-  1        0 /dev/ttypa
+  crw-rw-rw-  1        0 /dev/ptypa
+  crw-rw-rw-  1        0 /dev/ttypb
+  crw-rw-rw-  1        0 /dev/ptypb
+  crw-rw-rw-  1        0 /dev/ttypc
+  crw-rw-rw-  1        0 /dev/ptypc
+  crw-rw-rw-  1        0 /dev/ttypd
+  crw-rw-rw-  1        0 /dev/ptypd
+  crw-rw-rw-  1        0 /dev/ttype
+  crw-rw-rw-  1        0 /dev/ptype
+  crw-rw-rw-  1        0 /dev/ttypf
+  crw-rw-rw-  1        0 /dev/ptypf
+  crw-rw-rw-  1        0 /dev/ptmx
+  crw-------  1        0 /dev/bpf0
+  crw-------  1        0 /dev/bpf1
+  crw-------  1        0 /dev/bpf2
+  crw-------  1        0 /dev/bpf3
+  crw-r--r--  1        0 /dev/fsevents
+  crw-rw-rw-  1        0 /dev/random
+  crw-rw-rw-  1        0 /dev/urandom
+  crw-rw-rw-  1        0 /dev/dtrace
+  crw-rw-rw-  1        0 /dev/dtracehelper
+  crw-rw-rw-  1        0 /dev/lockstat
+  crw-rw-rw-  1        0 /dev/sdt
+  crw-rw-rw-  1        0 /dev/systrace
+  crw-rw-rw-  1        0 /dev/machtrace
+  crw-rw-rw-  1        0 /dev/fbt
+  crw-rw-rw-  1        0 /dev/profile
+  brw-------  1        0 /dev/md0
+  crw-------  1        0 /dev/rmd0
+  crw-rw-rw-  1        0 /dev/hakios-touch
+  crw-rw-rw-  1        0 /dev/hakios-audio
+[ ok ] devfs is mounted on /dev
+[ ok ] /dev/zero
+[ ok ] /dev/null
+  /dev/random: 6a c9 1b 97 a3 2f 5f bd 30 ad 51 ef a6 cc f1 21
+[ ok ] /dev/random
+
+-- time --
+  slept 200 ms, the clock advanced 205 ms
+[ ok ] sleep and wall clock agree
+
+=== 22 checks, 1 failed ===
+init: library insertion: /redwood/lib/libhakios.dylib backboardd containermanagerd containermanagerd_system;/redwood/lib/libhakios.sb.dylib SpringBoard;/redwood/lib/libhakios.media.dylib mediaserverd;/redwood/lib/libhakios.app.dylib Sileo;/redwood/lib/libhakios.tweaks.dylib Preferences
+init: up to 32768 vnodes
+
+=== /etc/rc ===
+
+$ exec /sbin/launchd.darwin
+/sbin/launchd.darwin: No such file or directory
+
+=== init: done ===
+adreno: the run is about to end: the GPU is given back (it had finished what it was given after 0 us)
+adreno: 0: the 3D core before it is stopped: status 0x1, interrupts 0, ring read up to 16 of 16; the GMU sees it busy: 0x30000000
+adreno: 0: the GPU block's bus has been halted and let go again (rbbm_gbif_halt_ack 0, gbif halt_ack 0x3)
+adreno: 0: about to write gmu host2gmu_intr_set at 0x3d7e650: 0x80000000
+adreno: 0: about to send the GMU "slumber": message 33, 3 words, number 6
+adreno: 0: the GMU accepts "slumber"
+adreno: 0: gmu sptprac_pwr_clk_status (0x3d7e340) = 0x3
+adreno: 0: gpucc gx_gdscr (0x3d9905c) = 0x222801
+adreno: 0: about to write gmu cm3_sysreset at 0x3d7e000: 0x1
+adreno: 0: gpucc gx_gdscr (0x3d9905c) = 0x222801
+adreno: 0: about to ask TrustZone to give up the zap shader: smc 0x42000206, arguments 0xd, 0, 0
+adreno: 0: TrustZone returns 0, answer 0
+adreno: 0: the zap shader: TrustZone has given it up
+adreno: 0: about to write gmu rscc_control_req at 0x3d8ec1c: 0x1
+adreno: 0: rscc rsc_status0_drv0 (0x3d50010) = 0x1010006
+adreno: 0: about to write gmu rscc_control_req at 0x3d8ec1c: 0
+adreno: 0: about to write smmu smr at 0x3da0804: 0
+adreno: 0: about to write smmu s2cr at 0x3da0c04: 0x20000
+adreno: 0: about to write smmu cb sctlr at 0x3dc1000: 0
+adreno: 0: about to write smmu smr at 0x3da0800: 0
+adreno: 0: about to write smmu s2cr at 0x3da0c00: 0x20000
+adreno: 0: about to write smmu cb sctlr at 0x3dc0000: 0
+adreno: 0: about to write gpucc cx_gdscr at 0x3d99108: 0xf822f001
+adreno: 0: gpucc cx_gdscr (0x3d99108) = 0x22f001
+adreno: 0: gpucc cx_hw_ctrl (0x3d9953c) = 0x5ff4
+
+psci: cpu 1 ends the system: the return to the boot loader is the boot processor's to make
+ddr: memory bandwidth vote 1024 for the loader: done
+
+--- kernel message buffer ---
+[   28.035876]:  vm_cache_geometry_colors: 8
+[   28.035881]: do_cacheid() - 65536 bytes Unknown cache (I:32768 D:32768 (separate)), 16-way assoc, 64 bytes/line
+[   28.036130]: kprintf initialized
+[   28.036200]: initialize_screen: b=B8000000, w=000004C4, h=00000A98, r=00001310, d=00000000
+[   28.036217]: pe_arm_init_interrupts: args: 0xfffffff007b76720
+[   28.036221]: pe_arm_map_interrupt_controller: soc_phys:  0x400000
+[   28.036224]: pe_arm_map_interrupt_controller: failed to find the interrupt-controller.
+[   28.036228]: pe_arm_init_debug: failed to find cpu-debug-interface
+[   28.036295]: gic: v3, distributor 0xfffffff0f6920000, cpu 0's redistributor 0xfffffff0f6a10000, virtual timer on PPI 27
+[   28.036311]: Darwin Kernel Version 22.5.0: Sen 09 Nov 2026 23:42:06 WIB; okihann:xnu-8796.121.2[xnu-8796.121.2-dirty]/BUILD/obj/DEVELOPMENT_ARM64_BCM2837
+[   28.040368]: pmap_startup() init/release time: 3358 microsec
+[   28.040376]: pmap_startup() delayed init/release of 0 pages
+[   28.040380]: vm_page_bootstrap: 186682 free pages, 2757 wired pages, (up to 0 of which are delayed free)
+[   28.044345]: VM boostrap: 102 maps, 204 entries and 512 holes available
+[   28.044367]: Maximum number of VM swap files: 5
+[   28.044453]: compressor              : 0xfffffff0f8000000 - 0xfffffff1d901c000 (3600M)
+[   28.044457]: gIOKitPageableFixed1    : 0xfffffff1d901c000 - 0xfffffff1df01c000 (96M)
+[   28.044460]: ipc_kernel_map          : 0xfffffff1df01c000 - 0xfffffff1e101c000 (32M)
+[   28.044463]: zones                   : 0xfffffff1e101c000 - 0xfffffff7e101c000 (24G)
+[   28.044465]: gIOKitPageableFixed3    : 0xfffffff7e101c000 - 0xfffffff7e701c000 (96M)
+[   28.044468]: zone_meta               : 0xfffffff7e701c000 - 0xfffffff7e90d4000 (32M)
+[   28.044470]: ipc_kernel_copy_map     : 0xfffffff7e90d4000 - 0xfffffff7e98d4000 (8M)
+[   28.044473]: kmem_sprayqtn_range     : 0xfffffff7e98d4000 - 0xfffffff845158000 (1464M)
+[   28.044475]: mb                      : 0xfffffff845158000 - 0xfffffff849158000 (64M)
+[   28.044478]: bufferhdr               : 0xfffffff849158000 - 0xfffffff849378000 (2176K)
+[   28.044481]: kmem_data_range         : 0xfffffff849378000 - 0xfffffffaf1850000 (10G)
+[   28.044483]: gIOKitPageableFixed2    : 0xfffffffaf1850000 - 0xfffffffaf7850000 (96M)
+[   28.044486]: bsd_pageable            : 0xfffffffaf7850000 - 0xfffffffaf8198000 (9M)
+[   28.044488]: gIOKitPageableFixed0    : 0xfffffffaf8198000 - 0xfffffffafe198000 (96M)
+[   28.044491]: io_submap               : 0xfffffffafe198000 - 0xfffffffafe998000 (8M)
+[   28.044493]: kmem_ptr_range          : 0xfffffffafe998000 - 0xfffffffbffd38000 (4115M)
+[   28.044496]: kmem_ptr_range_meta     : 0xfffffffbffd38000 - 0xfffffffbffdfc000 (784K)
+[   28.044525]: kmem_large_ranges[1]    : 0 - 0 (0B)
+[   28.044527]: kmem_large_ranges[2]    : 0 - 0 (0B)
+[   28.044529]: kmem_large_ranges[3]    : 0 - 0 (0B)
+[   28.044531]: kmem_large_ranges[4]    : 0xfffffff7f4fe4800 - 0xfffffff845158000 (1281M)
+[   28.044533]: kmem_large_ranges[5]    : 0xfffffff89e413000 - 0xfffffffaf1850000 (9G)
+[   28.044540]: "vm_compressor_mode" is 2
+[   28.044600]: zone_init: pgzalloc  0xfffffff1e101c000:0xfffffff1e2700000 (22M) [732 slots]
+[   28.044610]: zone_init: map VM    0xfffffff1e2700000:0xfffffff2c89f4000 (3682M)
+[   28.044616]: zone_init: map RO    0xfffffff2c89f4000:0xfffffff31559c000 (1227M)
+[   28.044621]: zone_init: map GEN0  0xfffffff31559c000:0xfffffff3fb894000 (3682M)
+[   28.044626]: zone_init: map GEN1  0xfffffff3fb894000:0xfffffff4e1b8c000 (3682M)
+[   28.044631]: zone_init: map GEN2  0xfffffff4e1b8c000:0xfffffff5c7e84000 (3682M)
+[   28.044636]: zone_init: map GEN3  0xfffffff5c7e84000:0xfffffff6ae17c000 (3682M)
+[   28.044641]: zone_init: map DATA  0xfffffff6ae17c000:0xfffffff7e101c000 (4910M)
+[   28.044645]: zone_init: metadata  0xfffffff7e702c000:0xfffffff7e882c000 (24M)
+[   28.044648]: zone_init: metabits  0xfffffff7e882c000:0xfffffff7e90c4000 (8M)
+[   28.044649]: zone_init: extra     0:0 (0B)
+[   28.044795]: VM bootstrap done: 90 maps, 163 entries and 500 holes left
+[   28.046630]: IOKit IOMD setownership ENABLED
+[   28.046638]: ATM subsystem is initialized
+[   28.047533]: Log queues configured: slot count: 56, per-slot size: 32768, total size: 1835008
+[   28.047546]: OSLog stream configured: stream: 8192 bytes, cache: 2112 bytes
+[   28.047548]: OSLog stream verification: 0
+[   28.047570]: Long logs support configured: size: 16384
+[   28.047661]: Firehose configured: 16 chunks, 8 io pages
+[   28.047673]: Telemetry: Sampling all tasks once per 1 second
+[   28.047682]: Scheduler: Default of clutch
+[   28.047686]: Setting scheduler priority decay band limit 18
+[   28.047690]: standard timeslicing quantum is 10000 us
+[   28.047692]: standard background quantum is 2500 us
+[   28.047944]: BANK subsystem is initialized
+[   28.047977]: mig_table_max_displ = 54 mach_kobj_count = 371
+[   28.050038]: panic_trace: PE_arm_debug_enable_trace enter
+[   28.050044]: panic_trace: PE_arm_debug_enable_trace exit
+[   28.050053]: kdp_core zlib memory 0x8000
+[   28.050149]: Registered coredump handler for kernel
+[   28.050154]: Serial requested, consistent debug disabled or debug boot arg not present, configuring debugging over serial
+[   28.050155]: Initializing serial KDP
+[   28.050761]: iBoot version: iBoot-8422.100.650
+[   28.050764]: iBoot Stage 2 version: 
+[   28.052647]: IONVRAM.cpp:initImageFormat:1364 - NVRAM size is 8192 bytes
+[   28.052686]: IONVRAM.cpp:getNVRAMProperties:1176 - _bankSize=0x2000, _bankCount=0x1, _currentBank=0
+[   28.052739]: IONVRAMCHRPHandler.cpp:unserializeImage:479 - NVRAM : commonPartitionOffset - 0x30, commonPartitionSize - 0x1fd0, systemPartitionOffset - 0xffffffff, systemPartitionSize - 0
+[   28.052917]: minicrypto: registered (md5, sha1, sha2, hmac, aes-ecb/cbc/ctr, hmac-drbg prng); no xts/gcm, no RSA
+[   28.052922]: ulock_initialize>thread_max=1536, ull_hash_buckets=512
+[   28.053820]: hakios-kernel: 14 drivers built in (.config): virtio_sound adreno virtio_input goodix buttons qmi virtio_net battery cpufreq thermal pmic ufs virtio_blk wifi
+[   28.053859]: calling mpo_policy_init for vnguard
+[   28.053864]: Security policy loaded: Guarded vnode policy (vnguard)
+[   28.053867]: calling mpo_policy_init for AMFI
+[   28.053869]: Security policy loaded: Apple Mobile File Integrity (stand-in) (AMFI)
+[   28.053872]: calling mpo_policy_init for Sandbox
+[   28.053874]: Security policy loaded: Seatbelt sandbox policy (stand-in) (Sandbox)
+[   28.053939]: No POST boot-arg set.
+[   28.054449]: PMRD: PMTraceWorker 0x7b1cbeaa6ee8d989
+[   28.054605]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 10001)
+[   28.055059]: GenericARMPE: platform "D22AP"
+[   28.055080]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[   28.055082]: [0]ml_processor_register>cpu_id 0xfffffff5c7dae140 cluster_id 0 cpu_number 0 is type 0
+[   28.055099]: GenericARMCPU: cpu 0 (phys id 0x700) registered
+[   28.055122]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[   28.055125]: [0]ml_processor_register>cpu_id 0xfffffff5c7dac880 cluster_id 0 cpu_number 1 is type 0
+[   28.055144]: GenericARMCPU: cpu 1 (phys id 0x600) registered
+[   28.055164]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[   28.055166]: [0]ml_processor_register>cpu_id 0xfffffff5c7dad240 cluster_id 0 cpu_number 2 is type 0
+[   28.055183]: GenericARMCPU: cpu 2 (phys id 0x500) registered
+[   28.055202]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[   28.055204]: [0]ml_processor_register>cpu_id 0xfffffff5c7daf880 cluster_id 0 cpu_number 3 is type 0
+[   28.055220]: GenericARMCPU: cpu 3 (phys id 0x400) registered
+[   28.055239]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[   28.055241]: [0]ml_processor_register>cpu_id 0xfffffff5c7dac280 cluster_id 0 cpu_number 4 is type 0
+[   28.055246]: cpu 4 (phys id 0x300) is a slower core: the scheduler uses it after cpu 3 (phys id 0x400)
+[   28.055262]: GenericARMCPU: cpu 4 (phys id 0x300) registered
+[   28.055281]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[   28.055283]: [0]ml_processor_register>cpu_id 0xfffffff5c7daec80 cluster_id 0 cpu_number 5 is type 0
+[   28.055287]: cpu 5 (phys id 0x200) is a slower core: the scheduler uses it after cpu 2 (phys id 0x500)
+[   28.055303]: GenericARMCPU: cpu 5 (phys id 0x200) registered
+[   28.055322]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[   28.055324]: [0]ml_processor_register>cpu_id 0xfffffff5c7dac400 cluster_id 0 cpu_number 6 is type 0
+[   28.055328]: cpu 6 (phys id 0x100) is a slower core: the scheduler uses it after cpu 1 (phys id 0x600)
+[   28.055343]: GenericARMCPU: cpu 6 (phys id 0x100) registered
+[   28.055408]: Copyright (c) 1982, 1986, 1989, 1991, 1993
+	The Regents of the University of California. All rights reserved.
+
+[   28.055411]: bsd_init: calling kauth_init
+[   28.055497]: bsd_init: calling process_name
+[   28.055500]: bsd_init: calling get_bsdthread_info
+[   28.055501]: MAC Framework successfully initialized
+[   28.055580]: bsd_init: calling kauth_cred_create
+[   28.055583]: bsd_init: calling chgproccnt
+[   28.055585]: bsd_init: calling kmem_suballoc
+[   28.055594]: bsd_init: calling bsd_bufferinit
+[   28.056428]: using 3749 buffer headers and 3749 cluster IO buffer headers
+[   28.056456]: bsd_init: calling IOKitInitializeTime
+[   28.056490]: clock_initialize_calendar system does not have monotonic clock
+[   28.056494]: bsd_init: calling vfsinit
+[   28.056603]: ktriage_register_subsystem_strings: set subsystem 8 strings
+[   28.056637]: bsd_init: calling proc_uuid_policy_init()
+[   28.056744]: mcache: 7 CPU(s), 64 bytes CPU cache line size
+[   28.056746]: bsd_init: calling mbinit
+[   28.057009]: mbinit: done [64 MB total pool size, (42/21) split]
+[   28.057014]: bsd_init: calling knote_init
+[   28.057017]: bsd_init: calling eventhandler_init
+[   28.057018]: bsd_init: calling aio_init
+[   28.057057]: bsd_init: calling pshm_cache_init
+[   28.057059]: bsd_init: calling psem_cache_init
+[   28.057066]: bsd_init: calling nwk_wq_init
+[   28.057076]: bsd_init: calling dlil_init
+[   28.057080]: SK: netagent is enabled by default for this platform
+[   28.057246]: DLIL: running SUM16 self-tests ... PASSED
+[   28.057404]: dlil_init: Waiting for all the create dlil kernel threads to get scheduled at least once.
+[   28.057514]: PMRD: power event 7 args 0x7b1cbea98892b5e9 0x0
+[   28.057522]: PMRD: power event 7 args 0x7b1cbea98892e069 0x0
+[   28.057779]: PMRD: PowerChangeOverride (OFF_STATE->ON_STATE, f, 0x2) tag 0x20064
+[   28.057797]: PMRD: sysPowerDownHandler message kIOMessageSystemCapabilityChange
+[   28.057799]: PMRD: sysPowerDownHandler cap f -> f (flags 1)
+[   28.057846]: dlil_init: All the created dlil kernel threads have been scheduled at least once. Proceeding.
+[   28.057849]: bsd_init: calling socketinit
+[   28.057857]: bsd_init: calling domaininit
+[   28.058179]: bsd_init: calling skywalk_init
+[   28.058205]: SK[0]: skmem_region_init              seg_size 16384, md_seg_size 16384, drv_buf_seg_size 65536 [eff 81920], usr_buf_seg_size 16384
+[   28.059066]: Skywalk: running self-tests
+[   28.059068]: Skywalk: sk_copy64_8 ... PASSED
+[   28.059069]: Skywalk: sk_copy32_8 ... PASSED
+[   28.059071]: Skywalk: sk_copy64_16 ... PASSED
+[   28.059072]: Skywalk: sk_copy32_16 ... PASSED
+[   28.059073]: Skywalk: sk_copy64_20 ... PASSED
+[   28.059074]: Skywalk: sk_copy64_24 ... PASSED
+[   28.059076]: Skywalk: sk_copy64_32 ... PASSED
+[   28.059077]: Skywalk: sk_copy32_32 ... PASSED
+[   28.059078]: Skywalk: sk_copy64_40 ... PASSED
+[   28.059079]: Skywalk: sk_copy64_64x ... PASSED
+[   28.059080]: Skywalk: sk_copy64_32x ... PASSED
+[   28.059082]: Skywalk: sk_copy64_8x ... PASSED
+[   28.059083]: Skywalk: sk_copy64_4x ... PASSED
+[   28.059084]: Skywalk: sk_zero_16 ... PASSED
+[   28.059085]: Skywalk: sk_zero_32 ... PASSED
+[   28.059087]: Skywalk: sk_zero_48 ... PASSED
+[   28.059088]: Skywalk: sk_zero_128 ... PASSED
+[   28.059110]: Skywalk: memcmp mask ... PASSED
+[   28.059709]: bsd_init: calling memorystatus_freeze_init
+[   28.059711]: bsd_init: calling memorystatus_init
+[   28.059774]: bsd_init: calling sysctl_mib_init
+[   28.059777]: bsd_init: calling bsd_autoconf
+[   28.059778]: bsd_autoconf: calling kminit
+[   28.061546]: bsd_init: calling loopattach
+[   28.061876]: ifnet_attach: All kernel threads created for interface lo0 have been scheduled at least once. Proceeding.
+[   28.061885]: bsd_init: calling ether_family_init
+[   28.061959]: bsd_init: calling net_init_run
+[   28.062010]: skip attaching fsw to lo0 using legacy TX modelReinit'd ND information for interface lo0
+[   28.062447]: bsd_init: calling inittodr
+[   28.062449]: bsd_init: calling setconf
+[   28.062552]: PMRD: sysPowerDownHandler message kIOMessageSystemCapabilityChange
+[   28.062555]: PMRD: sysPowerDownHandler cap f -> f (flags 2)
+[   28.062560]: PMRD: tellChangeUp OFF_STATE->ON_STATE
+[   28.062567]: PMRD: PowerChangeDone: OFF_STATE->ON_STATE
+[   28.062568]: PMRD: Force re-evaluating aggressiveness
+[   28.062570]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 30002)
+[   28.062581]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x10001
+[   28.062584]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[   28.062586]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x302) tag 0x40064
+[   28.062591]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[   28.062593]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x302) tag 0x50064
+[   28.062596]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[   28.062600]: PMRD: adjustPowerState ON_STATE, asap 0, idleSleepEnabled 0
+[   28.062602]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 60008)
+[   28.062608]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x30002
+[   28.062610]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[   28.062613]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x60008
+[   28.062614]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[   28.062713]: cpu_start() cpu: 0
+[   28.062736]: cpu_start() cpu: 1
+[   28.063987]: gic: v3, distributor 0xfffffff0f6920000, cpu 1's redistributor 0xfffffff0f69f0000, virtual timer on PPI 27
+[   28.063993]: panic_trace: PE_arm_debug_enable_trace enter
+[   28.063994]: panic_trace: PE_arm_debug_enable_trace exit
+[   28.063995]: arm_cpu_init(): cpu 1 online
+[   28.064502]: cpu_start() cpu: 2
+[   28.065510]: gic: v3, distributor 0xfffffff0f6920000, cpu 2's redistributor 0xfffffff0f69d0000, virtual timer on PPI 27
+[   28.065514]: panic_trace: PE_arm_debug_enable_trace enter
+[   28.065515]: panic_trace: PE_arm_debug_enable_trace exit
+[   28.065516]: arm_cpu_init(): cpu 2 online
+[   28.066156]: cpu_start() cpu: 3
+[   28.067136]: gic: v3, distributor 0xfffffff0f6920000, cpu 3's redistributor 0xfffffff0f69b0000, virtual timer on PPI 27
+[   28.067140]: panic_trace: PE_arm_debug_enable_trace enter
+[   28.067141]: panic_trace: PE_arm_debug_enable_trace exit
+[   28.067142]: arm_cpu_init(): cpu 3 online
+[   28.067796]: GenericARMPE: 4 of 7 processors are running
+[   28.067987]: MiniIOMobileFramebuffer: display 1125x2436 on a panel of 1220x2712 (4880 bytes per row)
+[   28.068035]: MiniIOMobileFramebuffer: IOMFBDisplayRefresh: 60 Hz (the panel: 60), an interval of 71582788 (2^-32 s), 319999 ticks
+[   28.068081]: MiniIOMobileFramebuffer: metal=1: the accelerator names HakiosMetal as its Metal plug-in
+[   28.164544]: !BSD
+[   28.164572]: Added memory device md0/rmd0 (01000000/0D000000) at FFFFFFF0082F0000 for 0000000000BB0000
+[   28.164576]: BSD root: md0, major 1, minor 0
+[   28.164580]: bsd_init: vfs_mountroot
+[   28.164987]: apfs: device 1,0: requests to it cost next to nothing (a disk in memory)
+[   28.165015]: apfs: 4 threads on a request of many pieces (3 helpers)
+[   28.165075]: apfs: volume 0 "redwood" of container 0 (at 0 MB): 487 files, 21 directories, 2639 blocks of 4096 used
+[   28.165100]: bsd_init: calling VFS_ROOT
+[   28.165108]: bsd_init: calling devfs_kernel_mount
+[   28.165300]: hakios-kernel: version 2.3.4-hakios-darwin22.5-sm7435-gd852e4bd-dirty
+[   28.165465]: ddr: memory bandwidth vote 16383 on MC0 (0x50000) and SH0 (0x50004)
+[   28.192021]: cpufreq: group 0 (3 of our cores): row 7 -> 8 of the frequency table, 1958 MHz
+[   28.213253]: cpufreq: group 1 (4 of our cores): row 6 -> 11 of the frequency table, 2400 MHz
+[   28.217472]: cpufreq: on core 7 a loop ran at 380, now at 479
+[   28.218215]: adreno: steps up to 21, without those in mask 0x1c00; step 21 is the new one and waits 0 ms after each announcement
+[   28.218221]: adreno: step 1: read the GPU's clocks in the global clock controller (registers the touch screen driver uses too)
+[   28.218232]: adreno: 1: gcc pll votes (0x162000) = 0x60257f
+[   28.218235]: adreno: 1: gcc gpu_cfg_ahb (0x181004) = 0x9
+[   28.218238]: adreno: 1: gcc gpu_memnoc_gfx (0x181010) = 0x80000003
+[   28.218241]: adreno: 1: gcc gpu_snoc_dvm_gfx (0x181018) = 0x80000001
+[   28.218244]: adreno: 1: gcc ddrss_gpu_axi (0x181154) = 0x300001
+[   28.218249]: adreno: step 1: look up the GPU's supply rails in the boot loader's list of RPMh resources (memory at 0x80860000)
+[   28.218258]: adreno: 1: RPMh has "gfx.lvl" at 0x30050; levels: 0 56 64 128 192 224 256 320 384 416
+[   28.218263]: adreno: 1: RPMh has "cx.lvl" at 0x30000; levels: 0 16 64 128 192 224 256 288 320 336 384 400 416 432
+[   28.218269]: adreno: 1: RPMh has "mx.lvl" at 0x30010; levels: 0 16 56 64 128 192 224 256 288 320 336 384 400 416 432
+[   28.218271]: adreno: step 1: done
+[   28.218274]: adreno: step 2: set the GPU's speed bin to 0 (qfprom at 0x221c8119 is protected by the hypervisor on Garnet)
+[   28.218277]: adreno: 2: speed bin 0: an Adreno 710
+[   28.218278]: adreno: step 2: done
+[   28.218282]: adreno: step 3: make sure the clock of the GPU clock controller's registers runs (gcc_gpu_cfg_ahb)
+[   28.218286]: adreno: 3: gcc gpu_cfg_ahb (0x181004) = 0x9
+[   28.218290]: adreno: step 3: read the GPU's clock controller (0x3d90000) as it is: the first access to the GPU's part of the SoC
+[   28.218295]: adreno: 3: gpucc cx_gdscr (0x3d99108) = 0x22f001
+[   28.218298]: adreno: 3: gpucc cx_hw_ctrl (0x3d9953c) = 0x5ff4
+[   28.218301]: adreno: 3: gpucc gx_gdscr (0x3d9905c) = 0x22f001
+[   28.218305]: adreno: 3: gpucc gx_sw_reset (0x3d99058) = 0
+[   28.218308]: adreno: 3: gpucc gx_domain_misc (0x3d99504) = 0x3c0001
+[   28.218311]: adreno: 3: gpucc pll0 mode (0x3d90000) = 0x100
+[   28.218314]: adreno: 3: gpucc pll0 multiplier (0x3d90004) = 0
+[   28.218317]: adreno: 3: gpucc pll1 mode (0x3d91000) = 0x100
+[   28.218320]: adreno: 3: gpucc pll1 multiplier (0x3d91004) = 0
+[   28.218323]: adreno: 3: gpucc gmu_clk_src command (0x3d99318) = 0x80000000
+[   28.218327]: adreno: 3: gpucc gmu_clk_src source (0x3d9931c) = 0
+[   28.218330]: adreno: 3: gpucc hub_clk_src command (0x3d993ec) = 0
+[   28.218333]: adreno: 3: gpucc hub_clk_src source (0x3d993f0) = 0
+[   28.218336]: adreno: 3: gpucc cxo_aon (0x3d99004) = 0
+[   28.218339]: adreno: 3: gpucc gx_gmu (0x3d99060) = 0x88000
+[   28.218341]: adreno: 3: gpucc ahb (0x3d9911c) = 0
+[   28.218344]: adreno: 3: gpucc cx_gmu (0x3d9913c) = 0x80000221
+[   28.218347]: adreno: 3: gpucc cxo (0x3d99144) = 0x80000001
+[   28.218350]: adreno: 3: gpucc cb (0x3d993a4) = 0x1
+[   28.218353]: adreno: 3: gpucc hub_aon (0x3d993e8) = 0x1
+[   28.218356]: adreno: 3: gpucc hub_cx_int (0x3d99148) = 0x80000001
+[   28.218360]: adreno: 3: gpucc smmu vote (0x3d97000) = 0x80000000
+[   28.218361]: adreno: step 3: done
+[   28.218365]: adreno: step 4: switch the CX half of the GPU block on (gpu_cx_gdsc): clear the collapse bit of its power switch
+[   28.218369]: adreno: 4: gpucc cx_gdscr (0x3d99108) = 0x22f001
+[   28.218372]: adreno: 4: gpucc cx_hw_ctrl (0x3d9953c) = 0x5ff4
+[   28.218376]: adreno: 4: about to write gpucc cx_gdscr at 0x3d99108: 0x22f000
+[   28.218502]: adreno: 4: gpucc cx_gdscr (0x3d99108) = 0xf822f000
+[   28.218506]: adreno: 4: gpucc cx_hw_ctrl (0x3d9953c) = 0x80001fe0
+[   28.218509]: adreno: 4: CX is on
+[   28.218511]: adreno: step 4: done
+[   28.218516]: adreno: step 5: in the global clock controller: ask for the 300 MHz tap for the GPU; the GPU's bus and memory clocks on
+[   28.218519]: adreno: 5: gcc pll votes (0x162000) = 0x60257f
+[   28.218522]: adreno: 5: about to write gcc pll votes at 0x162000: 0x61257f
+[   28.218525]: adreno: 5: gcc pll votes (0x162000) = 0x61257f
+[   28.218528]: adreno: 5: gcc gpu_memnoc_gfx (0x181010) = 0x3
+[   28.218530]: adreno: 5: gcc gpu_snoc_dvm_gfx (0x181018) = 0x1
+[   28.218533]: adreno: 5: gcc ddrss_gpu_axi (0x181154) = 0x300001
+[   28.218536]: adreno: step 5: in the GPU's clock controller: the GMU's clock to 200 MHz, the hub's to 150 MHz
+[   28.218540]: adreno: 5: gpucc gmu_clk_src (0x3d9931c) = 0
+[   28.218544]: adreno: 5: about to write gpucc gmu_clk_src at 0x3d9931c: 0x602
+[   28.218548]: adreno: 5: about to write gpucc gmu_clk_src at 0x3d99318: 0x11
+[   28.218671]: adreno: 5: gpucc gmu_clk_src (0x3d9931c) = 0x602
+[   28.218674]: adreno: 5: gpucc hub_clk_src (0x3d993f0) = 0
+[   28.218676]: adreno: 5: about to write gpucc hub_clk_src at 0x3d993f0: 0x603
+[   28.218680]: adreno: 5: about to write gpucc hub_clk_src at 0x3d993ec: 0x11
+[   28.218802]: adreno: 5: gpucc hub_clk_src (0x3d993f0) = 0x603
+[   28.218805]: adreno: step 5: in the GPU's clock controller: the clocks of the GMU and of the SMMU on
+[   28.218808]: adreno: 5: gpucc cb (0x3d993a4) = 0x1
+[   28.218810]: adreno: 5: gpucc cxo (0x3d99144) = 0x1
+[   28.218813]: adreno: 5: gpucc ahb (0x3d9911c) = 0
+[   28.218815]: adreno: 5: about to write gpucc ahb at 0x3d9911c: 0x1
+[   28.218818]: adreno: 5: gpucc ahb (0x3d9911c) = 0
+[   28.218820]: adreno: 5: gpucc hub_aon (0x3d993e8) = 0x1
+[   28.218823]: adreno: 5: gpucc hub_cx_int (0x3d99148) = 0x1
+[   28.218825]: adreno: 5: gpucc cx_gmu (0x3d9913c) = 0x221
+[   28.218828]: adreno: 5: gpucc smmu vote (0x3d97000) = 0x80000000
+[   28.218831]: adreno: 5: about to write gpucc smmu vote at 0x3d97000: 0x80000001
+[   28.218834]: adreno: 5: gpucc smmu vote (0x3d97000) = 0x1
+[   28.218839]: adreno: step 5: measure the GPU block's clocks with the SoC's frequency counter (debug registers at gcc 0x162000.., gpucc 0x3d910fc, 0x3d91100, 0x3d91568)
+[   28.218843]: adreno: 5: gpucc debug mux (0x3d99568) = 0
+[   28.218845]: adreno: 5: gpucc debug divider (0x3d99280) = 0x1
+[   28.218848]: adreno: 5: gpucc debug output (0x3d99284) = 0x80000000
+[   28.218851]: adreno: 5: gcc debug mux (0x172000) = 0x14b
+[   28.218854]: adreno: 5: gcc debug divider (0x172004) = 0
+[   28.218857]: adreno: 5: gcc debug input (0x172008) = 0x80000000
+[   28.218859]: adreno: 5: gcc crystal/4 (0x17200c) = 0x80000000
+[   28.218862]: adreno: 5: gcc measure control (0x172038) = 0
+[   28.218864]: adreno: 5: about to write gpucc debug mux at 0x3d99568: 0x1b
+[   28.218867]: adreno: 5: about to write gpucc debug divider at 0x3d99280: 0x1
+[   28.218871]: adreno: 5: about to write gpucc debug output at 0x3d99284: 0x80000001
+[   28.218874]: adreno: 5: about to write gcc debug mux at 0x172000: 0x146
+[   28.218877]: adreno: 5: about to write gcc debug divider at 0x172004: 0x1
+[   28.218880]: adreno: 5: about to write gcc debug input at 0x172008: 0x80000001
+[   28.218883]: adreno: 5: about to write gcc crystal/4 at 0x17200c: 0x80000001
+[   28.218886]: adreno: 5: gcc measure control (0x172038) = 0
+[   28.218889]: adreno: 5: about to write gcc measure control at 0x172038: 0x200000
+[   28.218907]: adreno: 5: about to write gcc measure control at 0x172038: 0x1000
+[   28.218910]: adreno: 5: about to write gcc measure control at 0x172038: 0x101000
+[   28.219851]: adreno: 5: about to write gcc measure control at 0x172038: 0x1000
+[   28.219855]: adreno: 5: gcc measure status (0x17203c) = 0x2000000
+[   28.219858]: adreno: 5: gcc measure control (0x172038) = 0x1000
+[   28.219861]: adreno: 5: about to write gcc measure control at 0x172038: 0x200000
+[   28.219878]: adreno: 5: about to write gcc measure control at 0x172038: 0x20000
+[   28.219882]: adreno: 5: about to write gcc measure control at 0x172038: 0x120000
+[   28.247537]: adreno: 5: about to write gcc measure control at 0x172038: 0x20000
+[   28.247540]: adreno: 5: gcc measure status (0x17203c) = 0x2000000
+[   28.247543]: adreno: 5: about to write gcc measure control at 0x172038: 0
+[   28.247546]: adreno: 5: about to write gcc crystal/4 at 0x17200c: 0x80000000
+[   28.247549]: adreno: 5: about to write gcc debug input at 0x172008: 0x80000000
+[   28.247552]: adreno: 5: about to write gcc debug divider at 0x172004: 0
+[   28.247555]: adreno: 5: about to write gcc debug mux at 0x172000: 0x14b
+[   28.247558]: adreno: 5: about to write gpucc debug output at 0x3d99284: 0x80000000
+[   28.247561]: adreno: 5: about to write gpucc debug divider at 0x3d99280: 0x1
+[   28.247564]: adreno: 5: about to write gpucc debug mux at 0x3d99568: 0
+[   28.247567]: adreno: 5: measured: cxo runs at 0 Hz (the crystal: 19200000)
+[   28.247571]: adreno: 5: the frequency counter cannot be used on this SoC: going on by the control registers
+[   28.247573]: adreno: step 5: done
+[   28.247578]: adreno: step 6: read registers of the GMU (0x3d6a000): the first words from the GPU block itself
+[   28.247584]: adreno: 6: gmu cm3_sysreset (0x3d7e000) = 0x1
+[   28.247586]: adreno: 6: gmu cm3_boot_config (0x3d7e004) = 0
+[   28.247589]: adreno: 6: gmu cm3_fw_init_result (0x3d7e070) = 0
+[   28.247592]: adreno: 6: gmu cm3_cfg (0x3d7e0b4) = 0x4052
+[   28.247594]: adreno: 6: gmu hfi_ctrl_status (0x3d7e600) = 0
+[   28.247597]: adreno: 6: gmu hfi_version_info (0x3d7e604) = 0
+[   28.247600]: adreno: 6: gmu general_7 (0x3d7e730) = 0
+[   28.247602]: adreno: 6: gmu rpmh_power_state (0x3d7e3b0) = 0xf
+[   28.247605]: adreno: 6: gmu sptprac_pwr_clk_status (0x3d7e340) = 0x3
+[   28.247608]: adreno: 6: gmu ao_host_interrupt_status (0x3d8ec14) = 0
+[   28.247611]: adreno: 6: gmu ao_gpu_cx_busy_status (0x3d8ec30) = 0x30000000
+[   28.247614]: adreno: 6: gmu ahb_fence_status (0x3d8ec4c) = 0
+[   28.247617]: adreno: 6: gmu always_on_counter_h (0x3d7e224) = 0
+[   28.247620]: adreno: 6: gmu always_on_counter_l (0x3d7e220) = 0x879f6
+[   28.258744]: adreno: 6: the GMU's counter counts at 19199182 Hz: the 19.2 MHz crystal: THE GPU BLOCK IS ALIVE
+[   28.258748]: adreno: 6: gmu dtcm, where firmware has its versions (0x3d74fe0) = 0xf8228517
+[   28.258751]: adreno: 6: gmu dtcm, where firmware has its versions (0x3d74fe4) = 0x88234646
+[   28.258755]: adreno: 6: gmu dtcm, where firmware has its versions (0x3d74fe8) = 0xac27a31a
+[   28.258759]: adreno: 6: gmu dtcm, where firmware has its versions (0x3d74fec) = 0x166ef8db
+[   28.258763]: adreno: 6: gmu dtcm, where firmware has its versions (0x3d74ff0) = 0xa3abd376
+[   28.258766]: adreno: step 6: read the GPU's bus interface (0x3d0f000) and the CX odds and ends (0x3d9e000)
+[   28.258771]: adreno: 6: gbif scache_cntl0 (0x3d0f004) = 0
+[   28.258774]: adreno: 6: gbif halt (0x3d0f114) = 0x8
+[   28.258776]: adreno: 6: gbif halt_ack (0x3d0f118) = 0x3
+[   28.258781]: adreno: 6: cx_misc system_cache_cntl_0 (0x3d9e004) = 0
+[   28.258783]: adreno: 6: cx_misc system_cache_cntl_1 (0x3d9e008) = 0
+[   28.258785]: adreno: step 6: done
+[   28.258789]: adreno: step 7: read the GMU's RPMh channel (0x3de0000)
+[   28.258793]: adreno: 7: rscc rsc_status0_drv0 (0x3d50010) = 0
+[   28.258796]: adreno: 7: rscc pdc_slave_id_drv0 (0x3d5002c) = 0x1
+[   28.258799]: adreno: 7: rscc seq_busy_drv0 (0x3d50404) = 0
+[   28.258802]: adreno: 7: rscc seq_mem_0_drv0 (0x3d50600) = 0
+[   28.258805]: adreno: 7: rscc tcs0_drv0_status (0x3d50d18) = 0x1
+[   28.258808]: adreno: 7: gmu rscc_control_ack (0x3d8ec20) = 0
+[   28.258809]: adreno: step 7: done
+[   28.258814]: adreno: step 8: read the ID registers of the GPU's SMMU (0x3da0000): global registers, which the hypervisor answers for
+[   28.258830]: adreno: 8: smmu idr0 (0x3da0020) = 0x4c017e18
+[   28.258839]: adreno: 8: smmu idr1 (0x3da0024) = 0x40000016
+[   28.258842]: adreno: 8: SMMU: 24 stream match registers, 22 contexts, 32 pages of 0x1000 before the contexts' own
+[   28.258850]: adreno: 8: smmu idr2 (0x3da0028) = 0x5511
+[   28.258858]: adreno: 8: smmu idr7 (0x3da003c) = 0x24
+[   28.258866]: adreno: 8: smmu scr0 (0x3da0000) = 0x2c0406
+[   28.258873]: adreno: 8: smmu sgfsr (0x3da0048) = 0
+[   28.258877]: adreno: step 8: read the SMMU's stream table and the kinds of its contexts, as the boot loader and hypervisor left them
+[   28.258887]: adreno: 8: smmu smr (0x3da0800) = 0
+[   28.258896]: adreno: 8: smmu s2cr (0x3da0c00) = 0x20000
+[   28.258904]: adreno: 8: smmu smr (0x3da0804) = 0
+[   28.258913]: adreno: 8: smmu s2cr (0x3da0c04) = 0x20000
+[   28.258921]: adreno: 8: smmu smr (0x3da0808) = 0
+[   28.258929]: adreno: 8: smmu s2cr (0x3da0c08) = 0x20000
+[   28.258937]: adreno: 8: smmu smr (0x3da080c) = 0
+[   28.258946]: adreno: 8: smmu s2cr (0x3da0c0c) = 0x20000
+[   28.258954]: adreno: 8: smmu smr (0x3da0810) = 0
+[   28.258962]: adreno: 8: smmu s2cr (0x3da0c10) = 0x20000
+[   28.258970]: adreno: 8: smmu smr (0x3da0814) = 0
+[   28.258979]: adreno: 8: smmu s2cr (0x3da0c14) = 0x20000
+[   28.258988]: adreno: 8: smmu smr (0x3da0818) = 0
+[   28.258996]: adreno: 8: smmu s2cr (0x3da0c18) = 0x20000
+[   28.259004]: adreno: 8: smmu smr (0x3da081c) = 0
+[   28.259012]: adreno: 8: smmu s2cr (0x3da0c1c) = 0x20000
+[   28.259021]: adreno: 8: smmu smr (0x3da0820) = 0
+[   28.259029]: adreno: 8: smmu s2cr (0x3da0c20) = 0x20000
+[   28.259037]: adreno: 8: smmu smr (0x3da0824) = 0
+[   28.259046]: adreno: 8: smmu s2cr (0x3da0c24) = 0x20000
+[   28.259054]: adreno: 8: smmu smr (0x3da0828) = 0
+[   28.259062]: adreno: 8: smmu s2cr (0x3da0c28) = 0x20000
+[   28.259070]: adreno: 8: smmu smr (0x3da082c) = 0
+[   28.259080]: adreno: 8: smmu s2cr (0x3da0c2c) = 0x20000
+[   28.259088]: adreno: 8: smmu smr (0x3da0830) = 0
+[   28.259096]: adreno: 8: smmu s2cr (0x3da0c30) = 0x20000
+[   28.259105]: adreno: 8: smmu smr (0x3da0834) = 0
+[   28.259113]: adreno: 8: smmu s2cr (0x3da0c34) = 0x20000
+[   28.259121]: adreno: 8: smmu smr (0x3da0838) = 0
+[   28.259129]: adreno: 8: smmu s2cr (0x3da0c38) = 0x20000
+[   28.259138]: adreno: 8: smmu smr (0x3da083c) = 0
+[   28.259146]: adreno: 8: smmu s2cr (0x3da0c3c) = 0x20000
+[   28.259155]: adreno: 8: smmu cbar (0x3da1000) = 0
+[   28.259164]: adreno: 8: smmu cbar (0x3da1004) = 0
+[   28.259172]: adreno: 8: smmu cbar (0x3da1008) = 0
+[   28.259180]: adreno: 8: smmu cbar (0x3da100c) = 0
+[   28.259189]: adreno: 8: smmu cbar (0x3da1010) = 0
+[   28.259197]: adreno: 8: smmu cbar (0x3da1014) = 0
+[   28.259205]: adreno: 8: smmu cbar (0x3da1018) = 0
+[   28.259214]: adreno: 8: smmu cbar (0x3da101c) = 0
+[   28.259222]: adreno: 8: smmu cbar (0x3da1020) = 0
+[   28.259230]: adreno: 8: smmu cbar (0x3da1024) = 0
+[   28.259239]: adreno: 8: smmu cbar (0x3da1028) = 0
+[   28.259247]: adreno: 8: smmu cbar (0x3da102c) = 0
+[   28.259256]: adreno: 8: smmu cbar (0x3da1030) = 0
+[   28.259264]: adreno: 8: smmu cbar (0x3da1034) = 0
+[   28.259272]: adreno: 8: smmu cbar (0x3da1038) = 0
+[   28.259280]: adreno: 8: smmu cbar (0x3da103c) = 0
+[   28.259282]: adreno: step 8: done
+[   28.259287]: adreno: step 9: read translation context 0 of the SMMU: registers of the hardware itself, not the hypervisor's
+[   28.259296]: adreno: 9: smmu idr0 (0x3da0020) = 0x4c017e18
+[   28.259303]: adreno: 9: smmu idr1 (0x3da0024) = 0x40000016
+[   28.259307]: adreno: 9: SMMU: 24 stream match registers, 22 contexts, 32 pages of 0x1000 before the contexts' own
+[   28.259311]: adreno: 9: smmu cb0 sctlr (0x3dc0000) = 0x817471a
+[   28.259314]: adreno: 9: smmu cb0 ttbr0, low (0x3dc0020) = 0x403a4140
+[   28.259317]: adreno: 9: smmu cb0 ttbr0, high (0x3dc0024) = 0xa322504
+[   28.259320]: adreno: 9: smmu cb0 tcr (0x3dc0030) = 0x8210001
+[   28.259322]: adreno: 9: smmu cb0 fsr (0x3dc0058) = 0
+[   28.259324]: adreno: step 9: done
+[   28.259329]: adreno: step 13: find the GMU's firmware, fw/gmu_gen70000.bin, in the small image, and make the memory it asks for
+[   28.259480]: adreno: 13: fw/gmu_gen70000.bin: 57272 bytes in the image of /dev/md0
+[   28.259499]: adreno: 13: the GMU sees 0x4000..0x11fff in memory of ours (0x8caa10000)
+[   28.259511]: adreno: 13: the GMU sees 0x100000..0x108fff in memory of ours (0x8caa20000)
+[   28.259525]: adreno: 13: the GMU sees 0x200000..0x212fff in memory of ours (0x8caa34000)
+[   28.259533]: adreno: 13: the GMU sees 0x300000..0x306fff in memory of ours (0x8caa1c000)
+[   28.259541]: adreno: 13: the GMU sees 0x60000000..0x60000fff in memory of ours (0x8caa40000)
+[   28.259546]: adreno: 13: the GMU sees 0x60001000..0x60001fff in memory of ours (0x8caa48000)
+[   28.259553]: adreno: 13: the GMU sees 0x60002000..0x60005fff in memory of ours (0x8caa4c000)
+[   28.259560]: adreno: 13: the GMU sees 0x60006000..0x60009fff in memory of ours (0x8caa50000)
+[   28.259566]: adreno: step 13: give the SMMU's context 1 these tables and send the GMU's requests (stream 5) through it: the first writes to the SMMU, the global ones (cbar, cba2r, s2cr, smr) through the hypervisor
+[   28.259578]: adreno: 13: smmu idr0 (0x3da0020) = 0x4c017e18
+[   28.259586]: adreno: 13: smmu idr1 (0x3da0024) = 0x40000016
+[   28.259589]: adreno: 13: SMMU: 24 stream match registers, 22 contexts, 32 pages of 0x1000 before the contexts' own
+[   28.259594]: adreno: 13: about to write smmu cb sctlr at 0x3dc1000: 0
+[   28.259598]: adreno: 13: about to write smmu cba2r at 0x3da1804: 0x1
+[   28.259609]: adreno: 13: about to write smmu cbar at 0x3da1004: 0x1f300
+[   28.259632]: adreno: 13: about to write smmu cb tcr2 at 0x3dc1010: 0x38011
+[   28.259635]: adreno: 13: about to write smmu cb tcr at 0x3dc1030: 0x803519
+[   28.259639]: adreno: 13: about to write smmu cb ttbr0, low at 0x3dc1020: 0xcaa14000
+[   28.259643]: adreno: 13: about to write smmu cb ttbr0, high at 0x3dc1024: 0x10008
+[   28.259646]: adreno: 13: about to write smmu cb ttbr1, low at 0x3dc1028: 0
+[   28.259649]: adreno: 13: about to write smmu cb ttbr1, high at 0x3dc102c: 0
+[   28.259653]: adreno: 13: about to write smmu cb mair0 at 0x3dc1038: 0xf404ff44
+[   28.259656]: adreno: 13: about to write smmu cb mair1 at 0x3dc103c: 0
+[   28.259659]: adreno: 13: about to write smmu cb fsr at 0x3dc1058: 0xc00001fe
+[   28.259663]: adreno: 13: about to write smmu cb tlbiasid at 0x3dc1610: 0x1
+[   28.259666]: adreno: 13: about to write smmu cb tlbsync at 0x3dc17f0: 0x1
+[   28.259670]: adreno: 13: about to write smmu cb sctlr at 0x3dc1000: 0x1027
+[   28.259673]: adreno: 13: about to write smmu s2cr at 0x3da0c04: 0x1
+[   28.259685]: adreno: 13: about to write smmu smr at 0x3da0804: 0x84000005
+[   28.259706]: adreno: 13: smmu smr (0x3da0804) = 0x84000005
+[   28.259716]: adreno: 13: smmu s2cr (0x3da0c04) = 0x1
+[   28.259725]: adreno: 13: smmu cbar (0x3da1004) = 0x1f300
+[   28.259728]: adreno: 13: smmu cb sctlr (0x3dc1000) = 0x27
+[   28.259731]: adreno: 13: smmu cb ttbr0, low (0x3dc1020) = 0xcaa14000
+[   28.259734]: adreno: 13: smmu cb ttbr0, high (0x3dc1024) = 0x10008
+[   28.259737]: adreno: 13: smmu cb tcr (0x3dc1030) = 0x803519
+[   28.259745]: adreno: 13: smmu cba2r (0x3da1804) = 0x1
+[   28.259748]: adreno: 13: smmu cb tcr2 (0x3dc1010) = 0x38071
+[   28.259751]: adreno: 13: smmu cb fsr (0x3dc1058) = 0x400
+[   28.259758]: adreno: 13: smmu sgfsr (0x3da0048) = 0
+[   28.259760]: adreno: step 13: done
+[   28.259767]: adreno: step 14: load the GMU's firmware: its first 16K of code and of data through the GMU's registers (0x3d6d000, 0x3d71000), the rest into the memory just made
+[   28.259770]: adreno: 14: about to write gmu cm3_sysreset at 0x3d7e000: 0x1
+[   28.259799]: adreno: 14: 0xdcac bytes at the GMU's 0x4000, in memory
+[   28.259853]: adreno: 14: 0x1dc bytes at the GMU's 0, through its registers
+[   28.259860]: adreno: 14: 0x28 bytes at the GMU's 0x10007f98, through its registers
+[   28.259865]: adreno: 14: 0x18 bytes at the GMU's 0x10007fdc, through its registers
+[   28.259871]: adreno: 14: THE GMU'S FIRMWARE IS LOADED; its versions, read back from the GMU: core 0x40000007, power 0x40000007, HFI 0x20010000
+[   28.259874]: adreno: step 14: done
+[   28.259884]: adreno: step 15: tell the GMU where things are, by its registers: the message table, the log, which GPU this is; its caches and its use of RPMh; then let its processor out of reset
+[   28.259887]: adreno: 15: gmu cm3_sysreset (0x3d7e000) = 0x1
+[   28.259891]: adreno: 15: rscc drv config (0x3d5000c) = 0x4000000a
+[   28.259894]: adreno: 15: rscc rsc_status0_drv0 (0x3d50010) = 0
+[   28.259897]: adreno: 15: rscc seq_busy_drv0 (0x3d50404) = 0
+[   28.259900]: adreno: 15: rscc slots' interrupts enabled (0x3d50d00) = 0
+[   28.259903]: adreno: 15: rscc slots' interrupts pending (0x3d50d04) = 0
+[   28.259910]: adreno: 15: rscc slot 0: wait 0, control 0, idle 0x1, enabled 0; commands (number, address, data, status):
+[   28.259924]: adreno: 15:   0 0 0 0 | 0 0 0 0 | 0 0 0 0 | 0 0 0 0
+[   28.259930]: adreno: 15: rscc slot 1: wait 0, control 0, idle 0x1, enabled 0; commands (number, address, data, status):
+[   28.259944]: adreno: 15:   0 0 0 0 | 0 0 0 0 | 0 0 0 0 | 0 0 0 0
+[   28.259950]: adreno: 15: rscc slot 2: wait 0, control 0, idle 0x1, enabled 0; commands (number, address, data, status):
+[   28.259964]: adreno: 15:   0 0 0 0 | 0 0 0 0 | 0 0 0 0 | 0 0 0 0
+[   28.259970]: adreno: 15: rscc slot 3: wait 0, control 0, idle 0x1, enabled 0; commands (number, address, data, status):
+[   28.259983]: adreno: 15:   0 0 0 0 | 0 0 0 0 | 0 0 0 0 | 0 0 0 0
+[   28.259987]: adreno: 15: about to write gmu cx_falnext_intf at 0x3d7e3c4: 0x1
+[   28.259991]: adreno: 15: about to write gmu cx_fal_intf at 0x3d7e3c0: 0x1
+[   28.259994]: adreno: 15: about to write gmu general_7 at 0x3d7e730: 0x1
+[   28.259997]: adreno: 15: about to write gmu cm3_fw_init_result at 0x3d7e070: 0
+[   28.260000]: adreno: 15: about to write gmu cm3_boot_config at 0x3d7e004: 0x2
+[   28.260004]: adreno: 15: about to write gmu hfi_qtbl_addr at 0x3d7e614: 0x60006000
+[   28.260007]: adreno: 15: about to write gmu hfi_qtbl_info at 0x3d7e610: 0x1
+[   28.260011]: adreno: 15: about to write gmu ahb_fence_range_0 at 0x3d8ec44: 0x80a008a0
+[   28.260015]: adreno: 15: about to write gmu cm3_cfg at 0x3d7e0b4: 0x4052
+[   28.260018]: adreno: 15: about to write gbif halt at 0x3d0f114: 0
+[   28.260021]: adreno: 15: about to write gmu pwr_col_cp_resp at 0x3d7e404: 0
+[   28.260024]: adreno: 15: about to write gmu hfi_sfr_addr at 0x3d7e608: 0x7010000
+[   28.260028]: adreno: 15: about to write gmu pwr_col_cp_msg at 0x3d7e400: 0x60002003
+[   28.260031]: adreno: 15: about to write gmu general_9 at 0x3d7e738: 0
+[   28.260034]: adreno: 15: about to write gmu general_10 at 0x3d7e73c: 0x7010000
+[   28.260038]: adreno: 15: about to write gmu general_8 at 0x3d7e734: 0x60002003
+[   28.260042]: adreno: 15: about to write gmu sys_bus_config at 0x3d7d03c: 0x1
+[   28.260045]: adreno: 15: about to write gmu icache_config at 0x3d7d000: 0x1
+[   28.260048]: adreno: 15: about to write gmu dcache_config at 0x3d7d004: 0x1
+[   28.260052]: adreno: 15: about to write gmu pwr_col_inter_frame_ctrl at 0x3d7e300: 0x9c40400
+[   28.260055]: adreno: 15: gmu rpmh_ctrl (0x3d7e3a0) = 0
+[   28.260058]: adreno: 15: about to write gmu rpmh_ctrl at 0x3d7e3a0: 0xf11
+[   28.260061]: adreno: 15: gmu rpmh_ctrl (0x3d7e3a0) = 0
+[   28.260064]: adreno: 15: about to write gmu gmu2host_intr_clr at 0x3d7e644: 0xffffffff
+[   28.260068]: adreno: 15: about to write gmu cm3_sysreset at 0x3d7e000: 0
+[   28.261832]: adreno: 15: gmu cm3_fw_init_result (0x3d7e070) = 0x100
+[   28.261836]: adreno: 15: gmu gmu2host_intr_info (0x3d7e648) = 0
+[   28.261839]: adreno: 15: gmu ao_host_interrupt_status (0x3d8ec14) = 0
+[   28.261842]: adreno: 15: gmu hfi_ctrl_status (0x3d7e600) = 0x1
+[   28.261845]: adreno: 15: THE GMU'S FIRMWARE RUNS
+[   28.261846]: adreno: step 15: done
+[   28.261852]: adreno: step 16: enable the GPU's part of the always-on sequencer (pdc, 0xb294500 and 0xb294520: a part of the SoC not touched before)
+[   28.261859]: adreno: 16: pdc gpu_enable (0xb274500) = 0x101
+[   28.261863]: adreno: 16: pdc gpu_seq_start_addr (0xb274520) = 0
+[   28.261866]: adreno: 16: about to write pdc gpu_seq_start_addr at 0xb274520: 0
+[   28.261870]: adreno: 16: about to write pdc gpu_enable at 0xb274500: 0x80000001
+[   28.261875]: adreno: 16: pdc gpu_enable (0xb274500) = 0x80000001
+[   28.261879]: adreno: step 16: give the GMU's RPMh channel its sleep and wake program (rscc, 0x3de0000), unless it has it
+[   28.261882]: adreno: 16: rscc seq_mem_0_drv0 (0x3d50600) = 0
+[   28.261886]: adreno: 16: about to write rscc rsc_status0_drv0 at 0x3d50010: 0x1000000
+[   28.261889]: adreno: 16: about to write rscc pdc_slave_id_drv0 at 0x3d5002c: 0x1
+[   28.261893]: adreno: 16: about to write rscc hidden_tcs_cmd0_data at 0x3d50038: 0
+[   28.261896]: adreno: 16: about to write rscc hidden_tcs_cmd0_addr at 0x3d50034: 0
+[   28.261900]: adreno: 16: about to write rscc hidden_tcs_cmd1_data at 0x3d50040: 0
+[   28.261903]: adreno: 16: about to write rscc hidden_tcs_cmd1_addr at 0x3d5003c: 0
+[   28.261907]: adreno: 16: about to write rscc hidden_tcs_cmd2_data at 0x3d50048: 0x80000021
+[   28.261910]: adreno: 16: about to write rscc hidden_tcs_cmd2_addr at 0x3d50044: 0
+[   28.261914]: adreno: 16: about to write rscc override_start_addr at 0x3d50400: 0
+[   28.261917]: adreno: 16: about to write rscc pdc_seq_start_addr at 0x3d50020: 0x4520
+[   28.261921]: adreno: 16: about to write rscc pdc_match_value_lo at 0x3d50024: 0x4510
+[   28.261924]: adreno: 16: about to write rscc pdc_match_value_hi at 0x3d50028: 0x4514
+[   28.261928]: adreno: 16: about to write rscc seq_mem_drv0 at 0x3d50600: 0xeaaae5a0
+[   28.261931]: adreno: 16: about to write rscc seq_mem_drv0 at 0x3d50604: 0xe1a1ebab
+[   28.261935]: adreno: 16: about to write rscc seq_mem_drv0 at 0x3d50608: 0xa2e0a581
+[   28.261939]: adreno: 16: about to write rscc seq_mem_drv0 at 0x3d5060c: 0xecac82e2
+[   28.261942]: adreno: 16: about to write rscc seq_mem_drv0 at 0x3d50610: 0x20edad
+[   28.261946]: adreno: 16: rscc seq_mem_0_drv0 (0x3d50600) = 0xeaaae5a0
+[   28.261949]: adreno: step 16: ask the GMU to start its message queues
+[   28.261951]: adreno: 16: about to write gmu hfi_ctrl_init at 0x3d7e618: 0x1
+[   28.261955]: adreno: 16: gmu hfi_ctrl_status (0x3d7e600) = 0x1
+[   28.261959]: adreno: 16: gmu hfi_version_info (0x3d7e604) = 0x20010000
+[   28.261961]: adreno: 16: THE GMU'S MESSAGE QUEUES ARE UP
+[   28.261963]: adreno: step 16: done
+[   28.261972]: adreno: 17: votes: 3D core 0 0x380201 0x400302 0x800403, GMU 0 0x400302
+[   28.261999]: adreno: 17: RPMh's bus resources: SH0 0x50004, MC0 0x50000, ACV 0x5004c, CN0 0x50030 (Linux has 0x50004, 0x50000, 0x50088, 0x5006c)
+[   28.262002]: adreno: 17: the speed wanted: 500 MHz
+[   28.262007]: adreno: step 17: send the GMU its tables (speeds and supply levels, bus votes), "start", and the speed wanted; from here on it casts votes in RPMh by itself
+[   28.262012]: adreno: 17: about to send the GMU the table of speeds: message 4, 59 words, number 1
+[   28.262134]: adreno: 17: the GMU accepts the table of speeds
+[   28.262138]: adreno: 17: about to send the GMU the table of bus votes: message 3, 160 words, number 2
+[   28.262259]: adreno: 17: the GMU accepts the table of bus votes
+[   28.262263]: adreno: 17: about to send the GMU "start the core firmware": message 14, 2 words, number 3
+[   28.262384]: adreno: 17: the GMU accepts "start the core firmware"
+[   28.262388]: adreno: 17: about to send the GMU the speed wanted: message 30, 4 words, number 4
+[   28.262627]: adreno: 17: the GMU accepts the speed wanted
+[   28.262630]: adreno: step 17: ask the GMU to power the 3D core and keep it powered
+[   28.262633]: adreno: 17: gmu sptprac_pwr_clk_status (0x3d7e340) = 0x3
+[   28.262636]: adreno: 17: gpucc gx_gdscr (0x3d9905c) = 0x22f001
+[   28.262639]: adreno: 17: about to write gmu host2gmu_intr_set at 0x3d7e650: 0x40000000
+[   28.262760]: adreno: 17: about to write gmu gmu2host_intr_clr at 0x3d7e644: 0x80000000
+[   28.262764]: adreno: 17: gmu sptprac_pwr_clk_status (0x3d7e340) = 0
+[   28.262767]: adreno: 17: gpucc gx_gdscr (0x3d9905c) = 0xf8222800
+[   28.262770]: adreno: 17: gmu rpmh_power_state (0x3d7e3b0) = 0
+[   28.262774]: adreno: 17: about to send the GMU "start": message 10, 1 words, number 5
+[   28.262894]: adreno: 17: the GMU accepts "start"
+[   28.320119]: adreno: 17: measured: the 3D core's clock runs at 0 Hz (500 MHz was asked for), the GMU's in it at 0 Hz
+[   28.320124]: adreno: step 17: read registers of the 3D core itself (0x3d00000): the first time it has power
+[   28.320130]: adreno: 17: gpu rbbm_status (0x3d00840) = 0x1
+[   28.320134]: adreno: 17: gpu rbbm_int_0_status (0x3d00804) = 0
+[   28.320137]: adreno: 17: gpu rbbm_clock_cntl (0x3d002b8) = 0
+[   28.320140]: adreno: 17: gpu cp_rb_base (0x3d02000) = 0
+[   28.320142]: adreno: 17: THE 3D CORE HAS POWER AND ANSWERS
+[   28.320144]: adreno: step 17: done
+[   28.320150]: adreno: step 18: make the 3D core's memory: its ring, its microcode (fw/a710_sqe.fw), a page to try writing to
+[   28.320300]: adreno: 18: fw/a710_sqe.fw: 35572 bytes in the image of /dev/md0
+[   28.320315]: adreno: 18: the 3D core sees 0x1000000..0x1007fff in memory of ours (0x8caa88000)
+[   28.320325]: adreno: 18: the 3D core sees 0x1100000..0x1108fff in memory of ours (0x8caa78000)
+[   28.320331]: adreno: 18: the 3D core sees 0x1200000..0x1200fff in memory of ours (0x8caa7c000)
+[   28.320342]: adreno: step 18: give the SMMU's context 0 these tables and send the 3D core's requests (stream 0) through it
+[   28.320346]: adreno: 18: about to write smmu cb sctlr at 0x3dc0000: 0
+[   28.320350]: adreno: 18: about to write smmu cba2r at 0x3da1800: 0x1
+[   28.320362]: adreno: 18: about to write smmu cbar at 0x3da1000: 0x1f300
+[   28.320386]: adreno: 18: about to write smmu cb tcr2 at 0x3dc0010: 0x38011
+[   28.320389]: adreno: 18: about to write smmu cb tcr at 0x3dc0030: 0x803519
+[   28.320393]: adreno: 18: about to write smmu cb ttbr0, low at 0x3dc0020: 0xcaa46000
+[   28.320396]: adreno: 18: about to write smmu cb ttbr0, high at 0x3dc0024: 0x8
+[   28.320400]: adreno: 18: about to write smmu cb ttbr1, low at 0x3dc0028: 0
+[   28.320404]: adreno: 18: about to write smmu cb ttbr1, high at 0x3dc002c: 0
+[   28.320407]: adreno: 18: about to write smmu cb mair0 at 0x3dc0038: 0xf404ff44
+[   28.320410]: adreno: 18: about to write smmu cb mair1 at 0x3dc003c: 0
+[   28.320414]: adreno: 18: about to write smmu cb fsr at 0x3dc0058: 0xc00001fe
+[   28.320417]: adreno: 18: about to write smmu cb tlbiasid at 0x3dc0610: 0
+[   28.320421]: adreno: 18: about to write smmu cb tlbsync at 0x3dc07f0: 0x1
+[   28.320425]: adreno: 18: about to write smmu cb sctlr at 0x3dc0000: 0x1127
+[   28.320428]: adreno: 18: about to write smmu s2cr at 0x3da0c00: 0
+[   28.320440]: adreno: 18: about to write smmu smr at 0x3da0800: 0x84000000
+[   28.320460]: adreno: 18: smmu smr (0x3da0800) = 0x84000000
+[   28.320470]: adreno: 18: smmu s2cr (0x3da0c00) = 0
+[   28.320479]: adreno: 18: smmu cbar (0x3da1000) = 0x1f300
+[   28.320482]: adreno: 18: smmu cb sctlr (0x3dc0000) = 0x127
+[   28.320485]: adreno: 18: smmu cb ttbr0, low (0x3dc0020) = 0xcaa46000
+[   28.320489]: adreno: 18: smmu cb ttbr0, high (0x3dc0024) = 0x8
+[   28.320492]: adreno: 18: smmu cb tcr (0x3dc0030) = 0x803519
+[   28.320500]: adreno: 18: smmu cba2r (0x3da1800) = 0x1
+[   28.320503]: adreno: 18: smmu cb tcr2 (0x3dc0010) = 0x38071
+[   28.320506]: adreno: 18: smmu cb fsr (0x3dc0058) = 0x400
+[   28.320514]: adreno: 18: smmu sgfsr (0x3da0048) = 0
+[   28.320517]: adreno: 18: gpu rbbm_status (0x3d00840) = 0x1
+[   28.320520]: adreno: step 18: done
+[   28.320525]: adreno: step 19: ask TrustZone to give up a zap shader that a kernel before this one may have left
+[   28.320529]: adreno: 19: about to ask TrustZone to give up the zap shader: smc 0x42000206, arguments 0xd, 0, 0
+[   28.320794]: adreno: 19: TrustZone returns -3145800, answer 0
+[   28.320799]: adreno: 19: TRUSTZONE DOES NOT GIVE IT UP: the next answers tell whether it keeps one
+[   28.320954]: adreno: 19: fw/a710_zap.b01: 1948 bytes in the image of /dev/md0
+[   28.320960]: adreno: step 19: hand the zap shader's header to TrustZone, tell it where the image goes, put the image there, and ask TrustZone to authenticate and run it
+[   28.321102]: adreno: 19: fw/a710_zap.mdt: 4044 bytes in the image of /dev/md0
+[   28.321107]: adreno: 19: an ELF header of 3 segments, 148 bytes with its table, then 3896 bytes; by the table, 3896 of hashes
+[   28.321118]: adreno: 19: about to ask TrustZone to take the zap shader's signature: smc 0x42000201, arguments 0xd, 0x8cab00000, 0
+[   28.338284]: adreno: 19: TrustZone returns 0, answer 0
+[   28.338292]: adreno: 19: about to ask TrustZone where the image will be: smc 0x42000202, arguments 0xd, 0x89e1a000, 0x1000
+[   28.338372]: adreno: 19: TrustZone returns 0, answer 0
+[   28.338382]: adreno: 19: the reserved memory begins 00 00 00 00, the zap shader 14 00 71 01
+[   28.338385]: adreno: 19: about to write 1948 bytes at 0x89e1a000
+[   28.338393]: adreno: 19: about to ask TrustZone to authenticate the zap shader and run it: smc 0x42000205, arguments 0xd, 0, 0
+[   28.339477]: adreno: 19: TrustZone returns 0, answer 0
+[   28.339482]: adreno: 19: TRUSTZONE HAS AUTHENTICATED AND STARTED THE ZAP SHADER
+[   28.339484]: adreno: step 19: done
+[   28.339491]: adreno: step 20: write the 3D core's registers as Linux does before it starts the command processor: the first writes to the core itself
+[   28.339495]: adreno: 20: about to write gbif halt at 0x3d0f114: 0
+[   28.339499]: adreno: 20: about to write gpu rbbm_gbif_halt at 0x3d00058: 0
+[   28.339502]: adreno: 20: about to write gpu rbbm_secvid_tsb_cntl at 0x3d3e00c: 0
+[   28.339506]: adreno: 20: about to write gpu rbbm_secvid_tsb_trusted_base at 0x3d3e000: 0
+[   28.339510]: adreno: 20: about to write gpu rbbm_secvid_tsb_trusted_base at 0x3d3e004: 0
+[   28.339514]: adreno: 20: about to write gpu rbbm_secvid_tsb_trusted_size at 0x3d3e008: 0
+[   28.339517]: adreno: 20: about to write gbif qsb_side at 0x3d0f00c: 0x71620
+[   28.339521]: adreno: 20: about to write gbif qsb_side at 0x3d0f010: 0x71620
+[   28.339524]: adreno: 20: about to write gbif qsb_side at 0x3d0f014: 0x71620
+[   28.339528]: adreno: 20: about to write gbif qsb_side at 0x3d0f018: 0x71620
+[   28.339532]: adreno: 20: about to write gpu rbbm_gbif_client_qos_cntl at 0x3d00044: 0x2120212
+[   28.339536]: adreno: 20: about to write gpu uche_gbif_gx_config at 0x3d038e8: 0x10240e0
+[   28.339541]: adreno: 20: about to write gpu rbbm_perfctr_gpu_busy_masked at 0x3d0142c: 0xffffffff
+[   28.339545]: adreno: 20: about to write gpu uche_trap_base at 0x3d03824: 0xfffff000
+[   28.339548]: adreno: 20: about to write gpu uche_trap_base at 0x3d03828: 0x1ffff
+[   28.339552]: adreno: 20: about to write gpu uche_write_thru_base at 0x3d0381c: 0xfffff000
+[   28.339556]: adreno: 20: about to write gpu uche_write_thru_base at 0x3d03820: 0x1ffff
+[   28.339560]: adreno: 20: about to write gpu uche_gmem_range_min at 0x3d0382c: 0x100000
+[   28.339563]: adreno: 20: about to write gpu uche_gmem_range_min at 0x3d03830: 0
+[   28.339567]: adreno: 20: about to write gpu uche_gmem_range_max at 0x3d03834: 0x17ffff
+[   28.339571]: adreno: 20: about to write gpu uche_gmem_range_max at 0x3d03838: 0
+[   28.339574]: adreno: 20: about to write gpu uche_cache_ways at 0x3d0385c: 0x800000
+[   28.339578]: adreno: 20: about to write gpu cp_ahb_cntl at 0x3d02634: 0x1
+[   28.339581]: adreno: 20: about to write gpu rb_nc_mode_cntl at 0x3d23820: 0x812
+[   28.339585]: adreno: 20: about to write gpu tpl1_nc_mode_cntl at 0x3d2d810: 0x2
+[   28.339589]: adreno: 20: about to write gpu sp_nc_mode_cntl at 0x3d2b808: 0x22
+[   28.339592]: adreno: 20: about to write gpu gras_nc_mode_cntl at 0x3d21808: 0x20
+[   28.339596]: adreno: 20: about to write gpu uche_mode_cntl at 0x3d03804: 0x200000
+[   28.339600]: adreno: 20: about to write gpu rbbm_nc_mode_cntl at 0x3d014d0: 0x1
+[   28.339603]: adreno: 20: about to write gpu rbbm_perfctr_cntl at 0x3d01400: 0x1
+[   28.339607]: adreno: 20: about to write gpu rbbm_interface_hang_int_cntl at 0x3d0007c: 0x401fffff
+[   28.339611]: adreno: 20: about to write gpu uche_client_pf at 0x3d03864: 0x81
+[   28.339614]: adreno: 20: about to write gpu uche_cmdq_config at 0x3d038f0: 0x6906
+[   28.339618]: adreno: 20: about to write gpu cp_apriv_cntl at 0x3d02110: 0x7ff
+[   28.339622]: adreno: 20: about to write gpu cp_bv_apriv_cntl at 0x3d02b40: 0x7ff
+[   28.339633]: adreno: 20: about to write gpu cp_sqe_instr_base at 0x3d020c0: 0x1100000
+[   28.339637]: adreno: 20: about to write gpu cp_sqe_instr_base at 0x3d020c4: 0
+[   28.339640]: adreno: 20: about to write gpu cp_rb_base at 0x3d02000: 0x1000000
+[   28.339644]: adreno: 20: about to write gpu cp_rb_base at 0x3d02004: 0
+[   28.339647]: adreno: 20: about to write gpu cp_rb_cntl at 0x3d02008: 0x800020c
+[   28.339651]: adreno: 20: gpu cp_sqe_instr_base (0x3d020c0) = 0x1100000
+[   28.339654]: adreno: 20: gpu cp_rb_base (0x3d02000) = 0x1000000
+[   28.339657]: adreno: 20: gpu cp_rb_cntl (0x3d02008) = 0x800020c
+[   28.339660]: adreno: 20: gpu cp_apriv_cntl (0x3d02110) = 0x7f
+[   28.339663]: adreno: 20: gpu rbbm_status (0x3d00840) = 0x1
+[   28.339666]: adreno: step 20: start the 3D core's command processor
+[   28.339669]: adreno: 20: about to write gpu cp_sqe_cntl at 0x3d02020: 0x1
+[   28.360905]: adreno: 20: alive after it; status 0x1, interrupts 0, command processor: fault 0, interrupts 0, protection 0, ring read up to 0
+[   28.360916]: adreno: 20: smmu sgfsr (0x3da0048) = 0
+[   28.360924]: adreno: 20: smmu sgfsynr0 (0x3da0050) = 0
+[   28.360931]: adreno: 20: smmu sgfsynr1 (0x3da0054) = 0
+[   28.360935]: adreno: step 20: give the 3D core its first command, "initialize"
+[   28.360939]: adreno: 20: about to have the 3D core initialize its command processor: the ring up to word 10
+[   28.361063]: adreno: 20: the 3D core has done it (ring read up to 10, status 0x1)
+[   28.361066]: adreno: 20: THE 3D CORE TAKES COMMANDS
+[   28.361068]: adreno: step 20: done
+[   28.361074]: adreno: step 21: command the 3D core out of secure mode (it asks the zap shader), then to write a word into a page of ours
+[   28.361078]: adreno: 21: about to have the 3D core leave secure mode: the ring up to word 12
+[   28.361201]: adreno: 21: the 3D core has done it (ring read up to 12, status 0x1)
+[   28.361205]: adreno: 21: about to have the 3D core write a word to memory: the ring up to word 16
+[   28.361327]: adreno: 21: the 3D core has done it (ring read up to 16, status 0x1)
+[   28.361331]: adreno: 21: the page reads 0x600dc0de: THE 3D CORE WRITES OUR MEMORY ON COMMAND
+[   28.361333]: adreno: step 21: done
+[   28.361338]: adreno: THE GPU STAYS ON for the system to draw with: the service HakiosGPU
+[   28.361418]: bsd_init: calling siginit
+[   28.361421]: bsd_init: calling bsd_utaskbootstrap
+[   28.361519]: bsd_init: calling mountroot_post_hook
+[   28.361521]: bsd_init: done
+[   28.361525]: vm_free_delayed_pages: initialized 0 free pages
+[   28.361534]: No POST boot-arg set.
+[   28.361539]: bsd_init: bsd_do_post - doneload_init_program: attempting to load /usr/appleinternal/sbin/launchd.development
+[   28.361621]: VM Swap Subsystem is ON
+[   28.361677]: Failed to open swap file 2
+[   28.361682]: vm_swap_create_file failed @ 28 secs
+[   28.361686]: vm_swap_create_file failed @ 28 secs
+[   28.361751]: load_init_program: attempting to load /sbin/launchd
+[   28.397942]: vnode_create_internal: alias vnode 0xfffffff5c7c43970 is in state of change (start)
+[   28.397954]: vnode_create_internal: alias vnode 0xfffffff5c7c43970 is in state of change (end)
+[   28.620430]: Kext loading now disabled.
+[   28.620438]: Kext unloading now disabled.
+[   28.620456]: PMRD: sysPowerDownHandler message kIOMessageSystemPagingOff
+[   28.620460]: PMRD: PagingOff all drivers took 0 ms
+[   28.620462]: PMRD: PagingOff total 0 ms
+[   28.620464]: syncing disks... Killing all processes 
+[   28.620470]: 
+[   28.620474]: vfs_unmountall(nonsystem) start
+[   28.620477]: unmount(1) /private/var
+[   28.621767]: unmount(1) /dev skipped
+[   28.621772]: unmount(1) / skipped
+[   28.621774]: vfs_unmountall(nonsystem) end
+[   28.621779]: IOServicePH::systemHalt took 0 ms
+[   28.621782]: Killing all processes 
+[   28.621784]: 
+[   28.621786]: continuing
+[   28.621787]: vfs_unmountall(system) start
+[   28.621789]: unmount(0) /dev
+[   28.621936]: unmount(0) /
+[   28.623307]: vfs_unmountall(system) end
+[   28.623311]: done
+[   28.623351]: CPU halted
+[   28.623368]: [System Event] [549443968] [INFO] [Subsystem: nvram] [Event: sync] triggered
+[   28.623373]: IONVRAMCHRPHandler.cpp:serializeVariables:615 - No _nvramController
+[   28.623376]: IONVRAMCHRPHandler.cpp:sync:894 - serializeVariables failed, ret=0xe00002d8PMRD: sysPowerDownHandler message kIOMessageSystemWillPowerOff
+[   28.623391]: PMRD: notifySystemShutdown msgType = 0xe0000250
+[   28.623400]: PMRD: notifySystemShutdown done
+[   28.623434]: PMRD: PM quiesce took 0 ms
+[   28.623436]: PMRD: PowerOff all drivers took 0 ms
+[   28.623437]: PMRD: PowerOff total 2 ms
+[   28.623445]: adreno: the run is about to end: the GPU is given back (it had finished what it was given after 0 us)
+[   28.623453]: adreno: 0: the 3D core before it is stopped: status 0x1, interrupts 0, ring read up to 16 of 16; the GMU sees it busy: 0x30000000
+[   28.623461]: adreno: 0: the GPU block's bus has been halted and let go again (rbbm_gbif_halt_ack 0, gbif halt_ack 0x3)
+[   28.623465]: adreno: 0: about to write gmu host2gmu_intr_set at 0x3d7e650: 0x80000000
+[   28.623469]: adreno: 0: about to send the GMU "slumber": message 33, 3 words, number 6
+[   28.623596]: adreno: 0: the GMU accepts "slumber"
+[   28.623600]: adreno: 0: gmu sptprac_pwr_clk_status (0x3d7e340) = 0x3
+[   28.623603]: adreno: 0: gpucc gx_gdscr (0x3d9905c) = 0x222801
+[   28.623606]: adreno: 0: about to write gmu cm3_sysreset at 0x3d7e000: 0x1
+[   28.623609]: adreno: 0: gpucc gx_gdscr (0x3d9905c) = 0x222801
+[   28.623613]: adreno: 0: about to ask TrustZone to give up the zap shader: smc 0x42000206, arguments 0xd, 0, 0
+[   28.624187]: adreno: 0: TrustZone returns 0, answer 0
+[   28.624191]: adreno: 0: the zap shader: TrustZone has given it up
+[   28.624195]: adreno: 0: about to write gmu rscc_control_req at 0x3d8ec1c: 0x1
+[   28.624322]: adreno: 0: rscc rsc_status0_drv0 (0x3d50010) = 0x1010006
+[   28.624325]: adreno: 0: about to write gmu rscc_control_req at 0x3d8ec1c: 0
+[   28.624329]: adreno: 0: about to write smmu smr at 0x3da0804: 0
+[   28.624344]: adreno: 0: about to write smmu s2cr at 0x3da0c04: 0x20000
+[   28.624356]: adreno: 0: about to write smmu cb sctlr at 0x3dc1000: 0
+[   28.624359]: adreno: 0: about to write smmu smr at 0x3da0800: 0
+[   28.624370]: adreno: 0: about to write smmu s2cr at 0x3da0c00: 0x20000
+[   28.624380]: adreno: 0: about to write smmu cb sctlr at 0x3dc0000: 0
+[   28.624385]: adreno: 0: about to write gpucc cx_gdscr at 0x3d99108: 0xf822f001
+[   28.624508]: adreno: 0: gpucc cx_gdscr (0x3d99108) = 0x22f001
+[   28.624511]: adreno: 0: gpucc cx_hw_ctrl (0x3d9953c) = 0x5ff4
+
+== END OF LOG ==

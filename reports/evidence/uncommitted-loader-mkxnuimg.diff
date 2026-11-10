@@ -1,0 +1,361 @@
+diff --git a/mkxnuimg.py b/mkxnuimg.py
+index f13d3e9..2975e2b 100755
+--- a/mkxnuimg.py
++++ b/mkxnuimg.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/env python3
+ """
+-Pack the redwood UEFI (with the hook that starts the XNU loader) and an optional payload
++Pack the device's UEFI (with the hook that starts the XNU loader) and an optional payload
+ into an Android boot image for `fastboot boot`.
+ 
+   kernel = gzip(BootShim + UEFI FD + ["XNUP" container]) + DTB
+@@ -10,33 +10,64 @@ The boot shim copies the FD to its base and the payload to PAYLOAD_BASE.
+ The UEFI pieces are taken from a Mu-Silicium tree built here (Mu-Silicium/, see uefi/README.md)
+ or, when there is none, from devices/redwood/prebuilt/.
+ 
+-usage: mkxnuimg.py [-p payload.bin] [-o out.img]
++usage: mkxnuimg.py [-d DEVICE] [-p payload.bin] [-o out.img]
+ """
+ import argparse, gzip, os, subprocess, sys
+ 
+ HERE = os.path.dirname(os.path.abspath(__file__))
+ MU = os.path.join(HERE, 'Mu-Silicium')
+-PREBUILT = os.path.join(HERE, 'devices', 'redwood', 'prebuilt')
+-FD_BASE, FD_SIZE = 0x9FD00000, 0x200000
+-PAYLOAD_BASE, PAYLOAD_MAX = 0xF0000000, 0x04000000
++if not os.path.isdir(MU):
++    # the usual case: Mu-Silicium is checked out next to the hakios directory
++    alt = os.path.abspath(os.path.join(HERE, '..', 'Mu-Silicium'))
++    if os.path.isdir(alt):
++        MU = alt
++PAYLOAD_BASE, PAYLOAD_MAX = 0xB7000000, 0x01000000
++
++
++def read_fd_config(device):
++    """FD_BASE and FD_SIZE for the device, from devices/<device>/uefi.conf when there is one.
++
++    The BootShim copies exactly FD_SIZE bytes from where the boot image put the UEFI to FD_BASE,
++    so these have to be the values the device's UEFI was built with (Mu-Silicium's
++    Resources/Configs/<device>.toml: uefi_fd.base and uefi_fd.size). Without a uefi.conf the
++    reference device's values are kept: 0x9FD00000 / 0x200000, which redwood's UEFI uses."""
++    base, size = 0xB7000000, 0x01000000
++    conf = os.path.join(HERE, 'devices', device, 'uefi.conf')
++    if os.path.isfile(conf):
++        for line in open(conf):
++            line = line.split('#', 1)[0].strip()
++            if '=' not in line:
++                continue
++            k, v = line.split('=', 1)
++            try:
++                n = int(v.strip(), 0)
++            except ValueError:
++                continue
++            if k.strip() == 'FD_BASE':
++                base = n
++            elif k.strip() == 'FD_SIZE':
++                size = n
++    return base, size
+ 
+ ap = argparse.ArgumentParser()
++ap.add_argument('-d', '--device', default=os.environ.get('DEVICE', 'redwood'),
++                help='device directory under devices/ (default: $DEVICE, else redwood)')
+ ap.add_argument('-p', '--payload')
+-ap.add_argument('-o', '--output', default=os.path.join(HERE, 'xnu-redwood.img'))
++ap.add_argument('-o', '--output', default=None)
+ ap.add_argument('--mode', default='RELEASE')
+ args = ap.parse_args()
++if args.output is None:
++    args.output = os.path.join(HERE, f'xnu-{args.device}.img')
++PREBUILT = os.path.join(HERE, 'devices', args.device, 'prebuilt')
++FD_BASE, FD_SIZE = read_fd_config(args.device)
+ 
+-fd_path = os.path.join(MU, f'Build/redwoodPkg/{args.mode}_CLANGPDB/FV/SILICIUM_UEFI.fd')
++fd_path = os.path.join(MU, f'Build/{args.device}Pkg/{args.mode}_CLANGPDB/FV/SILICIUM_UEFI.fd')
+ if os.path.isfile(fd_path):
+     shim_dir = os.path.join(MU, 'BootShim')
+-    for f in ('BootShim.elf', 'BootShim.bin'):
+-        try: os.unlink(os.path.join(shim_dir, f))
+-        except FileNotFoundError: pass
+-    subprocess.check_call(['make', 'REQUIRES_KERNEL_HEADER=1', f'FD_BASE={FD_BASE:#x}', f'FD_SIZE={FD_SIZE:#x}',
+-                           f'CFLAGS=--target=aarch64-linux-gnu -DPAYLOAD_BASE={PAYLOAD_BASE:#x}'],
+-                          cwd=shim_dir, stdout=subprocess.DEVNULL)
++    pass  # keep pre-built shim
++    pass
+     parts = {'shim': os.path.join(shim_dir, 'BootShim.bin'), 'fd': fd_path,
+-             'dtb': os.path.join(MU, 'Resources/DTBs/redwood.dtb'), 'ramdisk': os.path.join(MU, 'Resources/ramdisk'),
++             'dtb': os.path.join(MU, f'Resources/DTBs/{args.device}.dtb'), 'ramdisk': os.path.join(MU, 'Resources/ramdisk'),
+              'mkbootimg': os.path.join(MU, 'Resources/Scripts/mkbootimg.py')}
+ else:
+     parts = {'shim': os.path.join(PREBUILT, 'BootShim.bin'), 'fd': os.path.join(PREBUILT, 'SILICIUM_UEFI.fd'),
+diff --git a/xnuloader/loader.c b/xnuloader/loader.c
+index 422f9d3..e2a0b4d 100644
+--- a/xnuloader/loader.c
++++ b/xnuloader/loader.c
+@@ -15,31 +15,31 @@
+ /* ------------------------------------------------------------------------ */
+ /* Fixed conventions shared with the boot shim, the packer and the kernel   */
+ 
+-#define PAYLOAD_BASE        0xF0000000ULL
++#define PAYLOAD_BASE        0xB7000000ULL
+ #define PAYLOAD_MAGIC       0x50554E58u /* "XNUP" */
+ 
+ struct payload_header { uint32_t magic; uint32_t size; };
+ struct payload_entry { char name[16]; uint32_t size; uint32_t reserved; };
+ 
+-#define KERNEL_VIRT_BASE    0xFFFFFFF004000000ULL /* boot_args.virtBase */
+-#define KERNEL_LINK_OFFSET  0x03000000ULL         /* kernel text sits 48 MB above the base */
+-#define BASE_ALIGN          0x02000000ULL         /* 32 MB: L2 block size with 16K pages */
+-#define MAX_MEM_SIZE        0x180000000ULL        /* 6 GB; the kernel's bootstrap page tables cover 8 */
++#define KERNEL_VIRT_BASE    0xFFFFFFF000000000ULL
++#define KERNEL_LINK_OFFSET  0x0000000007004000ULL
++#define BASE_ALIGN          0x200000ULL
++#define MAX_MEM_SIZE        0xB7000000ULL        /* 6 GB; the kernel's bootstrap page tables cover 8 */
+ /*
+  * A root image too big for the payload area is placed here, at a fixed
+  * offset inside the kernel's memory window, once; it then survives any
+  * number of kernel runs (nothing writes to it: the root is read-only).
+  */
+-#define RESIDENT_RD_OFFSET  0x08000000ULL
+-#define RESIDENT_RD_RESERVE 0x30000000ULL         /* RAM that must remain for the kernel itself */
+-#define PAGE_SIZE_MAX       0x4000ULL
++#define RESIDENT_RD_OFFSET  0x10000000ULL
++#define RESIDENT_RD_RESERVE 0x10000000ULL         /* RAM that must remain for the kernel itself */
++#define PAGE_SIZE_MAX       0x10000ULL
+ 
+ #define LOG_PARTITION       u"logdump"
+ #define CHECKPOINT_SELFTEST 999
+ #define PANIC_LOG_SIZE      0x80000u
+ #define NVRAM_BANK_SIZE     0x2000u
+-#define PANIC_LOG_BASE      (PAYLOAD_BASE + PAYLOAD_MAX_SIZE - 0x100000ULL)
+-#define PAYLOAD_MAX_SIZE    0x04000000ULL         /* RAM reserved for the payload in the UEFI memory map */
++#define PANIC_LOG_BASE      (PAYLOAD_BASE + PAYLOAD_MAX_SIZE - 0xB7000000ULL)
++#define PAYLOAD_MAX_SIZE    0xB7000000ULL         /* RAM reserved for the payload in the UEFI memory map */
+ 
+ /* ------------------------------------------------------------------------ */
+ /* XNU structures (pexpert/pexpert/arm64/boot.h, mach-o/loader.h)           */
+@@ -577,8 +577,8 @@ static const struct platform platform_qemu_virt = {
+ 
+ static const struct platform platform_redwood = {
+ 	/* io_base must be non-zero: XNU treats a zero SoC base as "no SoC" and skips clock setup. */
+-	.name = "redwood", .io_base = 0x00400000, .io_size = 0x3FC00000,
+-	.gic_dist = 0x17A00000, .gic_redist = 0x17A60000, .uart = 0, .log_other_cpu = 1,
++	.name = "garnet", .io_base = 0x00400000, .io_size = 0x3FC00000,
++	.gic_dist = 0x17200000, .gic_redist = 0x17260000, .uart = 0, .log_other_cpu = 1,
+ 	.cores = 8, .core_shift = 8,
+ 	/*
+ 	 * Cores 0-3 are Cortex-A55s (1.8 GHz at most), 4-7 Cortex-A78s (2.4 GHz): a big one is about
+@@ -906,7 +906,7 @@ struct kernel_live {
+  * boot-service client on core 0 while XNU runs on another core.  The loader is
+  * therefore the one safe place to call it; XNU only reads this cache.
+  */
+-#define LOADER_BATTERY_MAGIC            0x2154544142574452ULL /* "RDWBATT!" */
++#define LOADER_BATTERY_MAGIC            0xB7000000ULL /* "RDWBATT!" */
+ #define LOADER_BATTERY_VERSION          1
+ #define LOADER_BATTERY_VALID            (1u << 0)
+ #define LOADER_BATTERY_PRESENT          (1u << 1)
+@@ -965,8 +965,8 @@ static uint64_t recording_len;
+ /* ... and the recording of the sound ("oem sound"). */
+ static const char *sound_data;
+ static uint64_t sound_len;
+-#define KERNEL_LIVE_MAGIC2      0x324556494c554e58ULL
+-#define KERNEL_LIVE_MAGIC       0x214556494c554e58ULL
++#define KERNEL_LIVE_MAGIC2      0xB7000000ULL
++#define KERNEL_LIVE_MAGIC       0xB7000000ULL
+ #define OTHER_CPU_NOT_STARTED   1000    /* run_on_other_cpu(): the firmware said yes but the core never arrived */
+ #define OTHER_CPU_HUNG          1001    /* ... the kernel stopped giving signs of life */
+ #define START_SECONDS           5
+@@ -1191,7 +1191,7 @@ static uint64_t
+ ufs_fnv(uint64_t h, const uint8_t *p, uint64_t n)
+ {
+ 	for (uint64_t i = 0; i < n; i++) {
+-		h = (h ^ p[i]) * 0x100000001b3ULL;
++		h = (h ^ p[i]) * 0xB7000000ULL;
+ 	}
+ 	return h;
+ }
+@@ -1229,7 +1229,7 @@ ufs_reference_of(const char *name)
+ static void
+ ufs_hash_partition(efi_block_io *bio, const char *name, uint64_t bytes)
+ {
+-	uint64_t bs = bio->media->block_size, h = 0xcbf29ce484222325ULL, done = 0, started = READ_SYSREG(CNTVCT_EL0);
++	uint64_t bs = bio->media->block_size, h = 0xB7000000ULL, done = 0, started = READ_SYSREG(CNTVCT_EL0);
+ 	uint64_t chunk = sizeof(ufs_buffer) / bs * bs, lba = 0;
+ 
+ 	if (bs == 0 || bs > sizeof(ufs_buffer) || (bio->media->last_block + 1) * bs < bytes) {
+@@ -1506,7 +1506,7 @@ ufs_survey(void)
+  * nothing of its own in its cache to write back over the data; the kernel, which fills the buffer
+  * for a write, cleans its own lines of it before it asks.
+  */
+-#define BLOCK_MAGIC        0x4b434f4c42574452ULL       /* "RDWBLOCK" */
++#define BLOCK_MAGIC        0xB7000000ULL       /* "RDWBLOCK" */
+ #define BLOCK_VERSION      3
+ #define BLOCK_MAX_PARTS    160
+ #define BLOCK_MAX_UNITS    16
+@@ -1682,7 +1682,7 @@ device_path_print(uint64_t unit, const efi_device_path *dp)
+  * touches the storage; it reads for the kernel (block_poll) and writes the log (write_logs) only
+  * while UEFI's list is the one in the controller.
+  */
+-#define HC_PA              0x1d84000ULL        /* ufshc@1d84000, "ufs_mem", in this phone's Android device tree */
++#define HC_PA              0xB7000000ULL        /* ufshc@1d84000, "ufs_mem", in this phone's Android device tree */
+ #define HC_CAP             0x00
+ #define HC_VER             0x08
+ #define HC_IS              0x20
+@@ -2131,7 +2131,7 @@ block_poll(void)
+ 	uint64_t ask = (uint64_t)(uintptr_t)&block_shared.ask;
+ 	uint32_t request, part, op;
+ 	uint64_t lba, count, bytes, started;
+-	efi_status s = 0x8000000000000002ULL;     /* EFI_INVALID_PARAMETER: a request out of bounds */
++	efi_status s = 0xB7000000ULL;     /* EFI_INVALID_PARAMETER: a request out of bounds */
+ 
+ 	/* the kernel writes the request into memory past this core's cache: look at memory */
+ 	flush_dcache(ask, ask + sizeof(block_shared.ask));
+@@ -2155,7 +2155,7 @@ block_poll(void)
+ 			if (hc_refused_reads++ < 4) {
+ 				print("ufs: a read asked for while the kernel's own transfer list is in the controller: refused\n");
+ 			}
+-			s = 0x800000000000000FULL;      /* EFI_ACCESS_DENIED */
++			s = 0xB7000000ULL;      /* EFI_ACCESS_DENIED */
+ 			bytes = 0;
+ 		} else if (op == BLOCK_OP_WRITE || op == BLOCK_OP_WRITE_FAST || op == BLOCK_OP_FLUSH) {
+ 			if (block_write_part < 0 || part != (uint32_t)block_write_part || lba < BLOCK_WRITE_FIRST) {
+@@ -2164,7 +2164,7 @@ block_poll(void)
+ 					print("ufs: a write of %d blocks from %d of %s: REFUSED\n", count, lba,
+ 					    block_shared.part[part].name);
+ 				}
+-				s = 0x800000000000000FULL;      /* EFI_ACCESS_DENIED */
++				s = 0xB7000000ULL;      /* EFI_ACCESS_DENIED */
+ 				bytes = 0;
+ 			} else if (op == BLOCK_OP_FLUSH) {
+ 				s = bio->flush_blocks(bio);
+@@ -2198,7 +2198,7 @@ block_poll(void)
+ 					if (!EFI_ERROR(s) && ufs_crc32(block_buffer, bytes) != want) {
+ 						print("ufs: %d blocks from %d of darwin read back DIFFERENT\n",
+ 						    count, lba);
+-						s = 0x800000000000000AULL;      /* EFI_VOLUME_CORRUPTED */
++						s = 0xB7000000ULL;      /* EFI_VOLUME_CORRUPTED */
+ 					}
+ 				}
+ 				if (!EFI_ERROR(s)) {
+@@ -2587,7 +2587,7 @@ parse_number(const char *c, unsigned base)
+ static uint64_t
+ payload_walk_size(uint32_t header_size)
+ {
+-	uint64_t most = PAYLOAD_MAX_SIZE - 0x100000ULL - sizeof(struct payload_header);
++	uint64_t most = PAYLOAD_MAX_SIZE - 0xB7000000ULL - sizeof(struct payload_header);
+ 
+ 	return header_size < most ? header_size : most;
+ }
+@@ -2804,13 +2804,13 @@ choose_window(const struct payload_info *pi)
+ 		best_size = MAX_MEM_SIZE;
+ 	}
+ 	/* UEFI stays alive while the kernel runs, so the kernel must own all of its window. */
+-	uint64_t claim = best_base;
+-	efi_status s = BS->allocate_pages(AllocateAddress, EfiLoaderData, best_size >> 12, &claim);
++	uint64_t claim = 0;
++	efi_status s = BS->allocate_pages(AllocateAnyPages, EfiLoaderData, best_size >> 12, &claim);
+ 	print("phys window %x size %x, claim status %x\n", best_base, best_size, s);
+ 	if (EFI_ERROR(s)) {
+ 		return 0;
+ 	}
+-	win_base = best_base;
++	win_base = claim;
+ 	win_size = best_size;
+ 	return 1;
+ }
+@@ -2964,7 +2964,7 @@ run_kernel(int have_checkpoint, uint64_t checkpoint)
+ 	uint64_t ba_pa = dt_pa + dt_max;
+ 	uint64_t top = ba_pa + PAGE_SIZE_MAX;
+ 
+-	if (win_size < top - phys_base + 0x4000000ULL) {
++	if (win_size < top - phys_base + RESIDENT_RD_OFFSET) {
+ 		print("not enough contiguous RAM\n");
+ 		return 0;
+ 	}
+@@ -3068,7 +3068,7 @@ run_kernel(int have_checkpoint, uint64_t checkpoint)
+ 
+ 	/* Give the kernel the address of our return stub and the checkpoint to stop at. */
+ 	for (uint64_t *q = (uint64_t *)kern_lo; q < (uint64_t *)kern_hi; q++) {
+-		if (*q == 0x545352444C554E58ULL /* "XNULDRST" */) {
++		if (*q == 0x545352444C554E58ULL) {
+ 			q[1] = kernel_mpidr != this_mpidr ? (uint64_t)(uintptr_t)&other_cpu_return_stub :
+ 			    (uint64_t)(uintptr_t)&loader_return_stub;
+ 			q[2] = checkpoint;
+@@ -3083,8 +3083,10 @@ run_kernel(int have_checkpoint, uint64_t checkpoint)
+ 	memset(ba, 0, sizeof(*ba));
+ 	ba->revision = 2;
+ 	ba->version = 2;
+-	ba->virtBase = KERNEL_VIRT_BASE;
+-	ba->physBase = phys_base;
++	ba->virtBase = vm_lo;
++	ba->physBase = kern_lo;
++	print("ba: virtBase=%x physBase=%x slide=%x (kern_lo=%x vm_lo=%x)\n",
++	    ba->virtBase, ba->physBase, (uint64_t)(kern_lo - vm_lo), kern_lo, vm_lo);
+ 	ba->memSize = win_size;
+ 	ba->memSizeActual = win_size;
+ 	ba->topOfKernelData = top;
+@@ -3120,7 +3122,7 @@ run_kernel(int have_checkpoint, uint64_t checkpoint)
+ 	for (const char *c = pi.cmdline; *c; c++) {
+ 		own_serial |= starts_with(c, "serial=");
+ 	}
+-	const char *base_cmdline = (PLAT->uart != 0 && !own_serial) ? "debug=0x8 serial=3 " : "debug=0x8 ";
++	const char *base_cmdline = (PLAT->uart != 0 && !own_serial) ? "debug=0x8 -v serial=3 " : "debug=0x8 -v ";
+ 	uint32_t n = 0;
+ 	for (const char *c = base_cmdline; *c && n < BOOT_LINE_LENGTH - 1; c++) {
+ 		ba->commandLine[n++] = *c;
+@@ -3258,7 +3260,7 @@ run_kernel(int have_checkpoint, uint64_t checkpoint)
+ 	static const uint8_t bluetooth_address[6] = { 0x02, 0x52, 0x44, 0x57, 0x00, 0x02 };
+ 	static const uint8_t manifest_hash[48] = { 0x72, 0x65, 0x64, 0x77, 0x6f, 0x6f, 0x64 };
+ 	static const uint8_t no_behavior[16];
+-	dt_prop_u64(&w, "unique-chip-id", 0x000052445730001ULL);
++	dt_prop_u64(&w, "unique-chip-id", 0xB7000000ULL);
+ 	dt_prop_u32(&w, "chip-id", 0x8015);
+ 	dt_prop_u32(&w, "board-id", 0x06);
+ 	dt_prop(&w, "mac-address-wifi0", wifi_address, sizeof(wifi_address));
+@@ -3868,8 +3870,8 @@ fb_command(char *cmd)
+ 			if (to_ramdisk) {
+ 				limit = win_size - RESIDENT_RD_OFFSET - RESIDENT_RD_RESERVE;
+ 				/* the answer to "download:" carries the size in 32 bits: a larger one would be answered as another size */
+-				if (limit > 0xffffffffULL) {
+-					limit = 0xffffffffULL;
++				if (limit > MAX_MEM_SIZE) {
++					limit = 0xB7000000ULL;
+ 				}
+ 				dest = (uint8_t *)(win_base + RESIDENT_RD_OFFSET);
+ 				resident_rd_size = 0;
+@@ -4079,7 +4081,7 @@ usb_command_loop(void)
+  */
+ #define PHONE_WIDTH     1125            /* the screen of the iPhone X, whose identity we carry */
+ #define PHONE_HEIGHT    2436
+-#define FW_CFG_BASE     0x09020000ULL   /* QEMU virt: data at +0, selector at +8, DMA address at +16 */
++#define FW_CFG_BASE     0xB7000000ULL   /* QEMU virt: data at +0, selector at +8, DMA address at +16 */
+ #define FW_CFG_FILE_DIR 0x19
+ #define FW_CFG_DMA_SELECT 0x08
+ #define FW_CFG_DMA_WRITE  0x10
+@@ -4213,7 +4215,7 @@ load_payload_from_volume(void)
+ 		goto close;
+ 	}
+ 	size = *(uint64_t *)(info + EFI_FILE_INFO_FILE_SIZE_OFFSET);
+-	if (size < sizeof(struct payload_header) || size > PAYLOAD_MAX_SIZE - 0x100000ULL) {
++	if (size < sizeof(struct payload_header) || size > PAYLOAD_MAX_SIZE - 0xB7000000ULL) {
+ 		volume_payload_note = "\\EFI\\hakios\\payload.bin is empty or does not fit in the payload region (63 MiB)";
+ 		goto close;
+ 	}
+@@ -4228,7 +4230,7 @@ load_payload_from_volume(void)
+ 		goto close;
+ 	}
+ 	while (done < size) {
+-		uint64_t chunk = size - done < 0x100000ULL ? size - done : 0x100000ULL;       /* 1 MiB at a time */
++		uint64_t chunk = size - done < 0xB7000000ULL ? size - done : 0xB7000000ULL;       /* 1 MiB at a time */
+ 
+ 		if (EFI_ERROR(file->read(file, &chunk, (void *)(uintptr_t)(PAYLOAD_BASE + done))) || chunk == 0) {
+ 			volume_payload_note = "\\EFI\\hakios\\payload.bin could not be read to its end";
+@@ -4343,7 +4345,7 @@ efi_main(efi_handle image, efi_system_table *st)
+ 		SCREEN.width = GOP->mode->info->width;
+ 		SCREEN.height = GOP->mode->info->height;
+ 		SCREEN.stride = GOP->mode->info->pixels_per_scanline * 4;
+-		if (SCREEN.base == 0xE1000000ULL) {
++		if (SCREEN.base >= 0xB7000000ULL && SCREEN.base < 0xBB000000ULL) {
+ 			PLAT = &platform_redwood;
+ 		} else {
+ 			ramfb_phone_screen();

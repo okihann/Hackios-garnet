@@ -1,0 +1,448 @@
+== XNULOADER run (usb) ==
+payload entry 'kernel' size e7f2f0
+payload entry 'ramdisk' size 400000
+payload entry 'cmdline' size 7c
+payload entry 'kernel.ver' size 30
+kernel va fffffff007004000..fffffff00821b2f0 entry fffffff0074414a8
+largest free block 8c0000000 size c0000000
+phys window 8c0000000 size c0000000, claim status 0
+kernel loaded at pa 8c7004000..8c8220000
+ramdisk at pa 8c8220000 size 400000
+return slot patched at 8c74427f0, checkpoint 0
+ba: virtBase=fffffff007004000 physBase=8c7004000 slide=18c0000000 (kern_lo=8c7004000 vm_lo=fffffff007004000)
+cmdline: 220 of 607 characters
+device tree 8c8620000 len 3874, boot_args 8c8630000, top 8c8640000
+cmdline: debug=0x8 cpus=1 rd=md0 hv_wdt_pet=1 hakios_kver=2.1.13-hakios-darwin22.5-sm7435-g96ffbc53-dirty loader_return_after=30 epoch=1794035627 sb_delay=8 -v adreno=12 adreno_skip=4 adreno_pause=0 adreno_watch=2 adreno_return=1
+jumping to 8c74414a8
+kernel returned: log at 8c7b389c0, 28743 bytes
+
+== KERNEL LOG ==
+adreno: steps up to 12, without those in mask 0x4; step 12 is the new one and waits 0 ms after each announcement
+adreno: step 1: read the GPU's clocks in the global clock controller (registers the touch screen driver uses too)
+adreno: 1: gcc pll votes (0x162000) = 0x60257f
+adreno: 1: gcc gpu_cfg_ahb (0x181004) = 0x9
+adreno: 1: gcc gpu_memnoc_gfx (0x181010) = 0x80000003
+adreno: 1: gcc gpu_snoc_dvm_gfx (0x181018) = 0x80000001
+adreno: 1: gcc ddrss_gpu_axi (0x181154) = 0x300001
+adreno: step 1: look up the GPU's supply rails in the boot loader's list of RPMh resources (memory at 0x80860000)
+adreno: 1: RPMh has "gfx.lvl" at 0x30050; levels: 0 56 64 128 192 224 256 320 384 416
+adreno: 1: RPMh has "cx.lvl" at 0x30000; levels: 0 16 64 128 192 224 256 288 320 336 384 400 416 432
+adreno: 1: RPMh has "mx.lvl" at 0x30010; levels: 0 16 56 64 128 192 224 256 288 320 336 384 400 416 432
+adreno: step 1: done
+adreno: step 3: make sure the clock of the GPU clock controller's registers runs (gcc_gpu_cfg_ahb)
+adreno: 3: gcc gpu_cfg_ahb (0x181004) = 0x9
+adreno: step 3: read the GPU's clock controller (0x3d90000) as it is: the first access to the GPU's part of the SoC
+adreno: 3: gpucc cx_gdscr (0x3d99108) = 0x22f001
+adreno: 3: gpucc cx_hw_ctrl (0x3d9953c) = 0x5ff4
+adreno: 3: gpucc gx_gdscr (0x3d9905c) = 0x22f001
+adreno: 3: gpucc gx_sw_reset (0x3d99058) = 0
+adreno: 3: gpucc gx_domain_misc (0x3d99504) = 0x3c0001
+adreno: 3: gpucc pll0 mode (0x3d90000) = 0x100
+adreno: 3: gpucc pll0 multiplier (0x3d90004) = 0
+adreno: 3: gpucc pll1 mode (0x3d91000) = 0x100
+adreno: 3: gpucc pll1 multiplier (0x3d91004) = 0
+adreno: 3: gpucc gmu_clk_src command (0x3d99318) = 0x80000000
+adreno: 3: gpucc gmu_clk_src source (0x3d9931c) = 0
+adreno: 3: gpucc hub_clk_src command (0x3d993ec) = 0
+adreno: 3: gpucc hub_clk_src source (0x3d993f0) = 0
+adreno: 3: gpucc cxo_aon (0x3d99004) = 0
+adreno: 3: gpucc gx_gmu (0x3d99060) = 0x88000
+adreno: 3: gpucc ahb (0x3d9911c) = 0
+adreno: 3: gpucc cx_gmu (0x3d9913c) = 0x80000221
+adreno: 3: gpucc cxo (0x3d99144) = 0x80000001
+adreno: 3: gpucc cb (0x3d993a4) = 0x1
+adreno: 3: gpucc hub_aon (0x3d993e8) = 0x1
+adreno: 3: gpucc hub_cx_int (0x3d99148) = 0x80000001
+adreno: 3: gpucc smmu vote (0x3d97000) = 0x80000000
+adreno: step 3: done
+adreno: step 4: switch the CX half of the GPU block on (gpu_cx_gdsc): clear the collapse bit of its power switch
+adreno: 4: gpucc cx_gdscr (0x3d99108) = 0x22f001
+adreno: 4: gpucc cx_hw_ctrl (0x3d9953c) = 0x5ff4
+adreno: 4: about to write gpucc cx_gdscr at 0x3d99108: 0x22f000
+adreno: 4: gpucc cx_gdscr (0x3d99108) = 0xf822f000
+adreno: 4: gpucc cx_hw_ctrl (0x3d9953c) = 0x80001fe0
+adreno: 4: CX is on
+adreno: step 4: done
+adreno: step 5: in the global clock controller: ask for the 300 MHz tap for the GPU; the GPU's bus and memory clocks on
+adreno: 5: gcc pll votes (0x162000) = 0x60257f
+adreno: 5: about to write gcc pll votes at 0x162000: 0x61257f
+adreno: 5: gcc pll votes (0x162000) = 0x61257f
+adreno: 5: gcc gpu_memnoc_gfx (0x181010) = 0x3
+adreno: 5: gcc gpu_snoc_dvm_gfx (0x181018) = 0x1
+adreno: 5: gcc ddrss_gpu_axi (0x181154) = 0x300001
+adreno: step 5: in the GPU's clock controller: the GMU's clock to 200 MHz, the hub's to 150 MHz
+adreno: 5: gpucc gmu_clk_src (0x3d9931c) = 0
+adreno: 5: about to write gpucc gmu_clk_src at 0x3d9931c: 0x602
+adreno: 5: about to write gpucc gmu_clk_src at 0x3d99318: 0x11
+adreno: 5: gpucc gmu_clk_src (0x3d9931c) = 0x602
+adreno: 5: gpucc hub_clk_src (0x3d993f0) = 0
+adreno: 5: about to write gpucc hub_clk_src at 0x3d993f0: 0x603
+adreno: 5: about to write gpucc hub_clk_src at 0x3d993ec: 0x11
+adreno: 5: gpucc hub_clk_src (0x3d993f0) = 0x603
+adreno: step 5: in the GPU's clock controller: the clocks of the GMU and of the SMMU on
+adreno: 5: gpucc cb (0x3d993a4) = 0x1
+adreno: 5: gpucc cxo (0x3d99144) = 0x1
+adreno: 5: gpucc ahb (0x3d9911c) = 0
+adreno: 5: about to write gpucc ahb at 0x3d9911c: 0x1
+adreno: 5: gpucc ahb (0x3d9911c) = 0
+adreno: 5: gpucc hub_aon (0x3d993e8) = 0x1
+adreno: 5: gpucc hub_cx_int (0x3d99148) = 0x1
+adreno: 5: gpucc cx_gmu (0x3d9913c) = 0x221
+adreno: 5: gpucc smmu vote (0x3d97000) = 0x80000000
+adreno: 5: about to write gpucc smmu vote at 0x3d97000: 0x80000001
+adreno: 5: gpucc smmu vote (0x3d97000) = 0x1
+adreno: step 5: measure the GPU block's clocks with the SoC's frequency counter (debug registers at gcc 0x162000.., gpucc 0x3d910fc, 0x3d91100, 0x3d91568)
+adreno: 5: gpucc debug mux (0x3d99568) = 0
+adreno: 5: gpucc debug divider (0x3d99280) = 0x1
+adreno: 5: gpucc debug output (0x3d99284) = 0x80000000
+adreno: 5: gcc debug mux (0x172000) = 0x14b
+adreno: 5: gcc debug divider (0x172004) = 0
+adreno: 5: gcc debug input (0x172008) = 0x80000000
+adreno: 5: gcc crystal/4 (0x17200c) = 0x80000000
+adreno: 5: gcc measure control (0x172038) = 0
+adreno: 5: about to write gpucc debug mux at 0x3d99568: 0x1b
+adreno: 5: about to write gpucc debug divider at 0x3d99280: 0x1
+adreno: 5: about to write gpucc debug output at 0x3d99284: 0x80000001
+adreno: 5: about to write gcc debug mux at 0x172000: 0x146
+adreno: 5: about to write gcc debug divider at 0x172004: 0x1
+adreno: 5: about to write gcc debug input at 0x172008: 0x80000001
+adreno: 5: about to write gcc crystal/4 at 0x17200c: 0x80000001
+adreno: 5: gcc measure control (0x172038) = 0
+adreno: 5: about to write gcc measure control at 0x172038: 0x200000
+adreno: 5: about to write gcc measure control at 0x172038: 0x1000
+adreno: 5: about to write gcc measure control at 0x172038: 0x101000
+adreno: 5: about to write gcc measure control at 0x172038: 0x1000
+adreno: 5: gcc measure status (0x17203c) = 0x2000000
+adreno: 5: gcc measure control (0x172038) = 0x1000
+adreno: 5: about to write gcc measure control at 0x172038: 0x200000
+adreno: 5: about to write gcc measure control at 0x172038: 0x20000
+adreno: 5: about to write gcc measure control at 0x172038: 0x120000
+adreno: 5: about to write gcc measure control at 0x172038: 0x20000
+adreno: 5: gcc measure status (0x17203c) = 0x2000000
+adreno: 5: about to write gcc measure control at 0x172038: 0
+adreno: 5: about to write gcc crystal/4 at 0x17200c: 0x80000000
+adreno: 5: about to write gcc debug input at 0x172008: 0x80000000
+adreno: 5: about to write gcc debug divider at 0x172004: 0
+adreno: 5: about to write gcc debug mux at 0x172000: 0x14b
+adreno: 5: about to write gpucc debug output at 0x3d99284: 0x80000000
+adreno: 5: about to write gpucc debug divider at 0x3d99280: 0x1
+adreno: 5: about to write gpucc debug mux at 0x3d99568: 0
+adreno: 5: measured: cxo runs at 0 Hz (the crystal: 19200000)
+adreno: 5: the counter does not show the crystal's rate: nothing it says can be used
+adreno: step 5: FAILED; the steps after it are not attempted
+adreno: alive 1 s after step 4; step 5 wrote 0 to gpucc debug mux at 0x3d99568
+adreno: alive 2 s after step 4; step 5 wrote 0 to gpucc debug mux at 0x3d99568
+adreno: over; back to the loader (adreno_return)
+
+--- kernel message buffer ---
+[   92.761078]:  vm_cache_geometry_colors: 8
+[   92.761087]: do_cacheid() - 65536 bytes Unknown cache (I:32768 D:32768 (separate)), 16-way assoc, 64 bytes/line
+[   92.761614]: kprintf initialized
+[   92.761691]: initialize_screen: b=B8000000, w=000004C4, h=00000A98, r=00001310, d=00000000
+[   92.761748]: pe_arm_init_interrupts: args: 0xfffffff007ae6720
+[   92.761756]: pe_arm_map_interrupt_controller: soc_phys:  0x400000
+[   92.761763]: pe_arm_map_interrupt_controller: failed to find the interrupt-controller.
+[   92.761772]: pe_arm_init_debug: failed to find cpu-debug-interface
+[   92.761845]: gic: v3, distributor 0xfffffff100d20000, cpu 0's redistributor 0xfffffff100d30000, virtual timer on PPI 27
+[   92.761885]: Darwin Kernel Version 22.5.0: Sab 07 Nov 2026 13:51:27 WIB; okihann:xnu-8796.121.2[xnu-8796.121.2-dirty]/BUILD/obj/DEVELOPMENT_ARM64_BCM2837
+[   92.782262]: pmap_startup() init/release time: 17871 microsec
+[   92.782284]: pmap_startup() delayed init/release of 0 pages
+[   92.782296]: vm_page_bootstrap: 187230 free pages, 2209 wired pages, (up to 0 of which are delayed free)
+[   92.792863]: VM boostrap: 102 maps, 204 entries and 512 holes available
+[   92.792916]: Maximum number of VM swap files: 5
+[   92.793141]: compressor              : 0xfffffff102000000 - 0xfffffff1e301c000 (3600M)
+[   92.793154]: gIOKitPageableFixed1    : 0xfffffff1e301c000 - 0xfffffff1e901c000 (96M)
+[   92.793164]: zone_meta               : 0xfffffff1e901c000 - 0xfffffff1eb0d8000 (32M)
+[   92.793173]: bsd_pageable            : 0xfffffff1eb0d8000 - 0xfffffff1eba20000 (9M)
+[   92.793183]: gIOKitPageableFixed0    : 0xfffffff1eba20000 - 0xfffffff1f1a20000 (96M)
+[   92.793192]: bufferhdr               : 0xfffffff1f1a20000 - 0xfffffff1f1c40000 (2176K)
+[   92.793201]: gIOKitPageableFixed3    : 0xfffffff1f1c40000 - 0xfffffff1f7c40000 (96M)
+[   92.793210]: gIOKitPageableFixed2    : 0xfffffff1f7c40000 - 0xfffffff1fdc40000 (96M)
+[   92.793219]: io_submap               : 0xfffffff1fdc40000 - 0xfffffff1fe440000 (8M)
+[   92.793228]: zones                   : 0xfffffff1fe440000 - 0xfffffff7fe440000 (24G)
+[   92.793237]: ipc_kernel_copy_map     : 0xfffffff7fe440000 - 0xfffffff7fec40000 (8M)
+[   92.793245]: mb                      : 0xfffffff7fec40000 - 0xfffffff802c40000 (64M)
+[   92.793256]: kmem_ptr_range          : 0xfffffff802c40000 - 0xfffffff9017e0000 (4075M)
+[   92.793265]: kmem_data_range         : 0xfffffff9017e0000 - 0xfffffffba2078000 (10G)
+[   92.793274]: kmem_sprayqtn_range     : 0xfffffffba2078000 - 0xfffffffbfdd3c000 (1468M)
+[   92.793283]: kmem_ptr_range_meta     : 0xfffffffbfdd3c000 - 0xfffffffbfddfc000 (768K)
+[   92.793292]: ipc_kernel_map          : 0xfffffffbfddfc000 - 0xfffffffbffdfc000 (32M)
+[   92.793372]: kmem_large_ranges[1]    : 0 - 0 (0B)
+[   92.793381]: kmem_large_ranges[2]    : 0 - 0 (0B)
+[   92.793387]: kmem_large_ranges[3]    : 0 - 0 (0B)
+[   92.793395]: kmem_large_ranges[4]    : 0xfffffffbad810800 - 0xfffffffbfdd3c000 (1285M)
+[   92.793404]: kmem_large_ranges[5]    : 0xfffffff9558f3000 - 0xfffffffba2078000 (9G)
+[   92.793428]: "vm_compressor_mode" is 2
+[   92.793505]: zone_init: pgzalloc  0xfffffff1fe440000:0xfffffff1ffb34000 (22M) [734 slots]
+[   92.793527]: zone_init: map VM    0xfffffff1ffb34000:0xfffffff2e5e28000 (3682M)
+[   92.793547]: zone_init: map RO    0xfffffff2e5e28000:0xfffffff3329cc000 (1227M)
+[   92.793565]: zone_init: map GEN0  0xfffffff3329cc000:0xfffffff418cc0000 (3682M)
+[   92.793583]: zone_init: map GEN1  0xfffffff418cc0000:0xfffffff4fefb4000 (3682M)
+[   92.793602]: zone_init: map GEN2  0xfffffff4fefb4000:0xfffffff5e52a8000 (3682M)
+[   92.793620]: zone_init: map GEN3  0xfffffff5e52a8000:0xfffffff6cb5a0000 (3682M)
+[   92.793638]: zone_init: map DATA  0xfffffff6cb5a0000:0xfffffff7fe440000 (4910M)
+[   92.793654]: zone_init: metadata  0xfffffff1e902c000:0xfffffff1ea82c000 (24M)
+[   92.793664]: zone_init: metabits  0xfffffff1ea82c000:0xfffffff1eb0c8000 (8M)
+[   92.793670]: zone_init: extra     0:0 (0B)
+[   92.794212]: VM bootstrap done: 90 maps, 163 entries and 502 holes left
+[   92.800176]: IOKit IOMD setownership ENABLED
+[   92.800190]: ATM subsystem is initialized
+[   92.801341]: Long logs support configured: size: 16384
+[   92.801419]: Firehose configured: 16 chunks, 8 io pages
+[   92.801429]: OSLog stream configured: stream: 8192 bytes, cache: 2112 bytes
+[   92.801435]: OSLog stream verification: 0
+[   92.801572]: Log queues configured: slot count: 8, per-slot size: 32768, total size: 262144
+[   92.801597]: Telemetry: Sampling all tasks once per 1 second
+[   92.801617]: Scheduler: Default of clutch
+[   92.801624]: Setting scheduler priority decay band limit 18
+[   92.801637]: standard timeslicing quantum is 10000 us
+[   92.801643]: standard background quantum is 2500 us
+[   92.801816]: BANK subsystem is initialized
+[   92.801866]: mig_table_max_displ = 54 mach_kobj_count = 371
+[   92.807322]: panic_trace: PE_arm_debug_enable_trace enter
+[   92.807329]: panic_trace: PE_arm_debug_enable_trace exit
+[   92.807344]: kdp_core zlib memory 0x8000
+[   92.807568]: Registered coredump handler for kernel
+[   92.807582]: Serial requested, consistent debug disabled or debug boot arg not present, configuring debugging over serial
+[   92.807588]: Initializing serial KDP
+[   92.822452]: iBoot version: iBoot-8422.100.650
+[   92.822517]: iBoot Stage 2 version: 
+[   92.827664]: IONVRAM.cpp:initImageFormat:1364 - NVRAM size is 8192 bytes
+[   92.827921]: IONVRAM.cpp:getNVRAMProperties:1176 - _bankSize=0x2000, _bankCount=0x1, _currentBank=0
+[   92.828303]: IONVRAMCHRPHandler.cpp:unserializeImage:479 - NVRAM : commonPartitionOffset - 0x30, commonPartitionSize - 0x1fd0, systemPartitionOffset - 0xffffffff, systemPartitionSize - 0
+[   92.829561]: minicrypto: registered (md5, sha1, sha2, hmac, aes-ecb/cbc/ctr, hmac-drbg prng); no xts/gcm, no RSA
+[   92.829576]: ulock_initialize>thread_max=1536, ull_hash_buckets=512
+[   92.830636]: hakios-kernel: 12 drivers built in (.config): virtio_sound adreno virtio_input goodix buttons virtio_net battery cpufreq thermal pmic ufs virtio_blk
+[   92.830856]: calling mpo_policy_init for vnguard
+[   92.830998]: Security policy loaded: Guarded vnode policy (vnguard)
+[   92.831083]: calling mpo_policy_init for AMFI
+[   92.831252]: Security policy loaded: Apple Mobile File Integrity (stand-in) (AMFI)
+[   92.831344]: calling mpo_policy_init for Sandbox
+[   92.831513]: Security policy loaded: Seatbelt sandbox policy (stand-in) (Sandbox)
+[   92.831698]: No POST boot-arg set.
+[   92.833066]: PMRD: PMTraceWorker 0xb6a4d605c5446d37
+[   92.833485]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 10001)
+[   92.834376]: GenericARMPE: platform "D22AP"
+[   92.834503]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[   92.834510]: [0]ml_processor_register>cpu_id 0xfffffff4ff09ff40 cluster_id 0 cpu_number 0 is type 0
+[   92.834560]: GenericARMCPU: cpu 0 (phys id 0x0) registered
+[   92.835091]: Copyright (c) 1982, 1986, 1989, 1991, 1993
+	The Regents of the University of California. All rights reserved.
+
+[   92.835098]: bsd_init: calling kauth_init
+[   92.835383]: bsd_init: calling process_name
+[   92.835390]: bsd_init: calling get_bsdthread_info
+[   92.835488]: MAC Framework successfully initialized
+[   92.835766]: bsd_init: calling kauth_cred_create
+[   92.835773]: bsd_init: calling chgproccnt
+[   92.835777]: bsd_init: calling kmem_suballoc
+[   92.835789]: bsd_init: calling bsd_bufferinit
+[   92.837580]: using 3760 buffer headers and 3760 cluster IO buffer headers
+[   92.837662]: bsd_init: calling IOKitInitializeTime
+[   92.837743]: clock_initialize_calendar system does not have monotonic clock
+[   92.837754]: bsd_init: calling vfsinit
+[   92.838155]: ktriage_register_subsystem_strings: set subsystem 8 strings
+[   92.838236]: bsd_init: calling proc_uuid_policy_init()
+[   92.838695]: mcache: 1 CPU(s), 64 bytes CPU cache line size
+[   92.838700]: bsd_init: calling mbinit
+[   92.839532]: mbinit: done [64 MB total pool size, (42/21) split]
+[   92.839544]: bsd_init: calling knote_init
+[   92.839548]: bsd_init: calling eventhandler_init
+[   92.839552]: bsd_init: calling aio_init
+[   92.839628]: bsd_init: calling pshm_cache_init
+[   92.839633]: bsd_init: calling psem_cache_init
+[   92.839654]: bsd_init: calling nwk_wq_init
+[   92.839686]: bsd_init: calling dlil_init
+[   92.839701]: SK: netagent is enabled by default for this platform
+[   92.840269]: DLIL: running SUM16 self-tests ... PASSED
+[   92.841019]: dlil_init: Waiting for all the create dlil kernel threads to get scheduled at least once.
+[   92.841297]: PMRD: power event 7 args 0xb6a4d606ab72b237 0x0
+[   92.841317]: PMRD: power event 7 args 0xb6a4d606ab729757 0x0
+[   92.841833]: PMRD: PowerChangeOverride (OFF_STATE->ON_STATE, f, 0x2) tag 0x20064
+[   92.841873]: PMRD: sysPowerDownHandler message kIOMessageSystemCapabilityChange
+[   92.841879]: PMRD: sysPowerDownHandler cap f -> f (flags 1)
+[   92.842211]: dlil_init: All the created dlil kernel threads have been scheduled at least once. Proceeding.
+[   92.842218]: bsd_init: calling socketinit
+[   92.842246]: bsd_init: calling domaininit
+[   92.843016]: bsd_init: calling skywalk_init
+[   92.843115]: SK[0]: skmem_region_init              seg_size 16384, md_seg_size 16384, drv_buf_seg_size 65536 [eff 65536], usr_buf_seg_size 16384
+[   92.845477]: Skywalk: running self-tests
+[   92.845482]: Skywalk: sk_copy64_8 ... PASSED
+[   92.845487]: Skywalk: sk_copy32_8 ... PASSED
+[   92.845492]: Skywalk: sk_copy64_16 ... PASSED
+[   92.845497]: Skywalk: sk_copy32_16 ... PASSED
+[   92.845502]: Skywalk: sk_copy64_20 ... PASSED
+[   92.845506]: Skywalk: sk_copy64_24 ... PASSED
+[   92.845510]: Skywalk: sk_copy64_32 ... PASSED
+[   92.845515]: Skywalk: sk_copy32_32 ... PASSED
+[   92.845520]: Skywalk: sk_copy64_40 ... PASSED
+[   92.845524]: Skywalk: sk_copy64_64x ... PASSED
+[   92.845529]: Skywalk: sk_copy64_32x ... PASSED
+[   92.845533]: Skywalk: sk_copy64_8x ... PASSED
+[   92.845539]: Skywalk: sk_copy64_4x ... PASSED
+[   92.845546]: Skywalk: sk_zero_16 ... PASSED
+[   92.845551]: Skywalk: sk_zero_32 ... PASSED
+[   92.845556]: Skywalk: sk_zero_48 ... PASSED
+[   92.845560]: Skywalk: sk_zero_128 ... PASSED
+[   92.845622]: Skywalk: memcmp mask ... PASSED
+[   92.847278]: bsd_init: calling memorystatus_freeze_init
+[   92.847283]: bsd_init: calling memorystatus_init
+[   92.847397]: bsd_init: calling sysctl_mib_init
+[   92.847404]: bsd_init: calling bsd_autoconf
+[   92.847407]: bsd_autoconf: calling kminit
+[   92.852644]: bsd_init: calling loopattach
+[   92.853638]: ifnet_attach: All kernel threads created for interface lo0 have been scheduled at least once. Proceeding.
+[   92.853657]: bsd_init: calling ether_family_init
+[   92.853831]: bsd_init: calling net_init_run
+[   92.854292]: skip attaching fsw to lo0 using legacy TX modelReinit'd ND information for interface lo0
+[   92.855421]: bsd_init: calling inittodr
+[   92.855426]: bsd_init: calling setconf
+[   92.855591]: PMRD: sysPowerDownHandler message kIOMessageSystemCapabilityChange
+[   92.855599]: PMRD: sysPowerDownHandler cap f -> f (flags 2)
+[   92.855611]: PMRD: tellChangeUp OFF_STATE->ON_STATE
+[   92.855627]: PMRD: PowerChangeDone: OFF_STATE->ON_STATE
+[   92.855632]: PMRD: Force re-evaluating aggressiveness
+[   92.855639]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 30002)
+[   92.855660]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x10001
+[   92.855667]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[   92.855672]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x302) tag 0x40064
+[   92.855686]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[   92.855691]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x302) tag 0x50064
+[   92.855704]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[   92.855714]: PMRD: adjustPowerState ON_STATE, asap 0, idleSleepEnabled 0
+[   92.855720]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 60008)
+[   92.855735]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x30002
+[   92.855741]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[   92.855752]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x60008
+[   92.855758]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[   92.855926]: cpu_start() cpu: 0
+[   92.856526]: MiniIOMobileFramebuffer: display 1125x2436 on a panel of 1220x2712 (4880 bytes per row)
+[   92.856841]: MiniIOMobileFramebuffer: IOMFBDisplayRefresh: 60 Hz (the panel: 60), an interval of 71582788 (2^-32 s), 319999 ticks
+[   92.957548]: !BSD
+[   92.957832]: Added memory device md0/rmd0 (01000000/0D000000) at FFFFFFF008220000 for 0000000000400000
+[   92.957845]: BSD root: md0, major 1, minor 0
+[   92.957931]: bsd_init: vfs_mountroot
+[   92.959242]: apfs: device 1,0: requests to it cost next to nothing (a disk in memory)
+[   92.959385]: apfs: 1 threads on a request of many pieces (0 helpers)
+[   92.959791]: apfs: volume 0 "redwood" of container 0 (at 0 MB): 86 files, 20 directories, 144 blocks of 4096 used
+[   92.959845]: bsd_init: calling VFS_ROOT
+[   92.959865]: bsd_init: calling devfs_kernel_mount
+[   92.960555]: hakios-kernel: version 2.1.13-hakios-darwin22.5-sm7435-g96ffbc53-dirty
+[   92.960887]: adreno: steps up to 12, without those in mask 0x4; step 12 is the new one and waits 0 ms after each announcement
+[   92.961173]: adreno: step 1: read the GPU's clocks in the global clock controller (registers the touch screen driver uses too)
+[   92.961333]: adreno: 1: gcc pll votes (0x162000) = 0x60257f
+[   92.961448]: adreno: 1: gcc gpu_cfg_ahb (0x181004) = 0x9
+[   92.961586]: adreno: 1: gcc gpu_memnoc_gfx (0x181010) = 0x80000003
+[   92.961728]: adreno: 1: gcc gpu_snoc_dvm_gfx (0x181018) = 0x80000001
+[   92.961860]: adreno: 1: gcc ddrss_gpu_axi (0x181154) = 0x300001
+[   92.962139]: adreno: step 1: look up the GPU's supply rails in the boot loader's list of RPMh resources (memory at 0x80860000)
+[   92.962378]: adreno: 1: RPMh has "gfx.lvl" at 0x30050; levels: 0 56 64 128 192 224 256 320 384 416
+[   92.962634]: adreno: 1: RPMh has "cx.lvl" at 0x30000; levels: 0 16 64 128 192 224 256 288 320 336 384 400 416 432
+[   92.962899]: adreno: 1: RPMh has "mx.lvl" at 0x30010; levels: 0 16 56 64 128 192 224 256 288 320 336 384 400 416 432
+[   92.962959]: adreno: step 1: done
+[   92.963205]: adreno: step 3: make sure the clock of the GPU clock controller's registers runs (gcc_gpu_cfg_ahb)
+[   92.963321]: adreno: 3: gcc gpu_cfg_ahb (0x181004) = 0x9
+[   92.963605]: adreno: step 3: read the GPU's clock controller (0x3d90000) as it is: the first access to the GPU's part of the SoC
+[   92.963739]: adreno: 3: gpucc cx_gdscr (0x3d99108) = 0x22f001
+[   92.963865]: adreno: 3: gpucc cx_hw_ctrl (0x3d9953c) = 0x5ff4
+[   92.963991]: adreno: 3: gpucc gx_gdscr (0x3d9905c) = 0x22f001
+[   92.964108]: adreno: 3: gpucc gx_sw_reset (0x3d99058) = 0
+[   92.964247]: adreno: 3: gpucc gx_domain_misc (0x3d99504) = 0x3c0001
+[   92.964367]: adreno: 3: gpucc pll0 mode (0x3d90000) = 0x100
+[   92.964492]: adreno: 3: gpucc pll0 multiplier (0x3d90004) = 0
+[   92.964614]: adreno: 3: gpucc pll1 mode (0x3d91000) = 0x100
+[   92.964741]: adreno: 3: gpucc pll1 multiplier (0x3d91004) = 0
+[   92.964897]: adreno: 3: gpucc gmu_clk_src command (0x3d99318) = 0x80000000
+[   92.965030]: adreno: 3: gpucc gmu_clk_src source (0x3d9931c) = 0
+[   92.965166]: adreno: 3: gpucc hub_clk_src command (0x3d993ec) = 0
+[   92.965299]: adreno: 3: gpucc hub_clk_src source (0x3d993f0) = 0
+[   92.965405]: adreno: 3: gpucc cxo_aon (0x3d99004) = 0
+[   92.965523]: adreno: 3: gpucc gx_gmu (0x3d99060) = 0x88000
+[   92.965620]: adreno: 3: gpucc ahb (0x3d9911c) = 0
+[   92.965744]: adreno: 3: gpucc cx_gmu (0x3d9913c) = 0x80000221
+[   92.965862]: adreno: 3: gpucc cxo (0x3d99144) = 0x80000001
+[   92.965961]: adreno: 3: gpucc cb (0x3d993a4) = 0x1
+[   92.966072]: adreno: 3: gpucc hub_aon (0x3d993e8) = 0x1
+[   92.966206]: adreno: 3: gpucc hub_cx_int (0x3d99148) = 0x80000001
+[   92.966338]: adreno: 3: gpucc smmu vote (0x3d97000) = 0x80000000
+[   92.966395]: adreno: step 3: done
+[   92.966675]: adreno: step 4: switch the CX half of the GPU block on (gpu_cx_gdsc): clear the collapse bit of its power switch
+[   92.966802]: adreno: 4: gpucc cx_gdscr (0x3d99108) = 0x22f001
+[   92.966927]: adreno: 4: gpucc cx_hw_ctrl (0x3d9953c) = 0x5ff4
+[   92.967090]: adreno: 4: about to write gpucc cx_gdscr at 0x3d99108: 0x22f000
+[   92.967359]: adreno: 4: gpucc cx_gdscr (0x3d99108) = 0xf822f000
+[   92.967498]: adreno: 4: gpucc cx_hw_ctrl (0x3d9953c) = 0x80001fe0
+[   92.967555]: adreno: 4: CX is on
+[   92.967612]: adreno: step 4: done
+[   92.967908]: adreno: step 5: in the global clock controller: ask for the 300 MHz tap for the GPU; the GPU's bus and memory clocks on
+[   92.968031]: adreno: 5: gcc pll votes (0x162000) = 0x60257f
+[   92.968186]: adreno: 5: about to write gcc pll votes at 0x162000: 0x61257f
+[   92.968309]: adreno: 5: gcc pll votes (0x162000) = 0x61257f
+[   92.968428]: adreno: 5: gcc gpu_memnoc_gfx (0x181010) = 0x3
+[   92.968552]: adreno: 5: gcc gpu_snoc_dvm_gfx (0x181018) = 0x1
+[   92.968681]: adreno: 5: gcc ddrss_gpu_axi (0x181154) = 0x300001
+[   92.968916]: adreno: step 5: in the GPU's clock controller: the GMU's clock to 200 MHz, the hub's to 150 MHz
+[   92.969034]: adreno: 5: gpucc gmu_clk_src (0x3d9931c) = 0
+[   92.969195]: adreno: 5: about to write gpucc gmu_clk_src at 0x3d9931c: 0x602
+[   92.969357]: adreno: 5: about to write gpucc gmu_clk_src at 0x3d99318: 0x11
+[   92.969613]: adreno: 5: gpucc gmu_clk_src (0x3d9931c) = 0x602
+[   92.969729]: adreno: 5: gpucc hub_clk_src (0x3d993f0) = 0
+[   92.969890]: adreno: 5: about to write gpucc hub_clk_src at 0x3d993f0: 0x603
+[   92.975528]: adreno: 5: about to write gpucc hub_clk_src at 0x3d993ec: 0x11
+[   92.981098]: adreno: 5: gpucc hub_clk_src (0x3d993f0) = 0x603
+[   92.986689]: adreno: step 5: in the GPU's clock controller: the clocks of the GMU and of the SMMU on
+[   92.992098]: adreno: 5: gpucc cb (0x3d993a4) = 0x1
+[   92.997486]: adreno: 5: gpucc cxo (0x3d99144) = 0x1
+[   92.1002822]: adreno: 5: gpucc ahb (0x3d9911c) = 0
+[   92.1008222]: adreno: 5: about to write gpucc ahb at 0x3d9911c: 0x1
+[   93.003041]: adreno: 5: gpucc ahb (0x3d9911c) = 0
+[   93.008364]: adreno: 5: gpucc hub_aon (0x3d993e8) = 0x1
+[   93.013626]: adreno: 5: gpucc hub_cx_int (0x3d99148) = 0x1
+[   93.018821]: adreno: 5: gpucc cx_gmu (0x3d9913c) = 0x221
+[   93.024014]: adreno: 5: gpucc smmu vote (0x3d97000) = 0x80000000
+[   93.029243]: adreno: 5: about to write gpucc smmu vote at 0x3d97000: 0x80000001
+[   93.034421]: adreno: 5: gpucc smmu vote (0x3d97000) = 0x1
+[   93.045010]: adreno: step 5: measure the GPU block's clocks with the SoC's frequency counter (debug registers at gcc 0x162000.., gpucc 0x3d910fc, 0x3d91100, 0x3d91568)
+[   93.050226]: adreno: 5: gpucc debug mux (0x3d99568) = 0
+[   93.055443]: adreno: 5: gpucc debug divider (0x3d99280) = 0x1
+[   93.060706]: adreno: 5: gpucc debug output (0x3d99284) = 0x80000000
+[   93.065962]: adreno: 5: gcc debug mux (0x172000) = 0x14b
+[   93.071181]: adreno: 5: gcc debug divider (0x172004) = 0
+[   93.076438]: adreno: 5: gcc debug input (0x172008) = 0x80000000
+[   93.081689]: adreno: 5: gcc crystal/4 (0x17200c) = 0x80000000
+[   93.086929]: adreno: 5: gcc measure control (0x172038) = 0
+[   93.092235]: adreno: 5: about to write gpucc debug mux at 0x3d99568: 0x1b
+[   93.097571]: adreno: 5: about to write gpucc debug divider at 0x3d99280: 0x1
+[   93.102895]: adreno: 5: about to write gpucc debug output at 0x3d99284: 0x80000001
+[   93.108200]: adreno: 5: about to write gcc debug mux at 0x172000: 0x146
+[   93.113532]: adreno: 5: about to write gcc debug divider at 0x172004: 0x1
+[   93.118863]: adreno: 5: about to write gcc debug input at 0x172008: 0x80000001
+[   93.124177]: adreno: 5: about to write gcc crystal/4 at 0x17200c: 0x80000001
+[   93.129450]: adreno: 5: gcc measure control (0x172038) = 0
+[   93.134778]: adreno: 5: about to write gcc measure control at 0x172038: 0x200000
+[   93.140096]: adreno: 5: about to write gcc measure control at 0x172038: 0x1000
+[   93.145389]: adreno: 5: about to write gcc measure control at 0x172038: 0x101000
+[   93.151677]: adreno: 5: about to write gcc measure control at 0x172038: 0x1000
+[   93.156986]: adreno: 5: gcc measure status (0x17203c) = 0x2000000
+[   93.162269]: adreno: 5: gcc measure control (0x172038) = 0x1000
+[   93.167611]: adreno: 5: about to write gcc measure control at 0x172038: 0x200000
+[   93.172901]: adreno: 5: about to write gcc measure control at 0x172038: 0x20000
+[   93.178195]: adreno: 5: about to write gcc measure control at 0x172038: 0x120000
+[   93.211102]: adreno: 5: about to write gcc measure control at 0x172038: 0x20000
+[   93.216324]: adreno: 5: gcc measure status (0x17203c) = 0x2000000
+[   93.221597]: adreno: 5: about to write gcc measure control at 0x172038: 0
+[   93.226878]: adreno: 5: about to write gcc crystal/4 at 0x17200c: 0x80000000
+[   93.232162]: adreno: 5: about to write gcc debug input at 0x172008: 0x80000000
+[   93.237414]: adreno: 5: about to write gcc debug divider at 0x172004: 0
+[   93.242662]: adreno: 5: about to write gcc debug mux at 0x172000: 0x14b
+[   93.248047]: adreno: 5: about to write gpucc debug output at 0x3d99284: 0x80000000
+[   93.253371]: adreno: 5: about to write gpucc debug divider at 0x3d99280: 0x1
+[   93.258652]: adreno: 5: about to write gpucc debug mux at 0x3d99568: 0
+[   93.263920]: adreno: 5: measured: cxo runs at 0 Hz (the crystal: 19200000)
+[   93.269282]: adreno: 5: the counter does not show the crystal's rate: nothing it says can be used
+[   93.274564]: adreno: step 5: FAILED; the steps after it are not attempted
+[   94.280932]: adreno: alive 1 s after step 4; step 5 wrote 0 to gpucc debug mux at 0x3d99568
+[   95.287267]: adreno: alive 2 s after step 4; step 5 wrote 0 to gpucc debug mux at 0x3d99568
+[   95.292527]: adreno: over; back to the loader (adreno_return)
+
+== END OF LOG ==

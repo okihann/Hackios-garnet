@@ -1,0 +1,2128 @@
+== XNULOADER run (usb) ==
+payload entry 'kernel' size f24828
+payload entry 'ramdisk' size b66000
+payload entry 'cmdline' size 9a
+payload entry 'kernel.ver' size 2f
+kernel va fffffff007004000..fffffff0082ec828 entry fffffff0074694a8
+largest free block 8c0000000 size c0000000
+phys window 8c0000000 size c0000000, claim status 0
+kernel loaded at pa 8c7004000..8c82f0000
+ramdisk at pa 8c82f0000 size b70000
+ufs: unit 0: media 544433781, 61908992 blocks of 4096 (241832 MB), writable, align 8
+ufs: unit 0: GPT header crc right (cb86c9c4), table of 64 entries crc right (2b2352eb)
+ufs: unit 1: media 544433781, 4096 blocks of 4096 (16 MB), writable, align 8
+ufs: unit 1: GPT header crc right (31c0084c), table of 32 entries crc right (90c1c4a5)
+ufs: unit 2: media 544433781, 4096 blocks of 4096 (16 MB), writable, align 8
+ufs: unit 2: GPT header crc right (78036ed2), table of 32 entries crc right (afdb4e32)
+ufs: unit 3: media 544433781, 8192 blocks of 4096 (32 MB), writable, align 8
+ufs: unit 3: GPT header crc right (f2de4e3f), table of 32 entries crc right (190eed78)
+ufs: unit 4: media 544433781, 528384 blocks of 4096 (2064 MB), writable, align 8
+ufs: unit 4: GPT header crc right (f2123d60), table of 96 entries crc right (2984c472)
+ufs: unit 5: media 544433781, 16384 blocks of 4096 (64 MB), writable, align 8
+ufs: unit 5: GPT header crc right (1a7df885), table of 32 entries crc right (9a905b93)
+ufs: part switch: lba 6..7, 8 KB
+ufs: part ssd: lba 8..15, 32 KB
+ufs: part dbg: lba 16..23, 32 KB
+ufs: part bk01: lba 24..31, 32 KB
+ufs: part bk02: lba 32..63, 128 KB
+ufs: part bk03: lba 64..127, 256 KB
+ufs: part bk04: lba 128..255, 512 KB
+ufs: part keystore: lba 256..383, 512 KB
+ufs: part frp: lba 384..511, 512 KB
+ufs: part countrycode: lba 512..1023, 2048 KB
+ufs: part misc: lba 1024..2047, 4096 KB
+ufs: part bk05: lba 2048..4095, 8192 KB
+ufs: part logfs: lba 4096..6143, 8192 KB
+ufs: part ffu: lba 6144..8191, 8192 KB
+ufs: part oops: lba 8192..12287, 16384 KB
+ufs: part devinfo: lba 12288..16383, 16384 KB
+ufs: part metadata: lba 16384..32767, 65536 KB
+ufs: part bk06: lba 32768..36863, 16384 KB
+ufs: part bk07: lba 36864..45055, 32768 KB
+ufs: part mtdblk: lba 45056..53247, 32768 KB
+ufs: part crash_history: lba 53248..68095, 59392 KB
+ufs: part minidump: lba 68096..92671, 98304 KB
+ufs: part rawdump: lba 92672..169471, 307200 KB
+ufs: part vbmeta_system_a: lba 169472..169503, 128 KB
+ufs: part vbmeta_system_b: lba 169504..169535, 128 KB
+ufs: part bk010: lba 169536..176639, 28416 KB
+ufs: part mem: lba 176640..177663, 4096 KB
+ufs: part opconfig: lba 177664..182783, 20480 KB
+ufs: part opcust: lba 182784..285183, 409600 KB
+ufs: part mbnconfig: lba 285184..293375, 32768 KB
+ufs: part rescue: lba 293376..326143, 131072 KB
+ufs: part cust: lba 326144..850431, 2097152 KB
+ufs: part super: lba 850432..3209727, 9437184 KB
+ufs: super geometry +0: 67446c613400000012ff55f0aba7b506f25cb5da5dca09344234e8df1d9c93ae
+ufs: super geometry +20: 82a499d98019467e000001000300000000100000
+ufs: super header0 +0: 30504c410a0002000001000060e62eb01791c6220f4dadf80f2f0e4c123c3869
+ufs: super header0 +20: ebd07515acc836d386a01f40d0030000cb4f480033b8e2e07930ec9082e80374
+ufs: super header0 +40: b1386153de7104a19f8d3bf651d03169000000000c0000003400000070020000
+ufs: super header0 +60: 0600000018000000000300000300000030000000900300000100000040000000
+ufs: super header0 +80: 0100000000000000000000000000000000000000000000000000000000000000
+ufs: super header0 +a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super header0 +c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super header0 +e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super tables0 +0: 6f646d5f61000000000000000000000000000000000000000000000000000000
+ufs: super tables0 +20: 00000000000000000000000001000000010000006f646d5f6200000000000000
+ufs: super tables0 +40: 0000000000000000000000000000000000000000000000000000000001000000
+ufs: super tables0 +60: 000000000200000070726f647563745f61000000000000000000000000000000
+ufs: super tables0 +80: 0000000000000000000000000000000001000000010000000100000070726f64
+ufs: super tables0 +a0: 7563745f62000000000000000000000000000000000000000000000000000000
+ufs: super tables0 +c0: 0000000002000000000000000200000073797374656d5f610000000000000000
+ufs: super tables0 +e0: 0000000000000000000000000000000000000000000000000200000001000000
+ufs: super tables0 +100: 0100000073797374656d5f620000000000000000000000000000000000000000
+ufs: super tables0 +120: 00000000000000000000000003000000000000000200000073797374656d5f65
+ufs: super tables0 +140: 78745f6100000000000000000000000000000000000000000000000000000000
+ufs: super tables0 +160: 03000000010000000100000073797374656d5f6578745f620000000000000000
+ufs: super tables0 +180: 0000000000000000000000000000000000000000040000000000000002000000
+ufs: super tables0 +1a0: 76656e646f725f61000000000000000000000000000000000000000000000000
+ufs: super tables0 +1c0: 000000000000000004000000010000000100000076656e646f725f6200000000
+ufs: super tables0 +1e0: 0000000000000000000000000000000000000000000000000000000005000000
+ufs: super tables0 +200: 000000000200000076656e646f725f646c6b6d5f610000000000000000000000
+ufs: super tables0 +220: 0000000000000000000000000000000005000000010000000100000076656e64
+ufs: super tables0 +240: 6f725f646c6b6d5f620000000000000000000000000000000000000000000000
+ufs: super tables0 +260: 0000000006000000000000000200000048210000000000000000000000080000
+ufs: super tables0 +280: 000000000000000038b451000000000000000000003000000000000000000000
+ufs: super tables0 +2a0: 40733a00000000000000000000e8510000000000000000009050270000000000
+ufs: super tables0 +2c0: 0000000000608c00000000000000000050024800000000000000000000b8b300
+ufs: super tables0 +2e0: 0000000000000000203e0300000000000000000000c0fb000000000000000000
+ufs: super tables0 +300: 64656661756c7400000000000000000000000000000000000000000000000000
+ufs: super tables0 +320: 000000000000000000000000000000007174695f64796e616d69635f70617274
+ufs: super tables0 +340: 6974696f6e735f61000000000000000000000000000000000000002002000000
+ufs: super tables0 +360: 7174695f64796e616d69635f706172746974696f6e735f620000000000000000
+ufs: super tables0 +380: 0000000000000000000000200200000000080000000000000000100000000000
+ufs: super tables0 +3a0: 0000002002000000737570657200000000000000000000000000000000000000
+ufs: super tables0 +3c0: 00000000000000000000000000000000
+ufs: super header1 +0: 30504c410a0002000001000060e62eb01791c6220f4dadf80f2f0e4c123c3869
+ufs: super header1 +20: ebd07515acc836d386a01f40d0030000cb4f480033b8e2e07930ec9082e80374
+ufs: super header1 +40: b1386153de7104a19f8d3bf651d03169000000000c0000003400000070020000
+ufs: super header1 +60: 0600000018000000000300000300000030000000900300000100000040000000
+ufs: super header1 +80: 0100000000000000000000000000000000000000000000000000000000000000
+ufs: super header1 +a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super header1 +c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super header1 +e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: super tables1 +0: 6f646d5f61000000000000000000000000000000000000000000000000000000
+ufs: super tables1 +20: 00000000000000000000000001000000010000006f646d5f6200000000000000
+ufs: super tables1 +40: 0000000000000000000000000000000000000000000000000000000001000000
+ufs: super tables1 +60: 000000000200000070726f647563745f61000000000000000000000000000000
+ufs: super tables1 +80: 0000000000000000000000000000000001000000010000000100000070726f64
+ufs: super tables1 +a0: 7563745f62000000000000000000000000000000000000000000000000000000
+ufs: super tables1 +c0: 0000000002000000000000000200000073797374656d5f610000000000000000
+ufs: super tables1 +e0: 0000000000000000000000000000000000000000000000000200000001000000
+ufs: super tables1 +100: 0100000073797374656d5f620000000000000000000000000000000000000000
+ufs: super tables1 +120: 00000000000000000000000003000000000000000200000073797374656d5f65
+ufs: super tables1 +140: 78745f6100000000000000000000000000000000000000000000000000000000
+ufs: super tables1 +160: 03000000010000000100000073797374656d5f6578745f620000000000000000
+ufs: super tables1 +180: 0000000000000000000000000000000000000000040000000000000002000000
+ufs: super tables1 +1a0: 76656e646f725f61000000000000000000000000000000000000000000000000
+ufs: super tables1 +1c0: 000000000000000004000000010000000100000076656e646f725f6200000000
+ufs: super tables1 +1e0: 0000000000000000000000000000000000000000000000000000000005000000
+ufs: super tables1 +200: 000000000200000076656e646f725f646c6b6d5f610000000000000000000000
+ufs: super tables1 +220: 0000000000000000000000000000000005000000010000000100000076656e64
+ufs: super tables1 +240: 6f725f646c6b6d5f620000000000000000000000000000000000000000000000
+ufs: super tables1 +260: 0000000006000000000000000200000048210000000000000000000000080000
+ufs: super tables1 +280: 000000000000000038b451000000000000000000003000000000000000000000
+ufs: super tables1 +2a0: 40733a00000000000000000000e8510000000000000000009050270000000000
+ufs: super tables1 +2c0: 0000000000608c00000000000000000050024800000000000000000000b8b300
+ufs: super tables1 +2e0: 0000000000000000203e0300000000000000000000c0fb000000000000000000
+ufs: super tables1 +300: 64656661756c7400000000000000000000000000000000000000000000000000
+ufs: super tables1 +320: 000000000000000000000000000000007174695f64796e616d69635f70617274
+ufs: super tables1 +340: 6974696f6e735f61000000000000000000000000000000000000002002000000
+ufs: super tables1 +360: 7174695f64796e616d69635f706172746974696f6e735f620000000000000000
+ufs: super tables1 +380: 0000000000000000000000200200000000080000000000000000100000000000
+ufs: super tables1 +3a0: 0000002002000000737570657200000000000000000000000000000000000000
+ufs: super tables1 +3c0: 00000000000000000000000000000000
+ufs: part userdata: lba 3209728..45131766, 167688156 KB
+ufs: userdata sb +0: 1020f5f201000e000c000000000000000c000000090000000100000001000000
+ufs: userdata sb +20: 00000000f7ad7f02000000007b3e0100d53f0100020000000a0000006e000000
+ufs: userdata sb +40: e00000007b3e0100000200000002000000060000001a000000f6000000b60200
+ufs: userdata sb +60: 030000000100000002000000318a075ae03b4ce7b4ad9f3d02ba292b00000000
+ufs: userdata sb +80: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +100: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +120: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +140: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +160: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +180: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +1a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +1c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +1e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +200: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +220: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +240: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +260: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +280: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +2a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +2c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +2e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +300: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +320: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +340: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +360: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +380: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +3a0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +3c0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb +3e0: 0000000000000000000000000000000000000000000000000000000000000000
+ufs: userdata sb2 +0: 1020f5f201000e000c000000000000000c000000090000000100000001000000
+ufs: userdata sb2 +20: 00000000f7ad7f02000000007b3e0100d53f0100020000000a0000006e000000
+ufs: part darwin: lba 45131776..61908986, 67108844 KB
+ufs: part xbl_a: lba 6..2053, 8192 KB
+ufs: xbl_a: begins 7f 45 4c 46 1 1 1 0 0 0 0 0 0 0 0 0
+ufs: xbl_a: fnv aac0cd787086ef0a over 3706880 bytes, 18 ms
+ufs: part xbl_config_a: lba 2054..2181, 512 KB
+ufs: part multiimgqti_a: lba 2182..2189, 32 KB
+ufs: part multiimgoem_a: lba 2190..2197, 32 KB
+ufs: part apdp: lba 2198..2261, 256 KB
+ufs: part xbl_b: lba 6..2053, 8192 KB
+ufs: xbl_b: begins 7f 45 4c 46 1 1 1 0 0 0 0 0 0 0 0 0
+ufs: xbl_b: fnv aac0cd787086ef0a over 3706880 bytes, 18 ms
+ufs: part xbl_config_b: lba 2054..2181, 512 KB
+ufs: part multiimgqti_b: lba 2182..2189, 32 KB
+ufs: part multiimgoem_b: lba 2190..2197, 32 KB
+ufs: part apdp2: lba 2198..2261, 256 KB
+ufs: part ALIGN_TO_128K_1: lba 6..31, 104 KB
+ufs: part cdt: lba 32..63, 128 KB
+ufs: part bk31: lba 64..319, 1024 KB
+ufs: part ddr: lba 320..831, 2048 KB
+ufs: part bk32: lba 832..1343, 2048 KB
+ufs: part uefi_a: lba 6..1285, 5120 KB
+ufs: part aop_a: lba 1286..1413, 512 KB
+ufs: aop_a: begins 7f 45 4c 46 1 1 1 3 0 0 0 0 0 0 0 0
+ufs: aop_a: fnv 967b65bbe133607 over 208896 bytes, 1 ms
+ufs: part aop_config_a: lba 1414..1541, 512 KB
+ufs: part bk41_a: lba 1542..2053, 2048 KB
+ufs: part tz_a: lba 2054..3077, 4096 KB
+ufs: tz_a: begins 7f 45 4c 46 2 1 1 3 0 0 0 0 0 0 0 0
+ufs: tz_a: fnv f04999b7e7f3d973 over 3710976 bytes, 18 ms
+ufs: part hyp_a: lba 3078..5125, 8192 KB
+ufs: hyp_a: begins 7f 45 4c 46 2 1 1 0 0 0 0 0 0 0 0 0
+ufs: hyp_a: fnv bb4f759b34f0b3dd over 3653632 bytes, 18 ms
+ufs: part modem_a: lba 5126..102405, 389120 KB
+ufs: modem_a: begins eb 3c 90 4d 53 44 4f 53 35 2e 30 0 10 4 1 0
+ufs: modem_a: fnv 78a999db72d41ac over 214265856 bytes, 1193 ms
+ufs: part bluetooth_a: lba 102406..103685, 5120 KB
+ufs: bluetooth_a: begins eb 3c 90 4d 53 44 4f 53 35 2e 30 0 10 4 1 0
+ufs: bluetooth_a: fnv 6a7975c4fb6fc1d over 503808 bytes, 2 ms
+ufs: part mdtpsecapp_a: lba 103686..104965, 5120 KB
+ufs: part mdtp_a: lba 104966..113157, 32768 KB
+ufs: part abl_a: lba 113158..115205, 8192 KB
+ufs: abl_a: begins 7f 45 4c 46 1 1 1 0 0 0 0 0 0 0 0 0
+ufs: abl_a: fnv 964d10ab80c3c72e over 208896 bytes, 1 ms
+ufs: part dsp_a: lba 115206..131589, 65536 KB
+ufs: dsp_a: begins 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ufs: dsp_a: fnv cf41f153d26f4d38 over 67108864 bytes, 326 ms
+ufs: part keymaster_a: lba 131590..131845, 1024 KB
+ufs: part boot_a: lba 131846..180997, 196608 KB
+ufs: part devcfg_a: lba 180998..181061, 256 KB
+ufs: part qupfw_a: lba 181062..181093, 128 KB
+ufs: part vbmeta_a: lba 181094..181125, 128 KB
+ufs: part dtbo_a: lba 181126..187269, 24576 KB
+ufs: part uefisecapp_a: lba 187270..187781, 2048 KB
+ufs: part imagefv_a: lba 187782..200069, 49152 KB
+ufs: part shrm_a: lba 200070..200101, 128 KB
+ufs: part cpucp_a: lba 200102..200357, 1024 KB
+ufs: part featenabler_a: lba 200358..200389, 128 KB
+ufs: part vendor_boot_a: lba 200390..224965, 98304 KB
+ufs: part qmcs: lba 224966..232645, 30720 KB
+ufs: part qweslicstore_a: lba 232646..232709, 256 KB
+ufs: part recovery_a: lba 232710..258309, 102400 KB
+ufs: part xbl_ramdump_a: lba 258310..258821, 2048 KB
+ufs: part uefi_b: lba 258822..260101, 5120 KB
+ufs: part aop_b: lba 260102..260229, 512 KB
+ufs: aop_b: begins 7f 45 4c 46 1 1 1 3 0 0 0 0 0 0 0 0
+ufs: aop_b: fnv 967b65bbe133607 over 208896 bytes, 1 ms
+ufs: part aop_config_b: lba 260230..260357, 512 KB
+ufs: part bk41_b: lba 260358..260869, 2048 KB
+ufs: part tz_b: lba 260870..261893, 4096 KB
+ufs: tz_b: begins 7f 45 4c 46 2 1 1 3 0 0 0 0 0 0 0 0
+ufs: tz_b: fnv f04999b7e7f3d973 over 3710976 bytes, 18 ms
+ufs: part hyp_b: lba 261894..263941, 8192 KB
+ufs: hyp_b: begins 7f 45 4c 46 2 1 1 0 0 0 0 0 0 0 0 0
+ufs: hyp_b: fnv bb4f759b34f0b3dd over 3653632 bytes, 18 ms
+ufs: part modem_b: lba 263942..361221, 389120 KB
+ufs: modem_b: begins eb 3c 90 4d 53 44 4f 53 35 2e 30 0 10 4 1 0
+ufs: modem_b: fnv 78a999db72d41ac over 214265856 bytes, 1137 ms
+ufs: part bluetooth_b: lba 361222..362501, 5120 KB
+ufs: bluetooth_b: begins eb 3c 90 4d 53 44 4f 53 35 2e 30 0 10 4 1 0
+ufs: bluetooth_b: fnv 6a7975c4fb6fc1d over 503808 bytes, 2 ms
+ufs: part mdtpsecapp_b: lba 362502..363525, 4096 KB
+ufs: part mdtp_b: lba 363526..371717, 32768 KB
+ufs: part abl_b: lba 371718..373765, 8192 KB
+ufs: abl_b: begins 7f 45 4c 46 1 1 1 0 0 0 0 0 0 0 0 0
+ufs: abl_b: fnv 964d10ab80c3c72e over 208896 bytes, 1 ms
+ufs: part dsp_b: lba 373766..390149, 65536 KB
+ufs: dsp_b: begins 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ufs: dsp_b: fnv cf41f153d26f4d38 over 67108864 bytes, 326 ms
+ufs: part keymaster_b: lba 390150..390405, 1024 KB
+ufs: part boot_b: lba 390406..439557, 196608 KB
+ufs: part devcfg_b: lba 439558..439621, 256 KB
+ufs: part qupfw_b: lba 439622..439653, 128 KB
+ufs: part vbmeta_b: lba 439654..439685, 128 KB
+ufs: part dtbo_b: lba 439686..445829, 24576 KB
+ufs: part uefisecapp_b: lba 445830..446341, 2048 KB
+ufs: part imagefv_b: lba 446342..458629, 49152 KB
+ufs: part shrm_b: lba 458630..458661, 128 KB
+ufs: part cpucp_b: lba 458662..458917, 1024 KB
+ufs: part featenabler_b: lba 458918..458949, 128 KB
+ufs: part vendor_boot_b: lba 458950..483525, 98304 KB
+ufs: part qweslicstore_b: lba 483526..483589, 256 KB
+ufs: part recovery_b: lba 483590..509189, 102400 KB
+ufs: part xbl_ramdump_b: lba 509190..509701, 2048 KB
+ufs: part dip: lba 509702..509957, 1024 KB
+ufs: part bk42: lba 509958..510085, 512 KB
+ufs: part limits: lba 510086..510093, 32 KB
+ufs: part limits-cdsp: lba 510094..510101, 32 KB
+ufs: part toolsfv: lba 510102..510357, 1024 KB
+ufs: part gsort: lba 510358..514453, 16384 KB
+ufs: part bk43: lba 514454..522645, 32768 KB
+ufs: part storsec: lba 522646..522677, 128 KB
+ufs: part uefivarstore: lba 522678..522805, 512 KB
+ufs: part secdata: lba 522806..522813, 32 KB
+ufs: part mdcompress: lba 522814..527933, 20480 KB
+ufs: part connsec: lba 527934..527965, 128 KB
+ufs: part tzsc: lba 527966..527997, 128 KB
+ufs: part rtice: lba 527998..528125, 512 KB
+ufs: part xbl_sc_test_mode: lba 528126..528141, 64 KB
+ufs: part xbl_sc_logs: lba 528142..528173, 128 KB
+ufs: part ALIGN_TO_128K_2: lba 6..31, 104 KB
+ufs: part bk51: lba 32..255, 896 KB
+ufs: part modemst1: lba 256..2303, 8192 KB
+ufs: part modemst2: lba 2304..4351, 8192 KB
+ufs: part fsg: lba 4352..6399, 8192 KB
+ufs: part fsc: lba 6400..6655, 1024 KB
+ufs: part persist: lba 6656..14847, 32768 KB
+ufs: 6 raw units, 128 partitions
+ufs: firmware table 0: 5ad34ba-6f02-4214-952e-4da0398e2bb9 at fefacf90
+ufs: firmware table 1: 7739f24c-93d7-11d4-9a3a-090273fc14d at fedce018
+ufs: firmware table 2: 4c19049f-4137-4dd3-9c10-8b97a83ffdfa at feface60
+ufs: firmware table 3: 49152e77-1ada-4764-b7a2-7afefed95e8b at fefb16c8
+ufs: firmware table 4: b898d8dc-80a-40f7-99e3-31627b806a5a at 39a971dcc9d2ae39
+ufs: firmware table 5: 1d301fe9-be79-4353-91c2-d23bc959aec at fc2d2a98
+ufs: firmware table 6: ee4e5898-3914-4259-9d6e-dc7bd7943cf at fc2d2918
+ufs: firmware table 7: eb9d2d31-2d88-11d3-9a16-090273fc14d at fef60000
+ufs: firmware table 8: f2fd1544-9794-4a2c-992e-e5bbcf20e394 at fef5e000
+ufs: firmware table 9: dcfa911d-26eb-469f-a220-38b7dc461220 at fbc7f018
+ufs: unit 0: path 1.4[c145088609be55438bc130d64ff8e63a]
+ufs: unit 1: path 1.4[77d4908da339384aab9e586ff69ed051]
+ufs: unit 2: path 1.4[6858f8edec87774f9cda5f10df2fe601]
+ufs: unit 3: path 1.4[2490e61aeb8af84dbc980032dbdf5024]
+ufs: unit 4: path 1.4[85193fd307f1854abe3868dc7ad32cea]
+ufs: unit 5: path 1.4[5fd0a14b8e083f48a97eb19b9ccf59b0]
+ufs: block service: 128 partitions and 6 units, page fa4d0000, buffer fa5e8000 of 4096 KB
+return slot patched at 8c746a7f0, checkpoint 0
+ba: virtBase=fffffff007004000 physBase=8c7004000 slide=18c0000000 (kern_lo=8c7004000 vm_lo=fffffff007004000)
+cmdline: 275 of 607 characters
+cores for the kernel, in the order it takes them: 700 600 500 400 300 200 100
+device tree 8c8e60000 len 4404, boot_args 8c8e70000, top 8c8e80000
+cmdline: debug=0x8 rd=md0 hv_wdt_pet=1 ufs_shared_pa=0x00000000fa4d0000 hakios_kver=2.3.4-hakios-darwin22.5-sm7435-gd852e4bd-dirty loader_return_after=90 epoch=1794239222 sb_delay=8 -v cpus=8 bootcpu=7 ufs=2 wifi=1 wifi_loud=1 wifi_diag=1 root_apfs=ufs_darwin wifi_nocal=1 wifi_keep=1
+the kernel will run on core 700 (this is core 0)
+jumping to 8c74694a8
+core 700: the firmware answers 0 to the request to start it
+2 s: the kernel has logged 94023 bytes, heartbeat 1; the last of it:
+:47:03.757047 (pid/9 [wifid]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-09 22:47:03.757065 (pid/9 [wifid]) <Notice>: created
+com.apple.xpc.launchd|2026-11-09 22:47:03.864400 <Notice>: Flushed 23 logs [limit: 20]
+
+4 s: the kernel has logged 95484 bytes, heartbeat 1; the last of it:
+.780055 (pid/6 [runningboardd]) <Notice>: created
+com.apple.xpc.launchd|2026-11-09 22:47:04.955008 (pid/8 [powerd]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-09 22:47:04.955035 (pid/8 [powerd]) <Notice>: created
+
+6 s: the kernel has logged 143451 bytes, heartbeat 1; the last of it:
+3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:07.953522 <Notice>: Last log repeated 1 times
+2026-11-09 22:47:07.955 wifid[9:340] Locale timer fired
+com.apple.xpc.launchd|2026-11-09 22:47:07.069479 (user/501) <Warning>: failed lo
+
+== KERNEL LOG (the kernel is still running) ==
+cpu 4 (phys id 0x300) is a slower core: the scheduler uses it after cpu 3 (phys id 0x400)
+cpu 5 (phys id 0x200) is a slower core: the scheduler uses it after cpu 2 (phys id 0x500)
+cpu 6 (phys id 0x100) is a slower core: the scheduler uses it after cpu 1 (phys id 0x600)
+wifi: 0: the driver asks for the radio's address: none given (wifi_mac), using default 02:00:00:47:61:72
+lx: the radio is the link behind en0
+wifi: the radio is being brought up beside the system's start (wifi=1)
+
+=== init: process 1, started as /sbin/launchd ===
+
+-- the Darwin root volume on /dev/ufs_darwin as the root --
+[ ok ] mount the Darwin volume read only
+wifi: 0: apps smmu scr0 (0x15000000) = 0x250406
+wifi: 0: apps smmu idr0 (0x15000020) = 0x4c017e7e
+wifi: 0: apps smmu idr1 (0x15000024) = 0x6000004d
+wifi: 0: match register 0 is in use: stream 0x60 mask 0, s2cr 0
+wifi: 0: match register 1 is in use: stream 0x540 mask 0, s2cr 0x1
+wifi: 0: match register 2 is in use: stream 0x20 mask 0, s2cr 0x2
+wifi: 0: match register 3 is in use: stream 0x800 mask 0x402, s2cr 0x3
+wifi: 0: match register 4 is in use: stream 0x80 mask 0, s2cr 0x4
+wifi: 0: match register 5 is in use: stream 0x484 mask 0x11, s2cr 0x5
+wifi: 0: free: match register 6 (smr 0, s2cr 0x20000) and context 6, whose registers are at 0x15086000; the SMMU's pages are of 0x1000 bytes, 128 before the contexts'
+wifi: 0: apps smmu cbar (0x15001018) = 0
+wifi: 0: apps smmu cba2r (0x15001818) = 0
+wifi: 0: apps smmu, the radio's context sctlr (0x15086000) = 0x1cc4a300
+wifi: 0: apps smmu, the radio's context ttbr0, low (0x15086020) = 0
+wifi: 0: apps smmu, the radio's context fsr (0x15086058) = 0
+[ ok ] the system volume on flash is the root, this image on /redwood
+Darwin 22.5.0 iPhone10,3
+Darwin Kernel Version 22.5.0: Sen 09 Nov 2026 22:46:20 WIB; okihann:xnu-8796.121.2[xnu-8796.121.2-dirty]/BUILD/obj/DEVELOPMENT_ARM64_BCM2837
+memory 2959 MB, page size 16384, 7 cpu
+
+wifi: 0: the radio is to see 45056 KB of ours (0x8ca9d8000) at 0xa0000000
+wifi: 0: THE SMMU IS ABOUT TO BE WRITTEN: context 6 gets page tables of ours (root 0x8cde2c000) and is switched on, and match register 6 sends stream 0x4c0 mask 0x1 through it; before: smr 0, s2cr 0x20000, the context's sctlr 0x1cc4a300
+wifi: 0: about to write apps smmu, the radio's context sctlr at 0x15086000: 0
+wifi: 0: about to write apps smmu cba2r at 0x15001818: 0x1
+wifi: 0: about to write apps smmu cbar at 0x15001018: 0x1f300
+wifi: 0: about to write apps smmu, the radio's context tcr2 at 0x15086010: 0x38011
+wifi: 0: about to write apps smmu, the radio's context tcr at 0x15086030: 0x803519
+wifi: 0: about to write apps smmu, the radio's context ttbr0, low at 0x15086020: 0xcde2c000
+wifi: 0: about to write apps smmu, the radio's context ttbr0, high at 0x15086024: 0x60008
+wifi: 0: about to write apps smmu, the radio's context ttbr1, low at 0x15086028: 0
+wifi: 0: about to write apps smmu, the radio's context ttbr1, high at 0x1508602c: 0
+wifi: 0: about to write apps smmu, the radio's context mair0 at 0x15086038: 0xf404ff44
+wifi: 0: about to write apps smmu, the radio's context mair1 at 0x1508603c: 0
+wifi: 0: about to write apps smmu, the radio's context fsr at 0x15086058: 0xc00001fe
+wifi: 0: about to write apps smmu, the radio's context tlbiasid at 0x15086610: 0x6
+wifi: 0: about to write apps smmu, the radio's context tlbsync at 0x150867f0: 0x1
+wifi: 0: about to write apps smmu, the radio's context sctlr at 0x15086000: 0x1127
+wifi: 0: about to write apps smmu s2cr at 0x15000c18: 0x6
+wifi: 0: about to write apps smmu smr at 0x15000818: 0x800104c0
+wifi: 0: apps smmu smr (0x15000818) = 0x800104c0
+wifi: 0: apps smmu s2cr (0x15000c18) = 0x6
+wifi: 0: apps smmu cbar (0x15001018) = 0x1f300
+wifi: 0: apps smmu, the radio's context sctlr (0x15086000) = 0x127
+wifi: 0: apps smmu, the radio's context ttbr0, low (0x15086020) = 0xcde2c000
+wifi: 0: apps smmu, the radio's context ttbr0, high (0x15086024) = 0x60008
+wifi: 0: apps smmu, the radio's context tcr (0x15086030) = 0x803519
+wifi: 0: apps smmu, the radio's context tcr2 (0x15086010) = 0x38071
+wifi: 0: apps smmu cba2r (0x15001818) = 0x1
+wifi: 0: apps smmu sgfsr (0x15000048) = 0
+wifi: 0: THE RADIO'S STREAM GOES THROUGH CONTEXT 6 of the SMMU, with our page tables
+wifi: 0: the SMMU has refused the radio nothing (context 6: fsr 0x400; sgfsr 0)
+lx: 44 MB for the radio to read and write; it knows them from 0xa0000000 on
+wifi: step 1: map the shared memory area (0x80900000, 2 MB: memory, not registers) and read how the boot loader laid it out
+wifi: 1: the boot loader's version word is 0xc0000; the table of partitions begins 24 54 4f 43, version 1, 16 entries
+wifi: 1: partition 0: processors 0xffff and 0xffff, at 0x80aff000, 0x1000 bytes, flags 0x1, alignment 0
+wifi: 1: partition 1: processors 0 and 0x2, at 0x80acf000, 0x30000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 2: processors 0 and 0x5, at 0x80aaf000, 0x20000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 3: processors 0 and 0xe, at 0x80aad000, 0x2000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 4: processors 0 and 0x1, at 0x80a31000, 0x7c000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 5: processors 0x1 and 0x2, at 0x80a11000, 0x20000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 6: processors 0x1 and 0xe, at 0x80a0f000, 0x2000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 7: processors 0x7 and 0x1, at 0x80a0d000, 0x2000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 8: processors 0x7 and 0x2, at 0x80a0b000, 0x2000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 9: processors 0x7 and 0x5, at 0x80a09000, 0x2000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 10: processors 0x7 and 0xd, at 0x80a05000, 0x4000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 11: processors 0 and 0xd, at 0x809c5000, 0x40000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 12: processors 0x1 and 0xd, at 0x809a5000, 0x20000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 13: processors 0xd and 0x2, at 0x80985000, 0x20000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 14: processors 0xfffe and 0xfffe, at 0x80901000, 0x84000 bytes, flags 0x3, alignment 32
+wifi: 1: partition 15: processors 0xffff and 0xffff, at 0x80900000, 0x1000 bytes, flags 0x3, alignment 0
+wifi: 1: the partition for us and the Wi-Fi DSP (0 and 13): at 0x809c5000, 0x40000 bytes, of which 0x3bfa0 free; 2 items
+wifi: 1:   items (bytes): 478 (32) 479 (16384)
+wifi: 1: the partition for everybody (the global one): at 0x80901000, 0x84000 bytes, of which 0x7c308 free; 18 items
+wifi: 1:   items (bytes): 469 (4096) 473 (12288) 604 (2120) 603 (492) 402 (2328) 404 (8192) 137 (288) 602 (592) 403 (16) 474 (12) 614 (720) 632 (4)
+wifi: 1:   items (bytes): 612 (320) 631 (32) 628 (4) 135 (88) 498 (18) 81 (36)
+wifi: 1: item 616, SMP2P from us to the DSP: not there
+wifi: 1: item 626, the DSP's last words: not there
+wifi: 1: item 617, SMP2P from the DSP to us: not there (the DSP has not run since the phone was started)
+wifi: step 2: read the description at the start of the always-on processor's message memory (0xc300000)
+wifi: 2: mailbox magic (0xc300000) = 0x4d41494c
+wifi: 2: mailbox version (0xc300004) = 0x1
+wifi: 2: mailbox features (0xc300008) = 0
+wifi: 2: mailbox their link (0xc30000c) = 0xffff
+wifi: 2: mailbox their link, seen by us (0xc300010) = 0xffff
+wifi: 2: mailbox their channel (0xc300014) = 0xffff
+wifi: 2: mailbox their channel, seen by us (0xc300018) = 0xffff
+wifi: 2: mailbox their mailbox's size (0xc30001c) = 0x68
+wifi: 2: mailbox their mailbox (0xc300020) = 0xc0
+wifi: 2: mailbox our link (0xc300024) = 0xffff
+wifi: 2: mailbox our link, seen by them (0xc300028) = 0xffff
+wifi: 2: mailbox our channel (0xc30002c) = 0xffff0000
+wifi: 2: mailbox our channel, seen by them (0xc300030) = 0xffff0000
+wifi: 2: mailbox our mailbox's size (0xc300034) = 0x2d8
+wifi: 2: mailbox our mailbox (0xc300038) = 0x128
+wifi: 2: mailbox the length of the message in our mailbox (0xc300128) = 0
+wifi: step 2: read who has rung our doorbell (IPCC, 0xed18000: the first access to that block)
+wifi: 2: ipcc received (0xed18010) = 0xffffffff
+wifi: step 6: find the DSP's image in the small image that came with the kernel, and check it against its own header
+wifi: 6: segment 1: 0x2000 bytes at 0x85300000, of which 0x1928 from its file
+wifi: 6: segment 2: 0x71000 bytes at 0x85302000, of which 0x70ab9 from its file
+wifi: 6: segment 3: 0x1000 bytes at 0x85373000, of which 0x450 from its file
+wifi: 6: segment 4: 0x1000 bytes at 0x85400000, of which 0x100 from its file
+wifi: 6: segment 5: 0x1000 bytes at 0x85401000, of which 0x1000 from its file
+wifi: 6: segment 6: 0x480000 bytes at 0x85402000, of which 0x47f4bc from its file
+wifi: 6: segment 7: 0xcd1000 bytes at 0x85882000, of which 0x3f550 from its file
+wifi: 6: segment 8: 0xb2000 bytes at 0x86900000, of which 0xb137e from its file
+wifi: 6: segment 9: 0x24e000 bytes at 0x869b2000, of which 0 from its file
+wifi: 6: the image is whole: a header of 4684 bytes (4280 of hashes), 9 segments, 6174395 bytes of files, 0x1900000 bytes of the DSP's 0x1900000 from 0x85300000
+wifi: step 7: open the mailbox to the always-on processor: words of the message memory, and its doorbell
+wifi: 7: mailbox magic (0xc300000) = 0x4d41494c
+wifi: 7: mailbox version (0xc300004) = 0x1
+wifi: 7: mailbox our mailbox (0xc300038) = 0x128
+wifi: 7: mailbox our mailbox's size (0xc300034) = 0x2d8
+wifi: 7: mailbox our link (0xc300024) = 0xffff
+wifi: 7: mailbox our link, seen by them (0xc300028) = 0xffff
+wifi: 7: mailbox our channel (0xc30002c) = 0xffff0000
+wifi: 7: mailbox their link (0xc30000c) = 0xffff
+wifi: 7: about to write mailbox their link, seen by us at 0xc300010: 0xffff
+wifi: 7: about to write mailbox our link at 0xc300024: 0xffff
+wifi: 7: about to write ipcc the always-on processor's doorbell at 0xed1800c: 0
+wifi: 7: the always-on processor has seen our link
+wifi: 7: about to write mailbox our channel at 0xc30002c: 0xffff
+wifi: 7: about to write ipcc the always-on processor's doorbell at 0xed1800c: 0
+wifi: 7: about to write mailbox their channel, seen by us at 0xc300018: 0xffff
+wifi: 7: about to write ipcc the always-on processor's doorbell at 0xed1800c: 0
+wifi: 7: THE MAILBOX TO THE ALWAYS-ON PROCESSOR IS OPEN; the doorbells say 0
+wifi: 8: the DSP has left nothing in the shared memory: it has not run since the phone was started, and there is nothing to shut down
+wifi: step 8: hand the image's header to TrustZone to check its signature (image 6), in a page of ours
+wifi: 8: about to ask TrustZone to take the Wi-Fi DSP's header: smc 0x42000201, arguments 0x6, 0x8ce65c000, 0
+wifi: 8: TrustZone returns 0, answer 0
+wifi: 8: TRUSTZONE ACCEPTS THE WI-FI DSP'S SIGNATURE FROM THIS KERNEL
+wifi: step 8: tell TrustZone where the image will be
+wifi: 8: about to ask TrustZone where the image will be: smc 0x42000202, arguments 0x6, 0x85300000, 0x1900000
+wifi: 8: TrustZone returns 0, answer 0
+wifi: 8: TrustZone takes the place: 0x1900000 bytes at 0x85300000
+wifi: step 9: put the image's segments into the DSP's memory (0x85300000, 25 MB: memory of nobody's until TrustZone starts the DSP), with zeroes where a segment is longer th
+wifi: 9: the memory begins 0, the image 0x5800c0005800c00e
+wifi: 9: about to write 0x2000 bytes at 0x85300000 (0x1928 of them the file's)
+wifi: 9: about to write 0x71000 bytes at 0x85302000 (0x70ab9 of them the file's)
+wifi: 9: about to write 0x1000 bytes at 0x85373000 (0x450 of them the file's)
+wifi: 9: about to write 0x1000 bytes at 0x85400000 (0x100 of them the file's)
+wifi: 9: about to write 0x1000 bytes at 0x85401000 (0x1000 of them the file's)
+wifi: 9: about to write 0x480000 bytes at 0x85402000 (0x47f4bc of them the file's)
+wifi: 9: about to write 0xcd1000 bytes at 0x85882000 (0x3f550 of them the file's)
+wifi: 9: about to write 0xb2000 bytes at 0x86900000 (0xb137e of them the file's)
+wifi: 9: about to write 0x24e000 bytes at 0x869b2000 (0 of them the file's)
+[ ok ] sysctl: kernel identifies itself
+
+-- writable filesystem --
+wifi: 9: 6174395 bytes written and 15612229 cleared; read back, 0 words of eight bytes differ
+wifi: step 10: look at our partition with the DSP in the shared memory, and for an SMP2P item of ours (616) in it
+wifi: 10: the partition for us and the Wi-Fi DSP (0 and 13): at 0x809c5000, 0x40000 bytes, of which 0x3bfa0 free; 2 items
+wifi: 10:   items (bytes): 478 (32) 479 (16384)
+wifi: 10: its items from the bottom end at +0x4060, those from the top begin at +0x40000
+wifi: step 10: make the item: the SoC's lock for the shared memory (0x1f43000: the first access to that block) around it
+wifi: 10: shared memory's lock owner (0x1f43000) = 0
+wifi: 10: about to take the lock (write 1 at 0x1f43000, until it reads back so, for a second at most), write an entry of 16 bytes for item 616 with 344 bytes behind it where the partition's items from the bottom end, move the partition's mark by 360, and release the lock (write 0)
+wifi: 10: the lock is released (it reads 0); the entry is at the old mark, the mark moved
+wifi: 10: item 616 made, at 0x809c9070
+wifi: 10: the partition for us and the Wi-Fi DSP (0 and 13): at 0x809c5000, 0x40000 bytes, of which 0x3be38 free; 3 items
+wifi: 10:   items (bytes): 478 (32) 479 (16384) 616 (340)
+wifi: step 10: fill our item in (340 bytes at the address above): zeroes, then from processor 0 to 13, room for 16 entries, the entries "master-kernel" and "wlan" at zero, feature bit 0, and last the version, which makes it valid; then the DSP's SMP2P doorbell, as Linux rings it
+wifi: 10: about to write ipcc the DSP's SMP2P doorbell at 0xed1800c: 0x180002
+wifi: 10: our item reads back: SMP2P version 1, features 0x1, from processor 0 to 13, flags 0, 2 of 16 entries: master-kernel = 0; wlan = 0;
+wifi: step 10: see that our two marks in GLINK's descriptor are at zero before the DSP starts
+wifi: 10: GLINK's descriptor at 0x809c5030: our queue read to 0 and written to 0, the DSP's read to 0 and written to 0
+wifi: step 11: tell the doorbells that rings from before this kernel have been heard and that the DSP's SMP2P ring is listened for, tell the always-on processor that the image is loaded, and ask TrustZone to authenticate it and let the DSP out of reset
+wifi: 11: about to write ipcc heard at 0xed1801c: 0
+wifi: 11: about to write ipcc listened for at 0xed18014: 0x180002
+wifi: 11: about to tell the always-on processor "{class: image, res: load_state, name: wpss, val: on}": 64 bytes into our mailbox at 0xc300128, its length in front, and the doorbell
+wifi: 11: the always-on processor has taken it
+wifi: 11: about to ask TrustZone to authenticate the Wi-Fi DSP's image and start it: smc 0x42000205, arguments 0x6, 0, 0
+[ ok ] mount a memory filesystem on /private/var
+wifi: 11: TrustZone returns 0, answer 0
+wifi: 11: TRUSTZONE HAS AUTHENTICATED THE IMAGE AND LET THE WI-FI DSP OUT OF RESET; watching the shared memory and our doorbell for 10 s
+wifi: doorbell: +0.009 ms: client 0, signal 0; heard and cleared
+wifi: doorbell: +27.033 ms: client 24, signal 0; heard and cleared
+  113 directories, 9 files
+[ ok ] create the directories of the data volume
+
+-- read-only filesystem --
+  drwxr-xr-x  2        0 /redwood/empty
+  drwxr-xr-x  2        0 /redwood/bin
+  drwxr-xr-x  2        0 /redwood/hal
+  drwxr-xr-x  2        0 /redwood/fw
+  drwxr-xr-x  2        0 /redwood/sbin
+  drwxr-xr-x  2        0 /redwood/etc
+  drwxr-xr-x  2        0 /redwood/LaunchDaemons
+  drwxr-xr-x  2        0 /redwood/var
+  drwxr-xr-x  2        0 /redwood/flash
+  drwxr-xr-x  2        0 /redwood/private
+  drwxr-xr-x  2        0 /redwood/lib
+  drwxr-xr-x  2        0 /redwood/dev
+  drwxr-xr-x  2        0 /redwood/xpc
+  drwxr-xr-x  2        0 /redwood/share
+  -rwxr-xr-x  1    66416 /redwood/bin/torch_test
+  -rwxr-xr-x  1    67576 /redwood/bin/apfs_mmap_test
+  -rwxr-xr-x  1    66808 /redwood/bin/camera_avtest
+  -rwxr-xr-x  1    69216 /redwood/bin/sound_test
+  -rwxr-xr-x  1    69704 /redwood/bin/battery_test
+  -rwxr-xr-x  1    68256 /redwood/bin/cg_test
+  -rwxr-xr-x  1    66728 /redwood/bin/cputop
+  -rwxr-xr-x  1    71744 /redwood/bin/net_test
+  -rwxr-xr-x  1    66728 /redwood/bin/rwtouch
+  -rwxr-xr-x  1    66128 /redwood/bin/hello_dyn
+  -rwxr-xr-x  1    68296 /redwood/bin/font_test
+  -rwxr-xr-x  1    67240 /redwood/bin/fps_info
+  -rwxr-xr-x  1    67952 /redwood/bin/keychain_test
+  -rwxr-xr-x  1    66576 /redwood/bin/cpu_test
+  -rwxr-xr-x  1    69672 /redwood/bin/surf_test
+  -rwxr-xr-x  1    66864 /redwood/bin/shm_test
+  -rwxr-xr-x  1    68264 /redwood/bin/cow_test
+  -rwxr-xr-x  1    67936 /redwood/bin/wifipw_test
+  -rwxr-xr-x  1    52792 /redwood/bin/var_store
+  -rwxr-xr-x  1    71328 /redwood/bin/metal_test
+  -rwxr-xr-x  1    66400 /redwood/bin/mg_test
+  -rwxr-xr-x  1    83688 /redwood/bin/svc_test
+  -rwxr-xr-x  1    67504 /redwood/bin/vol_ls
+  -rwxr-xr-x  1    67312 /redwood/bin/snap_test
+  -rwxr-xr-x  1    34496 /redwood/bin/child
+  -rwxr-xr-x  1    85768 /redwood/bin/camera_test
+  -rwxr-xr-x  1    67704 /redwood/bin/record_test
+  lrwxrwxrwx  1       31 /redwood/hal/HakiosAudio.driver -> /redwood/lib/HakiosAudio.driver
+  -rw-r--r--  1     4684 /redwood/fw/wpss.mdt
+  -rw-r--r--  1     3896 /redwood/fw/a710_zap.b02
+  -rw-r--r--  1    26328 /redwood/fw/bd_n16g.bin
+  -rw-r--r--  1    26328 /redwood/fw/bdwlan.bin
+  -rw-r--r--  1    12088 /redwood/fw/a710_zap.mbn
+  -rw-------  1       29 /redwood/fw/network
+  -rw-r--r--  1      404 /redwood/fw/wpss.b00
+  -rw-r--r--  1   259408 /redwood/fw/wpss.b07
+  -rw-r--r--  1   725886 /redwood/fw/wpss.b08
+  -rw-r--r--  1  4715708 /redwood/fw/wpss.b06
+  -rw-r--r--  1     6440 /redwood/fw/wpss.b01
+  -rw-r--r--  1     4280 /redwood/fw/wpss.b10
+  -rw-r--r--  1    19348 /redwood/fw/regdb.bin
+  -rw-r--r--  1    57272 /redwood/fw/gmu_gen70000.bin
+  -rw-r--r--  1     1948 /redwood/fw/a710_zap.b01
+  -rw-r--r--  1     6044 /redwood/fw/a710_zap.elf
+  -rw-r--r--  1      148 /redwood/fw/a710_zap.b00
+  -rw-r--r--  1    35572 /redwood/fw/a710_sqe.fw
+  -rw-r--r--  1     4044 /redwood/fw/a710_zap.mdt
+  -rw-r--r--  1    26328 /redwood/fw/bd_n16.bin
+  -rw-r--r--  1      256 /redwood/fw/wpss.b04
+  -rw-r--r--  1     1104 /redwood/fw/wpss.b03
+  -rw-r--r--  1    19348 /redwood/fw/regdb_xiaomi.bin
+  -rw-r--r--  1   461497 /redwood/fw/wpss.b02
+  -rw-r--r--  1     4096 /redwood/fw/wpss.b05
+  -rwxr-xr-x  1    52384 /redwood/sbin/init
+  lrwxrwxrwx  1        4 /redwood/sbin/launchd -> init
+  -rw-r--r--  1     6216 /redwood/etc/var.skel
+  -rw-r--r--  1      262 /redwood/etc/inject.conf
+  -rw-r--r--  1       88 /redwood/etc/rc
+  -rw-r--r--  1       47 /redwood/etc/motd
+  -rw-r--r--  1      349 /redwood/etc/rc.jobs
+  -rw-r--r--  1      457 /redwood/LaunchDaemons/com.apple.notifyd.plist
+  -rw-r--r--  1      377 /redwood/LaunchDaemons/com.apple.syslogd.plist
+  -rw-r--r--  1      692 /redwood/LaunchDaemons/com.apple.containermanagerd.system.plist
+  -rw-r--r--  1      285 /redwood/LaunchDaemons/com.apple.mobilegestalt.xpc.plist
+  -rw-r--r--  1      861 /redwood/LaunchDaemons/com.apple.logd.plist
+  -rw-r--r--  1     1086 /redwood/LaunchDaemons/com.apple.backboardd.plist
+  -rw-r--r--  1      377 /redwood/LaunchDaemons/com.apple.cfprefsd.xpc.daemon.plist
+  -rw-r--r--  1      657 /redwood/LaunchDaemons/com.hakios.wifi.plist
+  -rw-r--r--  1      530 /redwood/LaunchDaemons/com.apple.cfprefsd.xpc.daemon.system.plist
+  -rw-r--r--  1      270 /redwood/LaunchDaemons/com.apple.pluginkit.pkd.plist
+  -rw-r--r--  1      908 /redwood/LaunchDaemons/com.hakios.varstore.plist
+  -rw-r--r--  1      400 /redwood/LaunchDaemons/com.apple.fseventsd.plist
+  -rw-r--r--  1      475 /redwood/LaunchDaemons/com.apple.diagnosticd.plist
+  -rw-r--r--  1     2337 /redwood/LaunchDaemons/com.apple.SpringBoard.plist
+  -rw-r--r--  1      779 /redwood/LaunchDaemons/com.hakios.demo.plist
+  -rw-r--r--  1      539 /redwood/LaunchDaemons/com.apple.wifid.plist
+  -rw-r--r--  1      488 /redwood/LaunchDaemons/com.apple.powerd.plist
+  -rw-r--r--  1      926 /redwood/LaunchDaemons/com.apple.containermanagerd.plist
+  -rw-r--r--  1      424 /redwood/LaunchDaemons/com.apple.iconservices.iconservicesagent.plist
+  -rw-r--r--  1      504 /redwood/LaunchDaemons/com.apple.analyticsd.plist
+  -rw-r--r--  1      616 /redwood/LaunchDaemons/com.apple.distnoted.xpc.daemon.plist
+  -rw-r--r--  1      792 /redwood/LaunchDaemons/com.apple.lsd.plist
+  -rw-r--r--  1      415 /redwood/LaunchDaemons/com.apple.logd_helper.plist
+  -rw-r--r--  1      636 /redwood/LaunchDaemons/com.apple.mobile.usermanagerd.plist
+  -rw-r--r--  1      412 /redwood/LaunchDaemons/com.apple.runningboardd.plist
+  drwxr-xr-x  2        0 /redwood/var/mobile
+  drwxr-xr-x  2        0 /redwood/var/mobile/Library
+  -rw-r--r--  1 10368016 /redwood/var/mobile/Library/hakios-wallpaper.raw
+  drwxr-xr-x  2        0 /redwood/var/mobile/Library/Preferences
+  drwxr-xr-x  2        0 /redwood/private/var
+  -rwxr-xr-x  1    90528 /redwood/lib/libhakios.dylib
+  drwxr-xr-x  2        0 /redwood/lib/HakiosMetal.bundle
+  drwxr-xr-x  2        0 /redwood/lib/HakiosAudio.driver
+  -rwxr-xr-x  1    67976 /redwood/lib/libhakios.tweaks.dylib
+  -rwxr-xr-x  1   113448 /redwood/lib/libhakios.sb.dylib
+  -rwxr-xr-x  1   128536 /redwood/lib/libhakios.media.dylib
+  -rwxr-xr-x  1    68608 /redwood/lib/libhakios.app.dylib
+  -rw-r--r--  1      814 /redwood/lib/HakiosMetal.bundle/Info.plist
+  -rwxr-xr-x  1  8694560 /redwood/lib/HakiosMetal.bundle/HakiosMetal
+  -rwxr-xr-x  1    68496 /redwood/lib/HakiosAudio.driver/HakiosAudio
+  -rw-r--r--  1     1044 /redwood/lib/HakiosAudio.driver/Info.plist
+  -rw-r--r--  1     1852 /redwood/xpc/extensions.plist.sig
+  -rw-r--r--  1   104731 /redwood/xpc/extensions.plist
+  -rw-r--r--  1   300000 /redwood/share/pattern.bin
+  drwxr-xr-x  2        0 /redwood/share/ca-share
+  -rw-r--r--  1  3831132 /redwood/share/ca-share/QuartzCore-default.metallib
+[ ok ] walk our image (readdir, lstat, readlink)
+[ ok ] the system image has the dynamic linker
+  etc/motd: Darwin on hakios: image built 2026-11-09 20:33
+[ ok ] read a small file
+[ ok ] follow a symlink to a directory
+[ ok ] missing file gives ENOENT
+[ ok ] creating a file gives EROFS
+[ ok ] read a 300 KB file and verify every byte
+[ ok ] seek into the middle and read
+[ ok ] mmap the file and verify every byte (page-in)
+
+-- writing files --
+[ ok ] create a file, write 100 KB, read it back
+[ ok ] overwrite in the middle
+[ ok ] append
+[ ok ] truncate, then extend: the new part reads as zeros
+[ ok ] rename
+[ ok ] hard link, remove the first name
+[ ok ] a removed file stays usable while it is open
+[ ok ] symbolic link
+[ ok ] directories: nest, refuse to remove a full one, rename, remove
+[ ok ] shared mapping: what is stored through memory is seen by read()
+[ ok ] and what write() stores is seen through the mapping
+[ ok ] bind a local socket to a name
+[ ok ] 300 files in one directory: create, list, remove
+  lrwxr-xr-x  1       15 /tmp/t/symlink -> some/where else
+  -rw-------  1    65536 /tmp/t/mapped
+  srwxr-xr-x  1        0 /tmp/t/socket
+
+-- memory --
+wifi: doorbell: +66.475 ms: client 24, signal 2; heard and cleared
+[ ok ] 64 MB of anonymous memory: touch every page, read it back
+[ ok ] unmap it
+
+-- processes --
+[ ok ] fork
+  child: pid 2, parent 1, 3 arguments: [/redwood/bin/child] [one] [two]
+  child: environment: [GREETING=hello from init]
+[ ok ] exec a second program from the image, collect its exit status
+[ ok ] pipe from a child process
+
+-- dynamic linking --
+wifi: 11: +27.031 ms: the DSP's item APPEARS: SMP2P version 1, features 0x1, from processor 13 to 0, flags 0, 3 of 16 entries: smp2p = 0; slave-kernel = 0x6; wlan = 0;
+wifi: 11: the DSP and we agree on SMP2P: version 1, features 0x1
+wifi: 11: THE WI-FI DSP SAYS IT IS UP: its entry "slave-kernel" says 0x6 (bit 1: "error ready"), 27.031 ms after TrustZone started it
+wifi: 11: the DSP says it has asked for its own power (bit 2), 27.031 ms after the start
+wifi: 11: at the end of the watch the DSP's item says: SMP2P version 1, features 0x1, from processor 13 to 0, flags 0, 3 of 16 entries: smp2p = 0; slave-kernel = 0x6; wlan = 0;
+Hello from a dynamically linked program! pid 4, 3 argument(s)
+uname: Darwin 22.5.0 iPhone10,3
+heap: malloc works (0x101205340), stack near 0x16f0c3638, main at 0x100d43d4c, printf at 0x1e0ff40b0
+argv[0] = /redwood/bin/hello_dyn
+argv[1] = from
+argv[2] = init
+  /redwood/bin/hello_dyn exited with status 7
+[ ok ] run a program through dyld and the shared cache
+
+-- devices --
+  crw--w--w-  1        0 /dev/console
+  crw-rw-rw-  1        0 /dev/tty
+  crw-rw-rw-  1        0 /dev/null
+  crw-rw-rw-  1        0 /dev/zero
+  crw-------  1        0 /dev/klog
+  crw-------  1        0 /dev/oslog
+  crw-------  1        0 /dev/oslog_stream
+  dr-xr-xr-x  1        0 /dev/fd
+  lr-xr-xr-x  1        0 /dev/stdin -> fd/0
+  lr-xr-xr-x  1        0 /dev/stdout -> fd/1
+  lr-xr-xr-x  1        0 /dev/stderr -> fd/2
+  crw-------  1        0 /dev/pf
+  crw-------  1        0 /dev/pfm
+  crw-rw-rw-  1        0 /dev/ttyp0
+  crw-rw-rw-  1        0 /dev/ptyp0
+  crw-rw-rw-  1        0 /dev/ttyp1
+  crw-rw-rw-  1        0 /dev/ptyp1
+  crw-rw-rw-  1        0 /dev/ttyp2
+  crw-rw-rw-  1        0 /dev/ptyp2
+  crw-rw-rw-  1        0 /dev/ttyp3
+  crw-rw-rw-  1        0 /dev/ptyp3
+  crw-rw-rw-  1        0 /dev/ttyp4
+  crw-rw-rw-  1        0 /dev/ptyp4
+  crw-rw-rw-  1        0 /dev/ttyp5
+  crw-rw-rw-  1        0 /dev/ptyp5
+  crw-rw-rw-  1        0 /dev/ttyp6
+  crw-rw-rw-  1        0 /dev/ptyp6
+  crw-rw-rw-  1        0 /dev/ttyp7
+  crw-rw-rw-  1        0 /dev/ptyp7
+  crw-rw-rw-  1        0 /dev/ttyp8
+  crw-rw-rw-  1        0 /dev/ptyp8
+  crw-rw-rw-  1        0 /dev/ttyp9
+  crw-rw-rw-  1        0 /dev/ptyp9
+  crw-rw-rw-  1        0 /dev/ttypa
+  crw-rw-rw-  1        0 /dev/ptypa
+  crw-rw-rw-  1        0 /dev/ttypb
+  crw-rw-rw-  1        0 /dev/ptypb
+  crw-rw-rw-  1        0 /dev/ttypc
+  crw-rw-rw-  1        0 /dev/ptypc
+  crw-rw-rw-  1        0 /dev/ttypd
+  crw-rw-rw-  1        0 /dev/ptypd
+  crw-rw-rw-  1        0 /dev/ttype
+  crw-rw-rw-  1        0 /dev/ptype
+  crw-rw-rw-  1        0 /dev/ttypf
+  crw-rw-rw-  1        0 /dev/ptypf
+  crw-rw-rw-  1        0 /dev/ptmx
+  crw-------  1        0 /dev/bpf0
+  crw-------  1        0 /dev/bpf1
+  crw-------  1        0 /dev/bpf2
+  crw-------  1        0 /dev/bpf3
+  crw-r--r--  1        0 /dev/fsevents
+  crw-rw-rw-  1        0 /dev/random
+  crw-rw-rw-  1        0 /dev/urandom
+  crw-rw-rw-  1        0 /dev/dtrace
+  crw-rw-rw-  1        0 /dev/dtracehelper
+  crw-rw-rw-  1        0 /dev/lockstat
+  crw-rw-rw-  1        0 /dev/sdt
+  crw-rw-rw-  1        0 /dev/systrace
+  crw-rw-rw-  1        0 /dev/machtrace
+  crw-rw-rw-  1        0 /dev/fbt
+  crw-rw-rw-  1        0 /dev/profile
+  brw-------  1        0 /dev/md0
+  crw-------  1        0 /dev/rmd0
+  crw-rw-rw-  1        0 /dev/hakios-touch
+  brw-r-----  1        0 /dev/ufs_switch
+  crw-r-----  1        0 /dev/rufs_switch
+  brw-r-----  1        0 /dev/ufs_ssd
+  crw-r-----  1        0 /dev/rufs_ssd
+  brw-r-----  1        0 /dev/ufs_dbg
+  crw-r-----  1        0 /dev/rufs_dbg
+  brw-r-----  1        0 /dev/ufs_bk01
+  crw-r-----  1        0 /dev/rufs_bk01
+  brw-r-----  1        0 /dev/ufs_bk02
+  crw-r-----  1        0 /dev/rufs_bk02
+  brw-r-----  1        0 /dev/ufs_bk03
+  crw-r-----  1        0 /dev/rufs_bk03
+  brw-r-----  1        0 /dev/ufs_bk04
+  crw-r-----  1        0 /dev/rufs_bk04
+  brw-r-----  1        0 /dev/ufs_keystore
+  crw-r-----  1        0 /dev/rufs_keystore
+  brw-r-----  1        0 /dev/ufs_frp
+  crw-r-----  1        0 /dev/rufs_frp
+  brw-r-----  1        0 /dev/ufs_countrycode
+  crw-r-----  1        0 /dev/rufs_countrycode
+  brw-r-----  1        0 /dev/ufs_misc
+  crw-r-----  1        0 /dev/rufs_misc
+  brw-r-----  1        0 /dev/ufs_bk05
+  crw-r-----  1        0 /dev/rufs_bk05
+  brw-r-----  1        0 /dev/ufs_logfs
+  crw-r-----  1        0 /dev/rufs_logfs
+  brw-r-----  1        0 /dev/ufs_ffu
+  crw-r-----  1        0 /dev/rufs_ffu
+  brw-r-----  1        0 /dev/ufs_oops
+  crw-r-----  1        0 /dev/rufs_oops
+  brw-r-----  1        0 /dev/ufs_devinfo
+  crw-r-----  1        0 /dev/rufs_devinfo
+  brw-r-----  1        0 /dev/ufs_metadata
+  crw-r-----  1        0 /dev/rufs_metadata
+  brw-r-----  1        0 /dev/ufs_bk06
+  crw-r-----  1        0 /dev/rufs_bk06
+  brw-r-----  1        0 /dev/ufs_bk07
+  crw-r-----  1        0 /dev/rufs_bk07
+  brw-r-----  1        0 /dev/ufs_mtdblk
+  crw-r-----  1        0 /dev/rufs_mtdblk
+  brw-r-----  1        0 /dev/ufs_crash_history
+  crw-r-----  1        0 /dev/rufs_crash_history
+  brw-r-----  1        0 /dev/ufs_minidump
+  crw-r-----  1        0 /dev/rufs_minidump
+  brw-r-----  1        0 /dev/ufs_rawdump
+  crw-r-----  1        0 /dev/rufs_rawdump
+  brw-r-----  1        0 /dev/ufs_vbmeta_system_a
+  crw-r-----  1        0 /dev/rufs_vbmeta_system_a
+  brw-r-----  1        0 /dev/ufs_vbmeta_system_b
+  crw-r-----  1        0 /dev/rufs_vbmeta_system_b
+  brw-r-----  1        0 /dev/ufs_bk010
+  crw-r-----  1        0 /dev/rufs_bk010
+  brw-r-----  1        0 /dev/ufs_mem
+  crw-r-----  1        0 /dev/rufs_mem
+  brw-r-----  1        0 /dev/ufs_opconfig
+  crw-r-----  1        0 /dev/rufs_opconfig
+  brw-r-----  1        0 /dev/ufs_opcust
+  crw-r-----  1        0 /dev/rufs_opcust
+  brw-r-----  1        0 /dev/ufs_mbnconfig
+  crw-r-----  1        0 /dev/rufs_mbnconfig
+  brw-r-----  1        0 /dev/ufs_rescue
+  crw-r-----  1        0 /dev/rufs_rescue
+  brw-r-----  1        0 /dev/ufs_cust
+  crw-r-----  1        0 /dev/rufs_cust
+  brw-r-----  1        0 /dev/ufs_super
+  crw-r-----  1        0 /dev/rufs_super
+  brw-r-----  1        0 /dev/ufs_userdata
+  crw-r-----  1        0 /dev/rufs_userdata
+  brw-r-----  1        0 /dev/ufs_darwin
+  crw-r-----  1        0 /dev/rufs_darwin
+  brw-r-----  1        0 /dev/ufs_xbl_a
+  crw-r-----  1        0 /dev/rufs_xbl_a
+  brw-r-----  1        0 /dev/ufs_xbl_config_a
+  crw-r-----  1        0 /dev/rufs_xbl_config_a
+  brw-r-----  1        0 /dev/ufs_multiimgqti_a
+  crw-r-----  1        0 /dev/rufs_multiimgqti_a
+  brw-r-----  1        0 /dev/ufs_multiimgoem_a
+  crw-r-----  1        0 /dev/rufs_multiimgoem_a
+  brw-r-----  1        0 /dev/ufs_apdp
+  crw-r-----  1        0 /dev/rufs_apdp
+  brw-r-----  1        0 /dev/ufs_xbl_b
+  crw-r-----  1        0 /dev/rufs_xbl_b
+  brw-r-----  1        0 /dev/ufs_xbl_config_b
+  crw-r-----  1        0 /dev/rufs_xbl_config_b
+  brw-r-----  1        0 /dev/ufs_multiimgqti_b
+  crw-r-----  1        0 /dev/rufs_multiimgqti_b
+  brw-r-----  1        0 /dev/ufs_multiimgoem_b
+  crw-r-----  1        0 /dev/rufs_multiimgoem_b
+  brw-r-----  1        0 /dev/ufs_apdp2
+  crw-r-----  1        0 /dev/rufs_apdp2
+  brw-r-----  1        0 /dev/ufs_ALIGN_TO_128K_1
+  crw-r-----  1        0 /dev/rufs_ALIGN_TO_128K_1
+  brw-r-----  1        0 /dev/ufs_cdt
+  crw-r-----  1        0 /dev/rufs_cdt
+  brw-r-----  1        0 /dev/ufs_bk31
+  crw-r-----  1        0 /dev/rufs_bk31
+  brw-r-----  1        0 /dev/ufs_ddr
+  crw-r-----  1        0 /dev/rufs_ddr
+  brw-r-----  1        0 /dev/ufs_bk32
+  crw-r-----  1        0 /dev/rufs_bk32
+  brw-r-----  1        0 /dev/ufs_uefi_a
+  crw-r-----  1        0 /dev/rufs_uefi_a
+  brw-r-----  1        0 /dev/ufs_aop_a
+  crw-r-----  1        0 /dev/rufs_aop_a
+  brw-r-----  1        0 /dev/ufs_aop_config_a
+  crw-r-----  1        0 /dev/rufs_aop_config_a
+  brw-r-----  1        0 /dev/ufs_bk41_a
+  crw-r-----  1        0 /dev/rufs_bk41_a
+  brw-r-----  1        0 /dev/ufs_tz_a
+  crw-r-----  1        0 /dev/rufs_tz_a
+  brw-r-----  1        0 /dev/ufs_hyp_a
+  crw-r-----  1        0 /dev/rufs_hyp_a
+  brw-r-----  1        0 /dev/ufs_modem_a
+  crw-r-----  1        0 /dev/rufs_modem_a
+  brw-r-----  1        0 /dev/ufs_bluetooth_a
+  crw-r-----  1        0 /dev/rufs_bluetooth_a
+  brw-r-----  1        0 /dev/ufs_mdtpsecapp_a
+  crw-r-----  1        0 /dev/rufs_mdtpsecapp_a
+  brw-r-----  1        0 /dev/ufs_mdtp_a
+  crw-r-----  1        0 /dev/rufs_mdtp_a
+  brw-r-----  1        0 /dev/ufs_abl_a
+  crw-r-----  1        0 /dev/rufs_abl_a
+  brw-r-----  1        0 /dev/ufs_dsp_a
+  crw-r-----  1        0 /dev/rufs_dsp_a
+  brw-r-----  1        0 /dev/ufs_keymaster_a
+  crw-r-----  1        0 /dev/rufs_keymaster_a
+  brw-r-----  1        0 /dev/ufs_boot_a
+  crw-r-----  1        0 /dev/rufs_boot_a
+  brw-r-----  1        0 /dev/ufs_devcfg_a
+  crw-r-----  1        0 /dev/rufs_devcfg_a
+  brw-r-----  1        0 /dev/ufs_qupfw_a
+  crw-r-----  1        0 /dev/rufs_qupfw_a
+  brw-r-----  1        0 /dev/ufs_vbmeta_a
+  crw-r-----  1        0 /dev/rufs_vbmeta_a
+  brw-r-----  1        0 /dev/ufs_dtbo_a
+  crw-r-----  1        0 /dev/rufs_dtbo_a
+  brw-r-----  1        0 /dev/ufs_uefisecapp_a
+  crw-r-----  1        0 /dev/rufs_uefisecapp_a
+  brw-r-----  1        0 /dev/ufs_imagefv_a
+  crw-r-----  1        0 /dev/rufs_imagefv_a
+  brw-r-----  1        0 /dev/ufs_shrm_a
+  crw-r-----  1        0 /dev/rufs_shrm_a
+  brw-r-----  1        0 /dev/ufs_cpucp_a
+  crw-r-----  1        0 /dev/rufs_cpucp_a
+  brw-r-----  1        0 /dev/ufs_featenabler_a
+  crw-r-----  1        0 /dev/rufs_featenabler_a
+  brw-r-----  1        0 /dev/ufs_vendor_boot_a
+  crw-r-----  1        0 /dev/rufs_vendor_boot_a
+  brw-r-----  1        0 /dev/ufs_qmcs
+  crw-r-----  1        0 /dev/rufs_qmcs
+  brw-r-----  1        0 /dev/ufs_qweslicstore_a
+  crw-r-----  1        0 /dev/rufs_qweslicstore_a
+  brw-r-----  1        0 /dev/ufs_recovery_a
+  crw-r-----  1        0 /dev/rufs_recovery_a
+  brw-r-----  1        0 /dev/ufs_xbl_ramdump_a
+  crw-r-----  1        0 /dev/rufs_xbl_ramdump_a
+  brw-r-----  1        0 /dev/ufs_uefi_b
+  crw-r-----  1        0 /dev/rufs_uefi_b
+  brw-r-----  1        0 /dev/ufs_aop_b
+  crw-r-----  1        0 /dev/rufs_aop_b
+  brw-r-----  1        0 /dev/ufs_aop_config_b
+  crw-r-----  1        0 /dev/rufs_aop_config_b
+  brw-r-----  1        0 /dev/ufs_bk41_b
+  crw-r-----  1        0 /dev/rufs_bk41_b
+  brw-r-----  1        0 /dev/ufs_tz_b
+  crw-r-----  1        0 /dev/rufs_tz_b
+  brw-r-----  1        0 /dev/ufs_hyp_b
+  crw-r-----  1        0 /dev/rufs_hyp_b
+  brw-r-----  1        0 /dev/ufs_modem_b
+  crw-r-----  1        0 /dev/rufs_modem_b
+  brw-r-----  1        0 /dev/ufs_bluetooth_b
+  crw-r-----  1        0 /dev/rufs_bluetooth_b
+  brw-r-----  1        0 /dev/ufs_mdtpsecapp_b
+  crw-r-----  1        0 /dev/rufs_mdtpsecapp_b
+  brw-r-----  1        0 /dev/ufs_mdtp_b
+  crw-r-----  1        0 /dev/rufs_mdtp_b
+  brw-r-----  1        0 /dev/ufs_abl_b
+  crw-r-----  1        0 /dev/rufs_abl_b
+  brw-r-----  1        0 /dev/ufs_dsp_b
+  crw-r-----  1        0 /dev/rufs_dsp_b
+  brw-r-----  1        0 /dev/ufs_keymaster_b
+  crw-r-----  1        0 /dev/rufs_keymaster_b
+  brw-r-----  1        0 /dev/ufs_boot_b
+  crw-r-----  1        0 /dev/rufs_boot_b
+  brw-r-----  1        0 /dev/ufs_devcfg_b
+  crw-r-----  1        0 /dev/rufs_devcfg_b
+  brw-r-----  1        0 /dev/ufs_qupfw_b
+  crw-r-----  1        0 /dev/rufs_qupfw_b
+  brw-r-----  1        0 /dev/ufs_vbmeta_b
+  crw-r-----  1        0 /dev/rufs_vbmeta_b
+  brw-r-----  1        0 /dev/ufs_dtbo_b
+  crw-r-----  1        0 /dev/rufs_dtbo_b
+  brw-r-----  1        0 /dev/ufs_uefisecapp_b
+  crw-r-----  1        0 /dev/rufs_uefisecapp_b
+  brw-r-----  1        0 /dev/ufs_imagefv_b
+  crw-r-----  1        0 /dev/rufs_imagefv_b
+  brw-r-----  1        0 /dev/ufs_shrm_b
+  crw-r-----  1        0 /dev/rufs_shrm_b
+  brw-r-----  1        0 /dev/ufs_cpucp_b
+  crw-r-----  1        0 /dev/rufs_cpucp_b
+  brw-r-----  1        0 /dev/ufs_featenabler_b
+  crw-r-----  1        0 /dev/rufs_featenabler_b
+  brw-r-----  1        0 /dev/ufs_vendor_boot_b
+  crw-r-----  1        0 /dev/rufs_vendor_boot_b
+  brw-r-----  1        0 /dev/ufs_qweslicstore_b
+  crw-r-----  1        0 /dev/rufs_qweslicstore_b
+  brw-r-----  1        0 /dev/ufs_recovery_b
+  crw-r-----  1        0 /dev/rufs_recovery_b
+  brw-r-----  1        0 /dev/ufs_xbl_ramdump_b
+  crw-r-----  1        0 /dev/rufs_xbl_ramdump_b
+  brw-r-----  1        0 /dev/ufs_dip
+  crw-r-----  1        0 /dev/rufs_dip
+  brw-r-----  1        0 /dev/ufs_bk42
+  crw-r-----  1        0 /dev/rufs_bk42
+  brw-r-----  1        0 /dev/ufs_limits
+  crw-r-----  1        0 /dev/rufs_limits
+  brw-r-----  1        0 /dev/ufs_limits-cdsp
+  crw-r-----  1        0 /dev/rufs_limits-cdsp
+  brw-r-----  1        0 /dev/ufs_toolsfv
+  crw-r-----  1        0 /dev/rufs_toolsfv
+  brw-r-----  1        0 /dev/ufs_gsort
+  crw-r-----  1        0 /dev/rufs_gsort
+  brw-r-----  1        0 /dev/ufs_bk43
+  crw-r-----  1        0 /dev/rufs_bk43
+  brw-r-----  1        0 /dev/ufs_storsec
+  crw-r-----  1        0 /dev/rufs_storsec
+  brw-r-----  1        0 /dev/ufs_uefivarstore
+  crw-r-----  1        0 /dev/rufs_uefivarstore
+  brw-r-----  1        0 /dev/ufs_secdata
+  crw-r-----  1        0 /dev/rufs_secdata
+  brw-r-----  1        0 /dev/ufs_mdcompress
+  crw-r-----  1        0 /dev/rufs_mdcompress
+  brw-r-----  1        0 /dev/ufs_connsec
+  crw-r-----  1        0 /dev/rufs_connsec
+  brw-r-----  1        0 /dev/ufs_tzsc
+  crw-r-----  1        0 /dev/rufs_tzsc
+  brw-r-----  1        0 /dev/ufs_rtice
+  crw-r-----  1        0 /dev/rufs_rtice
+  brw-r-----  1        0 /dev/ufs_xbl_sc_test_mode
+  crw-r-----  1        0 /dev/rufs_xbl_sc_test_mode
+  brw-r-----  1        0 /dev/ufs_xbl_sc_logs
+  crw-r-----  1        0 /dev/rufs_xbl_sc_logs
+  brw-r-----  1        0 /dev/ufs_ALIGN_TO_128K_2
+  crw-r-----  1        0 /dev/rufs_ALIGN_TO_128K_2
+  brw-r-----  1        0 /dev/ufs_bk51
+  crw-r-----  1        0 /dev/rufs_bk51
+  brw-r-----  1        0 /dev/ufs_modemst1
+  crw-r-----  1        0 /dev/rufs_modemst1
+  brw-r-----  1        0 /dev/ufs_modemst2
+  crw-r-----  1        0 /dev/rufs_modemst2
+  brw-r-----  1        0 /dev/ufs_fsg
+  crw-r-----  1        0 /dev/rufs_fsg
+  brw-r-----  1        0 /dev/ufs_fsc
+  crw-r-----  1        0 /dev/rufs_fsc
+  brw-r-----  1        0 /dev/ufs_persist
+  crw-r-----  1        0 /dev/rufs_persist
+  crw-rw-rw-  1        0 /dev/hakios-audio
+[ ok ] devfs is mounted on /dev
+[ ok ] /dev/zero
+[ ok ] /dev/null
+  /dev/random: 43 8b 85 6a af a5 33 f3 03 00 f4 4d 4b 37 d9 cb
+[ ok ] /dev/random
+
+-- time --
+wifi: 11: and ours: SMP2P version 1, features 0x1, from processor 0 to 13, flags 0, 2 of 16 entries: master-kernel = 0; wlan = 0;
+wifi: 11: the watch is over after 367 ms; doorbells heard: GLINK 1, SMP2P 1, the mailbox 1, others 0
+wifi: 11: the DSP said it was up, and that it has asked for its own power
+wifi: step 12: find GLINK's descriptor and the two queues in the shared memory, and read what the DSP has put into its own (nothing is taken out)
+wifi: 12: our queue: 16384 bytes at 0x809c5060, written to 0, read by the DSP to 0; the DSP's: 16384 bytes at 0x809c9208, written to 0x8, read by us to 0
+wifi: 12:   in the DSP's queue at 0: version 1 0x7 
+wifi: step 13: take up GLINK with the DSP: our version into our queue and its doorbell, then whatever its messages call for (writes: our queue, our two marks in the descriptor, the doorbell); a thread of ours listens from here on, every millisecond
+wifi: glink: > version 1 0x1
+  slept 200 ms, the clock advanced 205 ms
+[ ok ] sleep and wall clock agree
+
+=== 38 checks, 0 failed ===
+init: library insertion: /redwood/lib/libhakios.dylib backboardd containermanagerd containermanagerd_system;/redwood/lib/libhakios.sb.dylib SpringBoard;/redwood/lib/libhakios.media.dylib mediaserverd;/redwood/lib/libhakios.app.dylib Sileo;/redwood/lib/libhakios.tweaks.dylib Preferences
+init: up to 32768 vnodes
+
+=== /redwood/etc/rc ===
+
+$ exec /sbin/launchd.darwin
+wifi: doorbell: +16.012 ms: client 24, signal 0; heard and cleared
+wifi: glink: < version 1 0x7
+Darwin Ignition Sequence Version 1.0.0: Tue Jul  2 20:41:23 PDT 2024; root:libignition-51~1974/libignition_core/RELEASE_ARM64
+libignition: 1: arguments           :
+libignition: 1:   ignition level    : 0x5
+libignition: 1:   force dylib root  : 0x0
+libignition: 1:   halt after stage  : n/a
+libignition: 1: ignition blob not available
+libignition: 1: configuration         :
+libignition: 1:   program             : launchd.darwin
+libignition: 1:   os environment      : n/a
+libignition: 1:   rd                  : md0
+libignition: 1:   arp0                : n/a
+libignition: 1:   rp                  : n/a
+libignition: 1:   pivot src           : n/a
+libignition: 1:   root ramdisk        : 0x0
+libignition: 1:   restore             : 0x0
+libignition: 1:   root device info    : 0x0
+libignition: 1:   can haz debugger    : 0x1
+libignition: 1:   rootfs mount flags  : 0x4005001
+libignition: 1:   ecid                : 0x0
+libignition: 1:   hardware target     : d22ap
+libignition: 1:   initproc            : 0x1
+libignition: 1:   single user         : 0x0
+libignition: 1:   userspace reboot    : 0x0
+libignition: 1:   secure boot level   : 0x0
+libignition: 1:   os version          : n/a
+libignition: 1: parameters          :
+libignition: 1:   version           : 0x1
+libignition: 1:   argc              : 0x1
+libignition: 1:   log fd            : 0xffffffffffffffff
+libignition: 1:   platform          : 0x2
+libignition: 1: boot spec           :
+libignition: 1:   name              : ramdisk
+libignition: 1:   stage count       : 0x2
+libignition: 1:        hello: commence primary ignition
+libignition: 1:        hello: hello from launchd.darwin.1
+libignition: 1:      goodbye: ignition sequence complete
+wifi: glink: > version-ack 1 0x1
+wifi: glink: < version-ack 1 0x1
+wifi: glink: < open 1 0x12
+wifi: glink: the DSP opens "LOOPBACK_CTL_WPSS" as its channel 1: left unanswered, nobody here speaks it
+wifi: glink: < open 2 0x7
+wifi: glink: the DSP opens "IPCRTR" as its channel 2: acknowledged, and opened from our side as channel 1
+wifi: glink: > open-ack 2 0
+wifi: glink: > open 1 0x7
+wifi: glink: < open-ack 1 0
+wifi: glink: THE CHANNEL "IPCRTR" IS OPEN both ways (ours 1, the DSP's 2); telling the DSP our intents
+wifi: glink: > intent 1 0x1
+wifi: glink: > intent 1 0x1
+wifi: glink: > intent 1 0x1
+wifi: glink: > intent 1 0x1
+wifi: glink: > intent 1 0x1
+wifi: glink: > intent 1 0x1
+wifi: glink: > intent 1 0x1
+wifi: glink: > intent 1 0x1
+wifi: glink: > intent 1 0x1
+wifi: glink: > intent 1 0x1
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 0
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 1
+wifi: glink: < intent 2 0x1
+com.apple.xpc.launchd|2026-11-09 22:47:02.832714 <Notice>: hello
+com.apple.xpc.launchd|2026-11-09 22:47:02.835340 <Notice>: Darwin Bootstrapper Version 7.0.0: Thu Feb  1 20:33:09 PST 2024; root:libxpc_executables-2462.140.4.702.1~1/launchd/RELEASE_ARM64
+com.apple.xpc.launchd|2026-11-09 22:47:02.835399 <Notice>: boot-args = debug=0x8 rd=md0 hv_wdt_pet=1 ufs_shared_pa=0x00000000fa4d0000 hakios_kver=2.3.4-hakios-darwin22.5-sm7435-gd852e4bd-dirty loader_return_after=90 epoch=1794239222 sb_delay=8 -v cpus=8 bootcpu=7 ufs=2 wifi=1 wifi_loud=1 wifi_diag=1 root_apfs=ufs_darwin wifi_nocal=1 wifi_keep=1
+com.apple.xpc.launchd|2026-11-09 22:47:02.835960 <Notice>: Restore environment starting.
+com.apple.xpc.launchd|2026-11-09 22:47:02.839064 (system) <Notice>: entering ondemand mode
+com.apple.xpc.launchd|2026-11-09 22:47:02.839718 (system) <Notice>: created
+com.apple.xpc.launchd|2026-11-09 22:47:02.840210 (fsck) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-09 22:47:02.840244 (mount-phase-1) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-09 22:47:02.840256 (data-protection) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-09 22:47:02.840269 (finish-obliteration) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-09 22:47:02.840283 (detect-installed-roots) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-09 22:47:02.840293 (commit-boot-mode) <Notice>: Doing boot task
+com.apple.xpc.launchd|2026-11-09 22:47:02.840921 <Notice>: boot-mode committed: (null)
+com.apple.xpc.launchd|2026-11-09 22:47:02.840957 (restore-datapartition) <Notice>: Doing boot task
+com.apple.xpc.launchd|2026-11-09 22:47:02.841633 (restore-datapartition) <Notice>: optional boot task not present
+com.apple.xpc.launchd|2026-11-09 22:47:02.841660 (mount-phase-2) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-09 22:47:02.841682 (init-with-data-volume) <Notice>: Doing boot task
+com.apple.xpc.launchd|2026-11-09 22:47:02.843016 (MSUEarlyBootTask) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-09 22:47:02.843039 (fips) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-09 22:47:02.843051 (keybag) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-09 22:47:02.843062 (usermanagerd) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-09 22:47:02.843076 (dirs_cleaner) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-09 22:47:02.844390 <Notice>: Flushed 22 logs [limit: 20]
+com.apple.xpc.launchd|2026-11-09 22:47:02.843115 <Notice>: launchd logging initialized. name: com.apple.xpc.launchd pid: 1
+com.apple.xpc.launchd|2026-11-09 22:47:02.843117 (xpcroleaccountd) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-09 22:47:02.843118 (init_featureflags) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-09 22:47:02.843121 (auearlyboot) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-09 22:47:02.843122 (tzinit) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-09 22:47:02.843123 (finish-restore) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-09 22:47:02.843124 (finish-demo-restore) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-09 22:47:02.843135 (sysstatuscheck) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-09 22:47:02.843136 (prng_seedctl) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-09 22:47:02.843161 <Error>: Unable to open /System/Library/xpc/launchd.plist [2:No such file or directory]
+com.apple.xpc.launchd|2026-11-09 22:47:02.843163 (launchd_cache_loader) <Notice>: Skipping boot-task
+com.apple.xpc.launchd|2026-11-09 22:47:02.843164 <Error>: No MRM cache found
+com.apple.xpc.launchd|2026-11-09 22:47:02.843165 <Warning>: Unable to load cache
+com.apple.xpc.launchd|2026-11-09 22:47:02.843170 <Notice>: launchd UUID: 5C15DB07-B3BC-3DF3-B62F-3E498B993B8E
+com.apple.xpc.launchd|2026-11-09 22:47:02.843171 (boot) <Notice>: Early boot complete. Continuing system boot.
+com.apple.xpc.launchd|2026-11-09 22:47:02.843914 (user/501) <Notice>: entering ondemand mode
+com.apple.xpc.launchd|2026-11-09 22:47:02.843939 (user/501) <Notice>: created
+com.apple.xpc.launchd|2026-11-09 22:47:02.843942 (system) <Notice>: entering bootstrap mode
+com.apple.xpc.launchd|2026-11-09 22:47:02.843944 (user/501) <Notice>: entering bootstrap mode
+com.apple.xpc.launchd|2026-11-09 22:47:02.847223 (com.apple.backboardd) <Error>: Unknown key for plist importer (key: HighPriorityIO type: bool)
+com.apple.xpc.launchd|2026-11-09 22:47:02.847257 (com.apple.backboardd) <Notice>: This service is defined to be constantly running and is inherently inefficient.
+com.apple.xpc.launchd|2026-11-09 22:47:02.847282 (user/501) <Notice>: pending spawn, domain in on-demand-only mode: com.apple.backboardd
+com.apple.xpc.launchd|2026-11-09 22:47:02.847430 (user/501) <Notice>: pending spawn, domain in on-demand-only mode: com.hakios.wifi
+com.apple.xpc.launchd|2026-11-09 22:47:02.848196 (user/501) <Notice>: pending spawn, domain in on-demand-only mode: com.hakios.varstore
+com.apple.xpc.launchd|2026-11-09 22:47:02.848882 (com.apple.SpringBoard) <Error>: Unknown key for plist importer (key: HighPriorityIO type: bool)
+com.apple.xpc.launchd|2026-11-09 22:47:02.848905 (user/501/com.apple.SpringBoard) <Warning>: (lint): The HideUntilCheckIn property is an architectural performance issue. Please transition away from it.
+com.apple.xpc.launchd|2026-11-09 22:47:02.848948 <Notice>: Last log repeated 1 times
+com.apple.xpc.launchd|2026-11-09 22:47:02.848922 (com.apple.SpringBoard) <Notice>: This service is defined to be constantly running and is inherently inefficient.
+com.apple.xpc.launchd|2026-11-09 22:47:02.849654 (user/501/com.apple.SpringBoard) <Notice>: service will attempt to elide xpcproxy
+com.apple.xpc.launchd|2026-11-09 22:47:02.849768 (user/501) <Notice>: pending spawn, domain in on-demand-only mode: com.hakios.demo
+com.apple.xpc.launchd|2026-11-09 22:47:02.849837 (com.apple.wifid) <Notice>: This service is defined to be constantly running and is inherently inefficient.
+com.apple.xpc.launchd|2026-11-09 22:47:02.849861 (user/501) <Notice>: pending spawn, domain in on-demand-only mode: com.apple.wifid
+com.apple.xpc.launchd|2026-11-09 22:47:02.849917 (com.apple.powerd) <Notice>: This service is defined to be constantly running and is inherently inefficient.
+com.apple.xpc.launchd|2026-11-09 22:47:02.849939 (user/501) <Notice>: pending spawn, domain in on-demand-only mode: com.apple.powerd
+com.apple.xpc.launchd|2026-11-09 22:47:02.850028 (user/501/com.apple.containermanagerd) <Warning>: (lint): _PanicOnCrash key: InternalOnly not enabled in the current environment
+com.apple.xpc.launchd|2026-11-09 22:47:02.850118 (user/501) <Notice>: pending spawn, domain in on-demand-only mode: com.apple.containermanagerd
+com.apple.xpc.launchd|2026-11-09 22:47:02.850887 (com.apple.distnoted.xpc.daemon) <Notice>: This service is defined to be constantly running and is inherently inefficient.
+com.apple.xpc.launchd|2026-11-09 22:47:02.850917 (user/501) <Notice>: pending spawn, domain in on-demand-only mode: com.apple.distnoted.xpc.daemon
+com.apple.xpc.launchd|2026-11-09 22:47:02.851124 (user/501/com.apple.mobile.usermanagerd) <Warning>: (lint): _PanicOnCrash key: InternalOnly not enabled in the current environment
+com.apple.xpc.launchd|2026-11-09 22:47:02.851149 (com.apple.mobile.usermanagerd) <Notice>: This key does not do anything: OnDemand
+com.apple.xpc.launchd|2026-11-09 22:47:02.851161 (user/501) <Notice>: pending spawn, domain in on-demand-only mode: com.apple.mobile.usermanagerd
+com.apple.xpc.launchd|2026-11-09 22:47:02.851220 (com.apple.runningboardd) <Notice>: This service is defined to be constantly running and is inherently inefficient.
+com.apple.xpc.launchd|2026-11-09 22:47:02.851241 (user/501) <Notice>: pending spawn, domain in on-demand-only mode: com.apple.runningboardd
+com.apple.xpc.launchd|2026-11-09 22:47:02.851526 (com.apple.logd) <Error>: Unknown key for plist importer (key: BeginTransactionAtShutdown type: bool)
+com.apple.xpc.launchd|2026-11-09 22:47:02.851547 (com.apple.logd) <Notice>: This service is defined to be constantly running and is inherently inefficient.
+com.apple.xpc.launchd|2026-11-09 22:47:02.851558 (system/com.apple.logd - BSDSystemLogger) <Warning>: System logger socket was not opened during early boot. (Proceeding anyway)
+com.apple.xpc.launchd|2026-11-09 22:47:02.851571 (system) <Notice>: pending spawn, service not yet activated: com.apple.logd
+com.apple.xpc.launchd|2026-11-09 22:47:02.851881 (com.apple.fseventsd) <Error>: The HopefullyExitsLast key is no longer respected. Please remove it.
+com.apple.xpc.launchd|2026-11-09 22:47:02.851892 (com.apple.fseventsd) <Notice>: This service is defined to be constantly running and is inherently inefficient.
+com.apple.xpc.launchd|2026-11-09 22:47:02.851905 (system) <Notice>: pending spawn, domain in on-demand-only mode: com.apple.fseventsd
+wifi: glink:   the DSP will take 128 bytes into its intent 2
+com.apple.xpc.launchd|2026-11-09 22:47:02.854896 (user/501/com.apple.accessibility.axAuditDaemon.deviceservice) <Notice>: Did not import service from caller: path = /System/Library/DeveloperModeLaunchDaemons/com.apple.accessibility.axAuditDaemon.deviceservice.plist, caller = launchd.darwin[1], error = 152: Service cannot load in current boot environment
+com.apple.xpc.launchd|2026-11-09 22:47:02.854985 (user/501/com.apple.instruments.deviceservice) <Notice>: Did not import service from caller: path = /System/Library/DeveloperModeLaunchDaemons/com.apple.instruments.deviceservice.plist, caller = launchd.darwin[1], error = 152: Service cannot load in current boot environment
+com.apple.xpc.launchd|2026-11-09 22:47:02.855042 (user/501/com.apple.sysmond) <Notice>: Did not import service from caller: path = /System/Library/DeveloperModeLaunchDaemons/com.apple.sysmond.plist, caller = launchd.darwin[1], error = 152: Service cannot load in current boot environment
+com.apple.xpc.launchd|2026-11-09 22:47:02.855057 (user/501) <Error>: Failed to bootstrap path: path = /AppleInternal/Library/LaunchDaemons, error = 2: No such file or directory
+com.apple.xpc.launchd|2026-11-09 22:47:02.855063 (user/501) <Error>: Failed to bootstrap path: path = /AppleInternal/Library/LaunchAngels, error = 2: No such file or directory
+com.apple.xpc.launchd|2026-11-09 22:47:02.855594 (user/501) <Notice>: exiting bootstrap mode
+com.apple.xpc.launchd|2026-11-09 22:47:02.855612 (user/501/com.apple.SpringBoard) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.855625 (user/501/com.apple.SpringBoard) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-09 22:47:02.855628 (user/501/com.apple.SpringBoard) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-09 22:47:02.855718 (user/501/com.apple.SpringBoard) <Warning>: Skipping remaining service endpoints for importance boosting.
+com.apple.xpc.launchd|2026-11-09 22:47:02.855729 (user/501/com.apple.SpringBoard) <Warning>: Skipping remaining event endpoints for importance boosting.
+com.apple.xpc.launchd|2026-11-09 22:47:02.855732 (user/501/com.apple.SpringBoard) <Warning>: Skipping remaining instance endpoints for importance boosting.
+com.apple.xpc.launchd|2026-11-09 22:47:02.855788 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.855797 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.855801 (user/501/com.apple.SpringBoard) <Notice>: launching: system support
+com.apple.xpc.launchd|2026-11-09 22:47:02.855813 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.855815 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.855838 (user/501) <Notice>: exiting ondemand mode
+com.apple.xpc.launchd|2026-11-09 22:47:02.855843 (user/501/com.apple.runningboardd) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.855851 (user/501/com.apple.runningboardd) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-09 22:47:02.855854 (user/501/com.apple.runningboardd) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-09 22:47:02.855883 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.855885 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.855890 (user/501/com.apple.runningboardd) <Notice>: launching: speculative
+com.apple.xpc.launchd|2026-11-09 22:47:02.857904 (user/501/com.apple.runningboardd [6]) <Notice>: xpcproxy spawned with pid 6
+com.apple.xpc.launchd|2026-11-09 22:47:02.857948 (user/501/com.apple.runningboardd [6]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.857953 (user/501/com.apple.runningboardd [6]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-09 22:47:02.857963 (user/501/com.apple.powerd) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.857976 (user/501/com.apple.powerd) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-09 22:47:02.857978 (user/501/com.apple.powerd) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-09 22:47:02.858046 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.858050 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.858054 (user/501/com.apple.powerd) <Notice>: launching: speculative
+com.apple.xpc.launchd|2026-11-09 22:47:02.858698 (user/501/com.apple.powerd [8]) <Notice>: xpcproxy spawned with pid 8
+com.apple.xpc.launchd|2026-11-09 22:47:02.858731 (user/501/com.apple.powerd [8]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.858736 (user/501/com.apple.powerd [8]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-09 22:47:02.858743 (user/501/com.apple.wifid) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.858755 (user/501/com.apple.wifid) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-09 22:47:02.858758 (user/501/com.apple.wifid) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-09 22:47:02.858829 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.858834 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.858838 (user/501/com.apple.wifid) <Notice>: launching: speculative
+com.apple.xpc.launchd|2026-11-09 22:47:02.859965 (user/501/com.apple.wifid [9]) <Notice>: xpcproxy spawned with pid 9
+com.apple.xpc.launchd|2026-11-09 22:47:02.860005 (user/501/com.apple.wifid [9]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.860010 (user/501/com.apple.wifid [9]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-09 22:47:02.860018 (user/501/com.hakios.varstore) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.860028 (user/501/com.hakios.varstore) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-09 22:47:02.860031 (user/501/com.hakios.varstore) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-09 22:47:02.860077 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.860081 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.860085 (user/501/com.hakios.varstore) <Notice>: launching: speculative
+com.apple.xpc.launchd|2026-11-09 22:47:02.861847 (user/501/com.hakios.varstore [10]) <Notice>: xpcproxy spawned with pid 10
+com.apple.xpc.launchd|2026-11-09 22:47:02.861880 (user/501/com.hakios.varstore [10]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.861886 (user/501/com.hakios.varstore [10]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-09 22:47:02.861895 (user/501/com.apple.backboardd) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.861907 (user/501/com.apple.backboardd) <Notice>: service state: spawn scheduled
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 3
+wifi: 13: 98 ms after our version: versions agreed (features 0x1); the channel "IPCRTR" is OPEN
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 4
+wifi: step 14: listen for QRTR on the channel: the DSP's hello is answered with ours, its services are written down; and a port of ours looks the Wi-Fi firmware's service up, as the radio's driver will
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 5
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 6
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 7
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 8
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 9
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 10
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 11
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 12
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 13
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 14
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 128 bytes into its intent 15
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 512 bytes into its intent 16
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 512 bytes into its intent 17
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 512 bytes into its intent 18
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 512 bytes into its intent 19
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 512 bytes into its intent 20
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 512 bytes into its intent 21
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 512 bytes into its intent 22
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 512 bytes into its intent 23
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 1152 bytes into its intent 24
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 1152 bytes into its intent 25
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 1152 bytes into its intent 26
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 1152 bytes into its intent 27
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 1152 bytes into its intent 28
+wifi: glink: < intent 2 0x1
+wifi: glink:   the DSP will take 8320 bytes into its intent 29
+wifi: glink: < intent-request 2 0x34
+wifi: glink: > intent 1 0x1
+wifi: glink: > intent-request-ack 1 0x1
+wifi: glink: > done-reuse 1 0x1
+wifi: qrtr: HELLO FROM NODE 13; ours to it: SENT
+wifi: doorbell: +126.944 ms: client 24, signal 0; heard and cleared
+wifi: glink: < done-reuse 2 0
+wifi: glink: > done-reuse 1 0xb
+wifi: glink: > done-reuse 1 0x2
+wifi: glink: > done-reuse 1 0x3
+wifi: glink: > done-reuse 1 0x4
+wifi: glink: > done-reuse 1 0x5
+wifi: qrtr: a service: 66 (0x42), version 1, instance 111, at node 13 port 3
+wifi: qrtr: a service: 69 (0x45), version 1, instance 0, at node 13 port 8
+wifi: qrtr: THE WI-FI FIRMWARE'S SERVICE (0x45) IS AT node 13 port 8
+com.apple.xpc.launchd|2026-11-09 22:47:02.861910 (user/501/com.apple.backboardd) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-09 22:47:02.862024 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.862027 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.862031 (user/501/com.apple.backboardd) <Notice>: launching: speculative
+com.apple.xpc.launchd|2026-11-09 22:47:02.936859 (user/501/com.apple.backboardd [11]) <Notice>: xpcproxy spawned with pid 11
+com.apple.xpc.launchd|2026-11-09 22:47:02.936896 (user/501/com.apple.backboardd [11]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.936903 (user/501/com.apple.backboardd [11]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-09 22:47:02.936912 (user/501/com.apple.containermanagerd) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.936924 (user/501/com.apple.containermanagerd) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-09 22:47:02.936928 (user/501/com.apple.containermanagerd) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-09 22:47:02.936985 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.936989 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.936994 (user/501/com.apple.containermanagerd) <Notice>: launching: speculative
+com.apple.xpc.launchd|2026-11-09 22:47:02.938705 (user/501/com.apple.containermanagerd [12]) <Notice>: xpcproxy spawned with pid 12
+com.apple.xpc.launchd|2026-11-09 22:47:02.938748 (user/501/com.apple.containermanagerd [12]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.938755 (user/501/com.apple.containermanagerd [12]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-09 22:47:02.938763 (user/501/com.hakios.demo) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.938774 (user/501/com.hakios.demo) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-09 22:47:02.938776 (user/501/com.hakios.demo) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-09 22:47:02.938840 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.938844 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.938849 (user/501/com.hakios.demo) <Notice>: launching: speculative
+com.apple.xpc.launchd|2026-11-09 22:47:02.941173 (user/501/com.hakios.demo [13]) <Notice>: xpcproxy spawned with pid 13
+com.apple.xpc.launchd|2026-11-09 22:47:02.941208 (user/501/com.hakios.demo [13]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.941214 (user/501/com.hakios.demo [13]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-09 22:47:02.941225 (user/501/com.apple.distnoted.xpc.daemon) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.941238 (user/501/com.apple.distnoted.xpc.daemon) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-09 22:47:02.941241 (user/501/com.apple.distnoted.xpc.daemon) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-09 22:47:02.941311 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.941314 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.941318 (user/501/com.apple.distnoted.xpc.daemon) <Notice>: launching: speculative
+com.apple.xpc.launchd|2026-11-09 22:47:02.943062 (user/501/com.apple.distnoted.xpc.daemon [14]) <Notice>: xpcproxy spawned with pid 14
+wifi: qrtr: a service: 43 (0x2b), version 2, instance 25, at node 13 port 2
+wifi: qrtr: a service: 15 (0xf), version 1, instance 128, at node 13 port 1
+wifi: qrtr: a service: 51 (0x33), version 1, instance 3, at node 13 port 6
+com.apple.xpc.launchd|2026-11-09 22:47:02.943094 (user/501/com.apple.distnoted.xpc.daemon [14]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.943102 (user/501/com.apple.distnoted.xpc.daemon [14]) <Notice>: service state: xpcproxy
+hakios: container manager: no personas
+com.apple.xpc.launchd|2026-11-09 22:47:02.943110 (user/501/com.apple.mobile.usermanagerd) <Notice>: internal event: WILL_SPAWN, code = 0
+distnoted(14,0x2350e0dc0) malloc: Maximum magazines set to 1
+com.apple.xpc.launchd|2026-11-09 22:47:02.943121 (user/501/com.apple.mobile.usermanagerd) <Notice>: service state: spawn scheduled
+
+=== /redwood/etc/rc.jobs ===
+
+$ /redwood/bin/hello_dynvar_store: not asked to keep the data volume (var_store=1): nothing to watch
+ started by launchd
+com.apple.xpc.launchd|2026-11-09 22:47:02.943124 (user/501/com.apple.mobile.usermanagerd) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-09 22:47:02.943205 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.943209 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+Hello from a dynamically linked program! pid 20, 4 argument(s)
+uname: Darwin 22.5.0 iPhone10,3
+com.apple.xpc.launchd|2026-11-09 22:47:02.943214 (user/501/com.apple.mobile.usermanagerd) <Notice>: launching: speculative
+heap: malloc works (0x1013041a0), stack near 0x16ecb35a8, main at 0x101153d4c, printf at 0x1e0ff40b0
+com.apple.xpc.launchd|2026-11-09 22:47:02.944990 (user/501/com.apple.mobile.usermanagerd [15]) <Notice>: xpcproxy spawned with pid 15
+argv[0] = /redwood/bin/hello_dyn
+com.apple.xpc.launchd|2026-11-09 22:47:02.945028 (user/501/com.apple.mobile.usermanagerd [15]) <Notice>: internal event: SPAWNED, code = 0
+argv[1] = started
+com.apple.xpc.launchd|2026-11-09 22:47:02.945034 (user/501/com.apple.mobile.usermanagerd [15]) <Notice>: service state: xpcproxy
+argv[2] = by
+argv[3] = launchd
+com.apple.xpc.launchd|2026-11-09 22:47:02.945044 (user/501/com.hakios.wifi) <Notice>: internal event: WILL_SPAWN, code = 0
+[exit status 7]
+
+$ /redwood/bin/svc_testcom.apple.xpc.launchd|2026-11-09 22:47:02.945055 (user/501/com.hakios.wifi) <Notice>: service state: spawn scheduled
+
+com.apple.xpc.launchd|2026-11-09 22:47:02.945058 (user/501/com.hakios.wifi) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-09 22:47:02.945106 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+svc_test: pid 21, uid 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.945111 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.945115 (user/501/com.hakios.wifi) <Notice>: launching: speculative
+[ ok ] notifyd: register for a notification
+com.apple.xpc.launchd|2026-11-09 22:47:02.947142 (user/501/com.hakios.wifi [16]) <Notice>: xpcproxy spawned with pid 16
+[ ok ] notifyd: store and fetch a state value
+com.apple.xpc.launchd|2026-11-09 22:47:02.947177 (user/501/com.hakios.wifi [16]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.947184 (user/501/com.hakios.wifi [16]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-09 22:47:02.947577 (system) <Error>: Failed to bootstrap path: path = /AppleInternal/Library/LaunchDaemons, error = 2: No such file or directory
+com.apple.xpc.launchd|2026-11-09 22:47:02.947581 (system) <Error>: Failed to bootstrap path: path = /AppleInternal/Library/LaunchAngels, error = 2: No such file or directory
+com.apple.xpc.launchd|2026-11-09 22:47:02.947587 (system) <Notice>: exiting bootstrap mode
+com.apple.xpc.launchd|2026-11-09 22:47:02.947591 (system) <Notice>: pending spawn, domain in on-demand-only mode: com.apple.logd
+com.apple.xpc.launchd|2026-11-09 22:47:02.947594 (system) <Notice>: exiting ondemand mode
+com.apple.xpc.launchd|2026-11-09 22:47:02.947599 (system/com.apple.fseventsd) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.947611 (system/com.apple.fseventsd) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-09 22:47:02.947614 (system/com.apple.fseventsd) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-09 22:47:02.947671 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.947675 (system) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.947679 (system/com.apple.fseventsd) <Notice>: launching: speculative
+com.apple.xpc.launchd|2026-11-09 22:47:02.949472 (system/com.apple.fseventsd [17]) <Notice>: xpcproxy spawned with pid 17
+com.apple.xpc.launchd|2026-11-09 22:47:02.949501 (system/com.apple.fseventsd [17]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.949507 (system/com.apple.fseventsd [17]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-09 22:47:02.949517 (system/com.apple.logd) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.949533 (system/com.apple.logd) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-09 22:47:02.949536 (system/com.apple.logd) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-09 22:47:02.949606 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.949609 (system) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:02.949613 (system/com.apple.logd) <Notice>: launching: speculative
+com.apple.xpc.launchd|2026-11-09 22:47:02.951509 (system/com.apple.logd [18]) <Notice>: xpcproxy spawned with pid 18
+com.apple.xpc.launchd|2026-11-09 22:47:02.951540 (system/com.apple.logd [18]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.951546 (system/com.apple.logd [18]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-09 22:47:02.951617 (user/501/com.apple.runningboardd [6]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.951623 (user/501/com.apple.powerd [8]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.951627 (user/501/com.apple.wifid [9]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.951631 (user/501/com.hakios.varstore [10]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.951636 (user/501/com.apple.SpringBoard [7]) <Notice>: service spawned with pid 7
+com.apple.xpc.launchd|2026-11-09 22:47:02.951647 (user/501/com.apple.SpringBoard [7]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.951651 (user/501/com.apple.SpringBoard [7]) <Notice>: service state: spawned
+com.apple.xpc.launchd|2026-11-09 22:47:02.951666 (user/501/com.apple.SpringBoard [7]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-09 22:47:02.951669 (user/501/com.apple.SpringBoard [7]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.951681 (user/501/com.apple.SpringBoard [7]) <Notice>: Successfully spawned SpringBoard[7] because system support
+com.apple.xpc.launchd|2026-11-09 22:47:02.951685 (user/501/com.apple.backboardd [11]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.951734 (user/501/com.apple.containermanagerd [12]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.951739 (user/501/com.hakios.demo [13]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.951743 (user/501/com.apple.distnoted.xpc.daemon [14]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.951748 (user/501/com.apple.mobile.usermanagerd [15]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.951753 (user/501/com.hakios.wifi [16]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.951758 (system/com.apple.fseventsd [17]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.951761 (system/com.apple.logd [18]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:02.951764 (user/501/com.apple.SpringBoard [7]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:03.475352 <Notice>: Flushed 81 logs [limit: 20]
+com.apple.xpc.launchd|2026-11-09 22:47:03.047345 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+wifi: 14: QRTR: the DSP is node 13; hellos from it 1; datagrams received 6, sent 1; services it has told of: 5; the Wi-Fi firmware's service: THERE
+wifi: the radio's DSP is up and linked, 1376 ms in; now the driver
+wifi: step 15: hand the radio to ath11k itself: its exchange with the firmware up to mission mode, then THE RADIO'S REGISTERS ARE WRITTEN, by ce.c and hal.c: the copy engines' rings (every write is said as it is made)
+wifi: 15: wifi_diag=1: a thread looks at the SMMU every 3 s while the driver runs
+wifi: wifi_irq: THE RADIO'S SMMU CONTEXT GETS AN ENTRY for the GIC's register that raises an interrupt (0x17210040), as a device's page
+wifi: 15: the radio is to see 4 KB of ours (0x17210000) at 0xa2c00000
+wifi: 15: about to write apps smmu, the radio's context tlbiasid at 0x15086610: 0x6
+wifi: 15: about to write apps smmu, the radio's context tlbsync at 0x150867f0: 0x1
+wifi: wifi_irq: the radio raises its interrupt vector v by writing 421 + v at 0xa2c00040
+ath11k: wcn6750 hw1.0
+lx: the driver asks for the file "ath11k/WCN6750/hw1.0/firmware-2.bin": not there
+ath11k (debug): failed to load firmware-2.bin: -2
+ath11k (debug): using fw api 1
+lx: the driver ("wcn6750 hw1.0") is set up; its exchange with the firmware begins (registers: for real)
+ath11k (debug): pm policy 0
+wifi: 15: the driver asks for the firmware's processor: it has been up since step 11, with the link of step 13
+wifi: doorbell: +703.341 ms: client 24, signal 0; heard and cleared
+wifi: glink: < done-reuse 2 0
+ath11k (debug): wifi fw qmi service connected
+ath11k (debug): indication register request
+wifi: doorbell: +704.618 ms: client 24, signal 0; heard and cleared
+wifi: doorbell: +704.631 ms: client 24, signal 0; heard and cleared
+ath11k (debug): host cap request
+wifi: doorbell: +705.890 ms: client 24, signal 0; heard and cleared
+ath11k (debug): qmi msa info req addr 0x82a00000 size 0x300000
+wifi: doorbell: +707.063 ms: client 24, signal 0; heard and cleared
+ath11k (debug): qmi msa info request succeeded
+ath11k (debug): qmi msa ready req
+wifi: doorbell: +708.784 ms: client 24, signal 0; heard and cleared
+wifi: doorbell: +708.795 ms: client 24, signal 0; heard and cleared
+wifi: doorbell: +708.802 ms: client 24, signal 0; heard and cleared
+ath11k (debug): firmware msa ready indication
+ath11k (debug): qmi msa ready request succeeded
+ath11k (debug): target cap request
+wifi: doorbell: +709.992 ms: client 24, signal 0; heard and cleared
+wifi: doorbell: +756.116 ms: client 24, signal 0; heard and cleared
+ath11k: chip_id 0x4320 chip_family 0x4001 board_id 0xff soc_id 0x400f0000
+ath11k: fw_version 0x34367fff fw_build_timestamp 2023-10-12 07:14 fw_build_id WLAN.HL.3.4.3-00347.2-QCAHLSWMTPLZ-1.44046.4.47379.2
+ath11k (debug): SMBIOS bdf variant name not set.
+ath11k (debug): DT bdf variant name not set.
+wifi: doorbell: +757.321 ms: client 24, signal 0; heard and cleared
+ath11k WARNS: qmi device info request failed: 1 94
+ath11k WARNS: device info not supported (error 94): using Garnet aperture 0x22800000
+ath11k (debug): using board name 'bus=ahb,qmi-chip-id=17184,qmi-board-id=255'
+lx: the driver asks for the file "ath11k/WCN6750/hw1.0/board-2.bin": not there
+ath11k (debug): using board name 'bus=ahb,qmi-chip-id=17184,qmi-board-id=255'
+ath11k (debug): using board name 'bus=ahb,qmi-chip-id=17184,qmi-board-id=255'
+lx: the driver asks for the file "ath11k/WCN6750/hw1.0/board.bin": there
+ath11k (debug): firmware request ath11k/WCN6750/hw1.0/board.bin size 26328
+ath11k (debug): using board api 1
+ath11k (debug): bdf_type 0
+ath11k (debug): bdf download req fixed addr type 0
+wifi: doorbell: +759.681 ms: client 24, signal 0; heard and cleared
+ath11k (debug): bdf download request remaining 20184
+ath11k (debug): bdf download req fixed addr type 0
+wifi: doorbell: +760.865 ms: client 24, signal 0; heard and cleared
+ath11k (debug): bdf download request remaining 14040
+ath11k (debug): bdf download req fixed addr type 0
+2026-11-09 22:47:03.534 distnoted[14:225] # distnote server daemon  absolute timwifi: doorbell: +762.046 ms: client 24, signal 0; heard and cleared
+ath11k (debug): bdf download request remaining 7896
+ath11k (debug): bdf download req fixed addr type 0
+wifi: doorbell: +763.222 ms: client 24, signal 0; heard and cleared
+ath11k (debug): bdf download request remaining 1752
+ath11k (debug): bdf download req fixed addr type 0
+wifi: doorbell: +765.544 ms: client 24, signal 0; heard and cleared
+ath11k (debug): bdf download request remaining 0
+lx: the driver asks for the file "ath11k/WCN6750/hw1.0/cal-ahb-wifi.bin": not there
+lx: the driver asks for the file "ath11k/WCN6750/hw1.0/caldata.bin": not there
+ath11k (debug): no external CAL data file (cal-ahb-wifi.bin / caldata.bin): proceeding with resident calibration
+ath11k (debug): BDF download sequence completed
+ath11k (debug): BDF download complete
+ath11k (debug): cal report req
+wifi: doorbell: +766.719 ms: client 24, signal 0; heard and cleared
+ath11k (debug): cal report request succeeded
+ath11k (debug): poke: CAL_REPORT_REQ sent, rc=14 (waiting for FW_READY)
+wifi: doorbell: +774.831 ms: client 24, signal 0; heard and cleared
+e: 1.063780395   civil time: Mon Nov  9 22:47:03 2026   pid: 14 uid: 241  root: yes
+com.apple.xpc.launchd|2026-11-09 22:47:03.047351 (system) <Error>: Unable to find persona with type 6: 3 - No such process
+[ ok ] notifyd: post a notification and see it arrive
+com.apple.xpc.launchd|2026-11-09 22:47:03.048888 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.048894 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.048996 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.048999 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.049075 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.049079 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.049326 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.049331 (system) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.049529 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.049534 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.049725 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.049730 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.052728 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.052737 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.059811 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.059819 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.060025 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.060031 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.060933 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.060943 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.120980 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.120987 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.194363 (user/501/com.apple.containermanagerd [12]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-09 22:47:03.194372 (user/501/com.apple.containermanagerd [12]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:03.194390 (user/501/com.apple.containermanagerd [12]) <Notice>: Successfully spawned containermanagerd[12] because speculative
+com.apple.xpc.launchd|2026-11-09 22:47:03.197063 (user/501/com.apple.distnoted.xpc.daemon [14]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-09 22:47:03.197073 (user/501/com.apple.distnoted.xpc.daemon [14]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:03.197093 (user/501/com.apple.distnoted.xpc.daemon [14]) <Notice>: Successfully spawned distnoted[14] because speculative
+com.apple.xpc.launchd|2026-11-09 22:47:03.197126 (user/501/com.apple.runningboardd [6]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-09 22:47:03.197132 (user/501/com.apple.runningboardd [6]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:03.197142 (user/501/com.apple.runningboardd [6]) <Notice>: Successfully spawned runningboardd[6] because speculative
+com.apple.xpc.launchd|2026-11-09 22:47:03.201606 (system/com.apple.fseventsd [17]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-09 22:47:03.201620 (system/com.apple.fseventsd [17]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:03.201639 (system/com.apple.fseventsd [17]) <Notice>: Successfully spawned fseventsd[17] because speculative
+com.apple.xpc.launchd|2026-11-09 22:47:03.206594 (pid/17 [fseventsd]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-09 22:47:03.206614 (pid/17 [fseventsd]) <Notice>: created
+com.apple.xpc.launchd|2026-11-09 22:47:03.213315 (pid/12 [containermanage]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-09 22:47:03.213334 (pid/12 [containermanage]) <Notice>: created
+com.apple.xpc.launchd|2026-11-09 22:47:03.216026 (system/com.apple.notifyd) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:03.216045 (system/com.apple.notifyd) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-09 22:47:03.216053 (system/com.apple.notifyd) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-09 22:47:03.216100 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.216104 (system) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.216111 (system/com.apple.notifyd) <Notice>: launching: ipc (mach)
+com.apple.xpc.launchd|2026-11-09 22:47:03.336723 (system/com.apple.notifyd [19]) <Notice>: xpcproxy spawned with pid 19
+com.apple.xpc.launchd|2026-11-09 22:47:03.336774 (system/com.apple.notifyd [19]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:03.336780 (system/com.apple.notifyd [19]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-09 22:47:03.336818 (system/com.apple.notifyd [19]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:03.336841 (user/501/com.hakios.wifi [16]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-09 22:47:03.336845 (user/501/com.hakios.wifi [16]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:03.336851 (user/501/com.hakios.wifi [16]) <Notice>: Successfully spawned net_test[16] because speculative
+com.apple.xpc.launchd|2026-11-09 22:47:03.336864 (user/501/com.hakios.varstore [10]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-09 22:47:03.336868 (user/501/com.hakios.varstore [10]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:03.336872 (user/501/com.hakios.varstore [10]) <Notice>: Successfully spawned var_store[10] because speculative
+com.apple.xpc.launchd|2026-11-09 22:47:03.336995 (user/501/com.hakios.demo [13]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-09 22:47:03.337004 (user/501/com.hakios.demo [13]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:03.337014 (user/501/com.hakios.demo [13]) <Notice>: Successfully spawned init[13] because speculative
+com.apple.xpc.launchd|2026-11-09 22:47:03.342540 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.342548 (system) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.347056 (user/501/com.hakios.varstore [10]) <Notice>: exited due to exit(0)
+com.apple.xpc.launchd|2026-11-09 22:47:03.347072 (user/501/com.hakios.varstore [10]) <Notice>: service state: exited
+com.apple.xpc.launchd|2026-11-09 22:47:03.347085 (user/501/com.hakios.varstore [10]) <Notice>: internal event: EXITED, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:03.347093 (user/501) <Notice>: service inactive: com.hakios.varstore
+com.apple.xpc.launchd|2026-11-09 22:47:03.347098 (user/501/com.hakios.varstore [10]) <Notice>: service state: not running
+com.apple.xpc.launchd|2026-11-09 22:47:03.348751 (user/501/com.apple.powerd [8]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-09 22:47:03.348758 (user/501/com.apple.powerd [8]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:03.348772 (user/501/com.apple.powerd [8]) <Notice>: Successfully spawned powerd[8] because speculative
+com.apple.xpc.launchd|2026-11-09 22:47:03.352497 (user/501/com.apple.mobile.usermanagerd [15]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-09 22:47:03.352510 (user/501/com.apple.mobile.usermanagerd [15]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:03.352529 (user/501/com.apple.mobile.usermanagerd [15]) <Notice>: Successfully spawned usermanagerd[15] because speculative
+com.apple.xpc.launchd|2026-11-09 22:47:03.358967 (system/com.apple.logd [18]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-09 22:47:03.358977 (system/com.apple.logd [18]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:03.358994 (system/com.apple.logd [18]) <Notice>: Successfully spawned logd[18] because speculative
+com.apple.xpc.launchd|2026-11-09 22:47:03.368509 (user/501/com.apple.backboardd [11]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-09 22:47:03.368519 (user/501/com.apple.backboardd [11]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:03.368533 (user/501/com.apple.backboardd [11]) <Notice>: Successfully spawned backboardd[11] because speculative
+com.apple.xpc.launchd|2026-11-09 22:47:03.371648 (system/com.apple.notifyd [19]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-09 22:47:03.371658 (system/com.apple.notifyd [19]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:03.371674 (system/com.apple.notifyd [19]) <Notice>: Successfully spawned notifyd[19] because ipc (mach)
+com.apple.xpc.launchd|2026-11-09 22:47:03.377904 (pid/19 [notifyd]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-09 22:47:03.377938 (pid/19 [notifyd]) <Notice>: created
+com.apple.xpc.launchd|2026-11-09 22:47:03.385128 (user/501/com.apple.wifid [9]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-09 22:47:03.385136 (user/501/com.apple.wifid [9]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:03.385151 (user/501/com.apple.wifid [9]) <Notice>: Successfully spawned wifid[9] because speculative
+com.apple.xpc.launchd|2026-11-09 22:47:03.475555 (pid/18 [logd]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-09 22:47:03.475580 (pid/18 [logd]) <Notice>: created
+com.apple.xpc.launchd|2026-11-09 22:47:03.821979 <Notice>: Flushed 88 logs [limit: 20]
+com.apple.xpc.launchd|2026-11-09 22:47:03.506069 (pid/15 [usermanagerd]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-09 22:47:03.506086 (pid/15 [usermanagerd]) <Notice>: created
+com.apple.xpc.launchd|2026-11-09 22:47:03.527812 (pid/14 [distnoted]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-09 22:47:03.527833 (pid/14 [distnoted]) <Notice>: created
+com.apple.xpc.launchd|2026-11-09 22:47:03.532538 (system/com.apple.logd_helper) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:03.532558 (system/com.apple.logd_helper) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-09 22:47:03.532567 (system/com.apple.logd_helper) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-09 22:47:03.532617 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.532621 (system) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.532627 (system/com.apple.logd_helper) <Notice>: launching: ipc (mach)
+com.apple.xpc.launchd|2026-11-09 22:47:03.640794 (system/com.apple.logd_helper [22]) <Notice>: xpcproxy spawned with pid 22
+com.apple.xpc.launchd|2026-11-09 22:47:03.640828 (system/com.apple.logd_helper [22]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:03.640834 (system/com.apple.logd_helper [22]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-09 22:47:03.640920 (system/com.apple.logd_helper [22]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:03.647325 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.647332 (system) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:03.650484 (system/com.apple.logd_helper [22]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-09 22:47:03.650609 (system/com.apple.logd_helper [22]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:03.650628 (system/com.apple.logd_helper [22]) <Notice>: Successfully spawned logd_helper[22] because ipc (mach)
+com.apple.xpc.launchd|2026-11-09 22:47:03.654259 (pid/22 [logd_helper]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-09 22:47:03.654278 (pid/22 [logd_helper]) <Notice>: created
+com.apple.xpc.launchd|2026-11-09 22:47:03.757047 (pid/9 [wifid]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-09 22:47:03.757065 (pid/9 [wifid]) <Notice>: created
+com.apple.xpc.launchd|2026-11-09 22:47:03.864400 <Notice>: Flushed 23 logs [limit: 20]
+objc[11]: Class _BKRuleResolutionTranscript is implemented in both /System/Library/PrivateFrameworks/BackBoardHIDEventFoundation.framework/BackBoardHIDEventFoundation (0x2317bb1e8) and /usr/libexec/backboardd (0x1007d4750). One of the two will be used. Which one is undefined.
+com.apple.xpc.launchd|2026-11-09 22:47:04.082998 (pid/11 [backboardd]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-09 22:47:04.083031 (pid/11 [backboardd]) <Notice>: created
+hakios: window server hooks installed
+com.apple.xpc.launchd|2026-11-09 22:47:04.141943 (pid/7 [SpringBoard]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-09 22:47:04.141969 (pid/7 [SpringBoard]) <Notice>: created
+com.apple.xpc.launchd|2026-11-09 22:47:04.351719 (pid/16 [net_test]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-09 22:47:04.351791 (pid/16 [net_test]) <Notice>: created
+net_test: wifi: en0 is there after 0.0 s
+com.apple.xpc.launchd|2026-11-09 22:47:04.780028 (pid/6 [runningboardd]) <Notice>: uncorking exec source upfront
+hakios: display links: made ok, fps ok, range ok; UIViewInProcessAnimationManager's at the panel's rate (dl_max=1)
+com.apple.xpc.launchd|2026-11-09 22:47:04.780055 (pid/6 [runningboardd]) <Notice>: created
+com.apple.xpc.launchd|2026-11-09 22:47:04.955008 (pid/8 [powerd]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-09 22:47:04.955035 (pid/8 [powerd]) <Notice>: created
+wifi: diag: +3s: SMMU clean (context 6 fsr 0x400; sgfsr 0): the radio has not faulted
+com.apple.xpc.launchd|2026-11-09 22:47:06.654076 (user/501) <Warning>: failed lookup: name = com.apple.oscard, flags = 0x8, requestor = backboardd[11], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.654556 (user/501/com.apple.cfprefsd.xpc.daemon) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:06.654570 (user/501/com.apple.cfprefsd.xpc.daemon) <Notice>: service state: spawn scheduled
+hakios: SpringBoard: no GPU draws, vibrant views are plain (the lock screen's clock is white)
+com.apple.xpc.launchd|2026-11-09 22:47:06.654577 (user/501/com.apple.cfprefsd.xpc.daemon) <Notice>: service state: spawning
+hakios: SpringBoard: the status bar's providers have NSObject in common, the fallback's parent is NSObject
+hakios: SpringBoard: the status bar's fallback provider is _UIStatusBarVisualProvider_Split1125 from now on (35 class methods)
+[ ok ] cfprefsd: write a preference
+  greeting = "hello from preferences"
+[ ok ] cfprefsd: read it back
+[ ok ] logd: os_log does not crash
+svc_test: 0 failed
+
+$ /redwood/bin/surf_test
+com.apple.xpc.launchd|2026-11-09 22:47:06.654625 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.654629 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.654635 (user/501/com.apple.cfprefsd.xpc.daemon) <Notice>: launching: ipc (mach)
+com.apple.xpc.launchd|2026-11-09 22:47:06.656548 (user/501/com.apple.cfprefsd.xpc.daemon [23]) <Notice>: xpcproxy spawned with pid 23
+com.apple.xpc.launchd|2026-11-09 22:47:06.656572 (user/501/com.apple.cfprefsd.xpc.daemon [23]) <Notice>: internal event: SPAWNED, code = 0
+surf_test: surface 1: 64x48, 256 bytes per row, 16384 bytes, base 0x100464000
+surf_test: child: surface 1, 0 wrong pixels
+hakios: -[_UIBatteryView setLowBattery:]: found 0, expected 0; left alone
+hakios: SpringBoard: activation answered here, setup assistant refused, application snapshots as JPEG, the side button's long press checked, battery level from QG, battery state from QG, poster switcher not offered
+hakios: cellular: _UIStatusBarDataCellularEntry has no such method
+hakios: cellular: _UIStatusBarData has no such method
+hakios: cellular: _UIStatusBarDataEntry has no such method
+hakios: cellular: the kernel says up=-1 registered=-1 bars=-1 dbm=-1 radio=-1
+hakios: cellular: -[_UIStatusBarCellularSignalView setSignalMode:] replaced (types "v24@0:8q16"): active while the kernel says registered
+hakios: cellular: -[SBStatusBarStateAggregator _updateServiceItem:withData:SIMInfo:otherSIMInfo:serviceStringGetter:serviceStringSetter:serviceCrossfadeStringGetter:serviceCrossfadeStringSetter:serviceContentTypeGetter:serviceContentTypeSetter:serviceBadgeStringGetter:serviceBadgeStringSetter:] at 0x1c5e0cbe4, types "v108@0:8i16@20@28@36@?44@?52@?60@?68@?76@?84@?92@?100": looked at
+hakios: cellular: -[SBStatusBarStateAggregator _updateSignalStrengthItem:withData:SIMInfo:barsGetter:barsSetter:] at 0x1c5e0c2c0, types "v52@0:8i16@20@28@?36@?44": replaced
+hakios: cellular: aggregator methods: systemApertureLayoutDidChange: _updateStatusBarForSystemStatusDomainName:data: setShowsSyncActivityIndicator: mainDisplayWindowScene setFocusDomain: _updateSensorActivityItem _postItem:withState:inList: _registerForNotifications initWithMainDisplayWindowScene: _statusBarStyleOverrideDescriptorsForCallDescriptors: setCallingDomain: controller:didChangeOverrideDateFromDate: _updateDisplayWarningItem setShouldShowBluetoothHeadphoneGlyph:andShouldShowBluetoothHeadphoneBatteryPercent: _updateSecondaryServiceItem _updateAirplaneMode _noteAirplaneModeChanged _updateDataNetworkItem _updateServiceItem:withData:SIMInfo:otherSIMInfo:serviceStringGetter:serviceStringSetter:serviceCrossfadeStringGetter:serviceCrossfadeStringSetter:serviceContentTypeGetter:serviceContentTypeSetter:serviceBadgeStringGetter:serviceBadgeStringSetter: dealloc setAirPlayDomain: _updatePersonNameItem .cxx_destruct wifiDomain _updateTTYItem _updateTimeItems _shouldShowEmergencyOnlyStatusForInfo: 
+hakios: cellular: aggregator methods: _invalidateSystemApertureChargingElementAssertionForReason: batteryDomain _locationAttributionsForSensorActivityAttributions:includeRecent: _updateThermalColorItem displayReferenceModeStatusDidChangeForDisplayWithConfiguration:newStatus: _tickRefCount:up:withTransitionBlock: stewieDomain voiceControlDomain _updateLockItem telephonyDataProvider _systemApertureElementIsVisibleForStatusBarItem: activityDidChangeForSensorActivityDataProvider: beginCoalescentBlock setSystemApertureChargingElementAssertion: _removeTetheringStatusBarStyleOverrideAssertion setShowsActivityIndicatorOnHomeScreen: _updateOverrideDate _updateVPNItem _setUserSessionController: _updateCallingStatusBarStyleOverrideAssertionsForCallDescriptors: telephonyDomain _removePlaygroundsStatusBarStyleOverrideAssertion _telephonyManager _updateAirplayItem centralManagerDidUpdateState: setVoiceControlDomain: _updateCallForwardingItem:withInfo: centralManager:didUpdatePeripheralConnectionState: _setItem:enabled: systemApertureChargingElementAssertion 
+hakios: cellular: aggregator methods: setBatteryDomain: updateStatusBarItem: _updateRotationLockItem _updateDataNetworkItem:withData:primary:dataNetworkTypeGetter:dataNetworkTypeSetter: _updateBatteryItems _statusBarData setStewieDomain: sendStatusBarActions: _updateCallForwardingItem initWithMainDisplayWindowScene:registerForNotifications: _setItem:enabled:inList:itemPostState: _removeStewieStatusBarStyleOverrideAssertion _updateLiquidDetectionItem batteryDataProvider _userSessionController airPlayDomain setShowsOverridesForRecording: _setTelephonyManager: setSystemApertureVisibleElementIdentifiers: _updateStateAtomicallyWithoutAnimationUsingBlock: batteryChargingState _updateLocationItemForLocationAttributions: _activeAudioRecordingAttributionsForSensorActivityAttributions: _updateStatusBarItemsWithRelatedSystemApertureElements cache:didUpdateActiveAudioRoute: _updateBluetoothItem _updateAlarmItem _updateStatusBarStyleOverrideAssertionsForSystemStatusDomain:andData: _restartTimeItemTimer setWifiDomain: setTelephonyDomain: 
+hakios: cellular: aggregator methods: _temporarilyOverrideLocationItemForProminentIndication setUserNameOverride: _shouldShowPersonName _updateBluetoothBatteryItem focusDomain _notifyItemChanged: setShowsActivityIndicatorEverywhere: _stopTimeItemTimer _updateQuietModeItem systemApertureVisibleElementIdentifiers _statusBarBatteryStateForSystemStatusChargingState: _resetTimeItemFormatter _updateActivityItem _requestActions: callingDomain endCoalescentBlock _updateVoiceControlItem addPostingObserver: _updateBluetoothHeadphonesItem _updateSignalStrengthItem:withData:SIMInfo:barsGetter:barsSetter: setPlaygroundsDomain: setAlarmEnabled: _updateTetheringState _updateSecondaryCallForwardingItem _updateActiveAudioRecordingStatusBarStyleOverrideAssertionsForActiveSensorActivityAttributions: removePostingObserver: _updateLocationItem _removeAirPlayStatusBarStyleOverrideAssertion _updateSecondaryDataNetworkItem _updateCarPlayItem _updateSecondarySignalStrengthItem cache:didUpdatePickableRoutes: _systemApertureElementIdentifierForStatusBarItem: 
+hakios: cellular: aggregator methods: wifiDataProvider playgroundsDomain setBatteryChargingState: _updateServiceItem _notifyNonItemDataChanged _updateStewieItem _updateSignalStrengthItem 
+hakios: battery UI: shows% ok, set-shows% ok, bolt ok, chargePercent ok, isLowBattery ok, lockscreen ring ok
+surf_test: 80 checks, 0 failed
+com.apple.xpc.launchd|2026-11-09 22:47:06.656578 (user/501/com.apple.cfprefsd.xpc.daemon [23]) <Notice>: service state: xpcproxy
+
+$2026-11-09 22:47:06.861 wifid[9:258] ----- WiFiManager starting, version: WiFiManager-1635.6 Oct 28 2023 01:15:52 -----
+ /bin/ps -A
+com.apple.xpc.launchd|2026-11-09 22:47:06.656758 (user/501/com.apple.cfprefsd.xpc.daemon [23]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+2026-11-09 22:47:06.908 wifid[9:258] WiFiManagerCreate: entering
+com.apple.xpc.launchd|2026-11-09 22:47:06.660808 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.660815 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.663408 (user/501/com.apple.cfprefsd.xpc.daemon [23]) <Notice>: service state: running
+  PID TTY           TIME CMD
+    1 ??         0:01.43 /sbin/launchd.darwin
+    6 ??         0:00.15 /usr/libexec/runningboardd
+    7 ??         0:01.82 /System/Library/CoreServices/SpringBoard.app/SpringBoard
+com.apple.xpc.launchd|2026-11-09 22:47:06.663416 (user/501/com.apple.cfprefsd.xpc.daemon [23]) <Notice>: internal event: INIT, code = 0
+    8 ??         0:00.02 /System/Library/CoreServices/powerd.bundle/powerd
+    9 ??         0:00.53 /usr/sbin/wifid
+   11 ??         0:00.54 /usr/libexec/backboardd
+   12 ??         0:00.18 /usr/libexec/containermanagerd --runmode=normal --default-user=mobile --user-container-mode=fixed --bundle-container-mode=glob
+   13 ??         0:00.03 /redwood/sbin/init /redwood/etc/rc.jobs
+   14 ??         0:00.19 /usr/sbin/distnoted daemon
+com.apple.xpc.launchd|2026-11-09 22:47:06.663437 (user/501/com.apple.cfprefsd.xpc.daemon [23]) <Notice>: Successfully spawned cfprefsd[23] because ipc (mach)
+   15 ??         0:00.09 /usr/libexec/usermanagerd -t 15
+   16 ??         0:00.02 /redwood/bin/net_test wifi
+2026-11-09 22:47:06.958 wifid[9:258] [NO client logger] <Oct 28 2023 00:17:29> WIFICLOUDSYNC WiFiCloudSyncEngineRegisterCallbacksWithQueue: WiFiCloudSyncEngineCallbacks version - 0, bundle id - com.apple.wifid
+   17 ??         0:00.07 /usr/libexec/fseventsd
+   18 ??         0:00.15 /usr/libexec/logd
+   19 ??         0:00.03 /usr/sbin/notifyd
+   22 ??         0:02.81 /usr/libexec/logd_helper
+   23 ??         0:00.05 /usr/sbin/cfprefsd daemon
+   25 ??         0:00.02 /System/Library/PrivateFrameworks/CoreAccessories.framework/XPCServices/ACCHWComponentAuthService.xpc/ACCHWComponentAuthServic
+   27 ??         0:00.01 /usr/libexec/lsd
+   28 ??         0:00.01 /bin/ps -A
+2026-11-09 22:47:06.991 wifid[9:314] -[WiFiLocationManager createCoreLocationObjects]: WiFi is not authorized for location
+   29 ??         0:00.00 /usr/libexec/MobileGestaltHelper
+
+$ /redwood/bin/mg_test
+mg_test: DeviceClass = <CFString 0x22a6fdb60 [0x2323b6858]>{contents = "iPhone"}
+mg_test: DeviceClassNumber = <CFNumber 0x96dff6a982fa91b5 [0x2323b6858]>{value = +1, type = kCFNumberSInt32Type}
+mg_test: DeviceName = <CFString 0x22a6fdb60 [0x2323b6858]>{contents = "iPhone"}
+mg_test: ProductType = <CFString 0x100506e00 [0x2323b6858]>{contents = "iPhone10,3"}
+mg_test: HWModelStr = D22AP
+mg_test: ModelNumber = MQAC2
+mg_test: ProductName = iPhone OS
+mg_test: marketing-name = iPhone X
+mg_test: UserAssignedDeviceName = <CFString 0x22a6fdb60 [0x2323b6858]>{contents = "iPhone"}
+mg_test: ComputerName = (none)
+mg_test: SerialNumber = <CFString 0x100406ff0 [0x2323b6858]>{contents = "RDW00POCOX5P"}
+mg_test: UniqueDeviceID = <CFString 0x100407230 [0x2323b6858]>{contents = "d6ca5f8da676e44a1ed9455d72d070481d33dd9e"}
+mg_test: HasBaseband = <CFBoolean 0x232633f80 [0x2323b6858]>{value = false}
+mg_test: telephony = <CFBoolean 0x232633f90 [0x2323b6858]>{value = true}
+mg_test: cellular-data = <CFBoolean 0x232633f80 [0x2323b6858]>{value = false}
+mg_test: wifi = <CFBoolean 0x232633f90 [0x2323b6858]>{value = true}
+mg_test: bluetooth = <CFBoolean 0x232633f90 [0x2323b6858]>{value = true}
+mg_test: DeviceSupportsTelephonyOverUSB = <CFBoolean 0x232633f80 [0x2323b6858]>{value = false}
+mg_test: main-screen-scale = <CFNumber 0x96dff6a982fa9085 [0x2323b6858]>{value = +3.0000000000, type = kCFNumberFloat32Type}
+mg_test: main-screen-width = <CFNumber 0x96dff6a982f8a3b5 [0x2323b6858]>{value = +1125, type = kCFNumberSInt32Type}
+mg_test: main-screen-height = <CFNumber 0x96dff6a982fe5335 [0x2323b6858]>{value = +2436, type = kCFNumberSInt32Type}
+mg_test: main-screen-class = <CFNumber 0x96dff6a982fa96b5 [0x2323b6858]>{value = +15, type = kCFNumberSInt32Type}
+mg_test: ArtworkDeviceSubType = (none)
+com.apple.xpc.launchd|2026-11-09 22:47:06.665575 (pid/23 [cfprefsd]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-09 22:47:06.665592 (pid/23 [cfprefsd]) <Notice>: created
+com.apple.xpc.launchd|2026-11-09 22:47:06.671103 (user/501) <Warning>: failed activation: name = com.apple.mobile.usermanagerd.xpc, flags = 0x0, requestor = usermanagerd[15], error = 37: Operation already in progress
+com.apple.xpc.launchd|2026-11-09 22:47:06.673991 (pid/11 [backboardd]) <Notice>: uncorking domain
+com.apple.xpc.launchd|2026-11-09 22:47:06.720561 (user/501/com.apple.audio.toolbox.reporting.service) <Notice>: created the implicit endpoint upfront
+com.apple.xpc.launchd|2026-11-09 22:47:06.720572 (user/501/com.apple.audio.toolbox.reporting.service) <Notice>: draining messages from com.apple.audio.toolbox.reporting.service
+com.apple.xpc.launchd|2026-11-09 22:47:06.720619 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.tailspin.symbolicationserver
+com.apple.xpc.launchd|2026-11-09 22:47:06.720629 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.externalaccessory.WACEAService
+com.apple.xpc.launchd|2026-11-09 22:47:06.720639 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.icloud.FindMyDevice.FindMyDeviceEraseXPCService
+com.apple.xpc.launchd|2026-11-09 22:47:06.720648 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.icloud.FindMyDevice.FindMyDeviceEmergencyCallInfoPublisherXPCService
+com.apple.xpc.launchd|2026-11-09 22:47:06.720854 (user/501/com.apple.icloud.FindMyDevice.FindMyDeviceHelperXPCService) <Notice>: created the implicit endpoint upfront
+com.apple.xpc.launchd|2026-11-09 22:47:06.720863 (user/501/com.apple.icloud.FindMyDevice.FindMyDeviceHelperXPCService) <Notice>: draining messages from com.apple.icloud.FindMyDevice.FindMyDeviceHelperXPCService
+com.apple.xpc.launchd|2026-11-09 22:47:06.720893 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.icloud.FindMyDevice.FindMyDeviceBTDiscoveryXPCService
+com.apple.xpc.launchd|2026-11-09 22:47:06.720902 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.icloud.FindMyDevice.FindMyDeviceUserNotificationsXPCService
+com.apple.xpc.launchd|2026-11-09 22:47:06.720911 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.icloud.FindMyDevice.FindMyDeviceIdentityXPCService
+com.apple.xpc.launchd|2026-11-09 22:47:06.720950 (pid/11/com.apple.MTLCompilerService) <Notice>: created the implicit endpoint upfront
+com.apple.xpc.launchd|2026-11-09 22:47:06.720954 (pid/11/com.apple.MTLCompilerService) <Notice>: draining messages from com.apple.MTLCompilerService
+com.apple.xpc.launchd|2026-11-09 22:47:06.721231 (user/501/com.apple.accessibility.mediaaccessibilityd) <Notice>: created the implicit endpoint upfront
+com.apple.xpc.launchd|2026-11-09 22:47:06.721237 (user/501/com.apple.accessibility.mediaaccessibilityd) <Notice>: draining messages from com.apple.accessibility.mediaaccessibilityd
+com.apple.xpc.launchd|2026-11-09 22:47:06.721307 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.OSLogService
+com.apple.xpc.launchd|2026-11-09 22:47:06.721316 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.intents.intents-helper
+com.apple.xpc.launchd|2026-11-09 22:47:06.721326 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.FontServices.UserFontManager
+com.apple.xpc.launchd|2026-11-09 22:47:06.721334 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.FontServices.FontProviderLoader
+com.apple.xpc.launchd|2026-11-09 22:47:06.721343 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.FontServices.UserFontServices
+com.apple.xpc.launchd|2026-11-09 22:47:06.721351 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.backboard.display.archive
+com.apple.xpc.launchd|2026-11-09 22:47:06.721360 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.coreaccessories.ACCCarPlayService
+com.apple.xpc.launchd|2026-11-09 22:47:06.721369 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.ACCHWComponentAuthService
+com.apple.xpc.launchd|2026-11-09 22:47:06.721904 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.coreaccessories.ACCAppLinksIconService
+com.apple.xpc.launchd|2026-11-09 22:47:06.721919 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.security.XPCAcmeService
+com.apple.xpc.launchd|2026-11-09 22:47:06.722123 (user/501/com.apple.TrustedPeersHelper) <Notice>: created the implicit endpoint upfront
+com.apple.xpc.launchd|2026-11-09 22:47:06.722157 (user/501/com.apple.TrustedPeersHelper) <Notice>: draining messages from com.apple.TrustedPeersHelper
+com.apple.xpc.launchd|2026-11-09 22:47:06.722411 (user/501/com.apple.datamigrator) <Notice>: created the implicit endpoint upfront
+com.apple.xpc.launchd|2026-11-09 22:47:06.722418 (user/501/com.apple.datamigrator) <Notice>: draining messages from com.apple.datamigrator
+com.apple.xpc.launchd|2026-11-09 22:47:06.722616 (user/501/com.apple.migrationpluginwrapper) <Notice>: created the implicit endpoint upfront
+com.apple.xpc.launchd|2026-11-09 22:47:06.722622 (user/501/com.apple.migrationpluginwrapper) <Notice>: draining messages from com.apple.migrationpluginwrapper
+com.apple.xpc.launchd|2026-11-09 22:47:06.722812 (user/501/com.apple.MobileInstallationHelperService) <Notice>: created the implicit endpoint upfront
+com.apple.xpc.launchd|2026-11-09 22:47:06.722818 (user/501/com.apple.MobileInstallationHelperService) <Notice>: draining messages from com.apple.MobileInstallationHelperService
+com.apple.xpc.launchd|2026-11-09 22:47:06.722853 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.extensionkitservice
+com.apple.xpc.launchd|2026-11-09 22:47:06.722861 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.avfaudio.devicetest.service
+com.apple.xpc.launchd|2026-11-09 22:47:06.723143 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.Quagga.Decode.xpc
+com.apple.xpc.launchd|2026-11-09 22:47:06.723342 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.PerfPowerTelemetryClientRegistrationService
+com.apple.xpc.launchd|2026-11-09 22:47:06.723710 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.coremedia.videodecodeservice
+com.apple.xpc.launchd|2026-11-09 22:47:06.724747 (pid/11 [backboardd]) <Notice>: Service stub initialized for com.apple.ACCHWComponentAuthService
+com.apple.xpc.launchd|2026-11-09 22:47:06.724797 (pid/11/com.apple.ACCHWComponentAuthService) <Notice>: initialized endpoint after lookup
+com.apple.xpc.launchd|2026-11-09 22:47:06.745409 (pid/11/com.apple.ACCHWComponentAuthService) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:06.745427 (pid/11/com.apple.ACCHWComponentAuthService) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-09 22:47:06.745436 (pid/11/com.apple.ACCHWComponentAuthService) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-09 22:47:06.745457 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.745462 (pid/11 [backboardd]) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.745467 (pid/11/com.apple.ACCHWComponentAuthService) <Notice>: launching: ipc (mach)
+com.apple.xpc.launchd|2026-11-09 22:47:06.747292 (pid/11/com.apple.ACCHWComponentAuthService [25]) <Notice>: xpcproxy spawned with pid 25
+com.apple.xpc.launchd|2026-11-09 22:47:06.747321 (pid/11/com.apple.ACCHWComponentAuthService [25]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:06.747327 (pid/11/com.apple.ACCHWComponentAuthService [25]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-09 22:47:06.747375 (pid/11/com.apple.ACCHWComponentAuthService [25]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:06.756779 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.756788 (pid/11 [backboardd]) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.762768 (pid/11/com.apple.ACCHWComponentAuthService [25]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-09 22:47:06.762777 (pid/11/com.apple.ACCHWComponentAuthService [25]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:06.762791 (pid/11/com.apple.ACCHWComponentAuthService [25]) <Notice>: Successfully spawned ACCHWComponentAuthService[25] because ipc (mach)
+com.apple.xpc.launchd|2026-11-09 22:47:06.779963 (pid/25 [ACCHWComponentA]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-09 22:47:06.780013 (pid/25 [ACCHWComponentA]) <Notice>: created
+com.apple.xpc.launchd|2026-11-09 22:47:06.819231 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.STSXPCHelper
+com.apple.xpc.launchd|2026-11-09 22:47:06.819249 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.internal.DataDetectorsRemoteScanner
+com.apple.xpc.launchd|2026-11-09 22:47:06.819266 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.PassKitCoreXPCService
+com.apple.xpc.launchd|2026-11-09 22:47:06.819485 (user/501/com.apple.MobileBackup.MBHelperService) <Notice>: created the implicit endpoint upfront
+com.apple.xpc.launchd|2026-11-09 22:47:06.819494 (user/501/com.apple.MobileBackup.MBHelperService) <Notice>: draining messages from com.apple.MobileBackup.MBHelperService
+com.apple.xpc.launchd|2026-11-09 22:47:06.819524 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.textkit.nsattributedstringagent
+com.apple.xpc.launchd|2026-11-09 22:47:06.819556 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.uifoundation-bundle-helper
+com.apple.xpc.launchd|2026-11-09 22:47:06.819731 (user/501/com.apple.CallKit.CallDirectory) <Notice>: created the implicit endpoint upfront
+com.apple.xpc.launchd|2026-11-09 22:47:06.819737 (user/501/com.apple.CallKit.CallDirectory) <Notice>: draining messages from com.apple.CallKit.CallDirectory
+com.apple.xpc.launchd|2026-11-09 22:47:06.819762 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.StreamingUnzipService
+com.apple.xpc.launchd|2026-11-09 22:47:06.819771 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.DPSubmissionService
+com.apple.xpc.launchd|2026-11-09 22:47:06.819816 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.CallKit.CallDirectoryMaintenance
+com.apple.xpc.launchd|2026-11-09 22:47:06.819826 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.StreamingUnzipService.privileged
+com.apple.xpc.launchd|2026-11-09 22:47:06.820103 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.FTLivePhotoService
+com.apple.xpc.launchd|2026-11-09 22:47:06.820525 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.FaceTime.FTConversationService
+com.apple.xpc.launchd|2026-11-09 22:47:06.821922 (pid/25 [ACCHWComponentA]) <Notice>: uncorking domain
+com.apple.xpc.launchd|2026-11-09 22:47:06.822949 (pid/25 [ACCHWComponentA]) <Notice>: Service stub created for com.apple.MFAAuthentication.MFAANetwork
+com.apple.xpc.launchd|2026-11-09 22:47:06.823405 (pid/25 [ACCHWComponentA]) <Notice>: Service stub created for com.apple.security.XPCAcmeService
+com.apple.xpc.launchd|2026-11-09 22:47:06.824222 (pid/25 [ACCHWComponentA]) <Notice>: Service stub created for com.apple.ZhuGeService
+com.apple.xpc.launchd|2026-11-09 22:47:06.866886 (user/501/com.apple.lsd) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:06.866911 (user/501/com.apple.lsd) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-09 22:47:06.866920 (user/501/com.apple.lsd) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-09 22:47:06.867030 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.867087 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.867099 (user/501/com.apple.lsd) <Notice>: launching: ipc (mach)
+com.apple.xpc.launchd|2026-11-09 22:47:06.883260 (user/501/com.apple.lsd [27]) <Notice>: xpcproxy spawned with pid 27
+com.apple.xpc.launchd|2026-11-09 22:47:06.883293 (user/501/com.apple.lsd [27]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:06.883299 (user/501/com.apple.lsd [27]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-09 22:47:06.883415 (user/501/com.apple.lsd [27]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:06.889242 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.889250 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.895472 (user/501/com.apple.lsd [27]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-09 22:47:06.895482 (user/501/com.apple.lsd [27]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:06.895498 (user/501/com.apple.lsd [27]) <Notice>: Successfully spawned lsd[27] because ipc (mach)
+com.apple.xpc.launchd|2026-11-09 22:47:06.896816 (user/501/com.apple.runningboardd [6]) <Notice>: job state = running
+com.apple.xpc.launchd|2026-11-09 22:47:06.897494 (pid/27 [lsd]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-09 22:47:06.897509 (pid/27 [lsd]) <Notice>: created
+com.apple.xpc.launchd|2026-11-09 22:47:06.902254 (user/501/com.apple.backboardd [11]) <Notice>: job state = running
+com.apple.xpc.launchd|2026-11-09 22:47:06.911749 (user/501/com.apple.mobilegestalt.xpc) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:06.911772 (user/501/com.apple.mobilegestalt.xpc) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-09 22:47:06.911781 (user/501/com.apple.mobilegestalt.xpc) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-09 22:47:06.911833 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.911838 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.911844 (user/501/com.apple.mobilegestalt.xpc) <Notice>: launching: ipc (mach)
+com.apple.xpc.launchd|2026-11-09 22:47:06.913765 (user/501/com.apple.mobilegestalt.xpc [29]) <Notice>: xpcproxy spawned with pid 29
+com.apple.xpc.launchd|2026-11-09 22:47:06.913790 (user/501/com.apple.mobilegestalt.xpc [29]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:06.913797 (user/501/com.apple.mobilegestalt.xpc [29]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-09 22:47:06.913821 (user/501/com.apple.mobilegestalt.xpc [29]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:06.918591 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.918601 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.924154 (user/501/com.apple.mobilegestalt.xpc [29]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-09 22:47:06.924167 (user/501/com.apple.mobilegestalt.xpc [29]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:06.924189 (user/501/com.apple.mobilegestalt.xpc [29]) <Notice>: Successfully spawned MobileGestaltHelper[29] because ipc (mach)
+hakios: input: the event server asks for property "Hidden", which we do not have
+com.apple.xpc.launchd|2026-11-09 22:47:06.928281 (pid/29 [MobileGestaltHe]) <Notice>: uncorking exec source upfront
+2026-11-09 22:47:07.162 wifid[9:258] WiFiManagerCreate: exiting
+com.apple.xpc.launchd|2026-11-09 22:47:06.928299 (pid/29 [MobileGestaltHe]) <Notice>: created
+hakios: input: the event server asks for property "QueueSize", which we do not have
+2026-11-09 22:47:07.166 wifid[9:342] +[WiFiUsageAccessPointProfileConfiguration getMobileAssets]: Requesting WCAFetchWiFiBehaviorParameters
+2026-11-09 22:47:07.465 wifid[9:342] +[WiFiUsageBeaconParsingConfiguration getMobileAssets]: Requesting WCAFetchWiFiBehaviorParameters for BeaconParsing
+2026-11-09 22:47:07.461 wifid[9:258] -[WiFiLocationManager registerCallbackFunctionPtr:withContext:]: Adding client: 0x100688c00
+com.apple.xpc.launchd|2026-11-09 22:47:06.960358 (pid/9 [wifid]) <Notice>: uncorking domain
+com.apple.xpc.launchd|2026-11-09 22:47:06.967376 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.tailspin.symbolicationserver
+com.apple.xpc.launchd|2026-11-09 22:47:06.967387 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.externalaccessory.WACEAService
+com.apple.xpc.launchd|2026-11-09 22:47:06.967437 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.icloud.FindMyDevice.FindMyDeviceEraseXPCService
+com.apple.xpc.launchd|2026-11-09 22:47:06.967447 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.icloud.FindMyDevice.FindMyDeviceEmergencyCallInfoPublisherXPCService
+hakios: input: the event server asks for property "ReportInterval", which we do not have
+com.apple.xpc.launchd|2026-11-09 22:47:06.967912 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.icloud.FindMyDevice.FindMyDeviceBTDiscoveryXPCService
+hakios: input: the event server asks for property "BatchInterval", which we do not have
+com.apple.xpc.launchd|2026-11-09 22:47:06.967923 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.icloud.FindMyDevice.FindMyDeviceUserNotificationsXPCService
+hakios: input: the event server asks for property "ProtectedAccess", which we do not have
+com.apple.xpc.launchd|2026-11-09 22:47:06.967937 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.icloud.FindMyDevice.FindMyDeviceIdentityXPCService
+hakios: input: the event server asks for property "SensorPropertySupported", which we do not have
+com.apple.xpc.launchd|2026-11-09 22:47:06.967946 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.STSXPCHelper
+hakios: input: the event server asks for property "PressCountTrackingEnabled", which we do not have
+com.apple.xpc.launchd|2026-11-09 22:47:06.968151 (user/501/com.apple.CoreRoutine.helperservice) <Notice>: created the implicit endpoint upfront
+hakios: input: the event server asks for property "PressCountUsagePairs", which we do not have
+com.apple.xpc.launchd|2026-11-09 22:47:06.968160 (user/501/com.apple.CoreRoutine.helperservice) <Notice>: draining messages from com.apple.CoreRoutine.helperservice
+hakios: input: the event server asks for property "PressCountDoublePressTimeout", which we do not have
+com.apple.xpc.launchd|2026-11-09 22:47:06.968381 (pid/9/com.apple.MTLCompilerService) <Notice>: created the implicit endpoint upfront
+hakios: input: the event server asks for property "PressCountTriplePressTimeout", which we do not have
+2026-11-09 22:47:07.540 wifid[9:258] -[TBPersistenceRemoteStoreServer startListening]: started listening with options: {
+    NSPersistentStoreFileProtectionKey = NSFileProtectionNone;
+    NSPersistentStoreRemoteChangeNotificationOptionKey = 1;
+    NSXPCStoreDaemonize = 1;
+    NSXPCStorePostUpdateNotifications = 1;
+    NSXPCStoreServiceName = "com.apple.wifid.store.cache";
+}
+hakios: input: the event server asks for property "LongPressTimeout", which we do not have
+com.apple.xpc.launchd|2026-11-09 22:47:06.968385 (pid/9/com.apple.MTLCompilerService) <Notice>: draining messages from com.apple.MTLCompilerService
+hakios: input: the event server asks for property "AlternateLongPressHandling", which we do not have
+2026-11-09 22:47:07.559 wifid[9:258] -[TBPersistenceManager initWithManagedObjectModel:storeDescriptor:]: initialized remote server <TBPersistenceRemoteStoreServer: 0x100d04970>
+hakios: input: the event server asks for property "TapTrackingEnabled", which we do not have
+com.apple.xpc.launchd|2026-11-09 22:47:06.968565 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.OSLogService
+hakios: input: the event server asks for property "DoubleTapTimeout", which we do not have
+com.apple.xpc.launchd|2026-11-09 22:47:06.968574 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.intents.intents-helper
+hakios: input: the event server asks for property "TripleTapTimeout", which we do not have
+com.apple.xpc.launchd|2026-11-09 22:47:06.968585 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.internal.DataDetectorsRemoteScanner
+hakios: input: the event server sets "MotionEventRestricted" = <CFBoolean 0x232633f80 [0x2323b6858]>{value = false}
+com.apple.xpc.launchd|2026-11-09 22:47:06.968594 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.PassKitCoreXPCService
+hakios: input: the event server sets "LogLevel" = <CFNumber 0xb7b558a35e0041de [0x2323b6858]>{value = +6, type = kCFNumberSInt64Type}
+hakios: input: the event server asks for property "LocationID", which we do not have
+2026-11-09 22:47:07.593 wifid[9:258] -[TBCoreDataSource initWithStoreDescriptor:]: object model at URL: file:///System/Library/PrivateFrameworks/WiFiPolicy.framework/ThreeBars.momd/
+hakios: input: the event server sets "DeviceOpenedByEventSystem" = <CFBoolean 0x232633f90 [0x2323b6858]>{value = true}
+com.apple.xpc.launchd|2026-11-09 22:47:06.968603 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.backboard.display.archive
+2026-11-09 22:47:07.598 wifid[9:258] -[TBCoreDataSource initWithStoreDescriptor:]: store URL: file:///var/root/Library/Caches/com.apple.wifid/ThreeBars.sqlite
+com.apple.xpc.launchd|2026-11-09 22:47:06.968612 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.FontServices.UserFontManager
+2026-11-09 22:47:07.608 wifid[9:258] -[WiFiLocationManager setShouldMonitorVisits:] shouldMonitorVisits: 1
+com.apple.xpc.launchd|2026-11-09 22:47:06.968621 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.FontServices.FontProviderLoader
+2026-11-09 22:47:07.612 wifid[9:258] -[WiFiLocationManager registerVisitCallbackFunctionPtr:withContext:]: Adding client: 0x21551db74
+com.apple.xpc.launchd|2026-11-09 22:47:06.968630 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.FontServices.UserFontServices
+com.apple.xpc.launchd|2026-11-09 22:47:06.968640 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.coreaccessories.ACCCarPlayService
+com.apple.xpc.launchd|2026-11-09 22:47:06.968648 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.coreaccessories.ACCAppLinksIconService
+hakios: input: the event server asks for property "DisplayIntegrated", which we do not have
+com.apple.xpc.launchd|2026-11-09 22:47:06.968656 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.ACCHWComponentAuthService
+hakios: input: the event server asks for property "HIDRestoreKBDState", which we do not have
+com.apple.xpc.launchd|2026-11-09 22:47:06.968819 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.avfaudio.devicetest.service
+hakios: input: the event server asks for property "HIDSubinterfaceID", which we do not have
+com.apple.xpc.launchd|2026-11-09 22:47:06.969128 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.Quagga.Decode.xpc
+hakios: input: the event server asks for property "alt_handler_id", which we do not have
+com.apple.xpc.launchd|2026-11-09 22:47:06.969222 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.textkit.nsattributedstringagent
+hakios: input: the event server sets "HIDSubinterfaceID" = <CFNumber 0xb7b558a35e00435e [0x2323b6858]>{value = +3, type = kCFNumberSInt64Type}
+com.apple.xpc.launchd|2026-11-09 22:47:06.969231 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.uifoundation-bundle-helper
+hakios: input: the event server asks for property "HIDKeyboardSupportedModifiers", which we do not have
+com.apple.xpc.launchd|2026-11-09 22:47:06.969393 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.security.XPCAcmeService
+hakios: input: the event server asks for property "FnFunctionUsageMap", which we do not have
+com.apple.xpc.launchd|2026-11-09 22:47:06.969402 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.CallKit.CallDirectoryMaintenance
+hakios: input: the event server asks for property "FnKeyboardUsageMap", which we do not have
+com.apple.xpc.launchd|2026-11-09 22:47:06.969711 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.extensionkitservice
+hakios: input: the event server asks for property "CtrlKeyboardUsageMap", which we do not have
+2026-11-09 22:47:07.665 wifid[9:258] PPM Error:No matching driver found
+hakios: input: the event server asks for property "NumLockKeyboardUsageMap", which we do not have
+com.apple.xpc.launchd|2026-11-09 22:47:06.969721 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.StreamingUnzipService
+hakios: input: the event server asks for property "HIDEventServiceProperties", which we do not have
+2026-11-09 22:47:07.679 wifid[9:340] Default locale in use, determine fresh locale
+2026-11-09 22:47:07.688 wifid[9:340] Trying to determine locale (forceCheck 0)...
+com.apple.xpc.launchd|2026-11-09 22:47:06.969731 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.StreamingUnzipService.privileged
+2026-11-09 22:47:07.681 wifid[9:320] +[WiFiUsageAccessPointProfileConfiguration getMobileAssets]_block_invoke: WCAFetchWiFiBehaviorParameters replied: <WCAFetchWiFiBehaviorParameters: 0x100b36a80>
+com.apple.xpc.launchd|2026-11-09 22:47:06.969740 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.FTLivePhotoService
+2026-11-09 22:47:07.691 wifid[9:340] 0 country code(s) currently advertised by 0 networks
+com.apple.xpc.launchd|2026-11-09 22:47:06.969749 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.FaceTime.FTConversationService
+2026-11-09 22:47:07.703 wifid[9:320] +[WiFiUsageBeaconParsingConfiguration getMobileAssets]_block_invoke: WCAFetchWiFiBehaviorParameters callback
+com.apple.xpc.launchd|2026-11-09 22:47:06.969758 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.PerfPowerTelemetryClientRegistrationService
+2026-11-09 22:47:07.704 wifid[9:340] Locale from multiple 80211d info: <(null)>
+com.apple.xpc.launchd|2026-11-09 22:47:06.969766 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.coremedia.videodecodeservice
+2026-11-09 22:47:07.720 wifid[9:340] Locale from peer: <(null)>
+com.apple.xpc.launchd|2026-11-09 22:47:06.969776 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.wifi.WiFiCloudAssetsXPCService
+hakios: input: touch screen service 0x100c218e0, buttons 0x100b12470
+2026-11-09 22:47:07.726 wifid[9:340] Locale from timezone: <(null)>
+com.apple.xpc.launchd|2026-11-09 22:47:06.969785 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.DPSubmissionService
+2026-11-09 22:47:07.734 wifid[9:340] Locale from user defaults <>
+com.apple.xpc.launchd|2026-11-09 22:47:06.969793 (pid/9 [wifid]) <Notice>: Service stub created for com.apple.wifi.ThreeBarsXPCService
+2026-11-09 22:47:07.739 wifid[9:340] Current locale: <(null)>, determined new locale: <> using locale source: <none>
+com.apple.xpc.launchd|2026-11-09 22:47:06.972821 (pid/9 [wifid]) <Notice>: Service stub initialized for com.apple.wifi.WiFiCloudAssetsXPCService
+2026-11-09 22:47:07.747 wifid[9:340] Locale has not changed, no need to set country code
+com.apple.xpc.launchd|2026-11-09 22:47:06.972863 (pid/9/com.apple.wifi.WiFiCloudAssetsXPCService) <Notice>: initialized endpoint after lookup
+com.apple.xpc.launchd|2026-11-09 22:47:06.976464 (pid/9/com.apple.wifi.WiFiCloudAssetsXPCService) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:06.976490 (pid/9/com.apple.wifi.WiFiCloudAssetsXPCService) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-09 22:47:06.976499 (pid/9/com.apple.wifi.WiFiCloudAssetsXPCService) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-09 22:47:06.976527 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.976535 (pid/9 [wifid]) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.976545 (pid/9/com.apple.wifi.WiFiCloudAssetsXPCService) <Notice>: launching: ipc (mach)
+com.apple.xpc.launchd|2026-11-09 22:47:06.979451 (pid/9/com.apple.wifi.WiFiCloudAssetsXPCService [30]) <Notice>: xpcproxy spawned with pid 30
+com.apple.xpc.launchd|2026-11-09 22:47:06.979480 (pid/9/com.apple.wifi.WiFiCloudAssetsXPCService [30]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:06.979486 (pid/9/com.apple.wifi.WiFiCloudAssetsXPCService [30]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-09 22:47:06.979589 (pid/9/com.apple.wifi.WiFiCloudAssetsXPCService [30]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:06.979650 (user/501) <Warning>: failed lookup: name = com.apple.locationd.registration, requestor = wifid[9], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.984994 (user/501) <Warning>: failed lookup: name = com.apple.locationd.synchronous, flags = 0x8, requestor = wifid[9], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.992190 (user/501) <Warning>: failed lookup: name = com.apple.symptom_analytics, flags = 0x8, requestor = wifid[9], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.998122 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:06.998132 (pid/9 [wifid]) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:07.007226 (pid/9/com.apple.wifi.WiFiCloudAssetsXPCService [30]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-09 22:47:07.007237 (pid/9/com.apple.wifi.WiFiCloudAssetsXPCService [30]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:07.007256 (pid/9/com.apple.wifi.WiFiCloudAssetsXPCService [30]) <Notice>: Successfully spawned WiFiCloudAssetsXPCService[30] because ipc (mach)
+com.apple.xpc.launchd|2026-11-09 22:47:07.022641 (pid/30 [WiFiCloudAssets]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-09 22:47:07.022656 (pid/30 [WiFiCloudAssets]) <Notice>: created
+com.apple.xpc.launchd|2026-11-09 22:47:07.029692 (user/501) <Warning>: failed lookup: name = com.apple.accountsd.accountmanager, requestor = wifid[9], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:07.033593 (pid/30 [WiFiCloudAssets]) <Notice>: uncorking domain
+com.apple.xpc.launchd|2026-11-09 22:47:07.037093 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.STSXPCHelper
+com.apple.xpc.launchd|2026-11-09 22:47:07.037349 (pid/30/com.apple.MTLCompilerService) <Notice>: created the implicit endpoint upfront
+com.apple.xpc.launchd|2026-11-09 22:47:07.037357 (pid/30/com.apple.MTLCompilerService) <Notice>: draining messages from com.apple.MTLCompilerService
+com.apple.xpc.launchd|2026-11-09 22:47:07.037388 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.PassKitCoreXPCService
+com.apple.xpc.launchd|2026-11-09 22:47:07.037562 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.intents.intents-helper
+com.apple.xpc.launchd|2026-11-09 22:47:07.037573 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.OSLogService
+com.apple.xpc.launchd|2026-11-09 22:47:07.037587 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.internal.DataDetectorsRemoteScanner
+com.apple.xpc.launchd|2026-11-09 22:47:07.037602 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.backboard.display.archive
+com.apple.xpc.launchd|2026-11-09 22:47:07.037611 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.FontServices.UserFontManager
+com.apple.xpc.launchd|2026-11-09 22:47:07.037619 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.FontServices.FontProviderLoader
+com.apple.xpc.launchd|2026-11-09 22:47:07.037635 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.FontServices.UserFontServices
+com.apple.xpc.launchd|2026-11-09 22:47:07.037644 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.coreaccessories.ACCCarPlayService
+com.apple.xpc.launchd|2026-11-09 22:47:07.037658 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.ACCHWComponentAuthService
+com.apple.xpc.launchd|2026-11-09 22:47:07.038344 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.coreaccessories.ACCAppLinksIconService
+com.apple.xpc.launchd|2026-11-09 22:47:07.038363 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.security.XPCAcmeService
+com.apple.xpc.launchd|2026-11-09 22:47:07.038548 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.avfaudio.devicetest.service
+com.apple.xpc.launchd|2026-11-09 22:47:07.038847 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.Quagga.Decode.xpc
+com.apple.xpc.launchd|2026-11-09 22:47:07.038856 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.textkit.nsattributedstringagent
+com.apple.xpc.launchd|2026-11-09 22:47:07.038865 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.uifoundation-bundle-helper
+com.apple.xpc.launchd|2026-11-09 22:47:07.039016 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.wifi.WiFiCloudAssetsXPCService
+com.apple.xpc.launchd|2026-11-09 22:47:07.039025 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.tailspin.symbolicationserver
+com.apple.xpc.launchd|2026-11-09 22:47:07.039034 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.wifi.ThreeBarsXPCService
+com.apple.xpc.launchd|2026-11-09 22:47:07.039042 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.StreamingUnzipService
+com.apple.xpc.launchd|2026-11-09 22:47:07.039052 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.StreamingUnzipService.privileged
+com.apple.xpc.launchd|2026-11-09 22:47:07.039060 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.extensionkitservice
+com.apple.xpc.launchd|2026-11-09 22:47:07.039068 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.PerfPowerTelemetryClientRegistrationService
+com.apple.xpc.launchd|2026-11-09 22:47:07.039076 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.DPSubmissionService
+com.apple.xpc.launchd|2026-11-09 22:47:07.039086 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.coremedia.videodecodeservice
+com.apple.xpc.launchd|2026-11-09 22:47:07.039095 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.FTLivePhotoService
+com.apple.xpc.launchd|2026-11-09 22:47:07.039103 (pid/30 [WiFiCloudAssets]) <Notice>: Service stub created for com.apple.FaceTime.FTConversationService
+com.apple.xpc.launchd|2026-11-09 22:47:07.041427 (user/501) <Warning>: failed lookup: name = com.apple.SystemConfiguration.configd, flags = 0x9, requestor = wifid[9], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:07.953522 <Notice>: Last log repeated 1 times
+2026-11-09 22:47:07.955 wifid[9:340] Locale timer fired
+com.apple.xpc.launchd|2026-11-09 22:47:07.069479 (user/501) <Warning>: failed lookup: name = com.apple.SystemConfiguration.configd, flags = 0x9, requestor = mg_test[31], error = 3: No such process
+2026-11-09 22:47:07.959 wifid[9:340] Default locale in use, determine fresh locale
+com.apple.xpc.launchd|2026-11-09 22:47:07.964425 <Notice>: Last log repeated 1 times
+2026-11-09 22:47:07.967 wifid[9:340] Trying to determine locale (forceCheck 0)...
+com.apple.xpc.launchd|2026-11-09 22:47:07.070625 (user/501) <Warning>: failed lookup: name = com.apple.mobileassetd.v2, requestor = WiFiCloudAssets[30], error = 3: No such process
+2026-11-09 22:47:07.972 wifid[9:340] 0 country code(s) currently advertised by 0 networks
+com.apple.xpc.launchd|2026-11-09 22:47:07.977812 <Notice>: Flushed 212 logs [limit: 20]
+2026-11-09 22:47:07.980 wifid[9:340] Locale from multiple 80211d info: <(null)>
+com.apple.xpc.launchd|2026-11-09 22:47:07.109738 (user/501) <Warning>: failed lookup: name = com.apple.commcenter.xpc, flags = 0x8, requestor = wifid[9], error = 3: No such process
+2026-11-09 22:47:07.985 wifid[9:340] Locale from peer: <(null)>
+com.apple.xpc.launchd|2026-11-09 22:47:07.130323 (user/501) <Warning>: failed activation: name = com.apple.private.alloy.wifi.networksync-idswake, flags = 0x0, requestor = wifid[9], error = 1: Operation not permitted
+2026-11-09 22:47:07.993 wifid[9:340] Locale from timezone: <(null)>
+com.apple.xpc.launchd|2026-11-09 22:47:07.160159 (user/501) <Warning>: failed lookup: name = com.apple.identityservicesd.embedded.auth, requestor = wifid[9], error = 3: No such process
+2026-11-09 22:47:08.002 wifid[9:340] Locale from user defaults <>
+com.apple.xpc.launchd|2026-11-09 22:47:07.165818 (user/501) <Warning>: failed lookup: name = com.apple.nano.nanoregistry.paireddeviceregistry, flags = 0x8, requestor = wifid[9], error = 3: No such process
+2026-11-09 22:47:08.010 wifid[9:340] Current locale: <(null)>, determined new locale: <> using locale source: <none>
+com.apple.xpc.launchd|2026-11-09 22:47:07.180314 (user/501/com.apple.analyticsd) <Notice>: internal event: WILL_SPAWN, code = 0
+2026-11-09 22:47:08.018 wifid[9:340] Locale has not changed, no need to set country code
+com.apple.xpc.launchd|2026-11-09 22:47:07.180332 (user/501/com.apple.analyticsd) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-09 22:47:07.180340 (user/501/com.apple.analyticsd) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-09 22:47:07.180451 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:07.180457 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:07.180464 (user/501/com.apple.analyticsd) <Notice>: launching: ipc (mach)
+com.apple.xpc.launchd|2026-11-09 22:47:07.459158 (user/501/com.apple.analyticsd [32]) <Notice>: xpcproxy spawned with pid 32
+com.apple.xpc.launchd|2026-11-09 22:47:07.459185 (user/501/com.apple.analyticsd [32]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:07.459193 (user/501/com.apple.analyticsd [32]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-09 22:47:07.459246 (user/501/com.apple.analyticsd [32]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:07.459425 (user/501) <Warning>: failed lookup: name = com.apple.SystemConfiguration.configd, flags = 0x9, requestor = net_test[16], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:07.459501 (user/501) <Warning>: failed lookup: name = com.apple.SystemConfiguration.configd, flags = 0x9, requestor = powerd[8], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:07.461566 (user/501/com.apple.iconservices.iconservicesagent) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:07.461585 (user/501/com.apple.iconservices.iconservicesagent) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-09 22:47:07.461592 (user/501/com.apple.iconservices.iconservicesagent) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-09 22:47:07.461647 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:07.461651 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:07.461657 (user/501/com.apple.iconservices.iconservicesagent) <Notice>: launching: ipc (mach)
+com.apple.xpc.launchd|2026-11-09 22:47:07.463625 (user/501/com.apple.iconservices.iconservicesagent [33]) <Notice>: xpcproxy spawned with pid 33
+com.apple.xpc.launchd|2026-11-09 22:47:07.463657 (user/501/com.apple.iconservices.iconservicesagent [33]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:07.463663 (user/501/com.apple.iconservices.iconservicesagent [33]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-09 22:47:07.463695 (user/501/com.apple.iconservices.iconservicesagent [33]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:07.468320 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:07.468329 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:07.473299 (user/501/com.apple.iconservices.iconservicesagent [33]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-09 22:47:07.473308 (user/501/com.apple.iconservices.iconservicesagent [33]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:07.473323 (user/501/com.apple.iconservices.iconservicesagent [33]) <Notice>: Successfully spawned iconservicesagent[33] because ipc (mach)
+com.apple.xpc.launchd|2026-11-09 22:47:07.476649 (user/501) <Warning>: failed lookup: name = com.apple.mobileassetd.v2, requestor = WiFiCloudAssets[30], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:07.476947 (pid/33 [iconservicesage]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-09 22:47:07.476963 (pid/33 [iconservicesage]) <Notice>: created
+com.apple.xpc.launchd|2026-11-09 22:47:07.493359 (pid/11 [backboardd]) <Notice>: Service stub created for com.apple.ZhuGeService
+com.apple.xpc.launchd|2026-11-09 22:47:07.497144 (user/501) <Warning>: failed lookup: name = com.apple.WirelessCoexManager, requestor = wifid[9], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:07.504042 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:07.504054 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:07.513647 (user/501/com.apple.analyticsd [32]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-09 22:47:07.513658 (user/501/com.apple.analyticsd [32]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:07.513673 (user/501/com.apple.analyticsd [32]) <Notice>: Successfully spawned analyticsd[32] because ipc (mach)
+com.apple.xpc.launchd|2026-11-09 22:47:07.610108 (user/501) <Warning>: failed lookup: name = com.apple.mobileassetd.v2, requestor = WiFiCloudAssets[30], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:07.676433 (user/501) <Warning>: failed lookup: name = com.apple.mobileactivationd, flags = 0x8, requestor = lsd[27], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:07.678452 (user/501) <Warning>: failed lookup: name = com.apple.SystemConfiguration.configd, flags = 0x9, requestor = wifid[9], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:07.701638 (user/501) <Warning>: failed lookup: name = com.apple.mobileactivationd, flags = 0x8, requestor = lsd[27], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:08.150631 <Notice>: Flushed 51 logs [limit: 20]
+com.apple.xpc.launchd|2026-11-09 22:47:08.153023 <Notice>: Last log repeated 6 times
+com.apple.xpc.launchd|2026-11-09 22:47:08.001109 (user/501) <Warning>: failed lookup: name = com.apple.SystemConfiguration.configd, flags = 0x9, requestor = net_test[16], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:08.010338 (user/501) <Warning>: failed lookup: name = com.apple.securityd, requestor = wifid[9], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:08.012543 (user/501) <Warning>: failed lookup: name = com.apple.wifianalyticsd, flags = 0x8, requestor = wifid[9], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:08.091186 (pid/32 [analyticsd]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-09 22:47:08.091202 (pid/32 [analyticsd]) <Notice>: created
+com.apple.xpc.launchd|2026-11-09 22:47:08.267149 (user/501) <Warning>: failed lookup: name = com.apple.SystemConfiguration.configd, flags = 0x9, requestor = powerd[8], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:08.354182 <Notice>: Last log repeated 2 times
+com.apple.xpc.launchd|2026-11-09 22:47:08.354106 (user/501) <Warning>: failed lookup: name = com.apple.coremedia.systemcontroller.xpc, requestor = powerd[8], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:08.357681 (user/501) <Warning>: failed lookup: name = com.apple.OSIntelligence, flags = 0x8, requestor = powerd[8], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:08.360399 (user/501/com.apple.datamigrator) <Notice>: internal event: WILL_SPAWN, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:08.360643 (user/501/com.apple.datamigrator) <Notice>: service state: spawn scheduled
+com.apple.xpc.launchd|2026-11-09 22:47:08.360658 (user/501/com.apple.datamigrator) <Notice>: service state: spawning
+com.apple.xpc.launchd|2026-11-09 22:47:08.360709 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:08.360713 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:08.360718 (user/501/com.apple.datamigrator) <Notice>: launching: ipc (mach)
+com.apple.xpc.launchd|2026-11-09 22:47:08.361539 (user/501/com.apple.datamigrator [34]) <Notice>: xpcproxy spawned with pid 34
+com.apple.xpc.launchd|2026-11-09 22:47:08.361569 (user/501/com.apple.datamigrator [34]) <Notice>: internal event: SPAWNED, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:08.361576 (user/501/com.apple.datamigrator [34]) <Notice>: service state: xpcproxy
+com.apple.xpc.launchd|2026-11-09 22:47:08.361599 (user/501/com.apple.datamigrator [34]) <Notice>: internal event: SOURCE_ATTACH, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:08.366534 <Warning>: kpersona_find_by_type() failed with ret -1 errno 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:08.366554 (user/501) <Error>: Unable to find persona with type 6: 3 - No such process
+com.apple.xpc.launchd|2026-11-09 22:47:08.370062 (user/501/com.apple.datamigrator [34]) <Notice>: service state: running
+com.apple.xpc.launchd|2026-11-09 22:47:08.370087 (user/501/com.apple.datamigrator [34]) <Notice>: internal event: INIT, code = 0
+com.apple.xpc.launchd|2026-11-09 22:47:08.370103 (user/501/com.apple.datamigrator [34]) <Notice>: Successfully spawned datamigrator[34] because ipc (mach)
+com.apple.xpc.launchd|2026-11-09 22:47:08.375615 (pid/34 [com.apple.datam]) <Notice>: uncorking exec source upfront
+com.apple.xpc.launchd|2026-11-09 22:47:08.375643 (pid/34 [com.apple.datam]) <Notice>: created
+com.apple.xpc.launchd|2026-11-09 22:47:08.381852 (pid/34 [com.apple.datam]) <Notice>: uncorking domain
+com.apple.xpc.launchd|2026-11-09 22:47:08.383027 (pid/34/com.apple.MTLCompilerService) <Notice>: created the implicit endpoint upfront
+com.apple.xpc.launchd|2026-11-09 22:47:08.383051 (pid/34/com.apple.MTLCompilerService) <Notice>: draining messages from com.apple.MTLCompilerService
+com.apple.xpc.launchd|2026-11-09 22:47:08.383084 (pid/34 [com.apple.datam]) <Notice>: Service stub created for com.apple.backboard.display.archive
+com.apple.xpc.launchd|2026-11-09 22:47:08.383103 (pid/34 [com.apple.datam]) <Notice>: Service stub created for com.apple.FontServices.FontProviderLoader
+com.apple.xpc.launchd|2026-11-09 22:47:08.383118 (pid/34 [com.apple.datam]) <Notice>: Service stub created for com.apple.FontServices.UserFontManager
+com.apple.xpc.launchd|2026-11-09 22:47:08.383532 (pid/34 [com.apple.datam]) <Notice>: Service stub created for com.apple.FontServices.UserFontServices
+com.apple.xpc.launchd|2026-11-09 22:47:08.383547 (pid/34 [com.apple.datam]) <Notice>: Service stub created for com.apple.coreaccessories.ACCCarPlayService
+com.apple.xpc.launchd|2026-11-09 22:47:08.383559 (pid/34 [com.apple.datam]) <Notice>: Service stub created for com.apple.ACCHWComponentAuthService
+com.apple.xpc.launchd|2026-11-09 22:47:08.383569 (pid/34 [com.apple.datam]) <Notice>: Service stub created for com.apple.coreaccessories.ACCAppLinksIconService
+com.apple.xpc.launchd|2026-11-09 22:47:08.384220 (pid/34 [com.apple.datam]) <Notice>: Service stub created for com.apple.security.XPCAcmeService
+com.apple.xpc.launchd|2026-11-09 22:47:08.384398 (pid/34 [com.apple.datam]) <Notice>: Service stub created for com.apple.extensionkitservice
+com.apple.xpc.launchd|2026-11-09 22:47:08.384419 (pid/34 [com.apple.datam]) <Notice>: Service stub created for com.apple.PerfPowerTelemetryClientRegistrationService
+com.apple.xpc.launchd|2026-11-09 22:47:08.398156 (user/501) <Warning>: failed lookup: name = com.apple.locationd.registration, requestor = analyticsd[32], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:08.456857 <Notice>: Last log repeated 1 times
+com.apple.xpc.launchd|2026-11-09 22:47:08.412376 (user/501/com.apple.powerd [8]) <Notice>: job state = running
+com.apple.xpc.launchd|2026-11-09 22:47:08.427865 (user/501) <Warning>: failed lookup: name = com.apple.biome.access.user, flags = 0x8, requestor = powerd[8], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:08.430896 (user/501) <Warning>: failed lookup: name = com.apple.aggregated.addaily, requestor = analyticsd[32], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:08.447019 (user/501) <Warning>: failed lookup: name = com.apple.commcenter.coretelephony.xpc, flags = 0x8, requestor = analyticsd[32], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:08.477102 <Notice>: Last log repeated 1 times
+com.apple.xpc.launchd|2026-11-09 22:47:08.469451 (user/501) <Warning>: failed lookup: name = com.apple.OSIntelligence, flags = 0x8, requestor = powerd[8], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:08.474925 (user/501) <Warning>: failed lookup: name = com.apple.biome.access.user, flags = 0x8, requestor = powerd[8], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:08.513865 (user/501) <Warning>: failed lookup: name = com.apple.SystemConfiguration.configd, flags = 0x9, requestor = net_test[16], error = 3: No such process
+com.apple.xpc.launchd|2026-11-09 22:47:08.541310 (user/501) <Warning>: failed lookup: name = com.apple.mobileactivationd, flags = 0x8, requestor = lsd[27], error = 3: No such process
+wifi: doorbell: +5911.021 ms: client 24, signal 0; heard and cleared
+ath11k (debug): firmware ready
+ath11k (debug): firmware start
+ath11k (debug): wlan cfg req
+ath11k (debug): wlan mode req mode 0
+lx: the firmware is asked for mode 0 (0: mission, 4: off, 7: calibration)
+lx: about to write the chip's 0x1b80048 (at +0x100048 of its block): 0xa2c00040

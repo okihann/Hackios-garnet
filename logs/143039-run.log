@@ -1,0 +1,1144 @@
+== XNULOADER run (usb) ==
+payload entry 'kernel' size e7f2b8
+payload entry 'ramdisk' size 400000
+payload entry 'cmdline' size 6e
+payload entry 'kernel.ver' size 30
+kernel va fffffff007004000..fffffff00821b2b8 entry fffffff0074414a8
+kernel loaded at pa 8c7004000..8c8220000
+ramdisk at pa 8c8220000 size 400000
+return slot patched at 8c74427f0, checkpoint 0
+ba: virtBase=fffffff007004000 physBase=8c7004000 slide=18c0000000 (kern_lo=8c7004000 vm_lo=fffffff007004000)
+cmdline: 206 of 607 characters
+device tree 8c8620000 len 3874, boot_args 8c8630000, top 8c8640000
+cmdline: debug=0x8 cpus=1 rd=md0 hv_wdt_pet=1 hakios_kver=2.1.13-hakios-darwin22.5-sm7435-g96ffbc53-dirty loader_return_after=35 epoch=1794036639 sb_delay=8 -v adreno=17 adreno_pause=0 adreno_watch=2 adreno_return=1
+jumping to 8c74414a8
+kernel returned: log at 8c7b389c0, 76563 bytes
+
+== KERNEL LOG ==
+adreno: steps up to 17, without those in mask 0; step 17 is the new one and waits 0 ms after each announcement
+adreno: step 1: read the GPU's clocks in the global clock controller (registers the touch screen driver uses too)
+adreno: 1: gcc pll votes (0x162000) = 0x61257f
+adreno: 1: gcc gpu_cfg_ahb (0x181004) = 0x9
+adreno: 1: gcc gpu_memnoc_gfx (0x181010) = 0x3
+adreno: 1: gcc gpu_snoc_dvm_gfx (0x181018) = 0x1
+adreno: 1: gcc ddrss_gpu_axi (0x181154) = 0x300001
+adreno: step 1: look up the GPU's supply rails in the boot loader's list of RPMh resources (memory at 0x80860000)
+adreno: 1: RPMh has "gfx.lvl" at 0x30050; levels: 0 56 64 128 192 224 256 320 384 416
+adreno: 1: RPMh has "cx.lvl" at 0x30000; levels: 0 16 64 128 192 224 256 288 320 336 384 400 416 432
+adreno: 1: RPMh has "mx.lvl" at 0x30010; levels: 0 16 56 64 128 192 224 256 288 320 336 384 400 416 432
+adreno: step 1: done
+adreno: step 2: set the GPU's speed bin to 0 (qfprom at 0x221c8119 is protected by the hypervisor on Garnet)
+adreno: 2: speed bin 0: an Adreno 710
+adreno: step 2: done
+adreno: step 3: make sure the clock of the GPU clock controller's registers runs (gcc_gpu_cfg_ahb)
+adreno: 3: gcc gpu_cfg_ahb (0x181004) = 0x9
+adreno: step 3: read the GPU's clock controller (0x3d90000) as it is: the first access to the GPU's part of the SoC
+adreno: 3: gpucc cx_gdscr (0x3d99108) = 0xf822f000
+adreno: 3: gpucc cx_hw_ctrl (0x3d9953c) = 0x80001fe0
+adreno: 3: gpucc gx_gdscr (0x3d9905c) = 0x22f001
+adreno: 3: gpucc gx_sw_reset (0x3d99058) = 0
+adreno: 3: gpucc gx_domain_misc (0x3d99504) = 0x3c0001
+adreno: 3: gpucc pll0 mode (0x3d90000) = 0x100
+adreno: 3: gpucc pll0 multiplier (0x3d90004) = 0
+adreno: 3: gpucc pll1 mode (0x3d91000) = 0x100
+adreno: 3: gpucc pll1 multiplier (0x3d91004) = 0
+adreno: 3: gpucc gmu_clk_src command (0x3d99318) = 0
+adreno: 3: gpucc gmu_clk_src source (0x3d9931c) = 0x602
+adreno: 3: gpucc hub_clk_src command (0x3d993ec) = 0
+adreno: 3: gpucc hub_clk_src source (0x3d993f0) = 0x603
+adreno: 3: gpucc cxo_aon (0x3d99004) = 0
+adreno: 3: gpucc gx_gmu (0x3d99060) = 0x88000
+adreno: 3: gpucc ahb (0x3d9911c) = 0
+adreno: 3: gpucc cx_gmu (0x3d9913c) = 0x221
+adreno: 3: gpucc cxo (0x3d99144) = 0x1
+adreno: 3: gpucc cb (0x3d993a4) = 0x1
+adreno: 3: gpucc hub_aon (0x3d993e8) = 0x1
+adreno: 3: gpucc hub_cx_int (0x3d99148) = 0x1
+adreno: 3: gpucc smmu vote (0x3d97000) = 0x1
+adreno: step 3: done
+adreno: step 4: switch the CX half of the GPU block on (gpu_cx_gdsc): clear the collapse bit of its power switch
+adreno: 4: gpucc cx_gdscr (0x3d99108) = 0xf822f000
+adreno: 4: gpucc cx_hw_ctrl (0x3d9953c) = 0x80001fe0
+adreno: 4: CX is on already: an earlier kernel left the GPU block running; stopping it first
+adreno: 4: about to write gmu cm3_sysreset at 0x3d7e000: 0x1
+adreno: 4: gpucc gx_gdscr (0x3d9905c) = 0x22f001
+adreno: 4: smmu idr0 (0x3da0020) = 0x4c017e18
+adreno: 4: smmu idr1 (0x3da0024) = 0x40000016
+adreno: 4: SMMU: 24 stream match registers, 22 contexts, 32 pages of 0x1000 before the contexts' own
+adreno: 4: about to write smmu smr at 0x3da0800: 0
+adreno: 4: about to write smmu s2cr at 0x3da0c00: 0x20000
+adreno: 4: about to write smmu cb sctlr at 0x3dc0000: 0
+adreno: 4: about to write smmu smr at 0x3da0804: 0
+adreno: 4: about to write smmu s2cr at 0x3da0c04: 0x20000
+adreno: 4: about to write smmu cb sctlr at 0x3dc1000: 0
+adreno: 4: about to write smmu smr at 0x3da0808: 0
+adreno: 4: about to write smmu s2cr at 0x3da0c08: 0x20000
+adreno: 4: about to write smmu cb sctlr at 0x3dc2000: 0
+adreno: 4: about to write gpucc cx_gdscr at 0x3d99108: 0xf822f001
+adreno: 4: gpucc cx_gdscr (0x3d99108) = 0x22f001
+adreno: 4: gpucc cx_hw_ctrl (0x3d9953c) = 0x5ff4
+adreno: 4: about to write gpucc cx_gdscr at 0x3d99108: 0x22f000
+adreno: 4: gpucc cx_gdscr (0x3d99108) = 0xf822f000
+adreno: 4: gpucc cx_hw_ctrl (0x3d9953c) = 0x80001fe0
+adreno: 4: CX is on
+adreno: step 4: done
+adreno: step 5: in the global clock controller: ask for the 300 MHz tap for the GPU; the GPU's bus and memory clocks on
+adreno: 5: gcc pll votes (0x162000) = 0x61257f
+adreno: 5: gcc gpu_memnoc_gfx (0x181010) = 0x3
+adreno: 5: gcc gpu_snoc_dvm_gfx (0x181018) = 0x1
+adreno: 5: gcc ddrss_gpu_axi (0x181154) = 0x300001
+adreno: step 5: in the GPU's clock controller: the GMU's clock to 200 MHz, the hub's to 150 MHz
+adreno: 5: gpucc gmu_clk_src (0x3d9931c) = 0x602
+adreno: 5: gpucc hub_clk_src (0x3d993f0) = 0x603
+adreno: step 5: in the GPU's clock controller: the clocks of the GMU and of the SMMU on
+adreno: 5: gpucc cb (0x3d993a4) = 0x1
+adreno: 5: gpucc cxo (0x3d99144) = 0x1
+adreno: 5: gpucc ahb (0x3d9911c) = 0
+adreno: 5: about to write gpucc ahb at 0x3d9911c: 0x1
+adreno: 5: gpucc ahb (0x3d9911c) = 0
+adreno: 5: gpucc hub_aon (0x3d993e8) = 0x1
+adreno: 5: gpucc hub_cx_int (0x3d99148) = 0x1
+adreno: 5: gpucc cx_gmu (0x3d9913c) = 0x221
+adreno: 5: gpucc smmu vote (0x3d97000) = 0x1
+adreno: step 5: measure the GPU block's clocks with the SoC's frequency counter (debug registers at gcc 0x162000.., gpucc 0x3d910fc, 0x3d91100, 0x3d91568)
+adreno: 5: gpucc debug mux (0x3d99568) = 0
+adreno: 5: gpucc debug divider (0x3d99280) = 0x1
+adreno: 5: gpucc debug output (0x3d99284) = 0x80000000
+adreno: 5: gcc debug mux (0x172000) = 0x14b
+adreno: 5: gcc debug divider (0x172004) = 0
+adreno: 5: gcc debug input (0x172008) = 0x80000000
+adreno: 5: gcc crystal/4 (0x17200c) = 0x80000000
+adreno: 5: gcc measure control (0x172038) = 0
+adreno: 5: about to write gpucc debug mux at 0x3d99568: 0x1b
+adreno: 5: about to write gpucc debug divider at 0x3d99280: 0x1
+adreno: 5: about to write gpucc debug output at 0x3d99284: 0x80000001
+adreno: 5: about to write gcc debug mux at 0x172000: 0x146
+adreno: 5: about to write gcc debug divider at 0x172004: 0x1
+adreno: 5: about to write gcc debug input at 0x172008: 0x80000001
+adreno: 5: about to write gcc crystal/4 at 0x17200c: 0x80000001
+adreno: 5: gcc measure control (0x172038) = 0
+adreno: 5: about to write gcc measure control at 0x172038: 0x200000
+adreno: 5: about to write gcc measure control at 0x172038: 0x1000
+adreno: 5: about to write gcc measure control at 0x172038: 0x101000
+adreno: 5: about to write gcc measure control at 0x172038: 0x1000
+adreno: 5: gcc measure status (0x17203c) = 0x2000000
+adreno: 5: gcc measure control (0x172038) = 0x1000
+adreno: 5: about to write gcc measure control at 0x172038: 0x200000
+adreno: 5: about to write gcc measure control at 0x172038: 0x20000
+adreno: 5: about to write gcc measure control at 0x172038: 0x120000
+adreno: 5: about to write gcc measure control at 0x172038: 0x20000
+adreno: 5: gcc measure status (0x17203c) = 0x2000000
+adreno: 5: about to write gcc measure control at 0x172038: 0
+adreno: 5: about to write gcc crystal/4 at 0x17200c: 0x80000000
+adreno: 5: about to write gcc debug input at 0x172008: 0x80000000
+adreno: 5: about to write gcc debug divider at 0x172004: 0
+adreno: 5: about to write gcc debug mux at 0x172000: 0x14b
+adreno: 5: about to write gpucc debug output at 0x3d99284: 0x80000000
+adreno: 5: about to write gpucc debug divider at 0x3d99280: 0x1
+adreno: 5: about to write gpucc debug mux at 0x3d99568: 0
+adreno: 5: measured: cxo runs at 0 Hz (the crystal: 19200000)
+adreno: 5: the frequency counter cannot be used on this SoC: going on by the control registers
+adreno: step 5: done
+adreno: step 6: read registers of the GMU (0x3d6a000): the first words from the GPU block itself
+adreno: 6: gmu cm3_sysreset (0x3d7e000) = 0x1
+adreno: 6: gmu cm3_boot_config (0x3d7e004) = 0
+adreno: 6: gmu cm3_fw_init_result (0x3d7e070) = 0
+adreno: 6: gmu cm3_cfg (0x3d7e0b4) = 0x4052
+adreno: 6: gmu hfi_ctrl_status (0x3d7e600) = 0
+adreno: 6: gmu hfi_version_info (0x3d7e604) = 0
+adreno: 6: gmu general_7 (0x3d7e730) = 0
+adreno: 6: gmu rpmh_power_state (0x3d7e3b0) = 0xf
+adreno: 6: gmu sptprac_pwr_clk_status (0x3d7e340) = 0x3
+adreno: 6: gmu ao_host_interrupt_status (0x3d8ec14) = 0
+adreno: 6: gmu ao_gpu_cx_busy_status (0x3d8ec30) = 0x30000000
+adreno: 6: gmu ahb_fence_status (0x3d8ec4c) = 0
+adreno: 6: gmu always_on_counter_h (0x3d7e224) = 0
+adreno: 6: gmu always_on_counter_l (0x3d7e220) = 0x7c8361
+adreno: 6: the GMU's counter counts at 19197639 Hz: the 19.2 MHz crystal: THE GPU BLOCK IS ALIVE
+adreno: 6: gmu dtcm, where firmware has its versions (0x3d74fe0) = 0xf8028457
+adreno: 6: gmu dtcm, where firmware has its versions (0x3d74fe4) = 0x8a274b46
+adreno: 6: gmu dtcm, where firmware has its versions (0x3d74fe8) = 0xe807a31a
+adreno: 6: gmu dtcm, where firmware has its versions (0x3d74fec) = 0x126ef8da
+adreno: 6: gmu dtcm, where firmware has its versions (0x3d74ff0) = 0xb3ab537e
+adreno: step 6: read the GPU's bus interface (0x3d0f000) and the CX odds and ends (0x3d9e000)
+adreno: 6: gbif scache_cntl0 (0x3d0f004) = 0
+adreno: 6: gbif halt (0x3d0f114) = 0x8
+adreno: 6: gbif halt_ack (0x3d0f118) = 0x3
+adreno: 6: cx_misc system_cache_cntl_0 (0x3d9e004) = 0
+adreno: 6: cx_misc system_cache_cntl_1 (0x3d9e008) = 0
+adreno: step 6: done
+adreno: step 7: read the GMU's RPMh channel (0x3de0000)
+adreno: 7: rscc rsc_status0_drv0 (0x3d50010) = 0
+adreno: 7: rscc pdc_slave_id_drv0 (0x3d5002c) = 0x1
+adreno: 7: rscc seq_busy_drv0 (0x3d50404) = 0
+adreno: 7: rscc seq_mem_0_drv0 (0x3d50600) = 0
+adreno: 7: rscc tcs0_drv0_status (0x3d50d18) = 0x1
+adreno: 7: gmu rscc_control_ack (0x3d8ec20) = 0
+adreno: step 7: done
+adreno: step 8: read the ID registers of the GPU's SMMU (0x3da0000): global registers, which the hypervisor answers for
+adreno: 8: smmu idr0 (0x3da0020) = 0x4c017e18
+adreno: 8: smmu idr1 (0x3da0024) = 0x40000016
+adreno: 8: SMMU: 24 stream match registers, 22 contexts, 32 pages of 0x1000 before the contexts' own
+adreno: 8: smmu idr2 (0x3da0028) = 0x5511
+adreno: 8: smmu idr7 (0x3da003c) = 0x24
+adreno: 8: smmu scr0 (0x3da0000) = 0x2c0406
+adreno: 8: smmu sgfsr (0x3da0048) = 0
+adreno: step 8: read the SMMU's stream table and the kinds of its contexts, as the boot loader and hypervisor left them
+adreno: 8: smmu smr (0x3da0800) = 0
+adreno: 8: smmu s2cr (0x3da0c00) = 0x20000
+adreno: 8: smmu smr (0x3da0804) = 0
+adreno: 8: smmu s2cr (0x3da0c04) = 0x20000
+adreno: 8: smmu smr (0x3da0808) = 0
+adreno: 8: smmu s2cr (0x3da0c08) = 0x20000
+adreno: 8: smmu smr (0x3da080c) = 0
+adreno: 8: smmu s2cr (0x3da0c0c) = 0x20000
+adreno: 8: smmu smr (0x3da0810) = 0
+adreno: 8: smmu s2cr (0x3da0c10) = 0x20000
+adreno: 8: smmu smr (0x3da0814) = 0
+adreno: 8: smmu s2cr (0x3da0c14) = 0x20000
+adreno: 8: smmu smr (0x3da0818) = 0
+adreno: 8: smmu s2cr (0x3da0c18) = 0x20000
+adreno: 8: smmu smr (0x3da081c) = 0
+adreno: 8: smmu s2cr (0x3da0c1c) = 0x20000
+adreno: 8: smmu smr (0x3da0820) = 0
+adreno: 8: smmu s2cr (0x3da0c20) = 0x20000
+adreno: 8: smmu smr (0x3da0824) = 0
+adreno: 8: smmu s2cr (0x3da0c24) = 0x20000
+adreno: 8: smmu smr (0x3da0828) = 0
+adreno: 8: smmu s2cr (0x3da0c28) = 0x20000
+adreno: 8: smmu smr (0x3da082c) = 0
+adreno: 8: smmu s2cr (0x3da0c2c) = 0x20000
+adreno: 8: smmu smr (0x3da0830) = 0
+adreno: 8: smmu s2cr (0x3da0c30) = 0x20000
+adreno: 8: smmu smr (0x3da0834) = 0
+adreno: 8: smmu s2cr (0x3da0c34) = 0x20000
+adreno: 8: smmu smr (0x3da0838) = 0
+adreno: 8: smmu s2cr (0x3da0c38) = 0x20000
+adreno: 8: smmu smr (0x3da083c) = 0
+adreno: 8: smmu s2cr (0x3da0c3c) = 0x20000
+adreno: 8: smmu cbar (0x3da1000) = 0
+adreno: 8: smmu cbar (0x3da1004) = 0
+adreno: 8: smmu cbar (0x3da1008) = 0
+adreno: 8: smmu cbar (0x3da100c) = 0
+adreno: 8: smmu cbar (0x3da1010) = 0
+adreno: 8: smmu cbar (0x3da1014) = 0
+adreno: 8: smmu cbar (0x3da1018) = 0
+adreno: 8: smmu cbar (0x3da101c) = 0
+adreno: 8: smmu cbar (0x3da1020) = 0
+adreno: 8: smmu cbar (0x3da1024) = 0
+adreno: 8: smmu cbar (0x3da1028) = 0
+adreno: 8: smmu cbar (0x3da102c) = 0
+adreno: 8: smmu cbar (0x3da1030) = 0
+adreno: 8: smmu cbar (0x3da1034) = 0
+adreno: 8: smmu cbar (0x3da1038) = 0
+adreno: 8: smmu cbar (0x3da103c) = 0
+adreno: step 8: done
+adreno: step 9: read translation context 0 of the SMMU: registers of the hardware itself, not the hypervisor's
+adreno: 9: smmu idr0 (0x3da0020) = 0x4c017e18
+adreno: 9: smmu idr1 (0x3da0024) = 0x40000016
+adreno: 9: SMMU: 24 stream match registers, 22 contexts, 32 pages of 0x1000 before the contexts' own
+adreno: 9: smmu cb0 sctlr (0x3dc0000) = 0
+adreno: 9: smmu cb0 ttbr0, low (0x3dc0020) = 0x403a4140
+adreno: 9: smmu cb0 ttbr0, high (0x3dc0024) = 0xa322500
+adreno: 9: smmu cb0 tcr (0x3dc0030) = 0x8210001
+adreno: 9: smmu cb0 fsr (0x3dc0058) = 0
+adreno: step 9: done
+adreno: step 10: hold the GMU's processor in reset, write two words into its data memory (0x3d71000), read them back
+adreno: 10: gmu cm3_fw_init_result (0x3d7e070) = 0
+adreno: 10: about to write gmu cm3_sysreset at 0x3d7e000: 0x1
+adreno: 10: gmu cm3_sysreset (0x3d7e000) = 0x1
+adreno: 10: gmu dtcm (0x3d71000) = 0xf7e3b8ea
+adreno: 10: gmu dtcm (0x3d71004) = 0x5c7ffaa5
+adreno: 10: about to write gmu dtcm at 0x3d71000: 0x600d0001
+adreno: 10: about to write gmu dtcm at 0x3d71004: 0xa110002
+adreno: 10: gmu dtcm (0x3d71000) = 0x600d0001
+adreno: 10: gmu dtcm (0x3d71004) = 0xa110002
+adreno: 10: about to write gmu dtcm at 0x3d71000: 0xf7e3b8ea
+adreno: 10: about to write gmu dtcm at 0x3d71004: 0x5c7ffaa5
+adreno: 10: the GMU's memory TAKES WHAT IS WRITTEN: its firmware can be loaded
+adreno: step 10: done
+adreno: step 11: ask TrustZone what Linux asks it first: is the call "is this call available" available
+adreno: 11: about to ask TrustZone whether it can be asked: smc 0xc2000601, arguments 0x2000601, 0, 0
+adreno: 11: TrustZone returns 0, answer 0x1
+adreno: step 11: ask TrustZone whether it has the calls that authenticate a firmware image
+adreno: 11: about to ask TrustZone for the call that takes an image's signature: smc 0xc2000601, arguments 0x2000201, 0, 0
+adreno: 11: TrustZone returns 0, answer 0x1
+adreno: 11: about to ask TrustZone for the call that authenticates and starts an image: smc 0xc2000601, arguments 0x2000205, 0, 0
+adreno: 11: TrustZone returns 0, answer 0x1
+adreno: step 11: ask TrustZone which images it "supports": three this phone starts through it, and the GPU's; each asked both ways, at once and (as Linux does) as a call that may be preempted
+adreno: 11: about to ask TrustZone audio: smc 0xc2000207, arguments 0x1, 0, 0
+adreno: 11: TrustZone returns 0, answer 0
+adreno: 11: about to ask TrustZone audio: smc 0x42000207, arguments 0x1, 0, 0
+adreno: 11: TrustZone returns 0, answer 0
+adreno: 11: about to ask TrustZone modem: smc 0xc2000207, arguments 0x4, 0, 0
+adreno: 11: TrustZone returns 0, answer 0
+adreno: 11: about to ask TrustZone modem: smc 0x42000207, arguments 0x4, 0, 0
+adreno: 11: TrustZone returns 0, answer 0
+adreno: 11: about to ask TrustZone video: smc 0xc2000207, arguments 0x9, 0, 0
+adreno: 11: TrustZone returns 0, answer 0
+adreno: 11: about to ask TrustZone video: smc 0x42000207, arguments 0x9, 0, 0
+adreno: 11: TrustZone returns 0, answer 0
+adreno: 11: about to ask TrustZone GPU zap shader: smc 0xc2000207, arguments 0xd, 0, 0
+adreno: 11: TrustZone returns 0, answer 0
+adreno: 11: about to ask TrustZone GPU zap shader: smc 0x42000207, arguments 0xd, 0, 0
+adreno: 11: TrustZone returns 0, answer 0
+adreno: 11: "supported", asked at once / as Linux asks: audio 0/0, modem 0/0, video 0/0, GPU 0/0
+adreno: 11: TrustZone lists none, not even those the phone starts: this question tells nothing here
+adreno: step 11: done
+adreno: step 12: find the zap shader's header, fw/a710_zap.mdt, in the small image that came with the kernel
+adreno: 12: fw/a710_zap.mdt: 4044 bytes in the image of /dev/md0
+adreno: 12: an ELF header of 3 segments, 148 bytes with its table, then 3896 bytes; by the table, 3896 of hashes
+adreno: step 12: hand the header to TrustZone to check its signature (image 13); a call that may be preempted, as Linux's is
+adreno: 12: about to ask TrustZone to take the zap shader's signature: smc 0x42000201, arguments 0xd, 0x8c9d28000, 0
+adreno: 12: TrustZone returns 0, answer 0
+adreno: 12: TRUSTZONE ACCEPTS THE ZAP SHADER'S SIGNATURE FROM THIS KERNEL
+adreno: step 12: done
+adreno: step 13: find the GMU's firmware, fw/gmu_gen70000.bin, in the small image, and make the memory it asks for
+adreno: 13: fw/gmu_gen70000.bin: 57272 bytes in the image of /dev/md0
+adreno: 13: the GMU sees 0x4000..0x11fff in memory of ours (0x8c9d68000)
+adreno: 13: the GMU sees 0x100000..0x108fff in memory of ours (0x8c9d78000)
+adreno: 13: the GMU sees 0x200000..0x212fff in memory of ours (0x8c9d8c000)
+adreno: 13: the GMU sees 0x300000..0x306fff in memory of ours (0x8c9d94000)
+adreno: 13: the GMU sees 0x60000000..0x60000fff in memory of ours (0x8c9d98000)
+adreno: 13: the GMU sees 0x60001000..0x60001fff in memory of ours (0x8c9dc0000)
+adreno: 13: the GMU sees 0x60002000..0x60005fff in memory of ours (0x8c9dc4000)
+adreno: 13: the GMU sees 0x60006000..0x60009fff in memory of ours (0x8c9da8000)
+adreno: step 13: give the SMMU's context 1 these tables and send the GMU's requests (stream 5) through it: the first writes to the SMMU, the global ones (cbar, cba2r, s2cr, smr) through the hypervisor
+adreno: 13: smmu idr0 (0x3da0020) = 0x4c017e18
+adreno: 13: smmu idr1 (0x3da0024) = 0x40000016
+adreno: 13: SMMU: 24 stream match registers, 22 contexts, 32 pages of 0x1000 before the contexts' own
+adreno: 13: about to write smmu cb sctlr at 0x3dc1000: 0
+adreno: 13: about to write smmu cba2r at 0x3da1804: 0x1
+adreno: 13: about to write smmu cbar at 0x3da1004: 0x1f300
+adreno: 13: about to write smmu cb tcr2 at 0x3dc1010: 0x38011
+adreno: 13: about to write smmu cb tcr at 0x3dc1030: 0x803519
+adreno: 13: about to write smmu cb ttbr0, low at 0x3dc1020: 0xc9d6c000
+adreno: 13: about to write smmu cb ttbr0, high at 0x3dc1024: 0x10008
+adreno: 13: about to write smmu cb ttbr1, low at 0x3dc1028: 0
+adreno: 13: about to write smmu cb ttbr1, high at 0x3dc102c: 0
+adreno: 13: about to write smmu cb mair0 at 0x3dc1038: 0xf404ff44
+adreno: 13: about to write smmu cb mair1 at 0x3dc103c: 0
+adreno: 13: about to write smmu cb fsr at 0x3dc1058: 0xc00001fe
+adreno: 13: about to write smmu cb tlbiasid at 0x3dc1610: 0x1
+adreno: 13: about to write smmu cb tlbsync at 0x3dc17f0: 0x1
+adreno: 13: about to write smmu cb sctlr at 0x3dc1000: 0x1027
+adreno: 13: about to write smmu s2cr at 0x3da0c04: 0x1
+adreno: 13: about to write smmu smr at 0x3da0804: 0x84000005
+adreno: 13: smmu smr (0x3da0804) = 0x84000005
+adreno: 13: smmu s2cr (0x3da0c04) = 0x1
+adreno: 13: smmu cbar (0x3da1004) = 0x1f300
+adreno: 13: smmu cb sctlr (0x3dc1000) = 0x27
+adreno: 13: smmu cb ttbr0, low (0x3dc1020) = 0xc9d6c000
+adreno: 13: smmu cb ttbr0, high (0x3dc1024) = 0x10008
+adreno: 13: smmu cb tcr (0x3dc1030) = 0x803519
+adreno: 13: smmu cba2r (0x3da1804) = 0x1
+adreno: 13: smmu cb tcr2 (0x3dc1010) = 0x38071
+adreno: 13: smmu cb fsr (0x3dc1058) = 0x400
+adreno: 13: smmu sgfsr (0x3da0048) = 0
+adreno: step 13: done
+adreno: step 14: load the GMU's firmware: its first 16K of code and of data through the GMU's registers (0x3d6d000, 0x3d71000), the rest into the memory just made
+adreno: 14: about to write gmu cm3_sysreset at 0x3d7e000: 0x1
+adreno: 14: 0xdcac bytes at the GMU's 0x4000, in memory
+adreno: 14: 0x1dc bytes at the GMU's 0, through its registers
+adreno: 14: 0x28 bytes at the GMU's 0x10007f98, through its registers
+adreno: 14: 0x18 bytes at the GMU's 0x10007fdc, through its registers
+adreno: 14: THE GMU'S FIRMWARE IS LOADED; its versions, read back from the GMU: core 0x40000007, power 0x40000007, HFI 0x20010000
+adreno: step 14: done
+adreno: step 15: tell the GMU where things are, by its registers: the message table, the log, which GPU this is; its caches and its use of RPMh; then let its processor out of reset
+adreno: 15: gmu cm3_sysreset (0x3d7e000) = 0x1
+adreno: 15: rscc drv config (0x3d5000c) = 0x4000000a
+adreno: 15: rscc rsc_status0_drv0 (0x3d50010) = 0
+adreno: 15: rscc seq_busy_drv0 (0x3d50404) = 0
+adreno: 15: rscc slots' interrupts enabled (0x3d50d00) = 0
+adreno: 15: rscc slots' interrupts pending (0x3d50d04) = 0
+adreno: 15: rscc slot 0: wait 0, control 0, idle 0x1, enabled 0; commands (number, address, data, status):
+adreno: 15:   0 0 0 0 | 0 0 0 0 | 0 0 0 0 | 0 0 0 0
+adreno: 15: rscc slot 1: wait 0, control 0, idle 0x1, enabled 0; commands (number, address, data, status):
+adreno: 15:   0 0 0 0 | 0 0 0 0 | 0 0 0 0 | 0 0 0 0
+adreno: 15: rscc slot 2: wait 0, control 0, idle 0x1, enabled 0; commands (number, address, data, status):
+adreno: 15:   0 0 0 0 | 0 0 0 0 | 0 0 0 0 | 0 0 0 0
+adreno: 15: rscc slot 3: wait 0, control 0, idle 0x1, enabled 0; commands (number, address, data, status):
+adreno: 15:   0 0 0 0 | 0 0 0 0 | 0 0 0 0 | 0 0 0 0
+adreno: 15: about to write gmu cx_falnext_intf at 0x3d7e3c4: 0x1
+adreno: 15: about to write gmu cx_fal_intf at 0x3d7e3c0: 0x1
+adreno: 15: about to write gmu general_7 at 0x3d7e730: 0x1
+adreno: 15: about to write gmu cm3_fw_init_result at 0x3d7e070: 0
+adreno: 15: about to write gmu cm3_boot_config at 0x3d7e004: 0x2
+adreno: 15: about to write gmu hfi_qtbl_addr at 0x3d7e614: 0x60006000
+adreno: 15: about to write gmu hfi_qtbl_info at 0x3d7e610: 0x1
+adreno: 15: about to write gmu ahb_fence_range_0 at 0x3d8ec44: 0x80a008a0
+adreno: 15: about to write gmu cm3_cfg at 0x3d7e0b4: 0x4052
+adreno: 15: about to write gbif halt at 0x3d0f114: 0
+adreno: 15: about to write gmu pwr_col_cp_resp at 0x3d7e404: 0
+adreno: 15: about to write gmu hfi_sfr_addr at 0x3d7e608: 0x7010000
+adreno: 15: about to write gmu pwr_col_cp_msg at 0x3d7e400: 0x60002003
+adreno: 15: about to write gmu general_9 at 0x3d7e738: 0
+adreno: 15: about to write gmu general_10 at 0x3d7e73c: 0x7010000
+adreno: 15: about to write gmu general_8 at 0x3d7e734: 0x60002003
+adreno: 15: about to write gmu sys_bus_config at 0x3d7d03c: 0x1
+adreno: 15: about to write gmu icache_config at 0x3d7d000: 0x1
+adreno: 15: about to write gmu dcache_config at 0x3d7d004: 0x1
+adreno: 15: about to write gmu pwr_col_inter_frame_ctrl at 0x3d7e300: 0x9c40400
+adreno: 15: gmu rpmh_ctrl (0x3d7e3a0) = 0
+adreno: 15: about to write gmu rpmh_ctrl at 0x3d7e3a0: 0xf11
+adreno: 15: gmu rpmh_ctrl (0x3d7e3a0) = 0
+adreno: 15: about to write gmu gmu2host_intr_clr at 0x3d7e644: 0xffffffff
+adreno: 15: about to write gmu cm3_sysreset at 0x3d7e000: 0
+adreno: 15: gmu cm3_fw_init_result (0x3d7e070) = 0x100
+adreno: 15: gmu gmu2host_intr_info (0x3d7e648) = 0
+adreno: 15: gmu ao_host_interrupt_status (0x3d8ec14) = 0
+adreno: 15: gmu hfi_ctrl_status (0x3d7e600) = 0x1
+adreno: 15: THE GMU'S FIRMWARE RUNS
+adreno: step 15: done
+adreno: step 16: enable the GPU's part of the always-on sequencer (pdc, 0xb294500 and 0xb294520: a part of the SoC not touched before)
+adreno: 16: pdc gpu_enable (0xb274500) = 0x101
+adreno: 16: pdc gpu_seq_start_addr (0xb274520) = 0
+adreno: 16: about to write pdc gpu_seq_start_addr at 0xb274520: 0
+adreno: 16: about to write pdc gpu_enable at 0xb274500: 0x80000001
+adreno: 16: pdc gpu_enable (0xb274500) = 0x80000001
+adreno: step 16: give the GMU's RPMh channel its sleep and wake program (rscc, 0x3de0000), unless it has it
+adreno: 16: rscc seq_mem_0_drv0 (0x3d50600) = 0
+adreno: 16: about to write rscc rsc_status0_drv0 at 0x3d50010: 0x1000000
+adreno: 16: about to write rscc pdc_slave_id_drv0 at 0x3d5002c: 0x1
+adreno: 16: about to write rscc hidden_tcs_cmd0_data at 0x3d50038: 0
+adreno: 16: about to write rscc hidden_tcs_cmd0_addr at 0x3d50034: 0
+adreno: 16: about to write rscc hidden_tcs_cmd1_data at 0x3d50040: 0
+adreno: 16: about to write rscc hidden_tcs_cmd1_addr at 0x3d5003c: 0
+adreno: 16: about to write rscc hidden_tcs_cmd2_data at 0x3d50048: 0x80000021
+adreno: 16: about to write rscc hidden_tcs_cmd2_addr at 0x3d50044: 0
+adreno: 16: about to write rscc override_start_addr at 0x3d50400: 0
+adreno: 16: about to write rscc pdc_seq_start_addr at 0x3d50020: 0x4520
+adreno: 16: about to write rscc pdc_match_value_lo at 0x3d50024: 0x4510
+adreno: 16: about to write rscc pdc_match_value_hi at 0x3d50028: 0x4514
+adreno: 16: about to write rscc seq_mem_drv0 at 0x3d50600: 0xeaaae5a0
+adreno: 16: about to write rscc seq_mem_drv0 at 0x3d50604: 0xe1a1ebab
+adreno: 16: about to write rscc seq_mem_drv0 at 0x3d50608: 0xa2e0a581
+adreno: 16: about to write rscc seq_mem_drv0 at 0x3d5060c: 0xecac82e2
+adreno: 16: about to write rscc seq_mem_drv0 at 0x3d50610: 0x20edad
+adreno: 16: rscc seq_mem_0_drv0 (0x3d50600) = 0xeaaae5a0
+adreno: step 16: ask the GMU to start its message queues
+adreno: 16: about to write gmu hfi_ctrl_init at 0x3d7e618: 0x1
+adreno: 16: gmu hfi_ctrl_status (0x3d7e600) = 0x1
+adreno: 16: gmu hfi_version_info (0x3d7e604) = 0x20010000
+adreno: 16: THE GMU'S MESSAGE QUEUES ARE UP
+adreno: step 16: done
+adreno: 17: votes: 3D core 0 0x380201 0x400302 0x800403, GMU 0 0x400302
+adreno: 17: RPMh's bus resources: SH0 0x50004, MC0 0x50000, ACV 0x5004c, CN0 0x50030 (Linux has 0x50004, 0x50000, 0x50088, 0x5006c)
+adreno: 17: the speed wanted: 500 MHz
+adreno: step 17: send the GMU its tables (speeds and supply levels, bus votes), "start", and the speed wanted; from here on it casts votes in RPMh by itself
+adreno: 17: about to send the GMU the table of speeds: message 4, 59 words, number 1
+adreno: 17: the GMU accepts the table of speeds
+adreno: 17: about to send the GMU the table of bus votes: message 3, 160 words, number 2
+adreno: 17: the GMU accepts the table of bus votes
+adreno: 17: about to send the GMU "start the core firmware": message 14, 2 words, number 3
+adreno: 17: the GMU accepts "start the core firmware"
+adreno: 17: about to send the GMU the speed wanted: message 30, 4 words, number 4
+adreno: 17: the GMU accepts the speed wanted
+adreno: step 17: ask the GMU to power the 3D core and keep it powered
+adreno: 17: about to read gmu sptprac_pwr_clk_status at 0x3d7e340
+adreno: 17: gmu sptprac_pwr_clk_status (0x3d7e340) = 0x3
+adreno: 17: about to read gpucc gx_gdscr at 0x3d9905c
+adreno: 17: gpucc gx_gdscr (0x3d9905c) = 0x22f001
+adreno: 17: about to write gmu host2gmu_intr_set at 0x3d7e650: 0x40000000
+adreno: 17: about to write gmu gmu2host_intr_clr at 0x3d7e644: 0x80000000
+adreno: 17: about to read gmu sptprac_pwr_clk_status at 0x3d7e340
+adreno: 17: gmu sptprac_pwr_clk_status (0x3d7e340) = 0
+adreno: 17: about to read gpucc gx_gdscr at 0x3d9905c
+adreno: 17: gpucc gx_gdscr (0x3d9905c) = 0xf8222800
+adreno: 17: about to read gmu rpmh_power_state at 0x3d7e3b0
+adreno: 17: gmu rpmh_power_state (0x3d7e3b0) = 0
+adreno: 17: about to send the GMU "start": message 10, 1 words, number 5
+adreno: 17: the GMU accepts "start"
+adreno: 17: measured: the 3D core's clock runs at 0 Hz (500 MHz was asked for), the GMU's in it at 0 Hz
+adreno: step 17: read registers of the 3D core itself (0x3d00000): the first time it has power
+adreno: 17: about to read gpu rbbm_status at 0x3d00840
+adreno: 17: gpu rbbm_status (0x3d00840) = 0x1
+adreno: 17: about to read gpu rbbm_int_0_status at 0x3d00804
+adreno: 17: gpu rbbm_int_0_status (0x3d00804) = 0
+adreno: 17: about to read gpu rbbm_clock_cntl at 0x3d002b8
+adreno: 17: gpu rbbm_clock_cntl (0x3d002b8) = 0
+adreno: 17: about to read gpu cp_rb_base at 0x3d02000
+adreno: 17: gpu cp_rb_base (0x3d02000) = 0
+adreno: 17: THE 3D CORE HAS POWER AND ANSWERS
+adreno: step 17: done
+adreno: alive 1 s after step 17; step 17 sent the GMU message 10 ("start")
+adreno: alive 2 s after step 17; step 17 sent the GMU message 10 ("start")
+adreno: 0: about to write gmu host2gmu_intr_set at 0x3d7e650: 0x80000000
+adreno: 0: about to send the GMU "slumber": message 33, 3 words, number 6
+adreno: 0: the GMU accepts "slumber"
+adreno: 0: gmu sptprac_pwr_clk_status (0x3d7e340) = 0x3
+adreno: 0: gpucc gx_gdscr (0x3d9905c) = 0x222801
+adreno: 0: about to write gmu cm3_sysreset at 0x3d7e000: 0x1
+adreno: 0: gpucc gx_gdscr (0x3d9905c) = 0x222801
+adreno: 0: about to write gmu rscc_control_req at 0x3d8ec1c: 0x1
+adreno: 0: rscc rsc_status0_drv0 (0x3d50010) = 0x1010006
+adreno: 0: about to write gmu rscc_control_req at 0x3d8ec1c: 0
+adreno: 0: about to write smmu smr at 0x3da0804: 0
+adreno: 0: about to write smmu s2cr at 0x3da0c04: 0x20000
+adreno: 0: about to write smmu cb sctlr at 0x3dc1000: 0
+adreno: 0: about to write gpucc cx_gdscr at 0x3d99108: 0xf822f001
+adreno: 0: gpucc cx_gdscr (0x3d99108) = 0x22f001
+adreno: 0: gpucc cx_hw_ctrl (0x3d9953c) = 0x5ff4
+adreno: over; back to the loader (adreno_return)
+
+--- kernel message buffer ---
+[ 1104.309767]:  vm_cache_geometry_colors: 8
+[ 1104.309776]: do_cacheid() - 65536 bytes Unknown cache (I:32768 D:32768 (separate)), 16-way assoc, 64 bytes/line
+[ 1104.310329]: kprintf initialized
+[ 1104.310420]: initialize_screen: b=B8000000, w=000004C4, h=00000A98, r=00001310, d=00000000
+[ 1104.310478]: pe_arm_init_interrupts: args: 0xfffffff007ae6720
+[ 1104.310486]: pe_arm_map_interrupt_controller: soc_phys:  0x400000
+[ 1104.310494]: pe_arm_map_interrupt_controller: failed to find the interrupt-controller.
+[ 1104.310502]: pe_arm_init_debug: failed to find cpu-debug-interface
+[ 1104.310581]: gic: v3, distributor 0xfffffff0eb320000, cpu 0's redistributor 0xfffffff0eb330000, virtual timer on PPI 27
+[ 1104.310618]: Darwin Kernel Version 22.5.0: Sab 07 Nov 2026 14:28:46 WIB; okihann:xnu-8796.121.2[xnu-8796.121.2-dirty]/BUILD/obj/DEVELOPMENT_ARM64_BCM2837
+[ 1104.330908]: pmap_startup() init/release time: 17784 microsec
+[ 1104.330928]: pmap_startup() delayed init/release of 0 pages
+[ 1104.330940]: vm_page_bootstrap: 187230 free pages, 2209 wired pages, (up to 0 of which are delayed free)
+[ 1104.341514]: VM boostrap: 102 maps, 204 entries and 512 holes available
+[ 1104.341567]: Maximum number of VM swap files: 5
+[ 1104.341790]: zone_meta               : 0xfffffff002608000 - 0xfffffff0046c4000 (32M)
+[ 1104.341803]: mb                      : 0xfffffff0ec000000 - 0xfffffff0f0000000 (64M)
+[ 1104.341812]: bufferhdr               : 0xfffffff0f0000000 - 0xfffffff0f0220000 (2176K)
+[ 1104.341822]: gIOKitPageableFixed2    : 0xfffffff0f0220000 - 0xfffffff0f6220000 (96M)
+[ 1104.341831]: gIOKitPageableFixed3    : 0xfffffff0f6220000 - 0xfffffff0fc220000 (96M)
+[ 1104.341840]: ipc_kernel_copy_map     : 0xfffffff0fc220000 - 0xfffffff0fca20000 (8M)
+[ 1104.341849]: zones                   : 0xfffffff0fca20000 - 0xfffffff6fca20000 (24G)
+[ 1104.341858]: gIOKitPageableFixed1    : 0xfffffff6fca20000 - 0xfffffff702a20000 (96M)
+[ 1104.341866]: gIOKitPageableFixed0    : 0xfffffff702a20000 - 0xfffffff708a20000 (96M)
+[ 1104.341875]: kmem_ptr_range_meta     : 0xfffffff708a20000 - 0xfffffff708ae4000 (784K)
+[ 1104.341884]: compressor              : 0xfffffff708ae4000 - 0xfffffff7e9b00000 (3600M)
+[ 1104.341893]: ipc_kernel_map          : 0xfffffff7e9b00000 - 0xfffffff7ebb00000 (32M)
+[ 1104.341902]: kmem_ptr_range          : 0xfffffff7ebb00000 - 0xfffffff8efea0000 (4163M)
+[ 1104.341911]: io_submap               : 0xfffffff8efea0000 - 0xfffffff8f06a0000 (8M)
+[ 1104.341920]: kmem_data_range         : 0xfffffff8f06a0000 - 0xfffffffba1734000 (10G)
+[ 1104.341929]: kmem_sprayqtn_range     : 0xfffffffba1734000 - 0xfffffffbfd3f8000 (1468M)
+[ 1104.341937]: bsd_pageable            : 0xfffffffbfd3f8000 - 0xfffffffbfdd40000 (9M)
+[ 1104.342019]: kmem_large_ranges[1]    : 0 - 0 (0B)
+[ 1104.342027]: kmem_large_ranges[2]    : 0 - 0 (0B)
+[ 1104.342032]: kmem_large_ranges[3]    : 0 - 0 (0B)
+[ 1104.342040]: kmem_large_ranges[4]    : 0xfffffffbacecc800 - 0xfffffffbfd3f8000 (1285M)
+[ 1104.342048]: kmem_large_ranges[5]    : 0xfffffff9468b2800 - 0xfffffffba1734000 (9G)
+[ 1104.342072]: "vm_compressor_mode" is 2
+[ 1104.342148]: zone_init: pgzalloc  0xfffffff0fca20000:0xfffffff0fe114000 (22M) [734 slots]
+[ 1104.342170]: zone_init: map VM    0xfffffff0fe114000:0xfffffff1e4408000 (3682M)
+[ 1104.342189]: zone_init: map RO    0xfffffff1e4408000:0xfffffff230fac000 (1227M)
+[ 1104.342207]: zone_init: map GEN0  0xfffffff230fac000:0xfffffff3172a0000 (3682M)
+[ 1104.342226]: zone_init: map GEN1  0xfffffff3172a0000:0xfffffff3fd594000 (3682M)
+[ 1104.342244]: zone_init: map GEN2  0xfffffff3fd594000:0xfffffff4e3888000 (3682M)
+[ 1104.342262]: zone_init: map GEN3  0xfffffff4e3888000:0xfffffff5c9b80000 (3682M)
+[ 1104.342280]: zone_init: map DATA  0xfffffff5c9b80000:0xfffffff6fca20000 (4910M)
+[ 1104.342293]: zone_init: metadata  0xfffffff002618000:0xfffffff003e18000 (24M)
+[ 1104.342302]: zone_init: metabits  0xfffffff003e18000:0xfffffff0046b4000 (8M)
+[ 1104.342309]: zone_init: extra     0:0 (0B)
+[ 1104.342794]: VM bootstrap done: 90 maps, 163 entries and 500 holes left
+[ 1104.348307]: IOKit IOMD setownership ENABLED
+[ 1104.348319]: ATM subsystem is initialized
+[ 1104.349346]: Long logs support configured: size: 16384
+[ 1104.349501]: Firehose configured: 16 chunks, 8 io pages
+[ 1104.349511]: OSLog stream configured: stream: 8192 bytes, cache: 2112 bytes
+[ 1104.349517]: OSLog stream verification: 0
+[ 1104.349654]: Log queues configured: slot count: 8, per-slot size: 32768, total size: 262144
+[ 1104.349679]: Telemetry: Sampling all tasks once per 1 second
+[ 1104.349698]: Scheduler: Default of clutch
+[ 1104.349705]: Setting scheduler priority decay band limit 18
+[ 1104.349718]: standard timeslicing quantum is 10000 us
+[ 1104.349724]: standard background quantum is 2500 us
+[ 1104.350013]: BANK subsystem is initialized
+[ 1104.350058]: mig_table_max_displ = 54 mach_kobj_count = 371
+[ 1104.355319]: panic_trace: PE_arm_debug_enable_trace enter
+[ 1104.355326]: panic_trace: PE_arm_debug_enable_trace exit
+[ 1104.355341]: kdp_core zlib memory 0x8000
+[ 1104.355437]: Registered coredump handler for kernel
+[ 1104.355451]: Serial requested, consistent debug disabled or debug boot arg not present, configuring debugging over serial
+[ 1104.355457]: Initializing serial KDP
+[ 1104.370489]: iBoot version: iBoot-8422.100.650
+[ 1104.370554]: iBoot Stage 2 version: 
+[ 1104.376067]: IONVRAM.cpp:initImageFormat:1364 - NVRAM size is 8192 bytes
+[ 1104.376332]: IONVRAM.cpp:getNVRAMProperties:1176 - _bankSize=0x2000, _bankCount=0x1, _currentBank=0
+[ 1104.376714]: IONVRAMCHRPHandler.cpp:unserializeImage:479 - NVRAM : commonPartitionOffset - 0x30, commonPartitionSize - 0x1fd0, systemPartitionOffset - 0xffffffff, systemPartitionSize - 0
+[ 1104.377938]: minicrypto: registered (md5, sha1, sha2, hmac, aes-ecb/cbc/ctr, hmac-drbg prng); no xts/gcm, no RSA
+[ 1104.377952]: ulock_initialize>thread_max=1536, ull_hash_buckets=512
+[ 1104.379307]: hakios-kernel: 12 drivers built in (.config): virtio_sound adreno virtio_input goodix buttons virtio_net battery cpufreq thermal pmic ufs virtio_blk
+[ 1104.379527]: calling mpo_policy_init for vnguard
+[ 1104.379670]: Security policy loaded: Guarded vnode policy (vnguard)
+[ 1104.379755]: calling mpo_policy_init for AMFI
+[ 1104.379924]: Security policy loaded: Apple Mobile File Integrity (stand-in) (AMFI)
+[ 1104.380015]: calling mpo_policy_init for Sandbox
+[ 1104.380185]: Security policy loaded: Seatbelt sandbox policy (stand-in) (Sandbox)
+[ 1104.380370]: No POST boot-arg set.
+[ 1104.381394]: PMRD: PMTraceWorker 0x815d9d033fe3b337
+[ 1104.382027]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 10001)
+[ 1104.382938]: GenericARMPE: platform "D22AP"
+[ 1104.383065]: [0]ml_processor_register>pset_find(cluster_id=0) returned pset 0
+[ 1104.383072]: [0]ml_processor_register>cpu_id 0xfffffff3fd3df280 cluster_id 0 cpu_number 0 is type 0
+[ 1104.383122]: GenericARMCPU: cpu 0 (phys id 0x0) registered
+[ 1104.383649]: Copyright (c) 1982, 1986, 1989, 1991, 1993
+	The Regents of the University of California. All rights reserved.
+
+[ 1104.383656]: bsd_init: calling kauth_init
+[ 1104.383894]: bsd_init: calling process_name
+[ 1104.383901]: bsd_init: calling get_bsdthread_info
+[ 1104.383998]: MAC Framework successfully initialized
+[ 1104.384177]: bsd_init: calling kauth_cred_create
+[ 1104.384184]: bsd_init: calling chgproccnt
+[ 1104.384189]: bsd_init: calling kmem_suballoc
+[ 1104.384202]: bsd_init: calling bsd_bufferinit
+[ 1104.385933]: using 3760 buffer headers and 3760 cluster IO buffer headers
+[ 1104.386017]: bsd_init: calling IOKitInitializeTime
+[ 1104.386091]: clock_initialize_calendar system does not have monotonic clock
+[ 1104.386102]: bsd_init: calling vfsinit
+[ 1104.386499]: ktriage_register_subsystem_strings: set subsystem 8 strings
+[ 1104.386576]: bsd_init: calling proc_uuid_policy_init()
+[ 1104.387216]: mcache: 1 CPU(s), 64 bytes CPU cache line size
+[ 1104.387222]: bsd_init: calling mbinit
+[ 1104.387748]: mbinit: done [64 MB total pool size, (42/21) split]
+[ 1104.387761]: bsd_init: calling knote_init
+[ 1104.387765]: bsd_init: calling eventhandler_init
+[ 1104.387769]: bsd_init: calling aio_init
+[ 1104.387845]: bsd_init: calling pshm_cache_init
+[ 1104.387850]: bsd_init: calling psem_cache_init
+[ 1104.387872]: bsd_init: calling nwk_wq_init
+[ 1104.387904]: bsd_init: calling dlil_init
+[ 1104.387918]: SK: netagent is enabled by default for this platform
+[ 1104.388457]: DLIL: running SUM16 self-tests ... PASSED
+[ 1104.389142]: dlil_init: Waiting for all the create dlil kernel threads to get scheduled at least once.
+[ 1104.389423]: PMRD: power event 7 args 0x815d9d0259d9f247 0x0
+[ 1104.389444]: PMRD: power event 7 args 0x815d9d0259d9e7a7 0x0
+[ 1104.389966]: PMRD: PowerChangeOverride (OFF_STATE->ON_STATE, f, 0x2) tag 0x20064
+[ 1104.390006]: PMRD: sysPowerDownHandler message kIOMessageSystemCapabilityChange
+[ 1104.390012]: PMRD: sysPowerDownHandler cap f -> f (flags 1)
+[ 1104.390343]: dlil_init: All the created dlil kernel threads have been scheduled at least once. Proceeding.
+[ 1104.390351]: bsd_init: calling socketinit
+[ 1104.390377]: bsd_init: calling domaininit
+[ 1104.391360]: bsd_init: calling skywalk_init
+[ 1104.391450]: SK[0]: skmem_region_init              seg_size 16384, md_seg_size 16384, drv_buf_seg_size 65536 [eff 81920], usr_buf_seg_size 16384
+[ 1104.393858]: Skywalk: running self-tests
+[ 1104.393863]: Skywalk: sk_copy64_8 ... PASSED
+[ 1104.393868]: Skywalk: sk_copy32_8 ... PASSED
+[ 1104.393873]: Skywalk: sk_copy64_16 ... PASSED
+[ 1104.393877]: Skywalk: sk_copy32_16 ... PASSED
+[ 1104.393882]: Skywalk: sk_copy64_20 ... PASSED
+[ 1104.393886]: Skywalk: sk_copy64_24 ... PASSED
+[ 1104.393890]: Skywalk: sk_copy64_32 ... PASSED
+[ 1104.393894]: Skywalk: sk_copy32_32 ... PASSED
+[ 1104.393898]: Skywalk: sk_copy64_40 ... PASSED
+[ 1104.393902]: Skywalk: sk_copy64_64x ... PASSED
+[ 1104.393907]: Skywalk: sk_copy64_32x ... PASSED
+[ 1104.393911]: Skywalk: sk_copy64_8x ... PASSED
+[ 1104.393916]: Skywalk: sk_copy64_4x ... PASSED
+[ 1104.393923]: Skywalk: sk_zero_16 ... PASSED
+[ 1104.393927]: Skywalk: sk_zero_32 ... PASSED
+[ 1104.393931]: Skywalk: sk_zero_48 ... PASSED
+[ 1104.393935]: Skywalk: sk_zero_128 ... PASSED
+[ 1104.393997]: Skywalk: memcmp mask ... PASSED
+[ 1104.395660]: bsd_init: calling memorystatus_freeze_init
+[ 1104.395665]: bsd_init: calling memorystatus_init
+[ 1104.395784]: bsd_init: calling sysctl_mib_init
+[ 1104.395791]: bsd_init: calling bsd_autoconf
+[ 1104.395794]: bsd_autoconf: calling kminit
+[ 1104.400518]: bsd_init: calling loopattach
+[ 1104.401562]: ifnet_attach: All kernel threads created for interface lo0 have been scheduled at least once. Proceeding.
+[ 1104.401582]: bsd_init: calling ether_family_init
+[ 1104.401760]: bsd_init: calling net_init_run
+[ 1104.402255]: skip attaching fsw to lo0 using legacy TX modelReinit'd ND information for interface lo0
+[ 1104.403597]: bsd_init: calling inittodr
+[ 1104.403602]: bsd_init: calling setconf
+[ 1104.403772]: PMRD: sysPowerDownHandler message kIOMessageSystemCapabilityChange
+[ 1104.403779]: PMRD: sysPowerDownHandler cap f -> f (flags 2)
+[ 1104.403792]: PMRD: tellChangeUp OFF_STATE->ON_STATE
+[ 1104.403808]: PMRD: PowerChangeDone: OFF_STATE->ON_STATE
+[ 1104.403813]: PMRD: Force re-evaluating aggressiveness
+[ 1104.403820]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 30002)
+[ 1104.403840]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x10001
+[ 1104.403849]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[ 1104.403854]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x302) tag 0x40064
+[ 1104.403868]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[ 1104.403874]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x302) tag 0x50064
+[ 1104.403886]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[ 1104.403897]: PMRD: adjustPowerState ON_STATE, asap 0, idleSleepEnabled 0
+[ 1104.403902]: PMRD: changePowerStateWithTagToPriv(ON_STATE, 60008)
+[ 1104.403917]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x30002
+[ 1104.403924]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[ 1104.403934]: PMRD: PowerChangeOverride (ON_STATE->ON_STATE, f, 0x2) tag 0x60008
+[ 1104.403941]: PMRD: PowerChangeDone: ON_STATE->ON_STATE
+[ 1104.404112]: cpu_start() cpu: 0
+[ 1104.404851]: MiniIOMobileFramebuffer: display 1125x2436 on a panel of 1220x2712 (4880 bytes per row)
+[ 1104.405166]: MiniIOMobileFramebuffer: IOMFBDisplayRefresh: 60 Hz (the panel: 60), an interval of 71582788 (2^-32 s), 319999 ticks
+[ 1104.505724]: !BSD
+[ 1104.506006]: Added memory device md0/rmd0 (01000000/0D000000) at FFFFFFF008220000 for 0000000000400000
+[ 1104.506020]: BSD root: md0, major 1, minor 0
+[ 1104.506105]: bsd_init: vfs_mountroot
+[ 1104.507047]: apfs: device 1,0: requests to it cost next to nothing (a disk in memory)
+[ 1104.507190]: apfs: 1 threads on a request of many pieces (0 helpers)
+[ 1104.507594]: apfs: volume 0 "redwood" of container 0 (at 0 MB): 86 files, 20 directories, 144 blocks of 4096 used
+[ 1104.507647]: bsd_init: calling VFS_ROOT
+[ 1104.507668]: bsd_init: calling devfs_kernel_mount
+[ 1104.508541]: hakios-kernel: version 2.1.13-hakios-darwin22.5-sm7435-g96ffbc53-dirty
+[ 1104.508868]: adreno: steps up to 17, without those in mask 0; step 17 is the new one and waits 0 ms after each announcement
+[ 1104.509154]: adreno: step 1: read the GPU's clocks in the global clock controller (registers the touch screen driver uses too)
+[ 1104.509305]: adreno: 1: gcc pll votes (0x162000) = 0x61257f
+[ 1104.509419]: adreno: 1: gcc gpu_cfg_ahb (0x181004) = 0x9
+[ 1104.509539]: adreno: 1: gcc gpu_memnoc_gfx (0x181010) = 0x3
+[ 1104.509665]: adreno: 1: gcc gpu_snoc_dvm_gfx (0x181018) = 0x1
+[ 1104.509796]: adreno: 1: gcc ddrss_gpu_axi (0x181154) = 0x300001
+[ 1104.510075]: adreno: step 1: look up the GPU's supply rails in the boot loader's list of RPMh resources (memory at 0x80860000)
+[ 1104.510311]: adreno: 1: RPMh has "gfx.lvl" at 0x30050; levels: 0 56 64 128 192 224 256 320 384 416
+[ 1104.510567]: adreno: 1: RPMh has "cx.lvl" at 0x30000; levels: 0 16 64 128 192 224 256 288 320 336 384 400 416 432
+[ 1104.510830]: adreno: 1: RPMh has "mx.lvl" at 0x30010; levels: 0 16 56 64 128 192 224 256 288 320 336 384 400 416 432
+[ 1104.510890]: adreno: step 1: done
+[ 1104.511156]: adreno: step 2: set the GPU's speed bin to 0 (qfprom at 0x221c8119 is protected by the hypervisor on Garnet)
+[ 1104.511256]: adreno: 2: speed bin 0: an Adreno 710
+[ 1104.511312]: adreno: step 2: done
+[ 1104.511554]: adreno: step 3: make sure the clock of the GPU clock controller's registers runs (gcc_gpu_cfg_ahb)
+[ 1104.511669]: adreno: 3: gcc gpu_cfg_ahb (0x181004) = 0x9
+[ 1104.511953]: adreno: step 3: read the GPU's clock controller (0x3d90000) as it is: the first access to the GPU's part of the SoC
+[ 1104.512092]: adreno: 3: gpucc cx_gdscr (0x3d99108) = 0xf822f000
+[ 1104.512228]: adreno: 3: gpucc cx_hw_ctrl (0x3d9953c) = 0x80001fe0
+[ 1104.512353]: adreno: 3: gpucc gx_gdscr (0x3d9905c) = 0x22f001
+[ 1104.512469]: adreno: 3: gpucc gx_sw_reset (0x3d99058) = 0
+[ 1104.512608]: adreno: 3: gpucc gx_domain_misc (0x3d99504) = 0x3c0001
+[ 1104.512730]: adreno: 3: gpucc pll0 mode (0x3d90000) = 0x100
+[ 1104.512855]: adreno: 3: gpucc pll0 multiplier (0x3d90004) = 0
+[ 1104.512975]: adreno: 3: gpucc pll1 mode (0x3d91000) = 0x100
+[ 1104.513102]: adreno: 3: gpucc pll1 multiplier (0x3d91004) = 0
+[ 1104.513237]: adreno: 3: gpucc gmu_clk_src command (0x3d99318) = 0
+[ 1104.513379]: adreno: 3: gpucc gmu_clk_src source (0x3d9931c) = 0x602
+[ 1104.513513]: adreno: 3: gpucc hub_clk_src command (0x3d993ec) = 0
+[ 1104.513656]: adreno: 3: gpucc hub_clk_src source (0x3d993f0) = 0x603
+[ 1104.513761]: adreno: 3: gpucc cxo_aon (0x3d99004) = 0
+[ 1104.513878]: adreno: 3: gpucc gx_gmu (0x3d99060) = 0x88000
+[ 1104.513974]: adreno: 3: gpucc ahb (0x3d9911c) = 0
+[ 1104.514086]: adreno: 3: gpucc cx_gmu (0x3d9913c) = 0x221
+[ 1104.514188]: adreno: 3: gpucc cxo (0x3d99144) = 0x1
+[ 1104.514285]: adreno: 3: gpucc cb (0x3d993a4) = 0x1
+[ 1104.514395]: adreno: 3: gpucc hub_aon (0x3d993e8) = 0x1
+[ 1104.514514]: adreno: 3: gpucc hub_cx_int (0x3d99148) = 0x1
+[ 1104.514629]: adreno: 3: gpucc smmu vote (0x3d97000) = 0x1
+[ 1104.514686]: adreno: step 3: done
+[ 1104.514963]: adreno: step 4: switch the CX half of the GPU block on (gpu_cx_gdsc): clear the collapse bit of its power switch
+[ 1104.515095]: adreno: 4: gpucc cx_gdscr (0x3d99108) = 0xf822f000
+[ 1104.515231]: adreno: 4: gpucc cx_hw_ctrl (0x3d9953c) = 0x80001fe0
+[ 1104.515461]: adreno: 4: CX is on already: an earlier kernel left the GPU block running; stopping it first
+[ 1104.515632]: adreno: 4: about to write gmu cm3_sysreset at 0x3d7e000: 0x1
+[ 1104.515761]: adreno: 4: gpucc gx_gdscr (0x3d9905c) = 0x22f001
+[ 1104.515926]: adreno: 4: smmu idr0 (0x3da0020) = 0x4c017e18
+[ 1104.516054]: adreno: 4: smmu idr1 (0x3da0024) = 0x40000016
+[ 1104.516303]: adreno: 4: SMMU: 24 stream match registers, 22 contexts, 32 pages of 0x1000 before the contexts' own
+[ 1104.516434]: adreno: 4: about to write smmu smr at 0x3da0800: 0
+[ 1104.516595]: adreno: 4: about to write smmu s2cr at 0x3da0c00: 0x20000
+[ 1104.516750]: adreno: 4: about to write smmu cb sctlr at 0x3dc0000: 0
+[ 1104.516881]: adreno: 4: about to write smmu smr at 0x3da0804: 0
+[ 1104.517040]: adreno: 4: about to write smmu s2cr at 0x3da0c04: 0x20000
+[ 1104.517199]: adreno: 4: about to write smmu cb sctlr at 0x3dc1000: 0
+[ 1104.517330]: adreno: 4: about to write smmu smr at 0x3da0808: 0
+[ 1104.517488]: adreno: 4: about to write smmu s2cr at 0x3da0c08: 0x20000
+[ 1104.517643]: adreno: 4: about to write smmu cb sctlr at 0x3dc2000: 0
+[ 1104.517813]: adreno: 4: about to write gpucc cx_gdscr at 0x3d99108: 0xf822f001
+[ 1104.523466]: adreno: 4: gpucc cx_gdscr (0x3d99108) = 0x22f001
+[ 1104.528896]: adreno: 4: gpucc cx_hw_ctrl (0x3d9953c) = 0x5ff4
+[ 1104.534325]: adreno: 4: about to write gpucc cx_gdscr at 0x3d99108: 0x22f000
+[ 1104.539842]: adreno: 4: gpucc cx_gdscr (0x3d99108) = 0xf822f000
+[ 1104.545211]: adreno: 4: gpucc cx_hw_ctrl (0x3d9953c) = 0x80001fe0
+[ 1104.550471]: adreno: 4: CX is on
+[ 1104.555732]: adreno: step 4: done
+[ 1104.561265]: adreno: step 5: in the global clock controller: ask for the 300 MHz tap for the GPU; the GPU's bus and memory clocks on
+[ 1104.566622]: adreno: 5: gcc pll votes (0x162000) = 0x61257f
+[ 1104.571899]: adreno: 5: gcc gpu_memnoc_gfx (0x181010) = 0x3
+[ 1104.577092]: adreno: 5: gcc gpu_snoc_dvm_gfx (0x181018) = 0x1
+[ 1104.582285]: adreno: 5: gcc ddrss_gpu_axi (0x181154) = 0x300001
+[ 1104.587623]: adreno: step 5: in the GPU's clock controller: the GMU's clock to 200 MHz, the hub's to 150 MHz
+[ 1104.592875]: adreno: 5: gpucc gmu_clk_src (0x3d9931c) = 0x602
+[ 1104.598071]: adreno: 5: gpucc hub_clk_src (0x3d993f0) = 0x603
+[ 1104.603358]: adreno: step 5: in the GPU's clock controller: the clocks of the GMU and of the SMMU on
+[ 1104.608515]: adreno: 5: gpucc cb (0x3d993a4) = 0x1
+[ 1104.613679]: adreno: 5: gpucc cxo (0x3d99144) = 0x1
+[ 1104.618875]: adreno: 5: gpucc ahb (0x3d9911c) = 0
+[ 1104.624070]: adreno: 5: about to write gpucc ahb at 0x3d9911c: 0x1
+[ 1104.629250]: adreno: 5: gpucc ahb (0x3d9911c) = 0
+[ 1104.634421]: adreno: 5: gpucc hub_aon (0x3d993e8) = 0x1
+[ 1104.639606]: adreno: 5: gpucc hub_cx_int (0x3d99148) = 0x1
+[ 1104.644804]: adreno: 5: gpucc cx_gmu (0x3d9913c) = 0x221
+[ 1104.650006]: adreno: 5: gpucc smmu vote (0x3d97000) = 0x1
+[ 1104.660782]: adreno: step 5: measure the GPU block's clocks with the SoC's frequency counter (debug registers at gcc 0x162000.., gpucc 0x3d910fc, 0x3d91100, 0x3d91568)
+[ 1104.666077]: adreno: 5: gpucc debug mux (0x3d99568) = 0
+[ 1104.671372]: adreno: 5: gpucc debug divider (0x3d99280) = 0x1
+[ 1104.676726]: adreno: 5: gpucc debug output (0x3d99284) = 0x80000000
+[ 1104.682050]: adreno: 5: gcc debug mux (0x172000) = 0x14b
+[ 1104.687371]: adreno: 5: gcc debug divider (0x172004) = 0
+[ 1104.692680]: adreno: 5: gcc debug input (0x172008) = 0x80000000
+[ 1104.697965]: adreno: 5: gcc crystal/4 (0x17200c) = 0x80000000
+[ 1104.703285]: adreno: 5: gcc measure control (0x172038) = 0
+[ 1104.708640]: adreno: 5: about to write gpucc debug mux at 0x3d99568: 0x1b
+[ 1104.714031]: adreno: 5: about to write gpucc debug divider at 0x3d99280: 0x1
+[ 1104.719411]: adreno: 5: about to write gpucc debug output at 0x3d99284: 0x80000001
+[ 1104.724781]: adreno: 5: about to write gcc debug mux at 0x172000: 0x146
+[ 1104.730112]: adreno: 5: about to write gcc debug divider at 0x172004: 0x1
+[ 1104.735443]: adreno: 5: about to write gcc debug input at 0x172008: 0x80000001
+[ 1104.740817]: adreno: 5: about to write gcc crystal/4 at 0x17200c: 0x80000001
+[ 1104.746118]: adreno: 5: gcc measure control (0x172038) = 0
+[ 1104.751535]: adreno: 5: about to write gcc measure control at 0x172038: 0x200000
+[ 1104.756905]: adreno: 5: about to write gcc measure control at 0x172038: 0x1000
+[ 1104.762265]: adreno: 5: about to write gcc measure control at 0x172038: 0x101000
+[ 1104.768574]: adreno: 5: about to write gcc measure control at 0x172038: 0x1000
+[ 1104.773918]: adreno: 5: gcc measure status (0x17203c) = 0x2000000
+[ 1104.779243]: adreno: 5: gcc measure control (0x172038) = 0x1000
+[ 1104.784639]: adreno: 5: about to write gcc measure control at 0x172038: 0x200000
+[ 1104.790029]: adreno: 5: about to write gcc measure control at 0x172038: 0x20000
+[ 1104.795380]: adreno: 5: about to write gcc measure control at 0x172038: 0x120000
+[ 1104.828371]: adreno: 5: about to write gcc measure control at 0x172038: 0x20000
+[ 1104.833645]: adreno: 5: gcc measure status (0x17203c) = 0x2000000
+[ 1104.838926]: adreno: 5: about to write gcc measure control at 0x172038: 0
+[ 1104.844214]: adreno: 5: about to write gcc crystal/4 at 0x17200c: 0x80000000
+[ 1104.849525]: adreno: 5: about to write gcc debug input at 0x172008: 0x80000000
+[ 1104.854787]: adreno: 5: about to write gcc debug divider at 0x172004: 0
+[ 1104.859999]: adreno: 5: about to write gcc debug mux at 0x172000: 0x14b
+[ 1104.865241]: adreno: 5: about to write gpucc debug output at 0x3d99284: 0x80000000
+[ 1104.870486]: adreno: 5: about to write gpucc debug divider at 0x3d99280: 0x1
+[ 1104.875694]: adreno: 5: about to write gpucc debug mux at 0x3d99568: 0
+[ 1104.880935]: adreno: 5: measured: cxo runs at 0 Hz (the crystal: 19200000)
+[ 1104.886277]: adreno: 5: the frequency counter cannot be used on this SoC: going on by the control registers
+[ 1104.891419]: adreno: step 5: done
+[ 1104.896770]: adreno: step 6: read registers of the GMU (0x3d6a000): the first words from the GPU block itself
+[ 1104.902029]: adreno: 6: gmu cm3_sysreset (0x3d7e000) = 0x1
+[ 1104.907266]: adreno: 6: gmu cm3_boot_config (0x3d7e004) = 0
+[ 1104.912537]: adreno: 6: gmu cm3_fw_init_result (0x3d7e070) = 0
+[ 1104.917763]: adreno: 6: gmu cm3_cfg (0x3d7e0b4) = 0x4052
+[ 1104.922957]: adreno: 6: gmu hfi_ctrl_status (0x3d7e600) = 0
+[ 1104.928142]: adreno: 6: gmu hfi_version_info (0x3d7e604) = 0
+[ 1104.933291]: adreno: 6: gmu general_7 (0x3d7e730) = 0
+[ 1104.938471]: adreno: 6: gmu rpmh_power_state (0x3d7e3b0) = 0xf
+[ 1104.943598]: adreno: 6: gmu sptprac_pwr_clk_status (0x3d7e340) = 0x3
+[ 1104.948718]: adreno: 6: gmu ao_host_interrupt_status (0x3d8ec14) = 0
+[ 1104.953823]: adreno: 6: gmu ao_gpu_cx_busy_status (0x3d8ec30) = 0x30000000
+[ 1104.958828]: adreno: 6: gmu ahb_fence_status (0x3d8ec4c) = 0
+[ 1104.963809]: adreno: 6: gmu always_on_counter_h (0x3d7e224) = 0
+[ 1104.968726]: adreno: 6: gmu always_on_counter_l (0x3d7e220) = 0x7c8361
+[ 1104.984879]: adreno: 6: the GMU's counter counts at 19197639 Hz: the 19.2 MHz crystal: THE GPU BLOCK IS ALIVE
+[ 1104.989861]: adreno: 6: gmu dtcm, where firmware has its versions (0x3d74fe0) = 0xf8028457
+[ 1104.994884]: adreno: 6: gmu dtcm, where firmware has its versions (0x3d74fe4) = 0x8a274b46
+[ 1104.999848]: adreno: 6: gmu dtcm, where firmware has its versions (0x3d74fe8) = 0xe807a31a
+[ 1104.1004794]: adreno: 6: gmu dtcm, where firmware has its versions (0x3d74fec) = 0x126ef8da
+[ 1104.1009713]: adreno: 6: gmu dtcm, where firmware has its versions (0x3d74ff0) = 0xb3ab537e
+[ 1105.004158]: adreno: step 6: read the GPU's bus interface (0x3d0f000) and the CX odds and ends (0x3d9e000)
+[ 1105.008989]: adreno: 6: gbif scache_cntl0 (0x3d0f004) = 0
+[ 1105.013802]: adreno: 6: gbif halt (0x3d0f114) = 0x8
+[ 1105.018608]: adreno: 6: gbif halt_ack (0x3d0f118) = 0x3
+[ 1105.023443]: adreno: 6: cx_misc system_cache_cntl_0 (0x3d9e004) = 0
+[ 1105.028268]: adreno: 6: cx_misc system_cache_cntl_1 (0x3d9e008) = 0
+[ 1105.033010]: adreno: step 6: done
+[ 1105.037824]: adreno: step 7: read the GMU's RPMh channel (0x3de0000)
+[ 1105.042606]: adreno: 7: rscc rsc_status0_drv0 (0x3d50010) = 0
+[ 1105.047395]: adreno: 7: rscc pdc_slave_id_drv0 (0x3d5002c) = 0x1
+[ 1105.052108]: adreno: 7: rscc seq_busy_drv0 (0x3d50404) = 0
+[ 1105.056823]: adreno: 7: rscc seq_mem_0_drv0 (0x3d50600) = 0
+[ 1105.061513]: adreno: 7: rscc tcs0_drv0_status (0x3d50d18) = 0x1
+[ 1105.066140]: adreno: 7: gmu rscc_control_ack (0x3d8ec20) = 0
+[ 1105.070649]: adreno: step 7: done
+[ 1105.075425]: adreno: step 8: read the ID registers of the GPU's SMMU (0x3da0000): global registers, which the hypervisor answers for
+[ 1105.080018]: adreno: 8: smmu idr0 (0x3da0020) = 0x4c017e18
+[ 1105.084527]: adreno: 8: smmu idr1 (0x3da0024) = 0x40000016
+[ 1105.089211]: adreno: 8: SMMU: 24 stream match registers, 22 contexts, 32 pages of 0x1000 before the contexts' own
+[ 1105.093753]: adreno: 8: smmu idr2 (0x3da0028) = 0x5511
+[ 1105.098289]: adreno: 8: smmu idr7 (0x3da003c) = 0x24
+[ 1105.102740]: adreno: 8: smmu scr0 (0x3da0000) = 0x2c0406
+[ 1105.107156]: adreno: 8: smmu sgfsr (0x3da0048) = 0
+[ 1105.111769]: adreno: step 8: read the SMMU's stream table and the kinds of its contexts, as the boot loader and hypervisor left them
+[ 1105.116181]: adreno: 8: smmu smr (0x3da0800) = 0
+[ 1105.120613]: adreno: 8: smmu s2cr (0x3da0c00) = 0x20000
+[ 1105.125027]: adreno: 8: smmu smr (0x3da0804) = 0
+[ 1105.129468]: adreno: 8: smmu s2cr (0x3da0c04) = 0x20000
+[ 1105.133857]: adreno: 8: smmu smr (0x3da0808) = 0
+[ 1105.138268]: adreno: 8: smmu s2cr (0x3da0c08) = 0x20000
+[ 1105.142603]: adreno: 8: smmu smr (0x3da080c) = 0
+[ 1105.146899]: adreno: 8: smmu s2cr (0x3da0c0c) = 0x20000
+[ 1105.151191]: adreno: 8: smmu smr (0x3da0810) = 0
+[ 1105.155433]: adreno: 8: smmu s2cr (0x3da0c10) = 0x20000
+[ 1105.159656]: adreno: 8: smmu smr (0x3da0814) = 0
+[ 1105.163867]: adreno: 8: smmu s2cr (0x3da0c14) = 0x20000
+[ 1105.168023]: adreno: 8: smmu smr (0x3da0818) = 0
+[ 1105.172235]: adreno: 8: smmu s2cr (0x3da0c18) = 0x20000
+[ 1105.176344]: adreno: 8: smmu smr (0x3da081c) = 0
+[ 1105.180474]: adreno: 8: smmu s2cr (0x3da0c1c) = 0x20000
+[ 1105.184521]: adreno: 8: smmu smr (0x3da0820) = 0
+[ 1105.188612]: adreno: 8: smmu s2cr (0x3da0c20) = 0x20000
+[ 1105.192684]: adreno: 8: smmu smr (0x3da0824) = 0
+[ 1105.196732]: adreno: 8: smmu s2cr (0x3da0c24) = 0x20000
+[ 1105.200780]: adreno: 8: smmu smr (0x3da0828) = 0
+[ 1105.204852]: adreno: 8: smmu s2cr (0x3da0c28) = 0x20000
+[ 1105.208902]: adreno: 8: smmu smr (0x3da082c) = 0
+[ 1105.213002]: adreno: 8: smmu s2cr (0x3da0c2c) = 0x20000
+[ 1105.217081]: adreno: 8: smmu smr (0x3da0830) = 0
+[ 1105.221168]: adreno: 8: smmu s2cr (0x3da0c30) = 0x20000
+[ 1105.225221]: adreno: 8: smmu smr (0x3da0834) = 0
+[ 1105.229269]: adreno: 8: smmu s2cr (0x3da0c34) = 0x20000
+[ 1105.233290]: adreno: 8: smmu smr (0x3da0838) = 0
+[ 1105.237381]: adreno: 8: smmu s2cr (0x3da0c38) = 0x20000
+[ 1105.241457]: adreno: 8: smmu smr (0x3da083c) = 0
+[ 1105.245503]: adreno: 8: smmu s2cr (0x3da0c3c) = 0x20000
+[ 1105.249554]: adreno: 8: smmu cbar (0x3da1000) = 0
+[ 1105.253566]: adreno: 8: smmu cbar (0x3da1004) = 0
+[ 1105.257599]: adreno: 8: smmu cbar (0x3da1008) = 0
+[ 1105.261592]: adreno: 8: smmu cbar (0x3da100c) = 0
+[ 1105.265582]: adreno: 8: smmu cbar (0x3da1010) = 0
+[ 1105.269542]: adreno: 8: smmu cbar (0x3da1014) = 0
+[ 1105.273536]: adreno: 8: smmu cbar (0x3da1018) = 0
+[ 1105.277439]: adreno: 8: smmu cbar (0x3da101c) = 0
+[ 1105.281301]: adreno: 8: smmu cbar (0x3da1020) = 0
+[ 1105.285169]: adreno: 8: smmu cbar (0x3da1024) = 0
+[ 1105.288974]: adreno: 8: smmu cbar (0x3da1028) = 0
+[ 1105.292753]: adreno: 8: smmu cbar (0x3da102c) = 0
+[ 1105.296477]: adreno: 8: smmu cbar (0x3da1030) = 0
+[ 1105.300203]: adreno: 8: smmu cbar (0x3da1034) = 0
+[ 1105.303923]: adreno: 8: smmu cbar (0x3da1038) = 0
+[ 1105.307615]: adreno: 8: smmu cbar (0x3da103c) = 0
+[ 1105.311203]: adreno: step 8: done
+[ 1105.315082]: adreno: step 9: read translation context 0 of the SMMU: registers of the hardware itself, not the hypervisor's
+[ 1105.318825]: adreno: 9: smmu idr0 (0x3da0020) = 0x4c017e18
+[ 1105.322552]: adreno: 9: smmu idr1 (0x3da0024) = 0x40000016
+[ 1105.326461]: adreno: 9: SMMU: 24 stream match registers, 22 contexts, 32 pages of 0x1000 before the contexts' own
+[ 1105.330253]: adreno: 9: smmu cb0 sctlr (0x3dc0000) = 0
+[ 1105.334117]: adreno: 9: smmu cb0 ttbr0, low (0x3dc0020) = 0x403a4140
+[ 1105.337945]: adreno: 9: smmu cb0 ttbr0, high (0x3dc0024) = 0xa322500
+[ 1105.341717]: adreno: 9: smmu cb0 tcr (0x3dc0030) = 0x8210001
+[ 1105.345477]: adreno: 9: smmu cb0 fsr (0x3dc0058) = 0
+[ 1105.349186]: adreno: step 9: done
+[ 1105.353180]: adreno: step 10: hold the GMU's processor in reset, write two words into its data memory (0x3d71000), read them back
+[ 1105.357028]: adreno: 10: gmu cm3_fw_init_result (0x3d7e070) = 0
+[ 1105.360888]: adreno: 10: about to write gmu cm3_sysreset at 0x3d7e000: 0x1
+[ 1105.364729]: adreno: 10: gmu cm3_sysreset (0x3d7e000) = 0x1
+[ 1105.368600]: adreno: 10: gmu dtcm (0x3d71000) = 0xf7e3b8ea
+[ 1105.372450]: adreno: 10: gmu dtcm (0x3d71004) = 0x5c7ffaa5
+[ 1105.376334]: adreno: 10: about to write gmu dtcm at 0x3d71000: 0x600d0001
+[ 1105.380141]: adreno: 10: about to write gmu dtcm at 0x3d71004: 0xa110002
+[ 1105.383905]: adreno: 10: gmu dtcm (0x3d71000) = 0x600d0001
+[ 1105.387678]: adreno: 10: gmu dtcm (0x3d71004) = 0xa110002
+[ 1105.391538]: adreno: 10: about to write gmu dtcm at 0x3d71000: 0xf7e3b8ea
+[ 1105.395304]: adreno: 10: about to write gmu dtcm at 0x3d71004: 0x5c7ffaa5
+[ 1105.399086]: adreno: 10: the GMU's memory TAKES WHAT IS WRITTEN: its firmware can be loaded
+[ 1105.402744]: adreno: step 10: done
+[ 1105.406688]: adreno: step 11: ask TrustZone what Linux asks it first: is the call "is this call available" available
+[ 1105.410542]: adreno: 11: about to ask TrustZone whether it can be asked: smc 0xc2000601, arguments 0x2000601, 0, 0
+[ 1105.414349]: adreno: 11: TrustZone returns 0, answer 0x1
+[ 1105.418320]: adreno: step 11: ask TrustZone whether it has the calls that authenticate a firmware image
+[ 1105.422409]: adreno: 11: about to ask TrustZone for the call that takes an image's signature: smc 0xc2000601, arguments 0x2000201, 0, 0
+[ 1105.426291]: adreno: 11: TrustZone returns 0, answer 0x1
+[ 1105.430459]: adreno: 11: about to ask TrustZone for the call that authenticates and starts an image: smc 0xc2000601, arguments 0x2000205, 0, 0
+[ 1105.434426]: adreno: 11: TrustZone returns 0, answer 0x1
+[ 1105.442751]: adreno: step 11: ask TrustZone which images it "supports": three this phone starts through it, and the GPU's; each asked both ways, at once and (as Linux does) as a call that may be preempted
+[ 1105.446889]: adreno: 11: about to ask TrustZone audio: smc 0xc2000207, arguments 0x1, 0, 0
+[ 1105.451291]: adreno: 11: TrustZone returns 0, answer 0
+[ 1105.455405]: adreno: 11: about to ask TrustZone audio: smc 0x42000207, arguments 0x1, 0, 0
+[ 1105.459490]: adreno: 11: TrustZone returns 0, answer 0
+[ 1105.463626]: adreno: 11: about to ask TrustZone modem: smc 0xc2000207, arguments 0x4, 0, 0
+[ 1105.467730]: adreno: 11: TrustZone returns 0, answer 0
+[ 1105.471859]: adreno: 11: about to ask TrustZone modem: smc 0x42000207, arguments 0x4, 0, 0
+[ 1105.475950]: adreno: 11: TrustZone returns 0, answer 0
+[ 1105.480152]: adreno: 11: about to ask TrustZone video: smc 0xc2000207, arguments 0x9, 0, 0
+[ 1105.484295]: adreno: 11: TrustZone returns 0, answer 0
+[ 1105.488501]: adreno: 11: about to ask TrustZone video: smc 0x42000207, arguments 0x9, 0, 0
+[ 1105.492703]: adreno: 11: TrustZone returns 0, answer 0
+[ 1105.496961]: adreno: 11: about to ask TrustZone GPU zap shader: smc 0xc2000207, arguments 0xd, 0, 0
+[ 1105.501164]: adreno: 11: TrustZone returns 0, answer 0
+[ 1105.505462]: adreno: 11: about to ask TrustZone GPU zap shader: smc 0x42000207, arguments 0xd, 0, 0
+[ 1105.509693]: adreno: 11: TrustZone returns 0, answer 0
+[ 1105.514035]: adreno: 11: "supported", asked at once / as Linux asks: audio 0/0, modem 0/0, video 0/0, GPU 0/0
+[ 1105.518396]: adreno: 11: TrustZone lists none, not even those the phone starts: this question tells nothing here
+[ 1105.522535]: adreno: step 11: done
+[ 1105.526977]: adreno: step 12: find the zap shader's header, fw/a710_zap.mdt, in the small image that came with the kernel
+[ 1105.532297]: adreno: 12: fw/a710_zap.mdt: 4044 bytes in the image of /dev/md0
+[ 1105.536863]: adreno: 12: an ELF header of 3 segments, 148 bytes with its table, then 3896 bytes; by the table, 3896 of hashes
+[ 1105.541549]: adreno: step 12: hand the header to TrustZone to check its signature (image 13); a call that may be preempted, as Linux's is
+[ 1105.546187]: adreno: 12: about to ask TrustZone to take the zap shader's signature: smc 0x42000201, arguments 0xd, 0x8c9d28000, 0
+[ 1105.570509]: adreno: 12: TrustZone returns 0, answer 0
+[ 1105.575114]: adreno: 12: TRUSTZONE ACCEPTS THE ZAP SHADER'S SIGNATURE FROM THIS KERNEL
+[ 1105.579570]: adreno: step 12: done
+[ 1105.584350]: adreno: step 13: find the GMU's firmware, fw/gmu_gen70000.bin, in the small image, and make the memory it asks for
+[ 1105.589548]: adreno: 13: fw/gmu_gen70000.bin: 57272 bytes in the image of /dev/md0
+[ 1105.594268]: adreno: 13: the GMU sees 0x4000..0x11fff in memory of ours (0x8c9d68000)
+[ 1105.598984]: adreno: 13: the GMU sees 0x100000..0x108fff in memory of ours (0x8c9d78000)
+[ 1105.603674]: adreno: 13: the GMU sees 0x200000..0x212fff in memory of ours (0x8c9d8c000)
+[ 1105.608372]: adreno: 13: the GMU sees 0x300000..0x306fff in memory of ours (0x8c9d94000)
+[ 1105.613079]: adreno: 13: the GMU sees 0x60000000..0x60000fff in memory of ours (0x8c9d98000)
+[ 1105.617756]: adreno: 13: the GMU sees 0x60001000..0x60001fff in memory of ours (0x8c9dc0000)
+[ 1105.622418]: adreno: 13: the GMU sees 0x60002000..0x60005fff in memory of ours (0x8c9dc4000)
+[ 1105.627062]: adreno: 13: the GMU sees 0x60006000..0x60009fff in memory of ours (0x8c9da8000)
+[ 1105.636533]: adreno: step 13: give the SMMU's context 1 these tables and send the GMU's requests (stream 5) through it: the first writes to the SMMU, the global ones (cbar, cba2r, s2cr, smr) through the hypervisor
+[ 1105.641175]: adreno: 13: smmu idr0 (0x3da0020) = 0x4c017e18
+[ 1105.645738]: adreno: 13: smmu idr1 (0x3da0024) = 0x40000016
+[ 1105.650460]: adreno: 13: SMMU: 24 stream match registers, 22 contexts, 32 pages of 0x1000 before the contexts' own
+[ 1105.655112]: adreno: 13: about to write smmu cb sctlr at 0x3dc1000: 0
+[ 1105.659761]: adreno: 13: about to write smmu cba2r at 0x3da1804: 0x1
+[ 1105.664429]: adreno: 13: about to write smmu cbar at 0x3da1004: 0x1f300
+[ 1105.669077]: adreno: 13: about to write smmu cb tcr2 at 0x3dc1010: 0x38011
+[ 1105.673724]: adreno: 13: about to write smmu cb tcr at 0x3dc1030: 0x803519
+[ 1105.678347]: adreno: 13: about to write smmu cb ttbr0, low at 0x3dc1020: 0xc9d6c000
+[ 1105.683013]: adreno: 13: about to write smmu cb ttbr0, high at 0x3dc1024: 0x10008
+[ 1105.687649]: adreno: 13: about to write smmu cb ttbr1, low at 0x3dc1028: 0
+[ 1105.692272]: adreno: 13: about to write smmu cb ttbr1, high at 0x3dc102c: 0
+[ 1105.696896]: adreno: 13: about to write smmu cb mair0 at 0x3dc1038: 0xf404ff44
+[ 1105.701477]: adreno: 13: about to write smmu cb mair1 at 0x3dc103c: 0
+[ 1105.706088]: adreno: 13: about to write smmu cb fsr at 0x3dc1058: 0xc00001fe
+[ 1105.710686]: adreno: 13: about to write smmu cb tlbiasid at 0x3dc1610: 0x1
+[ 1105.715283]: adreno: 13: about to write smmu cb tlbsync at 0x3dc17f0: 0x1
+[ 1105.719840]: adreno: 13: about to write smmu cb sctlr at 0x3dc1000: 0x1027
+[ 1105.724380]: adreno: 13: about to write smmu s2cr at 0x3da0c04: 0x1
+[ 1105.728954]: adreno: 13: about to write smmu smr at 0x3da0804: 0x84000005
+[ 1105.733583]: adreno: 13: smmu smr (0x3da0804) = 0x84000005
+[ 1105.738166]: adreno: 13: smmu s2cr (0x3da0c04) = 0x1
+[ 1105.742683]: adreno: 13: smmu cbar (0x3da1004) = 0x1f300
+[ 1105.747204]: adreno: 13: smmu cb sctlr (0x3dc1000) = 0x27
+[ 1105.751715]: adreno: 13: smmu cb ttbr0, low (0x3dc1020) = 0xc9d6c000
+[ 1105.756243]: adreno: 13: smmu cb ttbr0, high (0x3dc1024) = 0x10008
+[ 1105.760731]: adreno: 13: smmu cb tcr (0x3dc1030) = 0x803519
+[ 1105.765244]: adreno: 13: smmu cba2r (0x3da1804) = 0x1
+[ 1105.769741]: adreno: 13: smmu cb tcr2 (0x3dc1010) = 0x38071
+[ 1105.774218]: adreno: 13: smmu cb fsr (0x3dc1058) = 0x400
+[ 1105.778689]: adreno: 13: smmu sgfsr (0x3da0048) = 0
+[ 1105.783109]: adreno: step 13: done
+[ 1105.792386]: adreno: step 14: load the GMU's firmware: its first 16K of code and of data through the GMU's registers (0x3d6d000, 0x3d71000), the rest into the memory just made
+[ 1105.797015]: adreno: 14: about to write gmu cm3_sysreset at 0x3d7e000: 0x1
+[ 1105.801660]: adreno: 14: 0xdcac bytes at the GMU's 0x4000, in memory
+[ 1105.806428]: adreno: 14: 0x1dc bytes at the GMU's 0, through its registers
+[ 1105.811076]: adreno: 14: 0x28 bytes at the GMU's 0x10007f98, through its registers
+[ 1105.815686]: adreno: 14: 0x18 bytes at the GMU's 0x10007fdc, through its registers
+[ 1105.820495]: adreno: 14: THE GMU'S FIRMWARE IS LOADED; its versions, read back from the GMU: core 0x40000007, power 0x40000007, HFI 0x20010000
+[ 1105.825041]: adreno: step 14: done
+[ 1105.834585]: adreno: step 15: tell the GMU where things are, by its registers: the message table, the log, which GPU this is; its caches and its use of RPMh; then let its processor out of reset
+[ 1105.839292]: adreno: 15: gmu cm3_sysreset (0x3d7e000) = 0x1
+[ 1105.843955]: adreno: 15: rscc drv config (0x3d5000c) = 0x4000000a
+[ 1105.848677]: adreno: 15: rscc rsc_status0_drv0 (0x3d50010) = 0
+[ 1105.853322]: adreno: 15: rscc seq_busy_drv0 (0x3d50404) = 0
+[ 1105.857970]: adreno: 15: rscc slots' interrupts enabled (0x3d50d00) = 0
+[ 1105.862639]: adreno: 15: rscc slots' interrupts pending (0x3d50d04) = 0
+[ 1105.867466]: adreno: 15: rscc slot 0: wait 0, control 0, idle 0x1, enabled 0; commands (number, address, data, status):
+[ 1105.872159]: adreno: 15:   0 0 0 0 | 0 0 0 0 | 0 0 0 0 | 0 0 0 0
+[ 1105.877055]: adreno: 15: rscc slot 1: wait 0, control 0, idle 0x1, enabled 0; commands (number, address, data, status):
+[ 1105.881819]: adreno: 15:   0 0 0 0 | 0 0 0 0 | 0 0 0 0 | 0 0 0 0
+[ 1105.886739]: adreno: 15: rscc slot 2: wait 0, control 0, idle 0x1, enabled 0; commands (number, address, data, status):
+[ 1105.891591]: adreno: 15:   0 0 0 0 | 0 0 0 0 | 0 0 0 0 | 0 0 0 0
+[ 1105.896578]: adreno: 15: rscc slot 3: wait 0, control 0, idle 0x1, enabled 0; commands (number, address, data, status):
+[ 1105.901475]: adreno: 15:   0 0 0 0 | 0 0 0 0 | 0 0 0 0 | 0 0 0 0
+[ 1105.906399]: adreno: 15: about to write gmu cx_falnext_intf at 0x3d7e3c4: 0x1
+[ 1105.911299]: adreno: 15: about to write gmu cx_fal_intf at 0x3d7e3c0: 0x1
+[ 1105.916216]: adreno: 15: about to write gmu general_7 at 0x3d7e730: 0x1
+[ 1105.921138]: adreno: 15: about to write gmu cm3_fw_init_result at 0x3d7e070: 0
+[ 1105.926060]: adreno: 15: about to write gmu cm3_boot_config at 0x3d7e004: 0x2
+[ 1105.931002]: adreno: 15: about to write gmu hfi_qtbl_addr at 0x3d7e614: 0x60006000
+[ 1105.935935]: adreno: 15: about to write gmu hfi_qtbl_info at 0x3d7e610: 0x1
+[ 1105.940964]: adreno: 15: about to write gmu ahb_fence_range_0 at 0x3d8ec44: 0x80a008a0
+[ 1105.945901]: adreno: 15: about to write gmu cm3_cfg at 0x3d7e0b4: 0x4052
+[ 1105.950892]: adreno: 15: about to write gbif halt at 0x3d0f114: 0
+[ 1105.955867]: adreno: 15: about to write gmu pwr_col_cp_resp at 0x3d7e404: 0
+[ 1105.960856]: adreno: 15: about to write gmu hfi_sfr_addr at 0x3d7e608: 0x7010000
+[ 1105.965860]: adreno: 15: about to write gmu pwr_col_cp_msg at 0x3d7e400: 0x60002003
+[ 1105.970822]: adreno: 15: about to write gmu general_9 at 0x3d7e738: 0
+[ 1105.975804]: adreno: 15: about to write gmu general_10 at 0x3d7e73c: 0x7010000
+[ 1105.980821]: adreno: 15: about to write gmu general_8 at 0x3d7e734: 0x60002003
+[ 1105.985821]: adreno: 15: about to write gmu sys_bus_config at 0x3d7d03c: 0x1
+[ 1105.990834]: adreno: 15: about to write gmu icache_config at 0x3d7d000: 0x1
+[ 1105.995796]: adreno: 15: about to write gmu dcache_config at 0x3d7d004: 0x1
+[ 1105.1000833]: adreno: 15: about to write gmu pwr_col_inter_frame_ctrl at 0x3d7e300: 0x9c40400
+[ 1105.1005791]: adreno: 15: gmu rpmh_ctrl (0x3d7e3a0) = 0
+[ 1106.000272]: adreno: 15: about to write gmu rpmh_ctrl at 0x3d7e3a0: 0xf11
+[ 1106.005243]: adreno: 15: gmu rpmh_ctrl (0x3d7e3a0) = 0
+[ 1106.010300]: adreno: 15: about to write gmu gmu2host_intr_clr at 0x3d7e644: 0xffffffff
+[ 1106.015389]: adreno: 15: about to write gmu cm3_sysreset at 0x3d7e000: 0
+[ 1106.023086]: adreno: 15: gmu cm3_fw_init_result (0x3d7e070) = 0x100
+[ 1106.028183]: adreno: 15: gmu gmu2host_intr_info (0x3d7e648) = 0
+[ 1106.033328]: adreno: 15: gmu ao_host_interrupt_status (0x3d8ec14) = 0
+[ 1106.038471]: adreno: 15: gmu hfi_ctrl_status (0x3d7e600) = 0x1
+[ 1106.043553]: adreno: 15: THE GMU'S FIRMWARE RUNS
+[ 1106.048649]: adreno: step 15: done
+[ 1106.054110]: adreno: step 16: enable the GPU's part of the always-on sequencer (pdc, 0xb294500 and 0xb294520: a part of the SoC not touched before)
+[ 1106.059396]: adreno: 16: pdc gpu_enable (0xb274500) = 0x101
+[ 1106.064681]: adreno: 16: pdc gpu_seq_start_addr (0xb274520) = 0
+[ 1106.070042]: adreno: 16: about to write pdc gpu_seq_start_addr at 0xb274520: 0
+[ 1106.075427]: adreno: 16: about to write pdc gpu_enable at 0xb274500: 0x80000001
+[ 1106.080811]: adreno: 16: pdc gpu_enable (0xb274500) = 0x80000001
+[ 1106.086352]: adreno: step 16: give the GMU's RPMh channel its sleep and wake program (rscc, 0x3de0000), unless it has it
+[ 1106.091746]: adreno: 16: rscc seq_mem_0_drv0 (0x3d50600) = 0
+[ 1106.097199]: adreno: 16: about to write rscc rsc_status0_drv0 at 0x3d50010: 0x1000000
+[ 1106.102658]: adreno: 16: about to write rscc pdc_slave_id_drv0 at 0x3d5002c: 0x1
+[ 1106.108069]: adreno: 16: about to write rscc hidden_tcs_cmd0_data at 0x3d50038: 0
+[ 1106.113463]: adreno: 16: about to write rscc hidden_tcs_cmd0_addr at 0x3d50034: 0
+[ 1106.118805]: adreno: 16: about to write rscc hidden_tcs_cmd1_data at 0x3d50040: 0
+[ 1106.124171]: adreno: 16: about to write rscc hidden_tcs_cmd1_addr at 0x3d5003c: 0
+[ 1106.129572]: adreno: 16: about to write rscc hidden_tcs_cmd2_data at 0x3d50048: 0x80000021
+[ 1106.134940]: adreno: 16: about to write rscc hidden_tcs_cmd2_addr at 0x3d50044: 0
+[ 1106.140286]: adreno: 16: about to write rscc override_start_addr at 0x3d50400: 0
+[ 1106.145621]: adreno: 16: about to write rscc pdc_seq_start_addr at 0x3d50020: 0x4520
+[ 1106.150945]: adreno: 16: about to write rscc pdc_match_value_lo at 0x3d50024: 0x4510
+[ 1106.156217]: adreno: 16: about to write rscc pdc_match_value_hi at 0x3d50028: 0x4514
+[ 1106.161467]: adreno: 16: about to write rscc seq_mem_drv0 at 0x3d50600: 0xeaaae5a0
+[ 1106.166733]: adreno: 16: about to write rscc seq_mem_drv0 at 0x3d50604: 0xe1a1ebab
+[ 1106.171989]: adreno: 16: about to write rscc seq_mem_drv0 at 0x3d50608: 0xa2e0a581
+[ 1106.177211]: adreno: 16: about to write rscc seq_mem_drv0 at 0x3d5060c: 0xecac82e2
+[ 1106.182476]: adreno: 16: about to write rscc seq_mem_drv0 at 0x3d50610: 0x20edad
+[ 1106.187696]: adreno: 16: rscc seq_mem_0_drv0 (0x3d50600) = 0xeaaae5a0
+[ 1106.192957]: adreno: step 16: ask the GMU to start its message queues
+[ 1106.198200]: adreno: 16: about to write gmu hfi_ctrl_init at 0x3d7e618: 0x1
+[ 1106.203447]: adreno: 16: gmu hfi_ctrl_status (0x3d7e600) = 0x1
+[ 1106.208685]: adreno: 16: gmu hfi_version_info (0x3d7e604) = 0x20010000
+[ 1106.213898]: adreno: 16: THE GMU'S MESSAGE QUEUES ARE UP
+[ 1106.219013]: adreno: step 16: done
+[ 1106.224275]: adreno: 17: votes: 3D core 0 0x380201 0x400302 0x800403, GMU 0 0x400302
+[ 1106.229796]: adreno: 17: RPMh's bus resources: SH0 0x50004, MC0 0x50000, ACV 0x5004c, CN0 0x50030 (Linux has 0x50004, 0x50000, 0x50088, 0x5006c)
+[ 1106.234977]: adreno: 17: the speed wanted: 500 MHz
+[ 1106.245569]: adreno: step 17: send the GMU its tables (speeds and supply levels, bus votes), "start", and the speed wanted; from here on it casts votes in RPMh by itself
+[ 1106.250860]: adreno: 17: about to send the GMU the table of speeds: message 4, 59 words, number 1
+[ 1106.256161]: adreno: 17: the GMU accepts the table of speeds
+[ 1106.261433]: adreno: 17: about to send the GMU the table of bus votes: message 3, 160 words, number 2
+[ 1106.266670]: adreno: 17: the GMU accepts the table of bus votes
+[ 1106.271910]: adreno: 17: about to send the GMU "start the core firmware": message 14, 2 words, number 3
+[ 1106.277180]: adreno: 17: the GMU accepts "start the core firmware"
+[ 1106.282423]: adreno: 17: about to send the GMU the speed wanted: message 30, 4 words, number 4
+[ 1106.287789]: adreno: 17: the GMU accepts the speed wanted
+[ 1106.292973]: adreno: step 17: ask the GMU to power the 3D core and keep it powered
+[ 1106.298203]: adreno: 17: about to read gmu sptprac_pwr_clk_status at 0x3d7e340
+[ 1106.303349]: adreno: 17: gmu sptprac_pwr_clk_status (0x3d7e340) = 0x3
+[ 1106.308479]: adreno: 17: about to read gpucc gx_gdscr at 0x3d9905c
+[ 1106.313577]: adreno: 17: gpucc gx_gdscr (0x3d9905c) = 0x22f001
+[ 1106.318768]: adreno: 17: about to write gmu host2gmu_intr_set at 0x3d7e650: 0x40000000
+[ 1106.324070]: adreno: 17: about to write gmu gmu2host_intr_clr at 0x3d7e644: 0x80000000
+[ 1106.329213]: adreno: 17: about to read gmu sptprac_pwr_clk_status at 0x3d7e340
+[ 1106.334295]: adreno: 17: gmu sptprac_pwr_clk_status (0x3d7e340) = 0
+[ 1106.339380]: adreno: 17: about to read gpucc gx_gdscr at 0x3d9905c
+[ 1106.344473]: adreno: 17: gpucc gx_gdscr (0x3d9905c) = 0xf8222800
+[ 1106.349574]: adreno: 17: about to read gmu rpmh_power_state at 0x3d7e3b0
+[ 1106.354630]: adreno: 17: gmu rpmh_power_state (0x3d7e3b0) = 0
+[ 1106.359743]: adreno: 17: about to send the GMU "start": message 10, 1 words, number 5
+[ 1106.364843]: adreno: 17: the GMU accepts "start"
+[ 1106.427441]: adreno: 17: measured: the 3D core's clock runs at 0 Hz (500 MHz was asked for), the GMU's in it at 0 Hz
+[ 1106.432589]: adreno: step 17: read registers of the 3D core itself (0x3d00000): the first time it has power
+[ 1106.437659]: adreno: 17: about to read gpu rbbm_status at 0x3d00840
+[ 1106.442626]: adreno: 17: gpu rbbm_status (0x3d00840) = 0x1
+[ 1106.447583]: adreno: 17: about to read gpu rbbm_int_0_status at 0x3d00804
+[ 1106.452478]: adreno: 17: gpu rbbm_int_0_status (0x3d00804) = 0
+[ 1106.457430]: adreno: 17: about to read gpu rbbm_clock_cntl at 0x3d002b8
+[ 1106.462338]: adreno: 17: gpu rbbm_clock_cntl (0x3d002b8) = 0
+[ 1106.467243]: adreno: 17: about to read gpu cp_rb_base at 0x3d02000
+[ 1106.472060]: adreno: 17: gpu cp_rb_base (0x3d02000) = 0
+[ 1106.476910]: adreno: 17: THE 3D CORE HAS POWER AND ANSWERS
+[ 1106.481670]: adreno: step 17: done
+[ 1107.487596]: adreno: alive 1 s after step 17; step 17 sent the GMU message 10 ("start")
+[ 1108.493541]: adreno: alive 2 s after step 17; step 17 sent the GMU message 10 ("start")
+[ 1108.498430]: adreno: 0: about to write gmu host2gmu_intr_set at 0x3d7e650: 0x80000000
+[ 1108.503387]: adreno: 0: about to send the GMU "slumber": message 33, 3 words, number 6
+[ 1108.508392]: adreno: 0: the GMU accepts "slumber"
+[ 1108.513317]: adreno: 0: gmu sptprac_pwr_clk_status (0x3d7e340) = 0x3
+[ 1108.518217]: adreno: 0: gpucc gx_gdscr (0x3d9905c) = 0x222801
+[ 1108.523086]: adreno: 0: about to write gmu cm3_sysreset at 0x3d7e000: 0x1
+[ 1108.527947]: adreno: 0: gpucc gx_gdscr (0x3d9905c) = 0x222801
+[ 1108.532817]: adreno: 0: about to write gmu rscc_control_req at 0x3d8ec1c: 0x1
+[ 1108.537833]: adreno: 0: rscc rsc_status0_drv0 (0x3d50010) = 0x1010006
+[ 1108.542716]: adreno: 0: about to write gmu rscc_control_req at 0x3d8ec1c: 0
+[ 1108.547557]: adreno: 0: about to write smmu smr at 0x3da0804: 0
+[ 1108.552438]: adreno: 0: about to write smmu s2cr at 0x3da0c04: 0x20000
+[ 1108.557340]: adreno: 0: about to write smmu cb sctlr at 0x3dc1000: 0
+[ 1108.562239]: adreno: 0: about to write gpucc cx_gdscr at 0x3d99108: 0xf822f001
+[ 1108.567233]: adreno: 0: gpucc cx_gdscr (0x3d99108) = 0x22f001
+[ 1108.572106]: adreno: 0: gpucc cx_hw_ctrl (0x3d9953c) = 0x5ff4
+[ 1108.576986]: adreno: over; back to the loader (adreno_return)
+
+== END OF LOG ==

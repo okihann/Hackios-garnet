@@ -1,0 +1,30 @@
+metal-run 000126: logs/000308-run.log, 180 s, xl run 0
+boot-args: gpu=1 metal=1 metal_fps=1 touch_lat=1 touchscreen=1 ca_metallib=/redwood/share/ca-share/QuartzCore-default.metallib gpu_recover=1 anim_max=1 bootcpu=7 cpus=8 cpufreq=1 fb_hz=120 fb_threads=4 touch_poll_us=4000  fb_measure=1 wallpaper_freeze=1 metal_defer=1 fbscale=2 ufs=2 ufs_write=1 var_store=1 
+
+== frames per gesture (tools/frames.py)
+frames.py: 8 gestures, 183 frames on the panel, 8 waits for the GPU of 1 ms or more
+ 1.   670.293 s touch at 50%,99%: 0 frames
+ 2.   687.859 s touch at 54%,71%: 8 frames at 24.9 a second; over 8.3 ms 100%, over 16.7 ms 100%, over 33 ms  88%; the slow ones: draw  0.0, gpu  0.2, idle before  40.7, copy 3.7 ms
+ 3.   688.224 s touch at 66%,55%: 7 frames at 23.8 a second; over 8.3 ms 100%, over 16.7 ms 100%, over 33 ms 100%; the slow ones: draw  0.0, gpu  0.2, idle before  41.8, copy 4.8 ms
+ 4.   688.573 s touch at 59%,50%: 6 frames at 24.0 a second; over 8.3 ms 100%, over 16.7 ms 100%, over 33 ms 100%; the slow ones: draw  0.0, gpu  0.2, idle before  41.8, copy 2.8 ms
+ 5.   688.868 s touch at 65%,55%: 1 frames
+ 6.   688.873 s touch at 100%,4%: 0 frames
+ 7.   688.900 s touch at 100%,4%: 11 frames at 24.0 a second; over 8.3 ms 100%, over 16.7 ms 100%, over 33 ms  64%; the slow ones: draw  0.0, gpu  0.2, idle before  41.5, copy 3.9 ms
+ 8.   689.384 s touch at 60%,48%: 39 frames at 24.6 a second; over 8.3 ms 100%, over 16.7 ms  97%, over 33 ms  85%; the slow ones: draw  0.0, gpu  0.2, idle before  41.1, copy 4.6 ms; 1 waits for the GPU (9 ms)
+all gestures: 71 frame steps, over 16.7 ms 99%, over 33 ms 85%
+
+== HakiosMetal
+
+== refused (count, kind)
+
+== frames on the panel (MiniIOMobileFramebuffer, every 5 s: what the window server drew through Metal)
+
+== shader cache and var_store
+cmdline: debug=0x8 rd=md0 hv_wdt_pet=1 ufs_shared_pa=0x00000000fa4d0000 hakios_kver=2.3.4-hakios-darwin22.5-sm7435-gd852e4bd-dirty loader_return_after=180 epoch=1794243788 sb_delay=8 gpu=1 metal=1 metal_fps=1 touch_lat=1 touchscreen=1 ca_metallib=/redwood/share/ca-share/QuartzCore-default.metallib gpu_recover=1 anim_max=1 bootcpu=7 cpus=8 cpufreq=1 fb_hz=120 fb_threads=4 touch_poll_us=4000  fb_measure=1 wallpaper_freeze=1 metal_defer=1 fbscale=2 ufs=2 ufs_write=1 var_store=1 
+var_store: no store yet: /private/var stays as init made it
+  -rwxr-xr-x  1    52792 /redwood/bin/var_store
+com.apple.xpc.launchd|2026-11-10 00:03:08.707792 <Notice>: boot-args = debug=0x8 rd=md0 hv_wdt_pet=1 ufs_shared_pa=0x00000000fa4d0000 hakios_kver=2.3.4-hakios-darwin22.5-sm7435-gd852e4bd-dirty loader_return_after=180 epoch=1794243788 sb_delay=8 gpu=1 metal=1 metal_fps=1 touch_lat=1 touchscreen=1 ca_metallib=/redwood/share/ca-share/QuartzCore-default.metallib gpu_recover=1 anim_max=1 bootcpu=7 cpus=8 cpufreq=1 fb_hz=120 fb_threads=4 touch_poll_us=4000  fb_measure=1 wallpaper_freeze=1 metal_defer=1 fbscale=2 ufs=2 ufs_write=1 var_store=1 
+com.apple.xpc.launchd|2026-11-10 00:03:09.684382 (user/501/com.hakios.varstore [13]) <Notice>: Successfully spawned var_store[13] because speculative
+[  840.142068]: var_store: the saver did not answer in 20000 ms: the store keeps what it had
+
+== crashes
